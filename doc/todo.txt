@@ -1,0 +1,130 @@
+﻿+ Nettoyage du code[a] - Reseau inutile pour l’instant[b]
+
+
++ Représentation intermédiaire
+    rédiger une spec détaillée (très important)
+    Fonctions de conversion : from_lisp(), to_lisp(), from_gui(), to_gui()[c]
+    Evaluer le niveau d’une entrée
+    
++ Interprète lisp
+    il est assez facile actuellement de définir un sous ensemble du langage à utiliser
+
+
++ Adaptation à la repr intermédiaire
+
+
++ GUI
+   au départ, un flèche indique le point de départ de l’expression. (décider si les objets peuvent être libres ou non au cours de la construction, je penche pour oui, mais il faut qu’au final tous les objets ajoutés descendent de l’objet lié à cette flèche, ie. forment un arbre)
+   par défaut, un conse ajouté est [X][X] : (cons nil nil) 
+   ajouter une flèche oblige à mettre un atome au bout, ou la lier à un autre conse
+   on peut supprimer tous les objets (atomes, conses et flèches)
+   une flèche qui ne pointe sur rien ne doit pas forcément être supprimée (on peut la tirer sur un autre objet)
+
+
++ MenuBar supplémentaire avec :
+    + Enoncé
+    + Ajouter compteur exofaits / exototaux[d] (si connu)
+    + Ajouter timer / score
+
+
++ Fonction d’aide personalisée
+    metrique de distance entre 2 expressions lisp ?
+    ...
+
+
++ Infobulles / aide
+
+
++ Gestion des exercices
+    + Prendre en arg un fichier/ligne de lisp sous forme par exemple:
+        "formeDonnée convertirEn expression"[e]
+        "Lisp Graph (a (c) e)"
+        "Graph Point (a (c) e)"
+        "Point Lisp (a (c) e)"
+    + Générateur de fichier d'exo ?
+    + Sauvegarder un exo en cours
+
+
++ Desactiver/griser[f] le widget inutile sauf si usage didactique
+
+
++ Fonction effacerTout pour nettoyer le wigdet graphique en cas de surcharge
+    + fonction undo/redo si possible
+
+
++ Ajouter remove à tous les menus contextuels, c'est préférable
+
+
++ Symboliser les listes circulaires en rouge
+
+
++ Augmenter visibilité
+    + Police
+    + Apparence
+
+
++ Améliorer/implémenter le layout auto basique
+    + Basique
+        si car = value : en bas (1)
+        si car = doublet : bas (2)
+        si cdr = nil : rien
+        si cdr = value : en bas (1)
+        si cdr = doublet : droite (1)
+    + Avancé
+        Utiliser algo style Sugiyama
+
+
++ Ajouter boutons divers
+    + Sauver / Charger
+    + Ouvrir
+    + Voir mes stats (local / remote ?)
+
+
++ Enregistrer l'état sur quit
+    peut être utile surtout en mode évaluation, voir section suivante
+    simplement récuperer le score et le no de l'exo sur le serv, si sychro ?
+
+
++ Selection de mode
+    + Didactique
+        tout autoriser
+        génération aléatoire
+        pas de timer
+        pas de limite
+        pas de score
+    + Auto évaluation
+        2 widgets aléatoire[g]
+        génération aléatoire
+        timer - stats perso
+        score - stats perso
+        nb d'exo déjà faits
+        mode concours en réseau (meilleurs temps / - de tentatives)
+    + Evaluation
+        2 widgets imposés
+        fichier imposé (ou pas ?)
+        timer - stats serv
+        score - stats serv
+        nb d'exo imposé
+    + Edition (création d’exercice)
+        widget de création
+        sauvegarde au format exercice
+
+
+[a]yoch.melka:
+je propose une refonte totale de la GUI, si nécessaire en s'inspirant de l'existant
+[b]yoch.melka:
+je pense qu'il serait bon de procéder en 2 temps :
+1. on travaille le client uniquement jusqu'à le rendre fonctionnel coté GUI
+2. ensuite, on se penche plus sérieusement sur le serveur, la gestion des comptes utilisateurs, etc.
+[c]yoch.melka:
+la place de ces fonctions reste à définir, et tout particulièrement to_gui(), qui semble obligatoirement faire partie du module de GUI
+[d]Cal Eliacheff:
+Commentaire tout à fait gratuit
+[e]yoch.melka:
+oui, quelque chose dans cet esprit là
+il faudrait aussi avoir les méta données comme le positionnement des doublets si la question est graphique, la date d'édition, le niveau choisi, etc.
+[f]yoch.melka:
+le + simple et le plus logique, c'est de le cacher
+il faut surtout que la fenêtre ne change pas de taille tt le temps
+[g]yoch.melka:
+il y a des modes où les 2 widgets ne sont pas nécessaires, d'autres modes où le widget gui doit être locké

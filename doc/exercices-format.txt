@@ -1,0 +1,59 @@
+﻿------ lexique ------
+(f.)        ->        facultatif
+*        ->        concept détaillé plus bas
+
+
+Exercice :
+    - données d'entrée*        {expression, graphique}
+    - type d'exercice                {conversions diverses, interprétation, test de validité}
+    - contraintes (f.)                {de temps, ?}
+    - auteur (f.)                        {fixé}
+    - niveau                        {fixé, determinable automatiquement}
+
+
+Données d'entrée :
+    - graphique : représentation intermédiaire*
+    - expression littérale : texte
+    
+Représentation graphique intermédiaire :
+    - graphe orienté                {racine + matrice d'adjacence}
+    - métadonnées (f.)                {layout, ?}
+
+
+
+
+
+
+Au niveau de l’implémentation :
+- utiliser de préférence des types builtins de python
+- les clés des dictionnaires doivent être de type str() [limitation due à JSON]
+- il faut implémenter des fonctions de conversion bidirectionnelles entre cette représentation et les représentations “purement lisp” et “purement gui”.
+
+
+Implémentation de la repr. graphique intermédiaire :
+Sous forme d’un tuple.
+- le premier élément est la clé de la racine de l’arbre ;
+- le second élément est une matrice d’adjacence (dictionnaire python) enrichie du type des données, et du contenu (interprétable) des données atomiques.
+
+
+exemples :
+(a . b)
+('139751514389648',
+ {'139751514389136': ('#atom', 'b', []),
+  '139751514389264': ('#atom', 'a', []),
+  '139751514389648': ('#cons', None, ['139751514389264', '139751514389136'])})
+
+
+(1 2 (3)) 
+('139751514387664',
+ {'139751514386704': ('#atom', '1', []),
+  '139751514386832': ('#atom', '3', []),
+  '139751514387216': ('#atom', '2', []),
+  '139751514387344': ('#cons', None, ['139751514387216', '139751514387408']),
+  '139751514387408': ('#cons', None, ['139751514387600', '139751517109392']),
+  '139751514387600': ('#cons', None, ['139751514386832', '139751517109392']),
+  '139751514387664': ('#cons', None, ['139751514386704', '139751514387344']),
+  '139751517109392': ('#atom', 'nil', [])})
+
+
+L’un des pièges de cette représentation est que les données identiques ne sont pas dupliquées (par exemple, nil n’est représenté qu’une fois), ce qui peut avoir des effets inattendus sur l’affichage. Pour le cas de nil justement, un traitement particulier est justement effectué pour afficher nil de façon particulière. Pour les autres cas, le comportement choisi est de n’utiliser qu’un seul symbole en cas de réutilisation.
