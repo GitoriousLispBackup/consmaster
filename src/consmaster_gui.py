@@ -27,7 +27,7 @@ class Client(QMainWindow):
         #~ Les widgets devraient pt être ajoutés à la volée,
         #~ en fonction de l'exo
         #~ plutôt qu'affichés directements
-        #~ Dans un 1e temps, afficher directement tous les modes
+        #~ Dans un 1e temps, afficher directement tous les widgets
 
         #~ Temporaire, obligation du setCentral
         #~ TODO: Créer un placeholder en central à la place
