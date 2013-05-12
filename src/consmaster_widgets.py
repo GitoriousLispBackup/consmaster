@@ -22,7 +22,7 @@ class WidgetLayout(QWidget) :
 
         #~ Term-like widget
         termLabel = QLabel("Terminal")
-        termEntry = termWidget()
+        termEntry = TermWidget()
         termButton = QPushButton("Validate")
         grid.addWidget(termLabel, 0, 0, 1, 1)
         grid.addWidget(termEntry, 0, 1)
@@ -33,7 +33,7 @@ class WidgetLayout(QWidget) :
 
         #~ A glisp form
         glispLabel = QLabel("Graph representation")
-        glispEntry = glispWidget()
+        glispEntry = GlispWidget()
         glispButton = QPushButton("Validate")
         glispClean = QPushButton("Effacer")
         grid.addWidget(glispLabel, 2, 0, 1, 1)
@@ -45,7 +45,7 @@ class WidgetLayout(QWidget) :
 
         self.setLayout(grid)
 
-class termWidget(QPlainTextEdit) :
+class TermWidget(QPlainTextEdit) :
     """ A terminal-like Widget """
 
     #~ TODO: Finaliser backward
@@ -53,7 +53,7 @@ class termWidget(QPlainTextEdit) :
     #~ WISHLIST: Implémenter historique avec up et down
 
     def __init__(self, parent=None):
-        super(termWidget, self).__init__(parent)
+        super(TermWidget, self).__init__(parent)
         self.i = 1
         self.prompt = ""
         self.startCursor = self.textCursor()
@@ -90,6 +90,14 @@ class termWidget(QPlainTextEdit) :
         elif event.key() == Qt.Key_Down:
             #~ History down
             pass
+        elif event.key() == Qt.Key_Left:
+            cursor = self.textCursor()
+            cursor.movePosition(QTextCursor.Left)
+            self.setTextCursor(cursor)
+        elif event.key() == Qt.Key_Right:
+            cursor = self.textCursor()
+            cursor.movePosition(QTextCursor.Right)
+            self.setTextCursor(cursor)
         elif event.key() == Qt.Key_Escape:
             #~ Avoid stranges things
             pass
@@ -102,10 +110,10 @@ class termWidget(QPlainTextEdit) :
                 cursor.removeSelectedText()
         else : self.insertPlainText(event.text())
 
-class glispWidget(QGraphicsView) :
+class GlispWidget(QGraphicsView) :
     """ Widget for graphical lisp """
     def __init__(self, parent=None):
-        super(glispWidget, self).__init__(parent)
+        super(GlispWidget, self).__init__(parent)
 
         #~ Contient la repr glisp
         self.references = []
