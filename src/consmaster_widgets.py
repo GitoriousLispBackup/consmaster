@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 import sys
@@ -13,6 +13,7 @@ except:
 
 class WidgetLayout(QWidget) :
     """ List of availables widgets"""
+
     def __init__(self, parent=None):
         super(WidgetLayout, self).__init__(parent)
         self.createWidgets()
@@ -58,6 +59,7 @@ class TermWidget(QPlainTextEdit) :
         self.prompt = ""
         self.startCursor = self.textCursor()
         self.setGeometry(0, 0, 100, 200)
+        self.setWordWrapMode(QTextOption.WrapAnywhere)
 
         #~ Should be configurable
         palette = QPalette()
@@ -82,6 +84,8 @@ class TermWidget(QPlainTextEdit) :
 
     def keyPressEvent(self, event):
         #~ Should be locked when processing
+
+        #~ Avoid stranges things with ctrl
         if event.key() == Qt.Key_Return:
             self.printSelf()
         elif event.key() == Qt.Key_Up:
@@ -90,28 +94,16 @@ class TermWidget(QPlainTextEdit) :
         elif event.key() == Qt.Key_Down:
             #~ History down
             pass
-        elif event.key() == Qt.Key_Left:
-            cursor = self.textCursor()
-            cursor.movePosition(QTextCursor.Left)
-            self.setTextCursor(cursor)
-        elif event.key() == Qt.Key_Right:
-            cursor = self.textCursor()
-            cursor.movePosition(QTextCursor.Right)
-            self.setTextCursor(cursor)
-        elif event.key() == Qt.Key_Escape:
-            #~ Avoid stranges things
-            pass
-        elif event.key() == Qt.Key_Backspace :
+        elif event.key() == Qt.Key_Backspace or event.key() == Qt.Key_Left:
             #~ Ensure Backspace not erasing other lines
-            cursor = self.textCursor()
-            if cursor.position() > self.startCursor:
-                cursor.movePosition(QTextCursor.Left, QTextCursor.KeepAnchor)
-                cursor.selection().toPlainText()
-                cursor.removeSelectedText()
-        else : self.insertPlainText(event.text())
+            if self.textCursor().position() > self.startCursor:
+                super().keyPressEvent(event)
+        else :
+            super().keyPressEvent(event)
 
 class GlispWidget(QGraphicsView) :
     """ Widget for graphical lisp """
+
     def __init__(self, parent=None):
         super(GlispWidget, self).__init__(parent)
 
