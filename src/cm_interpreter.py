@@ -7,8 +7,8 @@ class Interpreter:
     counter = 0
     def __new__(cls):
         if Interpreter.counter != 0:
-            raise RuntimeError('unable to create more thant one interpreter')
-        Interpreter.counter = 1
+            raise RuntimeError('unable to create more than one interpreter')
+        Interpreter.counter += 1
         return super().__new__(cls)
     def __init__(self):
         self.namespace = {}
@@ -20,5 +20,5 @@ class Interpreter:
     def getFromEnv(self, symbol):
         return self.namespace.get(symbol)
     def __del__(self):
-        Interpreter.counter = 0
+        Interpreter.counter -= 1
 
