@@ -5,7 +5,7 @@ try:
     from PySide.QtCore import *
     from PySide.QtGui import *
 except:
-    print >> sys.stderr, "Error:", "This program needs PySide module."
+    print ("Error: This program needs PySide module.", out=sys.stderr)
     sys.exit(1)
 
 class TermWidget(QPlainTextEdit) :
@@ -16,12 +16,12 @@ class TermWidget(QPlainTextEdit) :
     #~ WISHLIST: Implémenter historique avec up et down
 
     def __init__(self, parent=None):
-        super(TermWidget, self).__init__(parent)
-        self.i = 1
-        self.prompt = ""
-        self.startCursor = self.textCursor()
+        super().__init__(parent)
         self.setGeometry(0, 0, 100, 200)
         self.setWordWrapMode(QTextOption.WrapAnywhere)
+        # self.read.connect(self.sendToInterpreter)
+        self.startCursor = self.textCursor()
+        self.i = 0
 
         self.palette = QPalette()
         self.textColor = "white"
@@ -42,6 +42,18 @@ class TermWidget(QPlainTextEdit) :
         self.palette.setColor(QPalette.Base, self.baseColor);
         self.setPalette(self.palette);
 
+    def freezeAtCurrentPos(self):
+        self.moveCursor(QTextCursor.End)
+        self.startCursor = self.textCursor().position()
+
+    @Slot(str)
+    def out(self, s):
+        self.appendPlainText(s + '\n')
+        self.freezeAtCurrentPos()
+
+    @Slot(str)
+    def sendToInterpreter(self, expr):
+        pass
 
     def printSelf(self) :
         line = self.document().findBlockByLineNumber(self.document().lineCount() - 1).text()
@@ -50,18 +62,21 @@ class TermWidget(QPlainTextEdit) :
         self.appendPlainText(line)
         self.displayPrompt()
 
-    def displayPrompt(self) :
-        self.prompt = "({:d})> ".format(self.i)
-        self.appendPlainText(self.prompt)
-        self.startCursor = self.textCursor().position()
-        self.i = self.i + 1
+    def displayPrompt(self):
+        self.i += 1
+        self.insertPlainText("[{:d}]> ".format(self.i))
+        self.freezeAtCurrentPos()
 
     def keyPressEvent(self, event):
         #~ Should be locked when processing
 
-        #~ Avoid stranges things with ctrl
         if event.key() == Qt.Key_Return:
-            self.printSelf()
+            line = self.document().toPlainText()[self.startCursor:]
+            self.freezeAtCurrentPos()
+            # self.read.emit(line)
+            # hook
+            self.out(line)
+            self.displayPrompt()
         elif event.key() == Qt.Key_Up:
             #~ History up
             pass
@@ -72,5 +87,5 @@ class TermWidget(QPlainTextEdit) :
             #~ Ensure Backspace not erasing other lines
             if self.textCursor().position() > self.startCursor:
                 super().keyPressEvent(event)
-        else :
+        else:
             super().keyPressEvent(event)
