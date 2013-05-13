@@ -61,13 +61,25 @@ class TermWidget(QPlainTextEdit) :
         self.setGeometry(0, 0, 100, 200)
         self.setWordWrapMode(QTextOption.WrapAnywhere)
 
-        #~ Should be configurable
-        palette = QPalette()
-        palette.setColor(QPalette.Text, "white");
-        palette.setColor(QPalette.Base, "black");
-        self.setPalette(palette);
+        self.palette = QPalette()
+        self.textColor = "white"
+        self.baseColor = "black"
+        self.palette.setColor(QPalette.Text, self.textColor);
+        self.palette.setColor(QPalette.Base, self.baseColor);
+        self.setPalette(self.palette);
 
+        #~ test
+        self.setColor("black", "lightgray")
         self.displayPrompt()
+
+    #~ Meilleure solution ?
+    def setColor(self, text, base) :
+        self.textColor = text
+        self.baseColor = base
+        self.palette.setColor(QPalette.Text, self.textColor);
+        self.palette.setColor(QPalette.Base, self.baseColor);
+        self.setPalette(self.palette);
+
 
     def printSelf(self) :
         line = self.document().findBlockByLineNumber(self.document().lineCount() - 1).text()
@@ -112,13 +124,46 @@ class GlispWidget(QGraphicsView) :
 
         self.scene = QGraphicsScene()
         self.scene.setSceneRect(QRectF(0, 0, 400, 300))
-        self.scene.addRect(10,10,20,20)
-        self = QGraphicsView(self.scene)
+
+        self.scene.update()
+
+        self.setScene(self.scene)
         self.setAlignment(Qt.AlignLeft|Qt.AlignTop)
+        self.scene.addItem(GCons())
+        self.scene.addItem(GCons())
         self.show()
 
-    def addCons(self) :
+    def addCons() :
+        self.scene.addItem(GCons())
         pass
 
     def removeCons(self) :
         pass
+
+#~ QGraphicsItem can handle animations, could be funny
+class GCons(QGraphicsItem):
+    """ A graphical cons base class """
+
+    def __init__(self, car=None, cdr=None, parent=None, scene=None):
+        super(GCons, self).__init__(parent, scene)
+        self.setFlag(QGraphicsItem.ItemIsMovable, True)
+        self.setFlag(QGraphicsItem.ItemIsSelectable, True)
+
+        self.penWidth = 1
+        self.boundingRect()
+
+        self.car = car
+        self.cdr = cdr
+
+    def boundingRect(self) :
+        return QRectF (0 - self.penWidth / 2, 0 - self.penWidth / 2,
+                       100 + self.penWidth, 50 + self.penWidth)
+
+    def paint(self, painter, option, widget=None) :
+        painter.drawRoundRect(0, 0, 50, 50)
+        painter.drawRoundRect(50, 0, 50, 50)
+
+
+    #~ Pour le référencement ?
+    def identify(self) :
+        return self.id(self), self.id(self.car), self.id(self.cdr)
