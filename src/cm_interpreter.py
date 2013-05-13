@@ -1,7 +1,4 @@
-from pylisp.lisp_lexer import lisp_lexer
-from pylisp.lisp_parser import lisp_parser
-from pylisp.lisp_errors import LispError, LispParseError
-from pylisp.lisp import _Fvals, nil
+from pylisp import *
 
 class Interpreter:
     counter = 0
@@ -10,15 +7,28 @@ class Interpreter:
             raise RuntimeError('unable to create more than one interpreter')
         Interpreter.counter += 1
         return super().__new__(cls)
-    def __init__(self):
-        self.namespace = {}
-        self.namespace['nil'] = nil
-        _Fvals.clear()
+    def __init__(self, out=print):
+        self.out = out
+        self.reset()
     def eval(self, expr):
-        expr = lisp_parser.parse(expr, lexer=lisp_lexer)[0]
-        return expr.eval(self.namespace)
+        try:
+            expr = lisp_parser.parse(expr, lexer=lisp_lexer)[0]
+        except LispParseError as err:
+            self.out(repr(err))
+            return
+        try:
+            ret = expr.eval(self.namespace)
+            self.out(ret)
+        except (LispError, RuntimeError) as err:
+            self.out('  Error: ' + repr(err))
+            return
+        return ret
     def getFromEnv(self, symbol):
         return self.namespace.get(symbol)
+    def reset(self):
+        self.namespace = {}
+        self.namespace['nil'] = nil
+        Fvals.clear()
     def __del__(self):
         Interpreter.counter -= 1
 
