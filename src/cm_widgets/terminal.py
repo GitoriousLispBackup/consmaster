@@ -36,10 +36,10 @@ class TermWidget(QTextEdit) :
         palette.setColor(QPalette.Text, textColor)
         palette.setColor(QPalette.Base, baseColor)
         self.setPalette(palette)
-        
+
     def freezeAtCurrentPos(self):
         self.moveCursor(QTextCursor.End)
-        self.startCursor = self.textCursor().position()        
+        self.startCursor = self.textCursor().position()
 
     @Slot(str)
     def out(self, s):
@@ -49,7 +49,7 @@ class TermWidget(QTextEdit) :
     @Slot(str)
     def sendToInterpreter(self, expr):
         pass
-        
+
     @Slot(str)
     def updateHistory(self, line):
         self.history.append(line)
@@ -67,7 +67,7 @@ class TermWidget(QTextEdit) :
         self.i += 1
         self.insertPlainText("[{:d}]> ".format(self.i))
         self.freezeAtCurrentPos()
-    
+
     def eraseLine(self):
         cursor = self.textCursor()
         cursor.movePosition(QTextCursor.End)
