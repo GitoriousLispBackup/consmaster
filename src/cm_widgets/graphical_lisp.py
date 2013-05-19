@@ -28,36 +28,57 @@ class GlispWidget(QGraphicsView) :
         self.setAlignment(Qt.AlignLeft|Qt.AlignTop)
 
         self.addCons()
+        self.addAtom("a")
         self.show()
+        #~ self.cleanAll()
 
-    def addCons(self) :
-        g = GCons()
-        g.car.setCar("a")
-        g.cdr.setCdr("b")
-        #~ print(g.car.value)
-        #~ print(g.cdr.value)
+    def addCons(self, car=None, cdr=None) :
+        g = GCons(car, cdr)
+        #~ g.car = car
+        #~ g.cdr = cdr
         self.scene.addItem(g)
-        pass
 
     def removeCons(self) :
         pass
+
+    def addAtom(self, value=None) :
+        a = GAtom(value)
+        #~ a.value = value
+        self.scene.addItem(a)
+
+    def removeAtom(self) :
+        pass
+
+    def cleanAll(self) :
+        print(self.items())
+        for item in self.items() :
+            self.scene.removeItem(item)
+        print(self.items())
 
 #~ QGraphicsItem can handle animations, could be funny
 class GCons(QGraphicsItem):
     """ A graphical cons base class """
 
-    def __init__(self, carValue=None, cdrValue=None, parent=None, scene=None):
+    def __init__(self, car=None, cdr=None, parent=None, scene=None):
         super(GCons, self).__init__(parent, scene)
         self.setFlag(QGraphicsItem.ItemIsMovable, True)
         self.setFlag(QGraphicsItem.ItemIsSelectable, True)
+        self.collidingItems()
+
+        self._car = None
+        self._cdr = None
 
         self.penWidth = 2
         self.boundingRect()
 
-        self.car = GCar()
-        self.car.setParentItem(self)
-        self.cdr = GCdr()
-        self.cdr.setParentItem(self)
+    def setCar(self, car):
+        self._car = car
+
+    def setCdr(self, cdr):
+        self._cdr = cdr
+
+    car = property(fget=lambda self: self._car, fset=setCar)
+    cdr = property(fget=lambda self: self._cdr, fset=setCdr)
 
     def boundingRect(self) :
         return QRectF (0 - self.penWidth / 2, 0 - self.penWidth / 2,
@@ -76,37 +97,43 @@ class GCons(QGraphicsItem):
     def identify(self) :
         return self.id(self), self.id(self.car), self.id(self.cdr)
 
-class GCar(QGraphicsRectItem) :
-    """ Car part of a gCons """
 
-    def __init__(self, penWidth=1, parent=None, *args, **kwargs):
-        super(GCar, self).__init__(parent)
-        self.penWidth = 1
-        self.value = "nil"
+class GAtom(QGraphicsItem):
+    """ An Graphical Atom to represent a Car """
 
-    def setCar(self, car) :
-        self.value = car
-        #~ Need Signal
+    def __init__(self, value="", parent=None, scene=None):
+        super(GAtom, self).__init__(parent, scene)
+
+        self.setFlag(QGraphicsItem.ItemIsMovable, True)
+        self.setFlag(QGraphicsItem.ItemIsSelectable, True)
+        self.collidingItems()
+
+        self.penWidth = 2
+
+        self._value = value
+        self.sizedBound = 20 + len(self._value)*10
+
+    def setValue(self, value):
+        self._value = value
+        self.sizedBound = 20 + len(self._value)*10
+        #~ Seems to be working without this, but is asked in
+        #~  documentation, as we change the bounding box
+        self.prepareGeometryChange()
+        #~ self.boundingRect()
+        #~ self.update()
+
+    value = property(fget=lambda self: self._value, fset=setValue)
 
     def boundingRect(self) :
         return QRectF (0 - self.penWidth / 2, 0 - self.penWidth / 2,
-                       50 + self.penWidth, 50 + self.penWidth)
+                       self.sizedBound + self.penWidth, 30 + self.penWidth)
 
-class GCdr(QGraphicsRectItem) :
-    """ Cdr part of a gCons """
+    def paint(self, painter, option, widget=None) :
+        painter.setPen(QPen(Qt.black, self.penWidth))
+        rect = QRectF(0, 0, self.sizedBound, 30)
+        painter.drawEllipse(rect)
+        painter.drawText(rect, Qt.AlignCenter, self.value)
 
-    def __init__(self, penWidth=1, parent=None, *args, **kwargs):
-        super(GCdr, self).__init__(parent)
-        self.penWidth = 1
-        self.value = "nil"
-
-    def setCdr(self, cdr) :
-        self.value = cdr
-        #~ Need Signal
-
-    def boundingRect(self) :
-        return QRectF (50 - self.penWidth / 2, 0 - self.penWidth / 2,
-                       50 + self.penWidth, 50 + self.penWidth)
 
 #~ Honteusement plagié temporairement
 class Arrow(QGraphicsLineItem):

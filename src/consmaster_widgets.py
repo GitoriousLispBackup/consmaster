@@ -45,6 +45,6 @@ class WidgetLayout(QWidget) :
         grid.addWidget(termButton, 1, 5, 1, 1)
         termLabel.setBuddy(termEntry)
 
-        termButton.clicked.connect(termEntry.printSelf)
+        termButton.clicked.connect(termEntry.out)
 
         self.setLayout(grid)

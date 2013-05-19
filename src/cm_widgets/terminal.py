@@ -1,46 +1,41 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+import sys
+
 try:
     from PySide.QtCore import *
     from PySide.QtGui import *
 except:
-    print ("Error: This program needs PySide module.", out=sys.stderr)
+    print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
-class TermWidget(QPlainTextEdit) :
+
+class TermWidget(QTextEdit) :
     """ A terminal-like Widget """
 
     #~ TODO: Finaliser backward
           #~ Implémenter lisp
     #~ WISHLIST: Implémenter historique avec up et down
+    read = Signal((str,))
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setGeometry(0, 0, 100, 200)
         self.setWordWrapMode(QTextOption.WrapAnywhere)
-        # self.read.connect(self.sendToInterpreter)
+        self.read.connect(self.updateHistory)
         self.startCursor = self.textCursor()
         self.i = 0
-
-        self.palette = QPalette()
-        self.textColor = "white"
-        self.baseColor = "black"
-        self.palette.setColor(QPalette.Text, self.textColor);
-        self.palette.setColor(QPalette.Base, self.baseColor);
-        self.setPalette(self.palette);
-
-        #~ test
+        self.hpos = 0
+        self.history = []
         self.setColor("black", "lightgray")
         self.displayPrompt()
 
-    #~ Meilleure solution ?
-    def setColor(self, text, base) :
-        self.textColor = text
-        self.baseColor = base
-        self.palette.setColor(QPalette.Text, self.textColor);
-        self.palette.setColor(QPalette.Base, self.baseColor);
-        self.setPalette(self.palette);
+    def setColor(self, textColor, baseColor) :
+        palette = QPalette()
+        palette.setColor(QPalette.Text, textColor)
+        palette.setColor(QPalette.Base, baseColor)
+        self.setPalette(palette)
 
     def freezeAtCurrentPos(self):
         self.moveCursor(QTextCursor.End)
@@ -48,44 +43,60 @@ class TermWidget(QPlainTextEdit) :
 
     @Slot(str)
     def out(self, s):
-        self.appendPlainText(s + '\n')
+        self.append(s + '\n')
         self.freezeAtCurrentPos()
 
     @Slot(str)
     def sendToInterpreter(self, expr):
         pass
 
-    def printSelf(self) :
-        line = self.document().findBlockByLineNumber(self.document().lineCount() - 1).text()
-        #~ Remove prompt from line
-        line = line[len(self.prompt):]
-        self.appendPlainText(line)
-        self.displayPrompt()
+    @Slot(str)
+    def updateHistory(self, line):
+        self.history.append(line)
+        self.hpos = len(self.history)
+    
+    def histNext(self):
+        if self.hpos < len(self.history): self.hpos += 1
+        return self.history[self.hpos] if 0 <= self.hpos < len(self.history) else ""
+        
+    def histPrev(self):
+        if self.hpos >= 0: self.hpos -= 1
+        return self.history[self.hpos] if 0 <= self.hpos < len(self.history) else ""
 
     def displayPrompt(self):
         self.i += 1
         self.insertPlainText("[{:d}]> ".format(self.i))
         self.freezeAtCurrentPos()
 
+    def eraseLine(self):
+        cursor = self.textCursor()
+        cursor.movePosition(QTextCursor.End)
+        cursor.movePosition(QTextCursor.Left, QTextCursor.KeepAnchor, 
+                                len(self.document().toPlainText()) - self.startCursor)
+        cursor.removeSelectedText()
+
     def keyPressEvent(self, event):
-        #~ Should be locked when processing
+        if self.textCursor().position() < self.startCursor:
+            return
 
         if event.key() == Qt.Key_Return:
             line = self.document().toPlainText()[self.startCursor:]
             self.freezeAtCurrentPos()
-            # self.read.emit(line)
-            # hook
-            self.out(line)
+            self.read.emit(line)
+            self.out(line)  # hook
             self.displayPrompt()
         elif event.key() == Qt.Key_Up:
             #~ History up
-            pass
+            self.eraseLine()
+            self.insertPlainText(self.histPrev())
         elif event.key() == Qt.Key_Down:
             #~ History down
-            pass
+            self.eraseLine()
+            self.insertPlainText(self.histNext())
         elif event.key() == Qt.Key_Backspace or event.key() == Qt.Key_Left:
             #~ Ensure Backspace not erasing other lines
             if self.textCursor().position() > self.startCursor:
                 super().keyPressEvent(event)
         else:
             super().keyPressEvent(event)
+
