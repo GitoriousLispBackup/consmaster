@@ -1,4 +1,11 @@
 from pylisp import *
+import pylisp.lisp_errors as lisp_errors
+import pylisp.lisp as lisp
+from lisp_errors import LispError, LispParseError
+from lisp import _Fvals as Fvals, nil
+
+from cm_interm_repr import GraphExpr
+
 
 class Interpreter:
     counter = 0
@@ -16,12 +23,14 @@ class Interpreter:
         except LispParseError as err:
             self.out(repr(err))
             return
+        print('expr :', GraphExpr.from_lsp_obj(expr))
         try:
             ret = expr.eval(self.namespace)
             self.out(ret)
         except (LispError, RuntimeError) as err:
             self.out('  Error: ' + repr(err))
             return
+        print('retval :', GraphExpr.from_lsp_obj(ret))
         return ret
     def getFromEnv(self, symbol):
         return self.namespace.get(symbol)
