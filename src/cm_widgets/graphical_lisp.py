@@ -28,8 +28,12 @@ class GlispWidget(QGraphicsView) :
         self.setAlignment(Qt.AlignLeft|Qt.AlignTop)
 
         self.addCons()
+        self.addCons("g","c")
+        self.addAtom("wtf")
         self.addAtom("a")
+        self.scene.addItem(Pointer(self.references[0][0], self.references[1][0]))
         self.show()
+        #~ self.removeCons(None)
         #~ self.cleanAll()
 
     def addCons(self, car=None, cdr=None) :
@@ -37,38 +41,49 @@ class GlispWidget(QGraphicsView) :
         #~ g.car = car
         #~ g.cdr = cdr
         self.scene.addItem(g)
+        self.references.append([g, g.car, g.cdr, None])
 
+    #~ TODO remove arrows too
     def removeCons(self) :
-        pass
+        print("dsfvc")
+        for item in self.scene.selectedItems() :
+            #~ r = self.references[0][0]
+            self.scene.removeItem(item)
+            print(self.scene.selectedItems())
+            #~ self.references.remove(r)
+        #~ pass
 
     def addAtom(self, value=None) :
         a = GAtom(value)
         #~ a.value = value
         self.scene.addItem(a)
+        self.references.append(a)
 
     def removeAtom(self) :
         pass
 
-    def cleanAll(self) :
+    def removeAll(self) :
         print(self.items())
         for item in self.items() :
             self.scene.removeItem(item)
         print(self.items())
 
+
 #~ QGraphicsItem can handle animations, could be funny
 class GCons(QGraphicsItem):
     """ A graphical cons base class """
 
-    def __init__(self, car=None, cdr=None, parent=None, scene=None):
+    def __init__(self, car=None, cdr=None, iden=None, parent=None, scene=None):
         super(GCons, self).__init__(parent, scene)
         self.setFlag(QGraphicsItem.ItemIsMovable, True)
         self.setFlag(QGraphicsItem.ItemIsSelectable, True)
-        self.collidingItems()
 
-        self._car = None
-        self._cdr = None
+        self._iden = id(self)
+        self._car = car
+        self._cdr = cdr
 
         self.penWidth = 2
+        self.pen = QPen(Qt.black, self.penWidth)
         self.boundingRect()
 
     def setCar(self, car):
@@ -77,17 +92,33 @@ class GCons(QGraphicsItem):
     def setCdr(self, cdr):
         self._cdr = cdr
 
+    def setId(self, iden):
+        self.iden = iden
+
     car = property(fget=lambda self: self._car, fset=setCar)
     cdr = property(fget=lambda self: self._cdr, fset=setCdr)
+    iden = property(fget=lambda self: self._iden, fset=setId)
+
+    def setColor(self, color) :
+        self.pen = QPen(Qt.red, self.penWidth)
+
+    def selectedActions(self, value) :
+        if value :
+            self.pen = QPen(QColor("green"), self.penWidth)
+        else : self.pen = QPen(QColor("black"), self.penWidth)
 
     def boundingRect(self) :
         return QRectF (0 - self.penWidth / 2, 0 - self.penWidth / 2,
                        100 + self.penWidth, 50 + self.penWidth)
 
     def paint(self, painter, option, widget=None) :
-        painter.setPen(QPen(Qt.black, self.penWidth))
+        painter.setPen(self.pen)
         painter.drawRoundRect(0, 0, 50, 50)
         painter.drawRoundRect(50, 0, 50, 50)
+        if self._cdr == None :
+            painter.drawLine(50+2, 50-2, 100-2, 0+2)
+            painter.drawLine(50+2, 0+2, 100-2, 50-2)
+
 
     #~ TODO: Définir la position de départ, layouting
     def setPosition(self):
@@ -95,22 +126,27 @@ class GCons(QGraphicsItem):
 
     #~ TODO: Pour le référencement ?
     def identify(self) :
-        return self.id(self), self.id(self.car), self.id(self.cdr)
+        #~ return self.id(self), self.id(self.car), self.id(self.cdr)
+        return self, self._car, self._cdr
 
+    def itemChange(self, change, value) :
+        if change == self.ItemSelectedChange :
+            self.selectedActions(value)
+        return super().itemChange(change, value)
 
 class GAtom(QGraphicsItem):
     """ An Graphical Atom to represent a Car """
 
-    def __init__(self, value="", parent=None, scene=None):
+    def __init__(self, value="nil", parent=None, scene=None):
         super(GAtom, self).__init__(parent, scene)
 
         self.setFlag(QGraphicsItem.ItemIsMovable, True)
         self.setFlag(QGraphicsItem.ItemIsSelectable, True)
-        self.collidingItems()
-
-        self.penWidth = 2
 
         self._value = value
+
+        self.penWidth = 2
+        self.pen = QPen(Qt.black, self.penWidth)
         self.sizedBound = 20 + len(self._value)*10
 
     def setValue(self, value):
@@ -124,16 +160,25 @@ class GAtom(QGraphicsItem):
 
     value = property(fget=lambda self: self._value, fset=setValue)
 
+    def selectedActions(self, value) :
+        if value :
+            self.pen = QPen(QColor("green"), self.penWidth)
+        else : self.pen = QPen(QColor("black"), self.penWidth)
+
     def boundingRect(self) :
         return QRectF (0 - self.penWidth / 2, 0 - self.penWidth / 2,
                        self.sizedBound + self.penWidth, 30 + self.penWidth)
 
     def paint(self, painter, option, widget=None) :
-        painter.setPen(QPen(Qt.black, self.penWidth))
+        painter.setPen(self.pen)
         rect = QRectF(0, 0, self.sizedBound, 30)
         painter.drawEllipse(rect)
         painter.drawText(rect, Qt.AlignCenter, self.value)
 
+    def itemChange(self, change, value) :
+        if change == self.ItemSelectedChange :
+            self.selectedActions(value)
+        return super().itemChange(change, value)
 
 #~ Honteusement plagié temporairement
 class Arrow(QGraphicsLineItem):
@@ -232,12 +277,12 @@ class Pointer(Arrow):
     def __init__(self, startItem, endItem, parent=None, scene=None):
         self.startItem = startItem
         self.endItem = endItem
-        self.p1 = startItem.scenePos() + QPointF(100, 50)
+        self.p1 = startItem.scenePos()# + QPointF(100, 50)
         self.p2 = endItem.scenePos()
         super(Pointer, self).__init__(self.p1, self.p2, parent, scene)
 
     def paint(self, painter, option, widget=None):
-        self.p1 = self.startItem.scenePos() + QPointF(75, 25)
+        self.p1 = self.startItem.scenePos() + QPointF(100, 25)
         self.p2 = self.endItem.scenePos() + QPointF(0, 25)
         self.setLine(QLineF(self.p1, self.p2))
         super(Pointer, self).paint(painter, option, widget)
