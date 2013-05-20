@@ -1,25 +1,23 @@
 ﻿------ lexique ------
 (f.)        ->        facultatif
-*        ->        concept détaillé plus bas
+*           ->        concept détaillé plus bas
 
 
-Exercice :
-    - données d'entrée*        {expression, graphique}
-    - type d'exercice                {conversions diverses, interprétation, test de validité}
-    - contraintes (f.)                {de temps, ?}
-    - auteur (f.)                        {fixé}
-    - niveau                        {fixé, determinable automatiquement}
+Exercice (dict) :
+    - données d'entrée*     {expression, graphique}
+    - type d'exercice       {conversions diverses, interprétation, test de validité}
+    - contraintes (f.)      {de temps, ?}  // plutot des données méta, qui peuvent être des contraintes ?
+    - auteur (f.)           {}
+    - niveau                {fixé / determinable automatiquement}
 
 
-Données d'entrée :
+Données d'entrée (typée?) :
     - graphique : représentation intermédiaire*
     - expression littérale : texte
     
 Représentation graphique intermédiaire :
-    - graphe orienté                {racine + matrice d'adjacence}
-    - métadonnées (f.)                {layout, ?}
-
-
+    - graphe orienté        {racine + matrice d'adjacence}
+    - métadonnées (f.)      {layout, ?}
 
 
 
