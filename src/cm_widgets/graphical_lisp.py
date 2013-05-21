@@ -205,7 +205,7 @@ class GCons(QGraphicsItem):
         return self, self._car, self._cdr
 
     def itemChange(self, change, value) :
-        if change == self.ItemSelectedChange :
+        if change == self.ItemSelectedChange:
             self.selectedActions(value)
         return super().itemChange(change, value)
 
@@ -217,9 +217,13 @@ class GCons(QGraphicsItem):
 
     #~ Should use hover property ?
     def mousePressEvent(self, mouseEvent) :
+        #~ Next line needed to force redrawn of one cons
+        self.setSelected(False)
         self.used = self.carOrCdr(mouseEvent.pos())
         super().mousePressEvent(mouseEvent)
 
+    def mouseMoveEvent(self, mouseEvent):
+        super().mouseMoveEvent(mouseEvent)
 
 class GAtom(QGraphicsItem):
     """ An Graphical Atom to represent a Car """
