@@ -20,15 +20,23 @@ def dec(dct):
         return GraphExpr(**dct)
     return dct
 
-class CmExercice:
+
+def cmExerciceFactory(dct):
+    typ = dct['typ']
+    if typ == 'demo':
+        return CmDemo(**dct)
+    elif typ == '...':
+        return None
+    else:
+        raise RuntimeError('unkown type: ' + typ)
+
+class CmExerciceBase:
     """
-    :type:
-    :data:
-    :author:
-    :level:
+    base class for exercices
+    with JSON serialization support
     """
-    def __init__(self, **kwargs):
-        self.__dict__.update(kwargs)
+    def __init__(self, typ):
+        self.typ = typ
 
     def dump(self, filename):
         with open(filename, 'w', encoding='utf-8') as fp:
@@ -37,6 +45,17 @@ class CmExercice:
     @staticmethod
     def load(filename):
         with open(filename, 'r', encoding='utf-8') as fp:
-            d = json.load(fp, object_hook=dec)
-            # 
-            return CmExercice(**d)
+            dct = json.load(fp, object_hook=dec)
+            return cmExerciceFactory(dct)
+
+
+class CmDemo(CmExerciceBase):
+    """
+    demo class : not a real exercice
+    """
+    def __init__(self, **kwargs):
+        super().__init__(typ=':demo')
+        self.__dict__.update(kwargs)
+
+
+
