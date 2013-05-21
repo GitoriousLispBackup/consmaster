@@ -7,7 +7,7 @@ try:
     from PySide.QtCore import *
     from PySide.QtGui import *
 except:
-    print >> sys.stderr, "Error:", "This program needs PySide module."
+    print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
 class GlispWidget(QGraphicsView) :
@@ -72,7 +72,7 @@ class GlispWidget(QGraphicsView) :
     def removeAll(self) :
         for item in self.items() :
             self.scene.removeItem(item)
-        print(self.items())
+        #~ print(self.items())
 
     def addArrow(self, o1, o2, orig) :
         p = Pointer(o1, o2)
@@ -81,31 +81,33 @@ class GlispWidget(QGraphicsView) :
     def manualAddArrow(self, pos=None):
         if pos == None:
             pos = self.mousePos
-        self.arrow = Arrow(self.startItem,
+        self.arrow = Arrow(self.startItem.pos(),
                            pos)
-        #self.arrow.penColor = Qt.red
+        self.arrow.penColor = Qt.red
         self.scene.addItem(self.arrow)
 
     def autoArrow(self) :
         for item in self.items() :
             if isinstance(item, GCons) :
                 if self.references[item][0] != None :
-                    print(self.references[item][0], "\n", self.references.values())
+                    #~ print(self.references[item][0], "\n", self.references.values())
                     if self.references[item][0] in self.references.values() :
                         self.addArrow(item, self.references[self.references[item][0]])
 
     def mousePressEvent(self, mouseEvent):
         if mouseEvent.button() == Qt.RightButton:
             p = mouseEvent.pos()
-            self.startItem = p
-            self.manualAddArrow(p)
+            i = self.itemAt(p)
+            if isinstance(i, GCons) :
+                self.startItem = i
+                self.manualAddArrow(p)
         else :
             super().mousePressEvent(mouseEvent)
 
     def mouseMoveEvent(self, mouseEvent):
         self.mousePos = mouseEvent.pos()
 
-        if (self.arrow != None) : #and (mouseEvent.button() == Qt.RightButton) :
+        if (self.arrow != None) :
             newLine = QLineF(self.arrow.line().p1(), mouseEvent.pos())
             self.arrow.setLine(newLine)
 
@@ -113,14 +115,22 @@ class GlispWidget(QGraphicsView) :
             super().mouseMoveEvent(mouseEvent)
 
     def mouseReleaseEvent(self, mouseEvent):
-        if self.arrow:
-            if isinstance(self.itemAt(mouseEvent.pos()), GCons) or isinstance(self.itemAt(mouseEvent.pos()), GAtom) :
-                pass
-            else :
-                self.scene.removeItem(self.arrow)
+        #~ Should also test if already linked
+
+        #~ itemAT return the arrow, so we use items(pos) which is deprecated
+        #~ but can be adapted
+        #~ endItem = self.itemAt(mouseEvent.pos())
+        if self.arrow != None :
+            if len(self.items(mouseEvent.pos())) > 1:
+                endItem = self.items(mouseEvent.pos())[1]
+                if isinstance(endItem, GCons) or isinstance(endItem, GAtom) :
+                    p = Pointer(self.startItem, endItem)
+                    self.scene.addItem(p)
+            self.scene.removeItem(self.arrow)
             self.arrow = None
         else :
             super().mouseReleaseEvent(mouseEvent)
+
 
 #~ QGraphicsItem can handle animations, could be funny
 class GCons(QGraphicsItem):
@@ -135,8 +145,11 @@ class GCons(QGraphicsItem):
         self._car = car
         self._cdr = cdr
 
+        self.used = "car"
+
         self.penWidth = 2
-        self.pen = QPen(Qt.black, self.penWidth)
+        self.penCar = QPen(Qt.black, self.penWidth)
+        self.penCdr = QPen(Qt.black, self.penWidth)
         self.boundingRect()
 
     def setCar(self, car):
@@ -152,26 +165,33 @@ class GCons(QGraphicsItem):
     cdr = property(fget=lambda self: self._cdr, fset=setCdr)
     iden = property(fget=lambda self: self._iden, fset=setId)
 
-    def setColor(self, color) :
-        self.pen = QPen(Qt.red, self.penWidth)
+    def setColor(self, colorCar="black", colorCdr="black") :
+        self.penCar = QPen(QColor(colorCar), self.penWidth)
+        self.penCdr = QPen(QColor(colorCdr), self.penWidth)
 
     def selectedActions(self, value) :
         if value :
-            self.pen = QPen(QColor("green"), self.penWidth)
-        else : self.pen = QPen(QColor("black"), self.penWidth)
+            if self.used == "car" :
+                self.setColor("green", "black")
+            else :
+                self.setColor("black", "green")
+        else : self.setColor("black", "black")
 
     def boundingRect(self) :
         return QRectF (0 - self.penWidth / 2, 0 - self.penWidth / 2,
                        100 + self.penWidth, 50 + self.penWidth)
 
     def paint(self, painter, option, widget=None) :
-        painter.setPen(self.pen)
-        painter.drawRoundRect(0, 0, 50, 50)
+        painter.setPen(self.penCar)
+        painter.drawRoundRect(0, 0, 50-1, 50)
+        painter.setPen(self.penCdr)
         painter.drawRoundRect(50, 0, 50, 50)
         if self.car == None :
+            painter.setPen(self.penCar)
             painter.drawLine(0+2, 0+2, 50-2, 50-2)
             painter.drawLine(0+2, 50-2, 50-2, 0+2)
         if self.cdr == None :
+            painter.setPen(self.penCdr)
             painter.drawLine(50+2, 50-2, 100-2, 0+2)
             painter.drawLine(50+2, 0+2, 100-2, 50-2)
 
@@ -189,6 +209,18 @@ class GCons(QGraphicsItem):
             self.selectedActions(value)
         return super().itemChange(change, value)
 
+    def carOrCdr(self, mousePos) :
+        if mousePos.x() < 50 :
+            return "car"
+        else :
+            return "cdr"
+
+    #~ Should use hover property ?
+    def mousePressEvent(self, mouseEvent) :
+        self.used = self.carOrCdr(mouseEvent.pos())
+        super().mousePressEvent(mouseEvent)
+
+
 class GAtom(QGraphicsItem):
     """ An Graphical Atom to represent a Car """
 
@@ -198,15 +230,15 @@ class GAtom(QGraphicsItem):
         self.setFlag(QGraphicsItem.ItemIsMovable, True)
         self.setFlag(QGraphicsItem.ItemIsSelectable, True)
 
-        self._value = value
+        self._value = "nil"
 
         self.penWidth = 2
         self.pen = QPen(Qt.black, self.penWidth)
-        self.sizedBound = 20 + len(self._value)*10
+        self.sizedBound = 20 + len(self.value)*10
 
     def setValue(self, value):
         self._value = value
-        self.sizedBound = 20 + len(self._value)*10
+        self.sizedBound = 20 + len(self.value)*10
         #~ Seems to be working without this, but is asked in
         #~  documentation, as we change the bounding box
         self.prepareGeometryChange()
@@ -234,6 +266,26 @@ class GAtom(QGraphicsItem):
         if change == self.ItemSelectedChange :
             self.selectedActions(value)
         return super().itemChange(change, value)
+
+    def setValueBox(self, currentName=None) :
+        name, ok = QInputDialog.getText(None, "Symbole",
+        "Nom du symbole (pname) :", QLineEdit.Normal,
+        currentName)
+        #~ No control for now, needs atom list
+        #~ if ok and name != "" and name in self.symbols:
+            #~ q = QMessageBox(self.parent)
+            #~ q.setWindowTitle("Erreur lisp")
+            #~ q.setText("Un symbole avec ce nom existe.")
+            #~ q.setIconPixmap(QPixmap("icons/user-busy.png"))
+            #~ q.show()
+        #~ elif ok and name != "":
+            #~ return name
+        if ok and name != "":
+            self.value = name
+        return
+
+    def mouseDoubleClickEvent(self, mouseEvent) :
+        self.setValueBox()
 
 #~ Honteusement plagié temporairement
 class Arrow(QGraphicsLineItem):
@@ -326,8 +378,8 @@ class Pointer(Arrow):
     def __init__(self, startItem, endItem, orig="car", parent=None, scene=None):
         self.startItem = startItem
         self.endItem = endItem
-        self.p1 = startItem.scenePos()# + QPointF(100, 50)
-        self.p2 = endItem.scenePos()
+        self.p1 = startItem.pos()
+        self.p2 = endItem.pos()
         self.orig = "car"
         super(Pointer, self).__init__(self.p1, self.p2, parent, scene)
 
