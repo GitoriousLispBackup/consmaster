@@ -16,8 +16,12 @@ class GlispWidget(QGraphicsView) :
     def __init__(self, parent=None):
         super(GlispWidget, self).__init__(parent)
 
+        self.arrow = None
+        self.mousePos = None
+        self.startItem = None
+
         #~ Contient la repr glisp
-        self.references = []
+        self.references = {}
 
         self.scene = QGraphicsScene()
         self.scene.setSceneRect(QRectF(0, 0, 400, 300))
@@ -28,11 +32,14 @@ class GlispWidget(QGraphicsView) :
         self.setAlignment(Qt.AlignLeft|Qt.AlignTop)
 
         self.addCons()
-        self.addCons("g","c")
-        self.addAtom("wtf")
-        self.addAtom("a")
-        self.scene.addItem(Pointer(self.references[0][0], self.references[1][0]))
+        self.addCons("a","c")
+        #~ self.addAtom("wtf")
+        #self.addAtom("a")
+        #~ self.scene.addItem(Pointer(self.references[0][0], self.references[1][0]))
+
+        self.autoArrow()
         self.show()
+
         #~ self.removeCons(None)
         #~ self.cleanAll()
 
@@ -40,16 +47,17 @@ class GlispWidget(QGraphicsView) :
         g = GCons(car, cdr)
         #~ g.car = car
         #~ g.cdr = cdr
+        if g.car != None :
+            a = self.addAtom(g.car)
+            self.addArrow(g, a, "car")
         self.scene.addItem(g)
-        self.references.append([g, g.car, g.cdr, None])
+        self.references[g] = [g.car, g.cdr, None]
 
     #~ TODO remove arrows too
-    def removeCons(self) :
-        print("dsfvc")
+    def removeItem(self) :
         for item in self.scene.selectedItems() :
             #~ r = self.references[0][0]
             self.scene.removeItem(item)
-            print(self.scene.selectedItems())
             #~ self.references.remove(r)
         #~ pass
 
@@ -57,17 +65,62 @@ class GlispWidget(QGraphicsView) :
         a = GAtom(value)
         #~ a.value = value
         self.scene.addItem(a)
-        self.references.append(a)
-
-    def removeAtom(self) :
-        pass
+        self.references[a] = [value, None, None]
+        # FIXME: For immediate arrow creation, should be improved
+        return a
 
     def removeAll(self) :
-        print(self.items())
         for item in self.items() :
             self.scene.removeItem(item)
         print(self.items())
 
+    def addArrow(self, o1, o2, orig) :
+        p = Pointer(o1, o2)
+        self.scene.addItem(p)
+
+    def manualAddArrow(self, pos=None):
+        if pos == None:
+            pos = self.mousePos
+        self.arrow = Arrow(self.startItem,
+                           pos)
+        #self.arrow.penColor = Qt.red
+        self.scene.addItem(self.arrow)
+
+    def autoArrow(self) :
+        for item in self.items() :
+            if isinstance(item, GCons) :
+                if self.references[item][0] != None :
+                    print(self.references[item][0], "\n", self.references.values())
+                    if self.references[item][0] in self.references.values() :
+                        self.addArrow(item, self.references[self.references[item][0]])
+
+    def mousePressEvent(self, mouseEvent):
+        if mouseEvent.button() == Qt.RightButton:
+            p = mouseEvent.pos()
+            self.startItem = p
+            self.manualAddArrow(p)
+        else :
+            super().mousePressEvent(mouseEvent)
+
+    def mouseMoveEvent(self, mouseEvent):
+        self.mousePos = mouseEvent.pos()
+
+        if (self.arrow != None) : #and (mouseEvent.button() == Qt.RightButton) :
+            newLine = QLineF(self.arrow.line().p1(), mouseEvent.pos())
+            self.arrow.setLine(newLine)
+
+        else :
+            super().mouseMoveEvent(mouseEvent)
+
+    def mouseReleaseEvent(self, mouseEvent):
+        if self.arrow:
+            if isinstance(self.itemAt(mouseEvent.pos()), GCons) or isinstance(self.itemAt(mouseEvent.pos()), GAtom) :
+                pass
+            else :
+                self.scene.removeItem(self.arrow)
+            self.arrow = None
+        else :
+            super().mouseReleaseEvent(mouseEvent)
 
 #~ QGraphicsItem can handle animations, could be funny
 class GCons(QGraphicsItem):
@@ -115,10 +168,12 @@ class GCons(QGraphicsItem):
         painter.setPen(self.pen)
         painter.drawRoundRect(0, 0, 50, 50)
         painter.drawRoundRect(50, 0, 50, 50)
-        if self._cdr == None :
+        if self.car == None :
+            painter.drawLine(0+2, 0+2, 50-2, 50-2)
+            painter.drawLine(0+2, 50-2, 50-2, 0+2)
+        if self.cdr == None :
             painter.drawLine(50+2, 50-2, 100-2, 0+2)
             painter.drawLine(50+2, 0+2, 100-2, 50-2)
-
 
     #~ TODO: Définir la position de départ, layouting
     def setPosition(self):
@@ -208,9 +263,6 @@ class Arrow(QGraphicsLineItem):
         self.setFlag(QGraphicsItem.ItemIsSelectable, True)
 
     def boundingRect(self):
-        # The boundingRect tells the view if the item needs to be redrawn,
-        # so we must add to it the size of the elements we added to the
-        # line item : base and head
         extra = (self.pen().width() + self.headSize) / 2.0
         p1 = self.line().p1()
         p2 = self.line().p2()
@@ -269,20 +321,25 @@ class Pointer(Arrow):
     A Pointer is an Arrow, but linking two items.
     It knows it's start and end items so it can morph while they move.
 
-    Args:
-        startItem: A PointerAble QGraphicsRectItem
-        endItem: A ReferenceAble QGraphicsRectItem
     """
 
-    def __init__(self, startItem, endItem, parent=None, scene=None):
+    def __init__(self, startItem, endItem, orig="car", parent=None, scene=None):
         self.startItem = startItem
         self.endItem = endItem
         self.p1 = startItem.scenePos()# + QPointF(100, 50)
         self.p2 = endItem.scenePos()
+        self.orig = "car"
         super(Pointer, self).__init__(self.p1, self.p2, parent, scene)
 
     def paint(self, painter, option, widget=None):
-        self.p1 = self.startItem.scenePos() + QPointF(100, 25)
-        self.p2 = self.endItem.scenePos() + QPointF(0, 25)
+        #self.p1 = self.startItem.scenePos() + QPointF(75, 25)
+        if self.orig == "car" :
+            self.p1 = self.startItem.scenePos() + QPointF(25, 25)
+        else :
+            self.p1 = self.startItem.scenePos() + QPointF(75, 25)
+        if isinstance(self.endItem, GCons) :
+            self.p2 = self.endItem.scenePos() + QPointF(25, 25)
+        if isinstance(self.endItem, GAtom) :
+            self.p2 = self.endItem.scenePos() + QPointF(0, 15)
         self.setLine(QLineF(self.p1, self.p2))
         super(Pointer, self).paint(painter, option, widget)
