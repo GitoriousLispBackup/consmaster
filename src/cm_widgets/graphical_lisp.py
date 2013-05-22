@@ -22,6 +22,7 @@ class GlispWidget(QGraphicsView) :
         self.startItemType = ""
 
         #~ Contient la repr glisp
+        #~ Format objet : [car, cdr, arrow]
         self.references = {}
 
         self.scene = QGraphicsScene()
@@ -35,23 +36,21 @@ class GlispWidget(QGraphicsView) :
         self.addCons()
         self.addCons("a","c")
         #~ self.addAtom("wtf")
-        #~ self.scene.addItem(Pointer(self.references[0][0], self.references[1][0]))
 
         self.autoArrow()
         self.show()
-
-        #~ self.removeCons(None)
-        #~ self.cleanAll()
 
     def addCons(self, car=None, cdr=None) :
         g = GCons(car, cdr)
         #~ g.car = car
         #~ g.cdr = cdr
+        a = None
+        arrow = None
         if g.car != None :
             a = self.addAtom(g.car)
-            self.addArrow(g, a, "car")
+            arrow = self.addArrow(g, a, "car")
         self.scene.addItem(g)
-        self.references[g] = [g.car, g.cdr, None]
+        self.references[g] = [a, None, arrow]
 
     #~ TODO remove arrows too
     def removeItem(self) :
@@ -60,23 +59,29 @@ class GlispWidget(QGraphicsView) :
             self.scene.removeItem(item)
             #~ self.references.remove(r)
         #~ pass
+        #~ for item in self.scene.items() :
+            #~ if isinstance(item, Pointer) :
+                #~ print(item.startItem, item.endItem)
+        #~ self.autoArrowClean()
 
     def addAtom(self, value=None) :
         a = GAtom(value)
         #~ a.value = value
         self.scene.addItem(a)
         self.references[a] = [value, None, None]
-        # FIXME: For immediate arrow creation, should be improved
+        # NOTICE: For arrow creation
         return a
 
     def removeAll(self) :
         for item in self.items() :
             self.scene.removeItem(item)
+            self.references = {}
         #~ print(self.items())
 
     def addArrow(self, o1, o2, orig) :
         p = Pointer(o1, o2)
         self.scene.addItem(p)
+        return p
 
     def manualAddArrow(self, pos=None):
         if pos == None:
@@ -94,20 +99,26 @@ class GlispWidget(QGraphicsView) :
                     if self.references[item][0] in self.references.values() :
                         self.addArrow(item, self.references[self.references[item][0]])
 
+    def autoArrowClean(self) :
+        for item in self.scene.items() :
+            if isinstance(item, Pointer) :
+                if item.startItem == None or item.endItem == None :
+                    self.scene.removeItem(item)
+
     def mousePressEvent(self, mouseEvent):
+        self.scene.clearSelection()
         if mouseEvent.button() == Qt.RightButton:
             p = mouseEvent.pos()
             i = self.itemAt(p)
             if isinstance(i, GCons) :
                 self.startItem = i
-                self.startItemType = self.startItem.isCarOrCdr(p)
+                self.startItemType = self.startItem.used
                 self.manualAddArrow(p)
         else :
             super().mousePressEvent(mouseEvent)
 
     def mouseMoveEvent(self, mouseEvent):
         self.mousePos = mouseEvent.pos()
-
         if (self.arrow != None) :
             newLine = QLineF(self.arrow.line().p1(), mouseEvent.pos())
             self.arrow.setLine(newLine)
@@ -118,8 +129,8 @@ class GlispWidget(QGraphicsView) :
     def mouseReleaseEvent(self, mouseEvent):
         #~ Should also test if already linked
 
-        #~ itemAT return the arrow, so we use items(pos) which is deprecated
-        #~ but can be adapted
+        #~ itemAT return the arrow, so we use items(pos) which is
+        #~ not recommended as-if, but can be adapted
         #~ endItem = self.itemAt(mouseEvent.pos())
         if self.arrow != None :
             if len(self.items(mouseEvent.pos())) > 1:
@@ -216,7 +227,6 @@ class GCons(QGraphicsItem):
         else :
             return "cdr"
 
-    #~ Should use hover property ?
     def mousePressEvent(self, mouseEvent) :
         #~ Next line needed to force redrawn of one cons
         self.setSelected(False)
@@ -292,16 +302,8 @@ class GAtom(QGraphicsItem):
     def mouseDoubleClickEvent(self, mouseEvent) :
         self.setValueBox()
 
-#~ Honteusement plagié temporairement
 class Arrow(QGraphicsLineItem):
-    """Arrow.
-
-    An Arrow serves as drawing for Pointer.
-    An arrow is basically linking a start point and an end point.
-    The body is made of a line between those points.
-    The base with a little ellipse.
-    The head with a little triangle.
-
+    """Arrow
     Args:
         p1: start QPointF
         p2: end QPointF
@@ -376,7 +378,6 @@ class Pointer(Arrow):
     """Pointer.
 
     A Pointer is an Arrow, but linking two items.
-    It knows it's start and end items so it can morph while they move.
 
     """
 
@@ -385,7 +386,7 @@ class Pointer(Arrow):
         self.endItem = endItem
         self.p1 = startItem.pos()
         self.p2 = endItem.pos()
-        self.orig = "car"
+        self.orig = orig
         super(Pointer, self).__init__(self.p1, self.p2, parent, scene)
 
     def paint(self, painter, option, widget=None):
