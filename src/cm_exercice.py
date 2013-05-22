@@ -2,9 +2,10 @@ import json
 
 from cm_interm_repr import GraphExpr
 
+
 class Encoder(json.JSONEncoder):
     """
-    class encoder for serialisable exercices objects
+    class encoder for serializable objects
     """
     def default(self, obj):
         if isinstance(obj, GraphExpr):
@@ -32,8 +33,8 @@ def cmExerciceFactory(dct):
 
 class CmExerciceBase:
     """
-    base class for exercices
-    with JSON serialization support
+    base class of exercices with
+    JSON serialization support.
     """
     def __init__(self, typ):
         self.typ = typ
