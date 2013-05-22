@@ -283,8 +283,8 @@ class GAtom(QGraphicsItem):
         return super().itemChange(change, value)
 
     def setValueBox(self, currentName=None) :
-        name, ok = QInputDialog.getText(None, "Symbole",
-        "Nom du symbole (pname) :", QLineEdit.Normal,
+        name, ok = QInputDialog.getText(None, "Atom",
+        "Contenu de l'Atome :", QLineEdit.Normal,
         currentName)
         #~ No control for now, needs atom list
         #~ if ok and name != "" and name in self.symbols:
