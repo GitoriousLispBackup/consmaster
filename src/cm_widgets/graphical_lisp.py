@@ -19,6 +19,7 @@ class GlispWidget(QGraphicsView) :
         self.arrow = None
         self.mousePos = None
         self.startItem = None
+        self.startItemType = ""
 
         #~ Contient la repr glisp
         self.references = {}
@@ -34,7 +35,6 @@ class GlispWidget(QGraphicsView) :
         self.addCons()
         self.addCons("a","c")
         #~ self.addAtom("wtf")
-        #self.addAtom("a")
         #~ self.scene.addItem(Pointer(self.references[0][0], self.references[1][0]))
 
         self.autoArrow()
@@ -81,7 +81,7 @@ class GlispWidget(QGraphicsView) :
     def manualAddArrow(self, pos=None):
         if pos == None:
             pos = self.mousePos
-        self.arrow = Arrow(self.startItem.pos(),
+        self.arrow = Arrow(pos,
                            pos)
         self.arrow.penColor = Qt.red
         self.scene.addItem(self.arrow)
@@ -100,6 +100,7 @@ class GlispWidget(QGraphicsView) :
             i = self.itemAt(p)
             if isinstance(i, GCons) :
                 self.startItem = i
+                self.startItemType = self.startItem.isCarOrCdr(p)
                 self.manualAddArrow(p)
         else :
             super().mousePressEvent(mouseEvent)
@@ -124,7 +125,7 @@ class GlispWidget(QGraphicsView) :
             if len(self.items(mouseEvent.pos())) > 1:
                 endItem = self.items(mouseEvent.pos())[1]
                 if isinstance(endItem, GCons) or isinstance(endItem, GAtom) :
-                    p = Pointer(self.startItem, endItem)
+                    p = Pointer(self.startItem, endItem, self.startItemType)
                     self.scene.addItem(p)
             self.scene.removeItem(self.arrow)
             self.arrow = None
@@ -209,7 +210,7 @@ class GCons(QGraphicsItem):
             self.selectedActions(value)
         return super().itemChange(change, value)
 
-    def carOrCdr(self, mousePos) :
+    def isCarOrCdr(self, mousePos) :
         if mousePos.x() < 50 :
             return "car"
         else :
@@ -219,7 +220,7 @@ class GCons(QGraphicsItem):
     def mousePressEvent(self, mouseEvent) :
         #~ Next line needed to force redrawn of one cons
         self.setSelected(False)
-        self.used = self.carOrCdr(mouseEvent.pos())
+        self.used = self.isCarOrCdr(mouseEvent.pos())
         super().mousePressEvent(mouseEvent)
 
     def mouseMoveEvent(self, mouseEvent):
