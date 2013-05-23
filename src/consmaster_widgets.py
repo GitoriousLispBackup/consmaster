@@ -19,49 +19,55 @@ class WidgetLayout(QWidget) :
 
     def __init__(self, parent=None):
         super(WidgetLayout, self).__init__(parent)
+
+        self.layout = QHBoxLayout()
         self.createWidgets()
+        self.setLayout(self.layout)
 
     def createWidgets(self) :
-        grid = QGridLayout()
+        self.addGLispWidget()
+        self.addTermWidget()
 
-        #~ A glisp widget
+    def addGLispWidget(self) :
+        #~ Add a glisp widget
+
         glispLabel = QLabel("Graph \nrepresentation")
         glispEntry = GlispWidget()
-        glispButton = QPushButton("Validate")
-        glispAdd = QPushButton("Add")
+        glispAddCons = QPushButton("Add Cons")
+        glispAddAtom = QPushButton("Add Atom")
         glispRemove = QPushButton("Remove")
-        glispCleanAll = QPushButton("CleanAll")
-        glispFun = QPushButton("POWEEER")
-        glispClean = QPushButton("Effacer")
-        grid.addWidget(glispLabel, 0, 0, 1, 1)
-        grid.addWidget(glispEntry, 0, 1)
-        #~ vbox = QVBoxLayout()
-        #~ vbox.addWidget(glispButton)
-        #~ vbox.addWidget(glispClean)
-        #~ vbox.addWidget(glispAdd)
-        #~ vbox.addWidget(glispRemove)
-        #~ vbox.addWidget(glispCleanAll)
-        #~ vbox.addWidget(glispFun)
-        tb = QToolBar()
-        tb.setOrientation(Qt.Vertical)
-        tb.setIconSize(QSize(30, 30))
-        tb.addAction("Validate")
-        tb.addAction("+ Cons", glispEntry.addCons)
-        tb.addAction("+ Atom", glispEntry.addAtom)
-        tb.addAction("Remove", glispEntry.removeItem)
-        tb.addAction("Clear", glispEntry.removeAll)
-        grid.addWidget(tb, 0, 5, 1, 1)
-        #~ grid.addLayout(vbox, 0, 5, 1, 1)
+        glispCleanAll = QPushButton("Clean All")
 
+        hbox = QHBoxLayout()
+        hbox.addWidget(glispLabel)
+        hbox.addWidget(glispEntry)
+
+        vbox = QVBoxLayout()
+        vbox.addWidget(glispAddCons)
+        vbox.addWidget(glispAddAtom)
+        vbox.addWidget(glispRemove)
+        vbox.addWidget(glispCleanAll)
+
+        glispAddCons.clicked.connect(glispEntry.addCons)
+        glispAddAtom.clicked.connect(glispEntry.addAtom)
+        glispRemove.clicked.connect(glispEntry.removeItem)
+        glispCleanAll.clicked.connect(glispEntry.removeAll)
+
+        hbox.addLayout(vbox)
+
+        self.layout.addLayout(hbox)
+
+    def addTermWidget(self) :
         #~ Term-like widget
         termLabel = QLabel("Terminal")
         termEntry = TermWidget()
         termButton = QPushButton("Validate")
-        grid.addWidget(termLabel, 1, 0, 1, 1)
-        grid.addWidget(termEntry, 1, 1)
-        grid.addWidget(termButton, 1, 5, 1, 1)
-        termLabel.setBuddy(termEntry)
+
+        hbox = QHBoxLayout()
+        hbox.addWidget(termLabel)
+        hbox.addWidget(termEntry)
+        hbox.addWidget(termButton)
 
         termButton.clicked.connect(termEntry.out)
 
-        self.setLayout(grid)
+        self.layout.addLayout(hbox)
