@@ -8,7 +8,7 @@ try:
     from PySide.QtCore import *
     from PySide.QtGui import *
 except:
-    print >> sys.stderr, "Error:", "This program needs PySide module."
+    print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
 class Client(QMainWindow):
@@ -31,8 +31,11 @@ class Client(QMainWindow):
 
         #~ Temporaire, obligation du setCentral
         #~ TODO: Créer un placeholder en central à la place
-        layout = WidgetLayout()
-        self.setCentralWidget(layout)
+
+        widget = MainMenu()
+        self.setCentralWidget(widget)
+        widget = WidgetsLayout()
+        self.setCentralWidget(widget)
 
         self.statusBar().showMessage('Ready')
 
@@ -57,7 +60,7 @@ class Client(QMainWindow):
         self.aboutMenu.addAction(self.aboutAction)
 
     def startSession(self) :
-        w = WidgetLayout()
+        w = WidgetsLayout()
 
     def about(self):
         QMessageBox.about(self, "A propos ConsMaster",
