@@ -15,7 +15,7 @@ class Client(QMainWindow):
     """ Create client windows """
 
     def __init__(self, parent=None):
-        super(Client, self).__init__(parent)
+        super().__init__(parent)
 
         self.createActions()
         self.createMenus()
@@ -32,15 +32,14 @@ class Client(QMainWindow):
         #~ Temporaire, obligation du setCentral
         #~ TODO: Créer un placeholder en central à la place
 
-        widget = MainMenu()
-        self.setCentralWidget(widget)
+        #~ widget = MainMenu()
+        #~ self.setCentralWidget(widget)
         widget = WidgetsLayout()
         self.setCentralWidget(widget)
 
         self.statusBar().showMessage('Ready')
 
         self.show()
-        self.startSession()
 
     def createActions(self):
         self.quitAction = QAction(QIcon("../icons/application-exit"),
@@ -58,9 +57,6 @@ class Client(QMainWindow):
 
         self.aboutMenu = self.menuBar().addMenu("&Aide")
         self.aboutMenu.addAction(self.aboutAction)
-
-    def startSession(self) :
-        w = WidgetsLayout()
 
     def about(self):
         QMessageBox.about(self, "A propos ConsMaster",

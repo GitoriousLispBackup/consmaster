@@ -10,11 +10,40 @@ except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
+class GraphicalLispGroupWidget(QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+        self.layout = QHBoxLayout()
+
+        self.glisp_widget = GlispWidget(self)
+
+        glispAddCons = QPushButton("Add Cons")
+        glispAddAtom = QPushButton("Add Atom")
+        glispRemove = QPushButton("Remove")
+        glispCleanAll = QPushButton("Clean All")
+
+        self.buttons_layout = QVBoxLayout()
+        self.buttons_layout.addWidget(glispAddCons)
+        self.buttons_layout.addWidget(glispAddAtom)
+        self.buttons_layout.addWidget(glispRemove)
+        self.buttons_layout.addWidget(glispCleanAll)
+
+        #~ Actions
+        glispAddCons.clicked.connect(self.glisp_widget.addCons)
+        glispAddAtom.clicked.connect(self.glisp_widget.addAtom)
+        glispRemove.clicked.connect(self.glisp_widget.removeItem)
+        glispCleanAll.clicked.connect(self.glisp_widget.removeAll)
+
+        self.layout.addWidget(self.glisp_widget)
+        self.layout.addLayout(self.buttons_layout)
+        self.setLayout(self.layout)
+
 class GlispWidget(QGraphicsView) :
     """ Widget for graphical lisp """
 
     def __init__(self, parent=None):
-        super(GlispWidget, self).__init__(parent)
+        super().__init__(parent)
 
         self.arrow = None
         self.mousePos = None

@@ -18,65 +18,48 @@ class WidgetsLayout(QWidget) :
     """ List of availables widgets"""
 
     def __init__(self, parent=None):
-        super(WidgetsLayout, self).__init__(parent)
+        super().__init__(parent)
 
         self.layout = QVBoxLayout()
-        self.createWidgets()
+
+        graphical_lisp = GraphicalLispGroupWidget(self)
+        self.layout.addWidget(graphical_lisp)
+
+        terminal = TerminalGroupWidget()
+        self.layout.addWidget(terminal)
+
         self.setLayout(self.layout)
 
-    def createWidgets(self) :
-        self.addGLispWidget()
-        self.addTermWidget()
 
-    def addGLispWidget(self) :
-        #~ Add a glisp widget
+class MainMenu(QWidget) :
+    """ Main menu creation/gestion
+    List of availables widgets"""
 
-        glispLabel = QLabel("Graph \nrepresentation")
-        glispLabel.setFixedWidth(110)
-        glispEntry = GlispWidget()
-        glispAddCons = QPushButton("Add Cons")
-        glispAddAtom = QPushButton("Add Atom")
-        glispRemove = QPushButton("Remove")
-        glispCleanAll = QPushButton("Clean All")
+    def __init__(self, parent=None):
+        super(Client, self).__init__(parent)
 
-        #~ Main container
-        hbox = QHBoxLayout()
-        hbox.addWidget(glispLabel)
-        hbox.addWidget(glispEntry)
+        self.layout = QVBoxLayout()
 
-        #~ Control buttons container
-        vbox = QVBoxLayout()
-        vbox.addWidget(glispAddCons)
-        vbox.addWidget(glispAddAtom)
-        vbox.addWidget(glispRemove)
-        vbox.addWidget(glispCleanAll)
+        graphical_lisp = GraphicalLispGroupWidget(self)
+        self.layout.addWidget(graphical_lisp)
 
-        #~ Actions
-        glispAddCons.clicked.connect(glispEntry.addCons)
-        glispAddAtom.clicked.connect(glispEntry.addAtom)
-        glispRemove.clicked.connect(glispEntry.removeItem)
-        glispCleanAll.clicked.connect(glispEntry.removeAll)
+        terminal = TerminalGroupWidget()
+        self.layout.addWidget(terminal)
 
-        hbox.addLayout(vbox)
+        self.setLayout(self.layout)
 
-        self.layout.addLayout(hbox)
 
-    def addTermWidget(self) :
-        #~ Term-like widget
-        termLabel = QLabel("Terminal")
-        termLabel.setFixedWidth(110)
-        termEntry = TermWidget()
-        termButton = QPushButton("Validate")
+class TerminalControl(QWidget) :
+    """ Controller for TermWidget """
+    def __init__(self, parent=None):
+        super().__init__(parent)
 
-        #~ Main container
-        hbox = QHBoxLayout()
-        hbox.addWidget(termLabel)
-        hbox.addWidget(termEntry)
-        hbox.addWidget(termButton)
 
-        termButton.clicked.connect(termEntry.out)
+class GLispControl(QWidget) :
+    """ Controller for GlispWidget """
+    def __init__(self, parent=None):
+        super().__init__(parent)
 
-        self.layout.addLayout(hbox)
 
 class MainMenu(QWidget) :
     """ Main menu creation/gestion
