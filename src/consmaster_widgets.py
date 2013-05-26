@@ -6,6 +6,7 @@ import math
 
 from cm_widgets.graphical_lisp import *
 from cm_widgets.terminal import *
+from consmaster_widget_rc import *
 
 try:
     from PySide.QtCore import *
@@ -30,37 +31,6 @@ class WidgetsLayout(QWidget) :
 
         self.setLayout(self.layout)
 
-
-class MainMenu(QWidget) :
-    """ Main menu creation/gestion
-    List of availables widgets"""
-
-    def __init__(self, parent=None):
-        super(Client, self).__init__(parent)
-
-        self.layout = QVBoxLayout()
-
-        graphical_lisp = GraphicalLispGroupWidget(self)
-        self.layout.addWidget(graphical_lisp)
-
-        terminal = TerminalGroupWidget()
-        self.layout.addWidget(terminal)
-
-        self.setLayout(self.layout)
-
-
-class TerminalControl(QWidget) :
-    """ Controller for TermWidget """
-    def __init__(self, parent=None):
-        super().__init__(parent)
-
-
-class GLispControl(QWidget) :
-    """ Controller for GlispWidget """
-    def __init__(self, parent=None):
-        super().__init__(parent)
-
-
 class MainMenu(QWidget) :
     """ Main menu creation/gestion
 
@@ -75,16 +45,17 @@ class MainMenu(QWidget) :
         self.setLayout(self.layout)
 
     #~ Basic and static menu
+    #~ TODO: should link to the correct text
     def basicMenu(self) :
         scrollContent = QWidget()
         #~ self.resize(50,100)
 
         #~ Should be automated
-        b1 = QPushButton("jhgvkjfv1", scrollContent)
-        b2 = QPushButton("jhgvkjfv2", scrollContent)
-        b3 = QPushButton("jhgvv2", scrollContent)
-        b4 = QPushButton("jhgvkjfv4", scrollContent)
-        b5 = QPushButton("jhgvkjfv5", scrollContent)
+        b1 = QPushButton("Mode Libre", scrollContent)
+        b2 = QPushButton("Entrainement", scrollContent)
+        b3 = QPushButton("Représentation\ndoublets", scrollContent)
+        b4 = QPushButton("Représentation\na points", scrollContent)
+        b5 = QPushButton("Représentation\ngraphique", scrollContent)
 
         b1.setCheckable(True)
         b1.setChecked(True)
@@ -119,14 +90,16 @@ class MainMenu(QWidget) :
 
         scroller = QScrollArea()
         scroller.setWidget(scrollContent)
-        scroller.setFixedWidth(150)
+        scroller.setFixedWidth(155)
         scroller.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
 
         self.layout.addWidget(scroller)
 
         #~ The text/hints display widget + his button
         vb = QVBoxLayout()
-        displayText = QTextBrowser()
+        displayText = QTextEdit()
+        displayText.setReadOnly(True)
+        displayText.setText(modeLibre)
         launchButton = QPushButton("Démarrer", self)
         launchButton.setFixedHeight(50)
 
