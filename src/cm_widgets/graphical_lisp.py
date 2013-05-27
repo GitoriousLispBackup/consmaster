@@ -60,10 +60,9 @@ class LispScene(QGraphicsScene):
         self.addItem(pointer)
 
     def removeObj(self, obj):
-        all_edges = reduce(lambda acc, o: acc | set(self.getEdgesFrom(o)),
-                                self.graph.predecessors(obj), set(self.getEdgesFrom(obj)))
-
-        print('edges :', all_edges)
+        all_edges = set(self.getEdgesFrom(obj))
+        all_edges |= { data['arrow'] for u, v, data in self.graph.edges_iter(self.graph.predecessors(obj), True) if v is obj }
+        # print('edges :', all_edges)
         for arrow in all_edges:
             self.removePointer(arrow)
         self.graph.remove_node(obj)
@@ -74,10 +73,7 @@ class LispScene(QGraphicsScene):
         self.removeItem(pointer)
 
     def getEdgesFrom(self, vertex):
-        # WARNING : un sens seulement
-        lst = [data['arrow'] for u, v, data in self.graph.edges_iter(vertex, True)]
-        for node in self.graph.predecessors(vertex):
-            lst += [data['arrow'] for u, v, data in self.graph.edges_iter(node, True)]
+        # WARNING : dans un sens seulement
         return [data['arrow'] for u, v, data in self.graph.edges_iter(vertex, True)]
 
     def reset(self):
@@ -155,7 +151,7 @@ class GlispWidget(QGraphicsView) :
     def mouseReleaseEvent(self, mouseEvent):
         if self.arrow != None :
             for endItem in self.items(mouseEvent.pos()):
-                if self.arrow.start != endItem:
+                if self.arrow.start != endItem and (isinstance(endItem, GCons) or isinstance(endItem, GAtom)):
                     #~ Remove prev pointer if nedeed
                     for oldPointer in self.scene.getEdgesFrom(self.arrow.start):
                         if oldPointer.orig == self.startItemType:
