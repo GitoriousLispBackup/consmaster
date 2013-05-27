@@ -80,21 +80,20 @@ class GlispWidget(QGraphicsView) :
                 for orig in ["car", "cdr"] :
                     pointer = self.findPointerFrom(item, orig)
                     if pointer != None :
-                        pointer.delete()
+                        pointer.deleteLinks()
                         self.scene.removeItem(pointer)
                 #~ Remove all pointer to it
                 for orig in ["car", "cdr"] :
                     list = self.findPointersTo(item)
                     if list != [] :
                         for x in list :
-                            x.delete()
+                            x.deleteLinks()
                             self.scene.removeItem(x)
 
     def addAtom(self, value=None) :
         a = GAtom(value)
         self.scene.addItem(a)
         # NOTICE: For arrow creation
-        print(self.scene.items())
         return a
 
     def removeAll(self) :
@@ -165,11 +164,11 @@ class GlispWidget(QGraphicsView) :
 
         if self.arrow != None :
             for endItem in self.items(mouseEvent.pos()):
-                if isinstance(endItem, GCons) or isinstance(endItem, GAtom) :
+                if (isinstance(endItem, GCons) and self.arrow.start != endItem) or isinstance(endItem, GAtom) :
                     #~ Remove prev pointer if nedeed
                     oldPointer = self.findPointerFrom(self.arrow.start, self.startItemType)
                     if oldPointer != None :
-                        oldPointer.delete()
+                        oldPointer.deleteLinks()
                         self.scene.removeItem(oldPointer)
 
                     #~ Create new pointer
@@ -255,7 +254,6 @@ class GCons(QGraphicsItem):
         self.used = self.isCarOrCdr(mouseEvent.pos())
         #~ Next line needed to force redrawn of the cons
         self.setSelected(False)
-        print(self.used)
         super().mousePressEvent(mouseEvent)
         #self.setSelected(False)
 
@@ -456,7 +454,7 @@ class Pointer(Arrow):
             self.penColor = QColor("green")
         else : self.penColor = QColor("black")
 
-    def delete(self) :
+    def deleteLinks(self) :
         if self.orig == "car" :
             self.startItem.car = None
         else :
