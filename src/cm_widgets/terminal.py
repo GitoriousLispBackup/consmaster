@@ -10,27 +10,6 @@ except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
-class TerminalGroupWidget(QWidget):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-
-        self.layout = QHBoxLayout()
-
-        termEntry = TermWidget()
-        termButton = QPushButton("Validate")
-
-        #~ Main container
-        #~ termLabel = QLabel("Terminal")
-        #~ termLabel.setFixedWidth(110)
-        #~
-        #~ self.layout.addWidget(termLabel)
-
-        self.layout.addWidget(termEntry)
-        self.layout.addWidget(termButton)
-
-        #termButton.clicked.connect(termEntry.out)
-        self.setLayout(self.layout)
-
 
 class TerminalGroupWidget(QWidget):
     def __init__(self, parent=None):
