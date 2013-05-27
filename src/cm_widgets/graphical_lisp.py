@@ -114,7 +114,7 @@ class GlispWidget(QGraphicsView) :
             if isinstance(it, GCons) :
                 self.arrow = Arrow(pos, pos, it)
                 self.arrow.penColor = Qt.red
-                self.startItemType = it.used
+                self.startItemType = it.isCarOrCdr(pos - it.pos().toPoint())
                 self.scene.addItem(self.arrow)
 
         super().mousePressEvent(mouseEvent)
@@ -167,10 +167,6 @@ class GCons(QGraphicsItem):
     def setCdr(self, cdr):
         self._cdr = cdr
 
-    def setColor(self, colorCar="black", colorCdr="black") :
-        self.penCar = QPen(QColor(colorCar), self.penWidth)
-        self.penCdr = QPen(QColor(colorCdr), self.penWidth)
-
     def selectedActions(self, value) :
         if value :
             if self.used == "car" :
@@ -178,6 +174,11 @@ class GCons(QGraphicsItem):
             else :
                 self.setColor("black", "green")
         else : self.setColor("black", "black")
+
+
+    def setColor(self, colorCar="black", colorCdr="black") :
+        self.penCar = QPen(QColor(colorCar), self.penWidth)
+        self.penCdr = QPen(QColor(colorCdr), self.penWidth)
 
     def boundingRect(self) :
         return QRectF (0 - self.penWidth / 2, 0 - self.penWidth / 2,
@@ -201,11 +202,6 @@ class GCons(QGraphicsItem):
     def setPosition(self):
         pass
 
-    #~ TODO: Pour le référencement ?
-    def identify(self) :
-        #~ return self.id(self), self.id(self.car), self.id(self.cdr)
-        return self, self._car, self._cdr
-
     def itemChange(self, change, value) :
         if change == self.ItemSelectedChange:
             self.selectedActions(value)
@@ -218,10 +214,12 @@ class GCons(QGraphicsItem):
             return "cdr"
 
     def mousePressEvent(self, mouseEvent) :
-        #~ Next line needed to force redrawn of one cons
-        self.setSelected(False)
         self.used = self.isCarOrCdr(mouseEvent.pos())
+        #~ Next line needed to force redrawn of the cons
+        self.setSelected(False)
+        print(self.used)
         super().mousePressEvent(mouseEvent)
+        #self.setSelected(False)
 
     def mouseMoveEvent(self, mouseEvent):
         super().mouseMoveEvent(mouseEvent)
@@ -394,6 +392,7 @@ class Pointer(Arrow):
             p1 = self.startItem.scenePos() + QPointF(25, 25)
         elif self.orig == "cdr":
             p1 = self.startItem.scenePos() + QPointF(75, 25)
+        else : print("problème qq part ...")
         if isinstance(self.endItem, GCons) :
             p2 = self.endItem.scenePos() + QPointF(0, 25)
         elif isinstance(self.endItem, GAtom) :
