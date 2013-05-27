@@ -74,6 +74,8 @@ class GlispWidget(QGraphicsView) :
     def removeItem(self) :
         for item in self.scene.selectedItems() :
             self.scene.removeItem(item)
+            if isinstance(item, Pointer) :
+                item.delete()
 
     def addAtom(self, value=None) :
         a = GAtom(value)
@@ -373,6 +375,8 @@ class Pointer(Arrow):
     """Pointer.
     A Pointer is an Arrow, but linking two items, instead of 2 Points
     A Pointer is auto positionning
+
+    The Pointer also modify items
     """
 
     def __init__(self, startItem, endItem, orig="", parent=None, scene=None):
@@ -381,6 +385,12 @@ class Pointer(Arrow):
         self.startItem = startItem
         self.endItem = endItem
         self.orig = orig
+
+        if self.orig == "car" :
+            self.startItem.car = endItem
+        else :
+            self.startItem.cdr = endItem
+        self.startItem.update()
 
         self.setFlag(QGraphicsItem.ItemIsSelectable, True)
         self.penColor = QColor("black")
@@ -409,3 +419,10 @@ class Pointer(Arrow):
         if value :
             self.penColor = QColor("green")
         else : self.penColor = QColor("black")
+
+    def delete(self) :
+        if self.orig == "car" :
+            self.startItem.car = None
+        else :
+            self.startItem.cdr = None
+        self.startItem.update()
