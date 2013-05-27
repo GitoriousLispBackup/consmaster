@@ -29,13 +29,10 @@ class Client(QMainWindow):
         #~ plutôt qu'affichés directements
         #~ Dans un 1e temps, afficher directement tous les widgets
 
-        #~ Temporaire, obligation du setCentral
-        #~ TODO: Créer un placeholder en central à la place
-
         #~ widget = MainMenu()
         #~ self.setCentralWidget(widget)
-        widget = WidgetsLayout()
-        self.setCentralWidget(widget)
+        #~ widget = WidgetsLayout()
+        #~ self.setCentralWidget(widget)
 
         self.statusBar().showMessage('Ready')
 

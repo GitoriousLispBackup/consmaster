@@ -10,13 +10,12 @@ except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
-
 class GraphicalLispGroupWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        
+
         self.layout = QHBoxLayout()
-        
+
         self.glisp_widget = GlispWidget(self)
 
         glispAddCons = QPushButton("Add Cons")
@@ -39,6 +38,7 @@ class GraphicalLispGroupWidget(QWidget):
         self.layout.addWidget(self.glisp_widget)
         self.layout.addLayout(self.buttons_layout)
         self.setLayout(self.layout)
+
 
 class GlispWidget(QGraphicsView) :
     """ Widget for graphical lisp """

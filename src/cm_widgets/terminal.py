@@ -10,6 +10,27 @@ except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
+class TerminalGroupWidget(QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+        self.layout = QHBoxLayout()
+
+        termEntry = TermWidget()
+        termButton = QPushButton("Validate")
+
+        #~ Main container
+        #~ termLabel = QLabel("Terminal")
+        #~ termLabel.setFixedWidth(110)
+        #~
+        #~ self.layout.addWidget(termLabel)
+
+        self.layout.addWidget(termEntry)
+        self.layout.addWidget(termButton)
+
+        #termButton.clicked.connect(termEntry.out)
+        self.setLayout(self.layout)
+
 
 class TerminalGroupWidget(QWidget):
     def __init__(self, parent=None):
@@ -76,11 +97,11 @@ class TermWidget(QTextEdit) :
     def updateHistory(self, line):
         self.history.append(line)
         self.hpos = len(self.history)
-    
+
     def histNext(self):
         if self.hpos < len(self.history): self.hpos += 1
         return self.history[self.hpos] if 0 <= self.hpos < len(self.history) else ""
-        
+
     def histPrev(self):
         if self.hpos >= 0: self.hpos -= 1
         return self.history[self.hpos] if 0 <= self.hpos < len(self.history) else ""
@@ -93,7 +114,7 @@ class TermWidget(QTextEdit) :
     def eraseLine(self):
         cursor = self.textCursor()
         cursor.movePosition(QTextCursor.End)
-        cursor.movePosition(QTextCursor.Left, QTextCursor.KeepAnchor, 
+        cursor.movePosition(QTextCursor.Left, QTextCursor.KeepAnchor,
                                 len(self.document().toPlainText()) - self.startCursor)
         cursor.removeSelectedText()
 
@@ -121,4 +142,3 @@ class TermWidget(QTextEdit) :
                 super().keyPressEvent(event)
         else:
             super().keyPressEvent(event)
-
