@@ -70,22 +70,36 @@ class GlispWidget(QGraphicsView) :
             #~ arrow = self.addArrow(g, a, "car")
         self.scene.addItem(g)
 
-    #~ TODO remove arrows too
     def removeItem(self) :
         for item in self.scene.selectedItems() :
             self.scene.removeItem(item)
             if isinstance(item, Pointer) :
                 item.delete()
+            elif isinstance(item, GCons) :
+                for orig in ["car", "cdr"] :
+                    pointer = self.findPointer(item, orig)
+                    if pointer != None :
+                        pointer.delete()
+                        self.scene.removeItem(pointer)
 
     def addAtom(self, value=None) :
         a = GAtom(value)
         self.scene.addItem(a)
         # NOTICE: For arrow creation
+        print(self.scene.items())
         return a
 
     def removeAll(self) :
         for item in self.items() :
             self.scene.removeItem(item)
+
+    def findPointer(self, gcons, orig) :
+        """ Return the pointer associated w/ a car or a cons """
+        for item in self.scene.items() :
+            if isinstance(item, Pointer) :
+                if item.startItem == gcons :
+                    if item.orig == orig :
+                        return item
 
     #~ def addArrow(self, o1, o2, orig) :
         #~ p = Pointer(o1, o2)
@@ -135,6 +149,13 @@ class GlispWidget(QGraphicsView) :
         if self.arrow != None :
             for endItem in self.items(mouseEvent.pos()):
                 if isinstance(endItem, GCons) or isinstance(endItem, GAtom) :
+                    #~ Remove prev pointer if nedeed
+                    oldPointer = self.findPointer(self.arrow.start, self.startItemType)
+                    if oldPointer != None :
+                        oldPointer.delete()
+                        self.scene.removeItem(oldPointer)
+
+                    #~ Create new pointer
                     p = Pointer(self.arrow.start, endItem, self.startItemType)
                     self.scene.addItem(p)
                     break
@@ -156,7 +177,6 @@ class GCons(QGraphicsItem):
         self._cdr = cdr
 
         self.used = ""
-        self.arrow = None
 
         self.penWidth = 2
         self.penCar = QPen(Qt.black, self.penWidth)
@@ -176,7 +196,6 @@ class GCons(QGraphicsItem):
             else :
                 self.setColor("black", "green")
         else : self.setColor("black", "black")
-
 
     def setColor(self, colorCar="black", colorCdr="black") :
         self.penCar = QPen(QColor(colorCar), self.penWidth)
@@ -380,7 +399,7 @@ class Pointer(Arrow):
     """
 
     def __init__(self, startItem, endItem, orig="", parent=None, scene=None):
-        super().__init__(startItem.pos(), endItem.pos(), parent, scene)
+        super().__init__(startItem.pos(), endItem.pos(), orig,  parent, scene)
 
         self.startItem = startItem
         self.endItem = endItem
