@@ -10,27 +10,6 @@ except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
-class TerminalGroupWidget(QWidget):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-
-        self.layout = QHBoxLayout()
-
-        termEntry = TermWidget()
-        termButton = QPushButton("Validate")
-
-        #~ Main container
-        #~ termLabel = QLabel("Terminal")
-        #~ termLabel.setFixedWidth(110)
-        #~
-        #~ self.layout.addWidget(termLabel)
-
-        self.layout.addWidget(termEntry)
-        self.layout.addWidget(termButton)
-
-        #termButton.clicked.connect(termEntry.out)
-        self.setLayout(self.layout)
-
 
 class TerminalGroupWidget(QWidget):
     def __init__(self, parent=None):
@@ -38,7 +17,7 @@ class TerminalGroupWidget(QWidget):
         
         self.layout = QHBoxLayout()
 
-        termEntry = TermWidget()
+        self.term = TermWidget()
         termButton = QPushButton("Validate")
 
         #~ Main container
@@ -47,7 +26,7 @@ class TerminalGroupWidget(QWidget):
         #~ 
         #~ self.layout.addWidget(termLabel)
         
-        self.layout.addWidget(termEntry)
+        self.layout.addWidget(self.term)
         self.layout.addWidget(termButton)
 
         #termButton.clicked.connect(termEntry.out)
@@ -58,21 +37,23 @@ class TermWidget(QTextEdit) :
     """ A terminal-like Widget """
 
     #~ TODO: Finaliser backward
-          #~ Implémenter lisp
-    #~ WISHLIST: Implémenter historique avec up et down
-    read = Signal((str,))
+    read = Signal(str)
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setGeometry(0, 0, 100, 200)
         self.setWordWrapMode(QTextOption.WrapAnywhere)
         self.read.connect(self.updateHistory)
-        self.startCursor = self.textCursor()
+        self.setColor("black", "lightgray")
+        self.reset()
+
+    def reset(self):
         self.i = 0
         self.hpos = 0
         self.history = []
-        self.setColor("black", "lightgray")
+        self.startCursor = self.textCursor()
         self.displayPrompt()
+        # missing reset current text
 
     def setColor(self, textColor, baseColor) :
         palette = QPalette()
@@ -86,12 +67,9 @@ class TermWidget(QTextEdit) :
 
     @Slot(str)
     def out(self, s):
+        print('out:', s, type(s))
         self.append(s + '\n')
         self.freezeAtCurrentPos()
-
-    @Slot(str)
-    def sendToInterpreter(self, expr):
-        pass
 
     @Slot(str)
     def updateHistory(self, line):
@@ -126,7 +104,7 @@ class TermWidget(QTextEdit) :
             line = self.document().toPlainText()[self.startCursor:]
             self.freezeAtCurrentPos()
             self.read.emit(line)
-            self.out(line)  # hook
+            # self.out(line)  # hook
             self.displayPrompt()
         elif event.key() == Qt.Key_Up:
             #~ History up

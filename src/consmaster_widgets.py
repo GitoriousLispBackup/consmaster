@@ -3,9 +3,11 @@
 
 import sys
 import math
+from collections import OrderedDict
 
 from cm_widgets.graphical_lisp import *
 from cm_widgets.terminal import *
+from cm_controller import CmController
 from consmaster_widget_rc import *
 
 try:
@@ -15,6 +17,7 @@ except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
+
 class WidgetsLayout(QWidget) :
     """ List of availables widgets"""
 
@@ -23,13 +26,15 @@ class WidgetsLayout(QWidget) :
 
         self.layout = QVBoxLayout()
 
-        graphical_lisp = GraphicalLispGroupWidget(self)
-        self.layout.addWidget(graphical_lisp)
+        graphical_group = GraphicalLispGroupWidget(self)
+        self.layout.addWidget(graphical_group)
 
-        terminal = TerminalGroupWidget()
-        self.layout.addWidget(terminal)
+        terminal_group = TerminalGroupWidget()
+        self.layout.addWidget(terminal_group)
 
         self.setLayout(self.layout)
+
+        self.controller = CmController(terminal_group.term, graphical_group.glisp_widget)
 
 class MainMenu(QWidget) :
     """ Main menu creation/gestion
@@ -50,42 +55,23 @@ class MainMenu(QWidget) :
         scrollContent = QWidget()
         #~ self.resize(50,100)
 
-        #~ Should be automated
-        b1 = QPushButton("Mode Libre", scrollContent)
-        b2 = QPushButton("Entrainement", scrollContent)
-        b3 = QPushButton("Représentation\ndoublets", scrollContent)
-        b4 = QPushButton("Représentation\na points", scrollContent)
-        b5 = QPushButton("Représentation\ngraphique", scrollContent)
-
-        b1.setCheckable(True)
-        b1.setChecked(True)
-        b1.setFixedSize(120,120)
-        b2.setCheckable(True)
-        b2.setFixedSize(120,120)
-        b3.setCheckable(True)
-        b3.setFixedSize(120,120)
-        b4.setCheckable(True)
-        b4.setFixedSize(120,120)
-        b5.setCheckable(True)
-        b5.setFixedSize(120,120)
+        btn_names = ["Mode Libre", "Entrainement", "Représentation\ndoublets", "Représentation\na points", "Représentation\ngraphique"]
+        self.buttons_dct = OrderedDict({ name : QPushButton(name, scrollContent) for name in btn_names })
 
         #~ Layout in the scroll area
         vb = QVBoxLayout()
-        vb.addWidget(b1)
-        vb.addWidget(b2)
-        vb.addWidget(b3)
-        vb.addWidget(b4)
-        vb.addWidget(b5)
+
+        for button in self.buttons_dct.values():
+            button.setCheckable(True)
+            button.setFixedSize(120,120)
+            vb.addWidget(button)
+
         scrollContent.setLayout(vb)
 
         #~ Group buttonns to make them exclusive
         group = QButtonGroup(scrollContent)
-        group.addButton(b1)
-        group.addButton(b2)
-        group.addButton(b3)
-        group.addButton(b4)
-        group.addButton(b5)
-
+        for button in self.buttons_dct.values():
+            group.addButton(button)
         group.setExclusive(True)
 
         scroller = QScrollArea()

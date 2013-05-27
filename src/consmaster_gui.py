@@ -24,15 +24,20 @@ class Client(QMainWindow):
         self.setWindowTitle("Consmaster")
         self.setWindowIcon(QIcon("../icons/symbol"))
 
+        self.central_widget = QStackedWidget()
+
         #~ Les widgets devraient pt être ajoutés à la volée,
         #~ en fonction de l'exo
         #~ plutôt qu'affichés directements
         #~ Dans un 1e temps, afficher directement tous les widgets
 
-        #~ widget = MainMenu()
-        #~ self.setCentralWidget(widget)
-        #~ widget = WidgetsLayout()
-        #~ self.setCentralWidget(widget)
+        #self.menu_widget = MainMenu(self)
+        #self.central_widget.addWidget(self.menu_widget)
+        
+        widget = WidgetsLayout()
+        self.central_widget.addWidget(widget)
+
+        self.setCentralWidget(self.central_widget)
 
         self.statusBar().showMessage('Ready')
 

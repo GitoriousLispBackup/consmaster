@@ -61,6 +61,10 @@ class GlispWidget(QGraphicsView) :
 
         self.show()
 
+    @Slot(object)
+    def insert_expr(self, graph_expr):
+        print(graph_expr)
+
     def addCons(self, car=None, cdr=None) :
         g = GCons(car, cdr)
         #~ a = None
