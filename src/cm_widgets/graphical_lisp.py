@@ -90,14 +90,6 @@ class GlispWidget(QGraphicsView) :
         #~ self.scene.addItem(p)
         #~ return p
 
-    def manualAddArrow(self, pos=None):
-        if pos == None:
-            pos = self.mousePos
-        self.arrow = Arrow(pos,
-                           pos)
-        self.arrow.penColor = Qt.red
-        self.scene.addItem(self.arrow)
-
     #~ TODO
     #~ def autoArrow(self) :
         #~ for item in self.items() :
@@ -114,6 +106,7 @@ class GlispWidget(QGraphicsView) :
                     #~ self.scene.removeItem(item)
 
     def mousePressEvent(self, mouseEvent):
+        #~ Allows to create tmp arrows w/ right clic
         self.scene.clearSelection()
         if mouseEvent.button() == Qt.RightButton:
             pos = mouseEvent.pos()
@@ -127,6 +120,7 @@ class GlispWidget(QGraphicsView) :
         super().mousePressEvent(mouseEvent)
 
     def mouseMoveEvent(self, mouseEvent):
+        #~ Redraw temp arrow according to mouse pos
         if (self.arrow != None) :
             newLine = QLineF(self.arrow.line().p1(), mouseEvent.pos())
             self.arrow.setLine(newLine)
@@ -136,9 +130,6 @@ class GlispWidget(QGraphicsView) :
     def mouseReleaseEvent(self, mouseEvent):
         #~ Should also test if already linked
 
-        #~ itemAT return the arrow, so we use items(pos) which is
-        #~ not recommended as-if, but can be adapted
-        #~ endItem = self.itemAt(mouseEvent.pos())
         if self.arrow != None :
             for endItem in self.items(mouseEvent.pos()):
                 if isinstance(endItem, GCons) or isinstance(endItem, GAtom) :
@@ -155,7 +146,7 @@ class GCons(QGraphicsItem):
     """ A graphical cons base class """
 
     def __init__(self, car=None, cdr=None, iden=None, parent=None, scene=None):
-        super(GCons, self).__init__(parent, scene)
+        super().__init__(parent, scene)
         self.setFlag(QGraphicsItem.ItemIsMovable, True)
         self.setFlag(QGraphicsItem.ItemIsSelectable, True)
 
@@ -243,12 +234,13 @@ class GAtom(QGraphicsItem):
     """ An Graphical Atom to represent a Car """
 
     def __init__(self, value="nil", parent=None, scene=None):
-        super(GAtom, self).__init__(parent, scene)
+        super().__init__(parent, scene)
 
         self.setFlag(QGraphicsItem.ItemIsMovable, True)
         self.setFlag(QGraphicsItem.ItemIsSelectable, True)
 
         self._value = "nil"
+        self.sizedBound = 0
 
         self.penWidth = 2
         self.pen = QPen(Qt.black, self.penWidth)
@@ -315,7 +307,7 @@ class Arrow(QGraphicsLineItem):
     """
 
     def __init__(self, p1, p2, startItem, parent=None, scene=None):
-        super(Arrow, self).__init__(parent, scene)
+        super().__init__(parent, scene)
         self.base = QRectF()
         self.baseSize = 6
         self.bodySize = 2
@@ -324,7 +316,6 @@ class Arrow(QGraphicsLineItem):
         self.head = QPolygonF()
         self.penColor = Qt.black
         self.setLine(QLineF(p1, p2))
-        # Should we make arrows selectable ?
         self.setFlag(QGraphicsItem.ItemIsSelectable, True)
 
     def boundingRect(self):
@@ -387,12 +378,17 @@ class Pointer(Arrow):
     """
 
     def __init__(self, startItem, endItem, orig="", parent=None, scene=None):
+        super().__init__(startItem.pos(), endItem.pos(), parent, scene)
+
         self.startItem = startItem
         self.endItem = endItem
         self.orig = orig
-        super().__init__(startItem.pos(), endItem.pos(), parent, scene)
+
+        self.setFlag(QGraphicsItem.ItemIsSelectable, True)
+        self.penColor = QColor("black")
 
     def paint(self, painter, option, widget=None):
+        painter.setPen(self.penColor)
         #self.p1 = self.startItem.scenePos() + QPointF(75, 25)
         if self.orig == "car" :
             p1 = self.startItem.scenePos() + QPointF(25, 25)
@@ -404,3 +400,13 @@ class Pointer(Arrow):
             p2 = self.endItem.scenePos() + QPointF(0, 15)
         self.setLine(QLineF(p1, p2))
         super().paint(painter, option, widget)
+
+    def itemChange(self, change, value) :
+        if change == self.ItemSelectedChange :
+            self.selectedActions(value)
+        return super().itemChange(change, value)
+
+    def selectedActions(self, value) :
+        if value :
+            self.penColor = QColor("green")
+        else : self.penColor = QColor("black")

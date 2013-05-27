@@ -31,8 +31,8 @@ class Client(QMainWindow):
 
         #~ widget = MainMenu()
         #~ self.setCentralWidget(widget)
-        #~ widget = WidgetsLayout()
-        #~ self.setCentralWidget(widget)
+        widget = WidgetsLayout()
+        self.setCentralWidget(widget)
 
         self.statusBar().showMessage('Ready')
 
