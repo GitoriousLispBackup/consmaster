@@ -18,31 +18,17 @@ except:
     sys.exit(1)
 
 
-class WidgetsLayout(QWidget) :
-    """ List of availables widgets"""
-
-    def __init__(self, parent=None):
-        super().__init__(parent)
-
-        self.layout = QVBoxLayout()
-
-        graphical_group = GraphicalLispGroupWidget(self)
-        self.layout.addWidget(graphical_group)
-
-        terminal_group = TerminalGroupWidget()
-        self.layout.addWidget(terminal_group)
-
-        self.setLayout(self.layout)
-
-        self.controller = CmController(terminal_group.term, graphical_group.glisp_widget)
 
 class MainMenu(QWidget) :
     """ Main menu creation/gestion
 
     The main menu is used as a laucher for all modules
     """
-    def __init__(self, parent=None):
-        super().__init__(parent)
+    def __init__(self, mainwindow):
+        super().__init__()
+
+        self.mainwindow = mainwindow
+        
         self.layout = QHBoxLayout()
 
         self.basicMenu()
@@ -56,7 +42,9 @@ class MainMenu(QWidget) :
         #~ self.resize(50,100)
 
         btn_names = ["Mode Libre", "Entrainement", "Représentation\ndoublets", "Représentation\na points", "Représentation\ngraphique"]
-        self.buttons_dct = OrderedDict({ name : QPushButton(name, scrollContent) for name in btn_names })
+        self.buttons_dct = OrderedDict([(name, QPushButton(name, scrollContent)) for name in btn_names])
+
+        self.buttons_dct["Mode Libre"].clicked.connect(self.createFreeMode)
 
         #~ Layout in the scroll area
         vb = QVBoxLayout()
@@ -92,6 +80,33 @@ class MainMenu(QWidget) :
         vb.addWidget(displayText)
         vb.addWidget(launchButton)
         self.layout.addLayout(vb)
+
+    def closeWidget(self, widget):
+        self.mainwindow.central_widget.removeWidget(widget)
+        self.mainwindow.closeAction.setEnabled(False)
+        del widget.controller  # why I must to manually do that ?
+
+    def createFreeMode(self):
+        widget = QWidget()
+
+        layout = QVBoxLayout()
+
+        graphical_group = GraphicalLispGroupWidget(widget)
+        layout.addWidget(graphical_group)
+
+        terminal_group = TerminalGroupWidget()
+        layout.addWidget(terminal_group)
+
+        widget.setLayout(layout)
+
+        widget.controller = CmController(terminal_group.term, graphical_group.glisp_widget)
+
+        self.mainwindow.central_widget.addWidget(widget)
+        self.mainwindow.central_widget.setCurrentWidget(widget)
+
+        self.mainwindow.closeAction.triggered.connect(lambda: self.closeWidget(widget))
+        self.mainwindow.closeAction.setEnabled(True)
+        
 
     #~ TODO: Final dynamic Menu
     def createMenu(self) :

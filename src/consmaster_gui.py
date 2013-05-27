@@ -31,11 +31,9 @@ class Client(QMainWindow):
         #~ plutôt qu'affichés directements
         #~ Dans un 1e temps, afficher directement tous les widgets
 
-        #self.menu_widget = MainMenu(self)
-        #self.central_widget.addWidget(self.menu_widget)
-        
-        widget = WidgetsLayout()
-        self.central_widget.addWidget(widget)
+        self.menu_widget = MainMenu(self)
+        self.central_widget.addWidget(self.menu_widget)
+
 
         self.setCentralWidget(self.central_widget)
 
@@ -47,6 +45,9 @@ class Client(QMainWindow):
         self.quitAction = QAction(QIcon("../icons/application-exit"),
                 "&Quitter", self, shortcut="Ctrl+Shift+Q",
                 statusTip="Quitter l'application", triggered=self.close)
+        self.closeAction = QAction(QIcon("../icons/cancel"),
+                "&Fermer", self, statusTip="Fermer l'exercice en cours")
+        self.closeAction.setEnabled(False)
         self.aboutAction = QAction(QIcon("../icons/help-browser"),
                 "A &propos", self, shortcut="Ctrl+Shift+P",
                 triggered=self.about)
@@ -56,9 +57,10 @@ class Client(QMainWindow):
         #~ Options de connexion
         #~ Options choix exos ?? ou questionBox au démarrage
         self.clientMenu.addAction(self.quitAction)
+        self.clientMenu.addAction(self.closeAction)
 
         self.aboutMenu = self.menuBar().addMenu("&Aide")
-        self.aboutMenu.addAction(self.aboutAction)
+        self.aboutMenu.addAction(self.aboutAction)      
 
     def about(self):
         QMessageBox.about(self, "A propos ConsMaster",
