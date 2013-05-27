@@ -76,11 +76,19 @@ class GlispWidget(QGraphicsView) :
             if isinstance(item, Pointer) :
                 item.delete()
             elif isinstance(item, GCons) :
+                #~ Remove all pointer from it
                 for orig in ["car", "cdr"] :
-                    pointer = self.findPointer(item, orig)
+                    pointer = self.findPointerFrom(item, orig)
                     if pointer != None :
                         pointer.delete()
                         self.scene.removeItem(pointer)
+                #~ Remove all pointer to it
+                for orig in ["car", "cdr"] :
+                    list = self.findPointersTo(item)
+                    if list != [] :
+                        for x in list :
+                            x.delete()
+                            self.scene.removeItem(x)
 
     def addAtom(self, value=None) :
         a = GAtom(value)
@@ -93,13 +101,22 @@ class GlispWidget(QGraphicsView) :
         for item in self.items() :
             self.scene.removeItem(item)
 
-    def findPointer(self, gcons, orig) :
+    def findPointerFrom(self, gcons, orig) :
         """ Return the pointer associated w/ a car or a cons """
         for item in self.scene.items() :
             if isinstance(item, Pointer) :
                 if item.startItem == gcons :
                     if item.orig == orig :
                         return item
+
+    def findPointersTo(self, gcons) :
+        """ Return who pointing here """
+        list = []
+        for item in self.scene.items() :
+            if isinstance(item, Pointer) :
+                if item.endItem == gcons :
+                    list.append(item)
+        return list
 
     #~ def addArrow(self, o1, o2, orig) :
         #~ p = Pointer(o1, o2)
@@ -150,7 +167,7 @@ class GlispWidget(QGraphicsView) :
             for endItem in self.items(mouseEvent.pos()):
                 if isinstance(endItem, GCons) or isinstance(endItem, GAtom) :
                     #~ Remove prev pointer if nedeed
-                    oldPointer = self.findPointer(self.arrow.start, self.startItemType)
+                    oldPointer = self.findPointerFrom(self.arrow.start, self.startItemType)
                     if oldPointer != None :
                         oldPointer.delete()
                         self.scene.removeItem(oldPointer)
