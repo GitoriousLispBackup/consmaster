@@ -51,6 +51,8 @@ class GlispWidget(QGraphicsView) :
         self.startItem = None
         self.startItemType = ""
 
+        self.setRenderHint(QPainter.Antialiasing)
+
         self.scene = QGraphicsScene()
         self.scene.setSceneRect(QRectF(0, 0, 400, 300))
 
@@ -59,15 +61,12 @@ class GlispWidget(QGraphicsView) :
         self.setScene(self.scene)
         self.setAlignment(Qt.AlignLeft|Qt.AlignTop)
 
+        self.scene.addItem(RootArrow(None, None, self.scene))
+
         self.show()
 
-    def addCons(self, car=None, cdr=None) :
-        g = GCons(car, cdr)
-        #~ a = None
-        #~ arrow = None
-        #~ if g.car != None :
-            #~ a = self.addAtom(g.car)
-            #~ arrow = self.addArrow(g, a, "car")
+    def addCons(self) :
+        g = GCons()
         self.scene.addItem(g)
 
     def removeItem(self) :
@@ -98,6 +97,8 @@ class GlispWidget(QGraphicsView) :
 
     def removeAll(self) :
         for item in self.items() :
+            if isinstance(item, RootArrow) :
+                continue
             self.scene.removeItem(item)
 
     def findPointerFrom(self, gcons, orig) :
@@ -160,8 +161,6 @@ class GlispWidget(QGraphicsView) :
         super().mouseMoveEvent(mouseEvent)
 
     def mouseReleaseEvent(self, mouseEvent):
-        #~ Should also test if already linked
-
         if self.arrow != None :
             for endItem in self.items(mouseEvent.pos()):
                 if (isinstance(endItem, GCons) and self.arrow.start != endItem) or isinstance(endItem, GAtom) :
@@ -177,6 +176,7 @@ class GlispWidget(QGraphicsView) :
                     break
             self.scene.removeItem(self.arrow)
             self.arrow = None
+
         super().mouseReleaseEvent(mouseEvent)
 
 
@@ -349,6 +349,7 @@ class Arrow(QGraphicsLineItem):
         self.start = startItem
         self.head = QPolygonF()
         self.penColor = Qt.black
+        self.penStyle = Qt.SolidLine
         self.setLine(QLineF(p1, p2))
         self.setFlag(QGraphicsItem.ItemIsSelectable, True)
 
@@ -371,7 +372,7 @@ class Arrow(QGraphicsLineItem):
     def paint(self, painter, option, widget=None):
         # We have to tell the view how to paint an arrow
         # Firstly the base, then the body and finally the head
-        painter.setPen(QPen(self.penColor, self.bodySize, Qt.SolidLine))
+        painter.setPen(QPen(self.penColor, self.bodySize, self.penStyle))
         painter.setBrush(self.penColor)
         body = self.line()
 
@@ -404,6 +405,55 @@ class Arrow(QGraphicsLineItem):
         painter.drawPolygon(head)
         self.head = head
 
+class RootArrow (Arrow) :
+    """ Special and unique arrow to set root
+        Can be open moved, and sticky when assigned
+    """
+
+    def __init__(self, position=QPointF(50, 50), rootItem=None, parent=None, scene=None):
+        super().__init__(QPointF(0, 0), QPointF(50, 50), parent, scene)
+
+        if rootItem == None :
+            self.pos = QPointF(50, 50)
+            self.root = None
+        else :
+            self.root = rootItem
+            self.pos = rootItem.pos()
+
+        self.setFlag(QGraphicsItem.ItemIsSelectable, True)
+        self.setFlag(QGraphicsItem.ItemIsMovable, False)
+        self.penColor = QColor("gray")
+        self.penStyle = Qt.DotLine
+        #~ Toujours dessus
+        self.setZValue(200)
+
+    def paint(self, painter, option, widget=None):
+        painter.setPen(self.penColor)
+        if isinstance(self.root, GCons) :
+            self.pos = self.root.pos() + QPointF(0, 25)
+        elif isinstance(self.root, GAtom) :
+            self.pos = self.root.pos() + QPointF(0, 15)
+        self.setLine(QLineF(QPointF(0,0), self.pos))
+        super().paint(painter, option, widget)
+
+    def mousePressEvent(self, mouseEvent) :
+        self.pos = mouseEvent.scenePos()
+        super().mousePressEvent(mouseEvent)
+
+    def mouseMoveEvent(self, mouseEvent) :
+        self.pos = mouseEvent.scenePos()
+        self.setLine(QLineF(QPointF(0,0), self.pos))
+        super().mouseMoveEvent(mouseEvent)
+
+    def mouseReleaseEvent(self, mouseEvent) :
+        self.pos = mouseEvent.scenePos()
+        for item in self.scene().items(mouseEvent.pos()):
+            if isinstance(item, GCons) or isinstance(item, GAtom) :
+                self.root = item
+            else :
+                self.root = None
+        self.update()
+        super().mouseReleaseEvent(mouseEvent)
 
 class Pointer(Arrow):
     """Pointer.
@@ -431,12 +481,13 @@ class Pointer(Arrow):
 
     def paint(self, painter, option, widget=None):
         painter.setPen(self.penColor)
-        #self.p1 = self.startItem.scenePos() + QPointF(75, 25)
+        #~ Set origin position
         if self.orig == "car" :
             p1 = self.startItem.scenePos() + QPointF(25, 25)
         elif self.orig == "cdr":
             p1 = self.startItem.scenePos() + QPointF(75, 25)
         else : print("problème qq part ...")
+        #~ Set destination position
         if isinstance(self.endItem, GCons) :
             p2 = self.endItem.scenePos() + QPointF(0, 25)
         elif isinstance(self.endItem, GAtom) :
