@@ -81,8 +81,15 @@ class LispScene(QGraphicsScene):
             self.removeItem(item)
         self.graph.clear()
 
-    def layouting(self):
-        pass
+    def layouting(self, root):
+        positions = nx.spring_layout(self.graph)
+        w, h = self.width(), self.height()
+        margin = 20
+        w -= 2 * margin
+        h -= 2 * margin
+        for item, pos in positions.items():
+            item.setPos(margin + pos[0] * w, margin + pos[1] * h)
+
 
 class GlispWidget(QGraphicsView) :
     """ Widget for graphical lisp """
@@ -107,7 +114,27 @@ class GlispWidget(QGraphicsView) :
 
     @Slot(object)
     def insert_expr(self, graph_expr):
-        print(graph_expr)
+        self.scene.reset()
+        # print(graph_expr)
+        dct = {}
+        for k, v in graph_expr.graph.items():
+            if v[0] == '#cons':
+                g = GCons()
+            elif v[0] == '#atom':
+                g = GAtom(v[1])
+            else:
+                raise RuntimeError('not implemented')
+            self.scene.addObj(g)
+            dct[k] = g
+        for k, g in dct.items():
+            if isinstance(g, GCons):
+                car_id, cdr_id = graph_expr.graph[k][2]
+                car, cdr = dct[car_id], dct[cdr_id]
+                g.setCar(car)
+                g.setCdr(cdr)
+                self.scene.addPointer(Pointer(g, car, 'car'))
+                self.scene.addPointer(Pointer(g, cdr, 'cdr'))
+        self.scene.layouting(dct[graph_expr.root])
 
     def addCons(self) :
         self.scene.addObj(GCons())
@@ -244,9 +271,11 @@ class GCons(QGraphicsItem):
     def mouseMoveEvent(self, mouseEvent):
         super().mouseMoveEvent(mouseEvent)
 
+    def __repr__(self):
+        return 'id_' + str(id(self))
+
     car = property(fget=lambda self: self._car, fset=setCar)
     cdr = property(fget=lambda self: self._cdr, fset=setCdr)
-
 
 class GAtom(QGraphicsItem):
     """ An Graphical Atom to represent a Car """
@@ -309,6 +338,9 @@ class GAtom(QGraphicsItem):
 
     def mouseDoubleClickEvent(self, mouseEvent) :
         self.setValueBox(self.value)
+
+    def __repr__(self):
+        return 'id_' + str(id(self))
 
 class Arrow(QGraphicsLineItem):
     """Arrow

@@ -67,7 +67,6 @@ class TermWidget(QTextEdit) :
 
     @Slot(str)
     def out(self, s):
-        print('out:', s, type(s))
         self.append(s + '\n')
         self.freezeAtCurrentPos()
 

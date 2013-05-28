@@ -44,7 +44,7 @@ class GraphExpr:
 
     @staticmethod
     def from_lsp_obj(obj):
-        print('build from obj : ', obj)
+        # print('build from obj : ', obj)
         visited = {}
         def rec_build(obj):
             uid = str(id(obj))
