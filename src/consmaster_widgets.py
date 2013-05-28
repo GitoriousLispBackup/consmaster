@@ -106,6 +106,8 @@ class MainMenu(QWidget) :
 
         self.mainwindow.closeAction.triggered.connect(lambda: self.closeWidget(widget))
         self.mainwindow.closeAction.setEnabled(True)
+
+        terminal_group.term.setFocus()
         
 
     #~ TODO: Final dynamic Menu

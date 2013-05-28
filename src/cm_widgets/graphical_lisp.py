@@ -55,6 +55,7 @@ class LispScene(QGraphicsScene):
     def addObj(self, obj):
         self.graph.add_node(obj)
         self.addItem(obj)
+
     def addPointer(self, pointer):
         self.graph.add_edge(pointer.startItem, pointer.endItem, arrow=pointer)
         self.addItem(pointer)
@@ -67,9 +68,9 @@ class LispScene(QGraphicsScene):
             self.removePointer(arrow)
         self.graph.remove_node(obj)
         self.removeItem(obj)
+        
     def removePointer(self, pointer):
         self.graph.remove_edge(pointer.startItem, pointer.endItem)
-        pointer.deleteLinks()
         self.removeItem(pointer)
 
     def getEdgesFrom(self, vertex):
@@ -82,13 +83,14 @@ class LispScene(QGraphicsScene):
         self.graph.clear()
 
     def layouting(self, root):
-        positions = nx.spring_layout(self.graph)
+        positions = nx.pydot_layout(self.graph, prog='dot', root=root)
+        print(positions)
         w, h = self.width(), self.height()
-        margin = 20
-        w -= 2 * margin
-        h -= 2 * margin
+        #~ margin = 20
+        #~ w -= 2 * margin
+        #~ h -= 2 * margin
         for item, pos in positions.items():
-            item.setPos(margin + pos[0] * w, margin + pos[1] * h)
+            item.setPos(pos[0], pos[1])
 
 
 class GlispWidget(QGraphicsView) :
@@ -115,7 +117,7 @@ class GlispWidget(QGraphicsView) :
     @Slot(object)
     def insert_expr(self, graph_expr):
         self.scene.reset()
-        # print(graph_expr)
+
         dct = {}
         for k, v in graph_expr.graph.items():
             if v[0] == '#cons':
@@ -272,7 +274,7 @@ class GCons(QGraphicsItem):
         super().mouseMoveEvent(mouseEvent)
 
     def __repr__(self):
-        return 'id_' + str(id(self))
+        return 'cons_' + str(id(self))
 
     car = property(fget=lambda self: self._car, fset=setCar)
     cdr = property(fget=lambda self: self._cdr, fset=setCdr)
@@ -340,7 +342,7 @@ class GAtom(QGraphicsItem):
         self.setValueBox(self.value)
 
     def __repr__(self):
-        return 'id_' + str(id(self))
+        return 'atom_' + str(id(self))
 
 class Arrow(QGraphicsLineItem):
     """Arrow
@@ -471,11 +473,12 @@ class Pointer(Arrow):
     def selectedActions(self, value) :
         self.penColor = QColor("green") if value else QColor("black")
 
-    def deleteLinks(self) :
+    def __del__(self):
         if self.orig == "car":
             self.startItem.car = None
         elif self.orig == "cdr":
             self.startItem.cdr = None
-        else:
-            print("3. problème qq part ...")
         self.startItem.update()
+
+    def __repr__(self):
+        return 'arrow_' + str(id(self))
