@@ -228,12 +228,12 @@ class GCons(QGraphicsItem):
         painter.drawRoundRect(50, 0, 50, 50)
         if self.car == None :
             painter.setPen(self.penCar)
-            painter.drawLine(0+2, 0+2, 50-2, 50-2)
+            #~ painter.drawLine(0+2, 0+2, 50-2, 50-2)
             painter.drawLine(0+2, 50-2, 50-2, 0+2)
         if self.cdr == None :
             painter.setPen(self.penCdr)
             painter.drawLine(50+2, 50-2, 100-2, 0+2)
-            painter.drawLine(50+2, 0+2, 100-2, 50-2)
+            #~ painter.drawLine(50+2, 0+2, 100-2, 50-2)
 
     #~ TODO: Définir la position de départ, layouting
     def setPosition(self):
@@ -423,7 +423,7 @@ class RootArrow (Arrow) :
         self.setFlag(QGraphicsItem.ItemIsSelectable, True)
         self.setFlag(QGraphicsItem.ItemIsMovable, False)
         self.penColor = QColor("gray")
-        self.penStyle = Qt.DotLine
+        self.penStyle = Qt.SolidLine
         #~ Toujours dessus
         self.setZValue(200)
 
@@ -502,8 +502,8 @@ class Pointer(Arrow):
 
     def selectedActions(self, value) :
         if value :
-            self.penColor = QColor("green")
-        else : self.penColor = QColor("black")
+            self.penStyle = Qt.DotLine
+        else : self.penStyle = Qt.SolidLine
 
     def deleteLinks(self) :
         if self.orig == "car" :
