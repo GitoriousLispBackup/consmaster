@@ -208,9 +208,9 @@ class GCons(QGraphicsItem):
     def selectedActions(self, value) :
         if value :
             if self.used == "car" :
-                self.setColor("green", "black")
+                self.setColor("crimson", "black")
             else :
-                self.setColor("black", "green")
+                self.setColor("black", "crimson")
         else : self.setColor("black", "black")
 
     def setColor(self, colorCar="black", colorCdr="black") :
@@ -297,7 +297,7 @@ class GAtom(QGraphicsItem):
 
     def selectedActions(self, value) :
         if value :
-            self.pen = QPen(QColor("green"), self.penWidth)
+            self.pen = QPen(QColor("crimson"), self.penWidth)
         else : self.pen = QPen(QColor("black"), self.penWidth)
 
     def boundingRect(self) :
@@ -422,7 +422,7 @@ class RootArrow (Arrow) :
 
         self.setFlag(QGraphicsItem.ItemIsSelectable, True)
         self.setFlag(QGraphicsItem.ItemIsMovable, False)
-        self.penColor = QColor("gray")
+        self.penColor = QColor("steelblue")
         self.penStyle = Qt.SolidLine
         #~ Toujours dessus
         self.setZValue(200)
