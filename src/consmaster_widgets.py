@@ -5,8 +5,8 @@ import sys
 import math
 from collections import OrderedDict
 
-from cm_widgets.graphical_lisp import *
-from cm_widgets.terminal import *
+from cm_lisp_graphic import *
+from cm_terminal import *
 from cm_controller import CmController
 from consmaster_widget_rc import *
 
