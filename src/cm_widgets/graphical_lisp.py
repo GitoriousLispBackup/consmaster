@@ -199,8 +199,7 @@ class GCons(QGraphicsItem):
         self.used = ""
 
         self.penWidth = 2
-        self.penCar = QPen(Qt.black, self.penWidth)
-        self.penCdr = QPen(Qt.black, self.penWidth)
+        self.penColor = QPen(Qt.black, self.penWidth)
         self.boundingRect()
 
     def setCar(self, car):
@@ -211,31 +210,22 @@ class GCons(QGraphicsItem):
 
     def selectedActions(self, value) :
         if value :
-            if self.used == "car" :
-                self.setColor("crimson", "black")
-            else :
-                self.setColor("black", "crimson")
-        else : self.setColor("black", "black")
-
-    def setColor(self, colorCar="black", colorCdr="black") :
-        self.penCar = QPen(QColor(colorCar), self.penWidth)
-        self.penCdr = QPen(QColor(colorCdr), self.penWidth)
+            self.penColor = QPen(QColor("crimson"), self.penWidth)
+        else : self.penColor = QPen(QColor("black"), self.penWidth)
 
     def boundingRect(self) :
         return QRectF (0 - self.penWidth / 2, 0 - self.penWidth / 2,
                        self.wSize + self.penWidth, self.hSize + self.penWidth)
 
     def paint(self, painter, option, widget=None) :
-        painter.setPen(self.penCar)
+        painter.setPen(self.penColor)
         painter.drawRoundRect(0, 0, self.wSize/2-1, self.hSize)
-        painter.setPen(self.penCdr)
         painter.drawRoundRect(self.wSize/2, 0, self.wSize/2, self.hSize)
+        #~ Drawing / if car/cdr is Nil
         if self.car == None :
-            painter.setPen(self.penCar)
             #~ painter.drawLine(0+2, 0+2, 50-2, 50-2)
             painter.drawLine(0+2, self.hSize-2, self.wSize/2-2, 0+2)
         if self.cdr == None :
-            painter.setPen(self.penCdr)
             painter.drawLine(self.wSize/2+2, self.hSize-2, self.wSize-2, 0+2)
             #~ painter.drawLine(50+2, 0+2, 100-2, 50-2)
 
