@@ -8,8 +8,8 @@ except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
-from cm_widgets.graphical_lisp import *
-from cm_widgets.terminal import *
+from cm_lisp_graphic import *
+from cm_terminal import *
 from cm_interpreter import Interpreter, GraphExpr
 
 class CmController(QObject):

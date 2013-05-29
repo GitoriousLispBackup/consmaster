@@ -65,6 +65,16 @@ class DiGraph:
         return '<digraph:\n\tvertices = ' + V + '\n\tedges = [\n' + E + ' ]\n>'
 
 
+class LispDigraph(DiGraph):
+    def set_car(self, cons, car):
+        self.add_edge(cons, car, 'car')
+
+    def set_cdr(self, cons, cdr):
+        self.add_edge(cons, cdr, 'cdr')
+
+    def __repr__(self):
+        return repr(self._edges)
+
 
 from collections import OrderedDict
 
@@ -197,9 +207,15 @@ class GlispWidget(QGraphicsView) :
         self.startItem = None
         self.startItemType = ""
 
+<<<<<<< HEAD
         self.scene = LispScene()
         self.scene.setSceneRect(QRectF(0, 0, 600, 300))
+=======
         self.setRenderHint(QPainter.Antialiasing)
+
+        self.scene = QGraphicsScene()
+        self.scene.setSceneRect(QRectF(0, 0, 400, 300))
+>>>>>>> master
 
         self.scene.update()
 
@@ -210,6 +226,7 @@ class GlispWidget(QGraphicsView) :
 
         self.show()
 
+<<<<<<< HEAD
     @Slot(object)
     def insert_expr(self, graph_expr):
         self.scene.reset()
@@ -235,6 +252,31 @@ class GlispWidget(QGraphicsView) :
 
     def addCons(self) :
         self.scene.addObj(GCons())
+=======
+    def addCons(self) :
+        g = GCons()
+        self.scene.addItem(g)
+
+    def removeItem(self) :
+        for item in self.scene.selectedItems() :
+            self.scene.removeItem(item)
+            if isinstance(item, Pointer) :
+                item.delete()
+            elif isinstance(item, GCons) :
+                #~ Remove all pointer from it
+                for orig in ["car", "cdr"] :
+                    pointer = self.findPointerFrom(item, orig)
+                    if pointer != None :
+                        pointer.deleteLinks()
+                        self.scene.removeItem(pointer)
+                #~ Remove all pointer to it
+                for orig in ["car", "cdr"] :
+                    list = self.findPointersTo(item)
+                    if list != [] :
+                        for x in list :
+                            x.deleteLinks()
+                            self.scene.removeItem(x)
+>>>>>>> master
 
     def addAtom(self, value=None) :
         self.scene.addObj(GAtom(value))
@@ -243,14 +285,58 @@ class GlispWidget(QGraphicsView) :
         for item in self.scene.selectedItems() :
             if isinstance(item, Pointer):
                 self.scene.removePointer(item)
-            elif isinstance(item, (GCons, GAtom)):
+            elif isinstance(item, GCons) or isinstance(item, GAtom):
                 self.scene.removeObj(item)
             else:
                 self.scene.removeItem(item)
 
     def removeAll(self) :
+<<<<<<< HEAD
         self.scene.reset()
 
+=======
+        for item in self.items() :
+            if isinstance(item, RootArrow) :
+                continue
+            self.scene.removeItem(item)
+
+    def findPointerFrom(self, gcons, orig) :
+        """ Return the pointer associated w/ a car or a cons """
+        for item in self.scene.items() :
+            if isinstance(item, Pointer) :
+                if item.startItem == gcons :
+                    if item.orig == orig :
+                        return item
+
+    def findPointersTo(self, gcons) :
+        """ Return who pointing here """
+        list = []
+        for item in self.scene.items() :
+            if isinstance(item, Pointer) :
+                if item.endItem == gcons :
+                    list.append(item)
+        return list
+
+    #~ def addArrow(self, o1, o2, orig) :
+        #~ p = Pointer(o1, o2)
+        #~ self.scene.addItem(p)
+        #~ return p
+
+    #~ TODO
+    #~ def autoArrow(self) :
+        #~ for item in self.items() :
+            #~ if isinstance(item, GCons) :
+                #~ if self.references[item][0] != None :
+                    #~ if self.references[item][0] in self.references.values() :
+                        #~ self.addArrow(item, self.references[self.references[item][0]])
+
+    #~ TODO
+    #~ def autoArrowClean(self) :
+        #~ for item in self.scene.items() :
+            #~ if isinstance(item, Pointer) :
+                #~ if item.startItem == None or item.endItem == None :
+                    #~ self.scene.removeItem(item)
+>>>>>>> master
 
     def mousePressEvent(self, mouseEvent):
         #~ Allows to create tmp arrows w/ right clic
@@ -275,9 +361,8 @@ class GlispWidget(QGraphicsView) :
     def mouseReleaseEvent(self, mouseEvent):
         if self.arrow != None :
             for endItem in self.items(mouseEvent.pos()):
-                if self.arrow.start != endItem and isinstance(endItem, (GCons, GAtom)):
+                if self.arrow.start != endItem and (isinstance(endItem, GCons) or isinstance(endItem, GAtom)):
                     #~ Remove prev pointer if nedeed
-                    # TODO : faire ça dans la scene
                     for oldPointer in self.scene.getEdgesFrom(self.arrow.start, self.startItemType):
                         self.scene.removePointer(oldPointer)
 
@@ -297,10 +382,11 @@ class GCons(QGraphicsItem):
 
     def __init__(self, car=None, cdr=None, iden=None, parent=None, scene=None):
         super().__init__(parent, scene)
-        self.setFlags(QGraphicsItem.ItemIsMovable|QGraphicsItem.ItemIsSelectable)
+        self.setFlag(QGraphicsItem.ItemIsMovable, True)
+        self.setFlag(QGraphicsItem.ItemIsSelectable, True)
 
-        self.car = car
-        self.cdr = cdr
+        self._car = car
+        self._cdr = cdr
 
         #~ Best should be hSize=wSize/2
         self.hSize = 40
@@ -312,11 +398,29 @@ class GCons(QGraphicsItem):
         self.penColor = QPen(Qt.black, self.penWidth)
         self.boundingRect()
 
+    def setCar(self, car):
+        self._car = car
+
+    def setCdr(self, cdr):
+        self._cdr = cdr
+
     def selectedActions(self, value) :
-        if value:
+        if value :
+<<<<<<< HEAD
+            if self.used == "car" :
+                self.setColor("green", "black")
+            else :
+                self.setColor("black", "green")
+        else :
+            self.setColor("black", "black")
+
+    def setColor(self, colorCar="black", colorCdr="black") :
+        self.penCar = QPen(QColor(colorCar), self.penWidth)
+        self.penCdr = QPen(QColor(colorCdr), self.penWidth)
+=======
             self.penColor = QPen(QColor("crimson"), self.penWidth)
-        else:
-            self.penColor = QPen(QColor("black"), self.penWidth)
+        else : self.penColor = QPen(QColor("black"), self.penWidth)
+>>>>>>> master
 
     def boundingRect(self) :
         return QRectF (0 - self.penWidth / 2, 0 - self.penWidth / 2,
@@ -341,7 +445,7 @@ class GCons(QGraphicsItem):
         return super().itemChange(change, value)
 
     def isCarOrCdr(self, mousePos) :
-        if mousePos.x() < self.wSize / 2:
+        if mousePos.x() < 50 :
             return "car"
         else :
             return "cdr"
@@ -359,6 +463,8 @@ class GCons(QGraphicsItem):
     def __repr__(self):
         return 'cons_' + str(id(self)) + '[' + repr(id(self.car)) + ',' + repr(id(self.cdr)) + ']'
 
+    car = property(fget=lambda self: self._car, fset=setCar)
+    cdr = property(fget=lambda self: self._cdr, fset=setCdr)
 
 class GAtom(QGraphicsItem):
     """ An Graphical Atom to represent a Car """
@@ -366,7 +472,8 @@ class GAtom(QGraphicsItem):
     def __init__(self, value=None, parent=None, scene=None):
         super().__init__(parent, scene)
 
-        self.setFlags(QGraphicsItem.ItemIsMovable|QGraphicsItem.ItemIsSelectable)
+        self.setFlag(QGraphicsItem.ItemIsMovable, True)
+        self.setFlag(QGraphicsItem.ItemIsSelectable, True)
 
         self._value = "nil"  # ??
         self.sizedBound = 0
@@ -391,10 +498,16 @@ class GAtom(QGraphicsItem):
     value = property(fget=lambda self: self._value, fset=setValue)
 
     def selectedActions(self, value) :
+<<<<<<< HEAD
         if value:
-            self.pen = QPen(QColor("crimson"), self.penWidth)
+            self.pen = QPen(QColor("green"), self.penWidth)
         else:
             self.pen = QPen(QColor("black"), self.penWidth)
+=======
+        if value :
+            self.pen = QPen(QColor("crimson"), self.penWidth)
+        else : self.pen = QPen(QColor("black"), self.penWidth)
+>>>>>>> master
 
     def boundingRect(self) :
         return QRectF (0 - self.penWidth / 2, 0 - self.penWidth / 2,
@@ -411,7 +524,7 @@ class GAtom(QGraphicsItem):
             self.selectedActions(value)
         return super().itemChange(change, value)
 
-    def setValueBox(self, currentName=None):
+    def setValueBox(self, currentName=None) :
         name, ok = QInputDialog.getText(None, "Atom", "Contenu de l'atome :",
                     QLineEdit.Normal, currentName)
         # TODO: control if name is valid
@@ -423,7 +536,6 @@ class GAtom(QGraphicsItem):
 
     def __repr__(self):
         return 'atom_' + repr(self.value)
-
 
 class Arrow(QGraphicsLineItem):
     """Arrow
@@ -512,7 +624,8 @@ class RootArrow (Arrow) :
             self.root = rootItem
             self.pos = rootItem.pos()
 
-        self.setFlags(QGraphicsItem.ItemIsSelectable|QGraphicsItem.ItemIsMovable)
+        self.setFlag(QGraphicsItem.ItemIsSelectable, True)
+        self.setFlag(QGraphicsItem.ItemIsMovable, False)
         self.penColor = QColor("steelblue")
         self.penStyle = Qt.SolidLine
         #~ Toujours dessus
@@ -580,12 +693,17 @@ class Pointer(Arrow):
         if self.orig == "car" :
             p1 = self.startItem.scenePos() + QPointF(self.startItem.wSize/4, self.startItem.hSize/2)
         elif self.orig == "cdr":
-            p1 = self.startItem.scenePos() + QPointF(self.startItem.wSize*3/4, self.startItem.hSize/2)
+<<<<<<< HEAD
+            p1 = self.startItem.scenePos() + QPointF(75, 25)
         else:
             print("1. problème qq part ...", self.orig)
             return
+            
+=======
+            p1 = self.startItem.scenePos() + QPointF(self.startItem.wSize*3/4, self.startItem.hSize/2)
+        else : print("problème qq part ...")
         #~ Set destination position
-
+>>>>>>> master
         if isinstance(self.endItem, GCons) :
             p2 = self.endItem.scenePos() + QPointF(0, self.startItem.hSize/2)
         elif isinstance(self.endItem, GAtom) :
@@ -603,10 +721,13 @@ class Pointer(Arrow):
         return super().itemChange(change, value)
 
     def selectedActions(self, value) :
-        if value:
+<<<<<<< HEAD
+        self.penColor = QColor("green") if value else QColor("black")
+=======
+        if value :
             self.penStyle = Qt.DotLine
-        else:
-            self.penStyle = Qt.SolidLine
+        else : self.penStyle = Qt.SolidLine
+>>>>>>> master
 
     def __del__(self):
         if self.orig == "car":
