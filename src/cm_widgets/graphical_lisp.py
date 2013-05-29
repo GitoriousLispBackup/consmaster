@@ -192,6 +192,10 @@ class GCons(QGraphicsItem):
         self._car = car
         self._cdr = cdr
 
+        #~ Best should be hSize=wSize/2
+        self.hSize = 40
+        self.wSize = 80
+
         self.used = ""
 
         self.penWidth = 2
@@ -219,20 +223,20 @@ class GCons(QGraphicsItem):
 
     def boundingRect(self) :
         return QRectF (0 - self.penWidth / 2, 0 - self.penWidth / 2,
-                       100 + self.penWidth, 50 + self.penWidth)
+                       self.wSize + self.penWidth, self.hSize + self.penWidth)
 
     def paint(self, painter, option, widget=None) :
         painter.setPen(self.penCar)
-        painter.drawRoundRect(0, 0, 50-1, 50)
+        painter.drawRoundRect(0, 0, self.wSize/2-1, self.hSize)
         painter.setPen(self.penCdr)
-        painter.drawRoundRect(50, 0, 50, 50)
+        painter.drawRoundRect(self.wSize/2, 0, self.wSize/2, self.hSize)
         if self.car == None :
             painter.setPen(self.penCar)
             #~ painter.drawLine(0+2, 0+2, 50-2, 50-2)
-            painter.drawLine(0+2, 50-2, 50-2, 0+2)
+            painter.drawLine(0+2, self.hSize-2, self.wSize/2-2, 0+2)
         if self.cdr == None :
             painter.setPen(self.penCdr)
-            painter.drawLine(50+2, 50-2, 100-2, 0+2)
+            painter.drawLine(self.wSize/2+2, self.hSize-2, self.wSize-2, 0+2)
             #~ painter.drawLine(50+2, 0+2, 100-2, 50-2)
 
     #~ TODO: Définir la position de départ, layouting
@@ -430,7 +434,7 @@ class RootArrow (Arrow) :
     def paint(self, painter, option, widget=None):
         painter.setPen(self.penColor)
         if isinstance(self.root, GCons) :
-            self.pos = self.root.pos() + QPointF(0, 25)
+            self.pos = self.root.pos() + QPointF(0, self.root.hSize/2)
         elif isinstance(self.root, GAtom) :
             self.pos = self.root.pos() + QPointF(0, 15)
         self.setLine(QLineF(QPointF(0,0), self.pos))
@@ -479,17 +483,18 @@ class Pointer(Arrow):
         self.setFlag(QGraphicsItem.ItemIsSelectable, True)
         self.penColor = QColor("black")
 
+
     def paint(self, painter, option, widget=None):
         painter.setPen(self.penColor)
         #~ Set origin position
         if self.orig == "car" :
-            p1 = self.startItem.scenePos() + QPointF(25, 25)
+            p1 = self.startItem.scenePos() + QPointF(self.startItem.wSize/4, self.startItem.hSize/2)
         elif self.orig == "cdr":
-            p1 = self.startItem.scenePos() + QPointF(75, 25)
+            p1 = self.startItem.scenePos() + QPointF(self.startItem.wSize*3/4, self.startItem.hSize/2)
         else : print("problème qq part ...")
         #~ Set destination position
         if isinstance(self.endItem, GCons) :
-            p2 = self.endItem.scenePos() + QPointF(0, 25)
+            p2 = self.endItem.scenePos() + QPointF(0, self.startItem.hSize/2)
         elif isinstance(self.endItem, GAtom) :
             p2 = self.endItem.scenePos() + QPointF(0, 15)
         self.setLine(QLineF(p1, p2))
