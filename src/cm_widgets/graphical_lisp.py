@@ -1,6 +1,108 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+
+class DiGraph:
+    def __init__(self):
+        self._vertices = set()
+        self._edges = {}
+
+    def clear(self):
+        self._vertices.clear()
+        self._edges.clear()
+
+    def add_vertex(self, v):
+        self._vertices.add(v)
+
+    def add_edge(self, v1, v2, key, **kwargs):
+        self.add_vertex(v1)
+        self.add_vertex(v2)
+        self._edges.setdefault((v1, v2), {}).update({key : kwargs})
+
+    def remove_edge(self, v1, v2, key):
+        self._edges[v1, v2].pop(key)
+        if not self._edges[v1, v2]:
+            self._edges.pop((v1, v2))
+
+    def remove_all_edges(self, v1, v2):
+        self._edges.pop((v1, v2))            
+
+    def remove_vertex(self, v):
+        for u in self.successors(v):
+            self.remove_edge(v, u)
+        for u in self.predecessors(v):
+            self.remove_edge(u, v)
+        self._vertices.remove(v)
+
+    def incoming_edges(self, vertex, key=None):
+        for u, v in filter(lambda v: v[1] is vertex, self._edges.keys()):
+            if key != None:
+                yield u, v, key, self._edges[u,v][key]
+            else:
+                for k, data in self._edges[u,v].items():
+                    yield u, v, k, data
+                
+    def outcoming_edges(self, vertex, key=None):
+        for v, u in filter(lambda v: v[0] is vertex, self._edges.keys()):
+            if key != None:
+                yield v, u, key, self._edges[v,u][key]
+            else:
+                for k, data in self._edges[v,u].items():
+                    yield v, u, k, data
+
+    def predecessors(self, vert, key=None):
+        return {u for u, v, _, _ in self.incoming_edges(vert, key)}
+
+    def successors(self, vert, key=None):
+        return {u for v, u, _, _ in self.outcoming_edges(vert, key)}
+    
+    def __repr__(self):
+        V = repr(self._vertices)
+        E = '\n'.join('   ' + repr(u) + ' -> ' + repr(v) for u, v in self._edges.keys())
+        return '<digraph:\n\tvertices = ' + V + '\n\tedges = [\n' + E + ' ]\n>'
+
+
+class LispDigraph(DiGraph):
+    def set_car(self, cons, car):
+        self.add_edge(cons, car, 'car')
+
+    def set_cdr(self, cons, cdr):
+        self.add_edge(cons, cdr, 'cdr')
+
+    def __repr__(self):
+        return repr(self._edges)
+
+
+from collections import OrderedDict
+
+
+def layout(G, root):
+    levels = OrderedDict()
+    visited = set()
+    def set_dist(node=root, dst=0):
+        visited.add(node)
+        levels.setdefault(dst, []).append(node)
+        for u, v, k, _ in sorted(G.outcoming_edges(node), key=lambda tp: tp[2]):  # car before cdr
+            if v not in visited:
+                set_dist(v, dst + (1 if k == 'car' else 0))
+    set_dist()
+
+    positions = {}
+    h = len(levels)
+    for j, nodes in levels.items():
+        w = len(nodes)
+        y = (j + 1) / (h + 1)
+        for i, nd in enumerate(nodes):
+            x = (i + 1) / (w + 1)
+            positions[nd] = x, y
+    
+    print(levels)
+
+    return positions
+
 import math
 from functools import reduce
 
@@ -11,11 +113,6 @@ except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
-try:
-    import networkx as nx
-except:
-    print ("Error: This program needs NetworkX module.", file=sys.stderr)
-    sys.exit(1)
 
 class GraphicalLispGroupWidget(QWidget):
     def __init__(self, parent=None):
@@ -50,32 +147,33 @@ class GraphicalLispGroupWidget(QWidget):
 class LispScene(QGraphicsScene):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.graph = nx.DiGraph()
+        self.graph = DiGraph()
         
     def addObj(self, obj):
-        self.graph.add_node(obj)
+        self.graph.add_vertex(obj)
         self.addItem(obj)
 
     def addPointer(self, pointer):
-        self.graph.add_edge(pointer.startItem, pointer.endItem, arrow=pointer)
+        self.graph.add_edge(pointer.startItem, pointer.endItem, key=pointer.orig, arrow=pointer)
         self.addItem(pointer)
 
     def removeObj(self, obj):
-        all_edges = set(self.getEdgesFrom(obj))
-        all_edges |= { data['arrow'] for u, v, data in self.graph.edges_iter(self.graph.predecessors(obj), True) if v is obj }
+        all_edges = [data['arrow'] for u, v, k, data in self.graph.outcoming_edges(obj)]
+        all_edges += [data['arrow'] for u, v, k, data in self.graph.incoming_edges(obj)]
+
         # print('edges :', all_edges)
         for arrow in all_edges:
             self.removePointer(arrow)
-        self.graph.remove_node(obj)
+        self.graph.remove_vertex(obj)
         self.removeItem(obj)
         
     def removePointer(self, pointer):
-        self.graph.remove_edge(pointer.startItem, pointer.endItem)
+        self.graph.remove_edge(pointer.startItem, pointer.endItem, pointer.orig)
         self.removeItem(pointer)
 
-    def getEdgesFrom(self, vertex):
+    def getEdgesFrom(self, vertex, key=None):
         # WARNING : dans un sens seulement
-        return [data['arrow'] for u, v, data in self.graph.edges_iter(vertex, True)]
+        return [data['arrow'] for u, v, k, data in self.graph.outcoming_edges(vertex, key)]
 
     def reset(self):
         for item in self.items() :
@@ -83,14 +181,19 @@ class LispScene(QGraphicsScene):
         self.graph.clear()
 
     def layouting(self, root):
-        positions = nx.pydot_layout(self.graph, prog='dot', root=root)
-        print(positions)
+        positions = layout(self.graph, root=root)
+        #~ print(positions.values())
         w, h = self.width(), self.height()
+        #~ print('w, h:', (w, h))
         #~ margin = 20
         #~ w -= 2 * margin
         #~ h -= 2 * margin
         for item, pos in positions.items():
-            item.setPos(pos[0], pos[1])
+            rect = item.boundingRect()
+            #~ print(rect)
+            x, y = pos[0] * w  - rect.width(), pos[1] * h - rect.height()
+            #~ print(item, (x, y))
+            item.setPos(x, y)
 
 
 class GlispWidget(QGraphicsView) :
@@ -105,7 +208,7 @@ class GlispWidget(QGraphicsView) :
         self.startItemType = ""
 
         self.scene = LispScene()
-        self.scene.setSceneRect(QRectF(0, 0, 400, 300))
+        self.scene.setSceneRect(QRectF(0, 0, 600, 300))
 
         self.scene.update()
 
@@ -123,6 +226,7 @@ class GlispWidget(QGraphicsView) :
             if v[0] == '#cons':
                 g = GCons()
             elif v[0] == '#atom':
+                if v[1] == 'nil': continue
                 g = GAtom(v[1])
             else:
                 raise RuntimeError('not implemented')
@@ -131,11 +235,9 @@ class GlispWidget(QGraphicsView) :
         for k, g in dct.items():
             if isinstance(g, GCons):
                 car_id, cdr_id = graph_expr.graph[k][2]
-                car, cdr = dct[car_id], dct[cdr_id]
-                g.setCar(car)
-                g.setCdr(cdr)
-                self.scene.addPointer(Pointer(g, car, 'car'))
-                self.scene.addPointer(Pointer(g, cdr, 'cdr'))
+                car, cdr = dct.get(car_id), dct.get(cdr_id)
+                if car: self.scene.addPointer(Pointer(g, car, 'car'))
+                if cdr: self.scene.addPointer(Pointer(g, cdr, 'cdr'))
         self.scene.layouting(dct[graph_expr.root])
 
     def addCons(self) :
@@ -182,9 +284,8 @@ class GlispWidget(QGraphicsView) :
             for endItem in self.items(mouseEvent.pos()):
                 if self.arrow.start != endItem and (isinstance(endItem, GCons) or isinstance(endItem, GAtom)):
                     #~ Remove prev pointer if nedeed
-                    for oldPointer in self.scene.getEdgesFrom(self.arrow.start):
-                        if oldPointer.orig == self.startItemType:
-                            self.scene.removePointer(oldPointer)
+                    for oldPointer in self.scene.getEdgesFrom(self.arrow.start, self.startItemType):
+                        self.scene.removePointer(oldPointer)
 
                     #~ Create new pointer
                     p = Pointer(self.arrow.start, endItem, self.startItemType)
@@ -274,7 +375,7 @@ class GCons(QGraphicsItem):
         super().mouseMoveEvent(mouseEvent)
 
     def __repr__(self):
-        return 'cons_' + str(id(self))
+        return 'cons_' + str(id(self)) + '[' + repr(id(self.car)) + ',' + repr(id(self.cdr)) + ']'
 
     car = property(fget=lambda self: self._car, fset=setCar)
     cdr = property(fget=lambda self: self._cdr, fset=setCdr)
@@ -342,7 +443,7 @@ class GAtom(QGraphicsItem):
         self.setValueBox(self.value)
 
     def __repr__(self):
-        return 'atom_' + str(id(self))
+        return 'atom_' + repr(self.value)
 
 class Arrow(QGraphicsLineItem):
     """Arrow
