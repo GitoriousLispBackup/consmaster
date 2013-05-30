@@ -281,12 +281,7 @@ class Pointer(Arrow):
         self.orig = orig
 
         # gestion des liens directs entre les objets
-        if self.orig == "car":
-            self.startItem.car = endItem
-        elif self.orig == "cdr":
-            self.startItem.cdr = endItem
-        else:
-            raise RuntimeError('bad link')
+        setattr(self.startItem, self.orig, endItem)
         self.startItem.update()
 
         self.setFlag(QGraphicsItem.ItemIsSelectable, True)
@@ -328,10 +323,7 @@ class Pointer(Arrow):
             self.penStyle = Qt.SolidLine
 
     def __del__(self):
-        if self.orig == "car":
-            self.startItem.car = None
-        elif self.orig == "cdr":
-            self.startItem.cdr = None
+        setattr(self.startItem, self.orig, None)
         self.startItem.update()
 
     def __repr__(self):
