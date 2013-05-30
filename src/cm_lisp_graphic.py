@@ -12,6 +12,8 @@ except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
+from cm_exercice import Encoder, dec as decoder
+
 
 class GraphicalLispGroupWidget(QWidget):
     def __init__(self, parent=None):
@@ -25,18 +27,24 @@ class GraphicalLispGroupWidget(QWidget):
         glispAddAtom = QPushButton("Add Atom")
         glispRemove = QPushButton("Remove")
         glispCleanAll = QPushButton("Clean All")
+        glispSave = QPushButton("Save")
+        glispLoad = QPushButton("Load")
 
         self.buttons_layout = QVBoxLayout()
         self.buttons_layout.addWidget(glispAddCons)
         self.buttons_layout.addWidget(glispAddAtom)
         self.buttons_layout.addWidget(glispRemove)
         self.buttons_layout.addWidget(glispCleanAll)
+        self.buttons_layout.addWidget(glispSave)
+        self.buttons_layout.addWidget(glispLoad)
 
         #~ Actions
         glispAddCons.clicked.connect(self.glisp_widget.addCons)
         glispAddAtom.clicked.connect(self.glisp_widget.addAtom)
         glispRemove.clicked.connect(self.glisp_widget.removeSelectedItem)
         glispCleanAll.clicked.connect(self.glisp_widget.removeAll)
+        glispLoad.clicked.connect(self.glisp_widget.load)
+        glispSave.clicked.connect(self.glisp_widget.save)
 
         self.layout.addWidget(self.glisp_widget)
         self.layout.addLayout(self.buttons_layout)
@@ -116,6 +124,20 @@ class GlispWidget(QGraphicsView) :
         self.scene.addItem(self.rootArrow)
 
         self.show()
+
+
+    def load(self):
+        filename, ok = QFileDialog.getOpenFileName(parent=self, caption="Load file")
+        with open(filename, 'r', encoding='utf-8'):
+            pass
+        print(filename)
+
+    def save(self):
+        filename, ok = QFileDialog.getSaveFileName(parent=self, caption="Save file")
+        with open(filename, 'w', encoding='utf-8'):
+            pass
+        print(filename)
+
 
     @Slot(object)
     def insert_expr(self, graph_expr):
