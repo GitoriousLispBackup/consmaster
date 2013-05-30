@@ -36,18 +36,22 @@ class DiGraph:
 
     def incoming_edges(self, vertex, key=None):
         for u, v in filter(lambda v: v[1] is vertex, self._edges.keys()):
+            edges = self._edges[u,v]
             if key != None:
-                yield u, v, key, self._edges[u,v][key]
+                if key in edges:
+                    yield u, v, key, edges[key]
             else:
-                for k, data in self._edges[u,v].items():
+                for k, data in edges.items():
                     yield u, v, k, data
                 
     def outcoming_edges(self, vertex, key=None):
         for v, u in filter(lambda v: v[0] is vertex, self._edges.keys()):
+            edges = self._edges[v,u]
             if key != None:
-                yield v, u, key, self._edges[v,u][key]
+                if key in edges:
+                    yield v, u, key, edges[key]
             else:
-                for k, data in self._edges[v,u].items():
+                for k, data in edges.items():
                     yield v, u, k, data
 
     def predecessors(self, vert, key=None):
