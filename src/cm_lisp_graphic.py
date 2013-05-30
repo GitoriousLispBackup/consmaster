@@ -13,6 +13,8 @@ except:
     sys.exit(1)
 
 from cm_exercice import Encoder, dec as decoder
+from cm_interm_repr import GraphExpr
+import json
 
 
 class GraphicalLispGroupWidget(QWidget):
@@ -102,6 +104,25 @@ class LispScene(QGraphicsScene):
             #~ print(item, (x, y))
             item.setPos(x, y)
 
+    # comment ajouter nil ?
+    def get_interm_repr(self, root):
+        graph = {}
+        visited = set()
+        def walk(node):
+            visited.add(node)
+            if isinstance(node, GAtom):
+                graph[str(id(node))] = '#atom', node.value
+            elif isinstance(node, GCons):
+                tmp = {}
+                for _, nd, k, _ in self.graph.outcoming_edges(node):
+                    tmp[k] = str(id(nd))
+                    walk(nd)
+                graph[str(id(node))] = '#cons', [tmp.get('car', None), tmp.get('cdr', None)]
+            else:
+                raise RuntimeError('unexepted node: ' + repr(node))
+        walk(root)
+        return GraphExpr(str(id(root)), graph)
+
 
 class GlispWidget(QGraphicsView) :
     """ Widget for graphical lisp """
@@ -128,15 +149,25 @@ class GlispWidget(QGraphicsView) :
 
     def load(self):
         filename, ok = QFileDialog.getOpenFileName(parent=self, caption="Load file")
-        with open(filename, 'r', encoding='utf-8'):
+        with open(filename, 'r', encoding='utf-8') as fp:
             pass
         print(filename)
 
     def save(self):
+        rootItem = self.rootArrow.root
+        if not isinstance(rootItem, (GCons, GAtom)):
+            print('not root set. please set a root before saving')
+            return
+        
+        intermediate = self.scene.get_interm_repr(rootItem)
+        print(intermediate)
+        print(intermediate.to_lsp_obj())
+        
         filename, ok = QFileDialog.getSaveFileName(parent=self, caption="Save file")
-        with open(filename, 'w', encoding='utf-8'):
+        if not ok: return
+        
+        with open(filename, 'w', encoding='utf-8') as fp:
             pass
-        print(filename)
 
 
     @Slot(object)
@@ -156,7 +187,7 @@ class GlispWidget(QGraphicsView) :
             dct[k] = g
         for k, g in dct.items():
             if isinstance(g, GCons):
-                car_id, cdr_id = graph_expr.graph[k][2]
+                car_id, cdr_id = graph_expr.graph[k][1]
                 car, cdr = dct.get(car_id), dct.get(cdr_id)
                 if car: self.scene.addPointer(Pointer(g, car, 'car'))
                 if cdr: self.scene.addPointer(Pointer(g, cdr, 'cdr'))
