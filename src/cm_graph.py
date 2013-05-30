@@ -59,6 +59,9 @@ class DiGraph:
 
     def successors(self, vert, key=None):
         return {u for v, u, _, _ in self.outcoming_edges(vert, key)}
+
+    def all_nodes(self):
+        return iter(self._vertices.copy())
     
     def __repr__(self):
         V = repr(self._vertices)
