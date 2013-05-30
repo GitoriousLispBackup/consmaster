@@ -13,7 +13,7 @@ from lisp import Cons, Lambda, consp, atom
 
 tag = itemgetter(0)
 value = itemgetter(1)
-children = itemgetter(2)
+#children = itemgetter(2)
 
 
 class GraphExpr:
@@ -28,12 +28,12 @@ class GraphExpr:
                 return visited[uid]
             internal = self.graph[uid]
             if tag(internal) == '#cons':
-                id_car, id_cdr = children(internal)
+                id_car, id_cdr = value(internal)
                 obj = Cons(rec_build(id_car), rec_build(id_cdr))
-            elif tag(internal) == '#lambda':
-                s = value(internal)
-                s = '(' + s[s.index(':') + 1:-1] + ')'
-                obj = lisp_parser.parse(s, lexer=lisp_lexer)[0].eval()
+            #~ elif tag(internal) == '#lambda':
+                #~ s = value(internal)
+                #~ s = '(' + s[s.index(':') + 1:-1] + ')'
+                #~ obj = lisp_parser.parse(s, lexer=lisp_lexer)[0].eval()
             elif tag(internal) == '#atom':
                 obj = lisp_parser.parse(value(internal), lexer=lisp_lexer)[0] # bof
             else:
@@ -50,15 +50,15 @@ class GraphExpr:
             uid = str(id(obj))
             if uid not in visited:
                 if consp(obj):
-                    visited[uid] = '#cons', None, [str(id(obj.car)), str(id(obj.cdr))]
+                    visited[uid] = '#cons', [str(id(obj.car)), str(id(obj.cdr))]
                     if str(id(obj.car)) not in visited:
                         rec_build(obj.car)
                     if str(id(obj.cdr)) not in visited:
                         rec_build(obj.cdr)
                 elif atom(obj):
-                    visited[uid] = '#atom', repr(obj), []
-                elif isinstance(obj, Lambda):
-                    visited[uid] = '#lambda', repr(obj)[1:], []
+                    visited[uid] = '#atom', repr(obj)
+                #~ elif isinstance(obj, Lambda):
+                    #~ visited[uid] = '#lambda', repr(obj)[1:]
                 else:
                     raise RuntimeError('Unkown value in expr')
             # print(uid) ; pprint(visited); input('continuer ?')
