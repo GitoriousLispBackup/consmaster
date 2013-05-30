@@ -17,9 +17,10 @@ value = itemgetter(1)
 
 
 class GraphExpr:
-    def __init__(self, root, graph):
+    def __init__(self, root, graph, **kwargs):
         self.root = root
         self.graph = graph
+        self.__dict__.update(**kwargs)
     
     def to_lsp_obj(self):
         visited = {}
