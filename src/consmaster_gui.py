@@ -8,14 +8,14 @@ try:
     from PySide.QtCore import *
     from PySide.QtGui import *
 except:
-    print >> sys.stderr, "Error:", "This program needs PySide module."
+    print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
 class Client(QMainWindow):
     """ Create client windows """
 
     def __init__(self, parent=None):
-        super(Client, self).__init__(parent)
+        super().__init__(parent)
 
         self.createActions()
         self.createMenus()
@@ -24,25 +24,30 @@ class Client(QMainWindow):
         self.setWindowTitle("Consmaster")
         self.setWindowIcon(QIcon("../icons/symbol"))
 
+        self.central_widget = QStackedWidget()
+
         #~ Les widgets devraient pt être ajoutés à la volée,
         #~ en fonction de l'exo
         #~ plutôt qu'affichés directements
         #~ Dans un 1e temps, afficher directement tous les widgets
 
-        #~ Temporaire, obligation du setCentral
-        #~ TODO: Créer un placeholder en central à la place
-        layout = WidgetLayout()
-        self.setCentralWidget(layout)
+        self.menu_widget = MainMenu(self)
+        self.central_widget.addWidget(self.menu_widget)
+
+
+        self.setCentralWidget(self.central_widget)
 
         self.statusBar().showMessage('Ready')
 
         self.show()
-        self.startSession()
 
     def createActions(self):
         self.quitAction = QAction(QIcon("../icons/application-exit"),
                 "&Quitter", self, shortcut="Ctrl+Shift+Q",
                 statusTip="Quitter l'application", triggered=self.close)
+        self.closeAction = QAction(QIcon("../icons/cancel"),
+                "&Fermer", self, statusTip="Fermer l'exercice en cours")
+        self.closeAction.setEnabled(False)
         self.aboutAction = QAction(QIcon("../icons/help-browser"),
                 "A &propos", self, shortcut="Ctrl+Shift+P",
                 triggered=self.about)
@@ -52,12 +57,10 @@ class Client(QMainWindow):
         #~ Options de connexion
         #~ Options choix exos ?? ou questionBox au démarrage
         self.clientMenu.addAction(self.quitAction)
+        self.clientMenu.addAction(self.closeAction)
 
         self.aboutMenu = self.menuBar().addMenu("&Aide")
-        self.aboutMenu.addAction(self.aboutAction)
-
-    def startSession(self) :
-        w = WidgetLayout()
+        self.aboutMenu.addAction(self.aboutAction)      
 
     def about(self):
         QMessageBox.about(self, "A propos ConsMaster",
