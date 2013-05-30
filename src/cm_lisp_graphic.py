@@ -90,7 +90,7 @@ class LispScene(QGraphicsScene):
         for item, pos in positions.items():
             rect = item.boundingRect()
             #~ print(rect)
-            x, y = pos[0] * w  - rect.width(), pos[1] * h - rect.height()
+            x, y = pos[0] * w  - rect.width() / 2, pos[1] * h - rect.height() / 2
             #~ print(item, (x, y))
             item.setPos(x, y)
 
@@ -102,12 +102,9 @@ class GlispWidget(QGraphicsView) :
         super().__init__(parent)
 
         self.arrow = None
-        self.mousePos = None
-        self.startItem = None
-        self.startItemType = ""
 
         self.scene = LispScene()
-        self.scene.setSceneRect(QRectF(0, 0, 600, 300))
+        self.scene.setSceneRect(QRectF(0, 0, 650, 300))
         self.setRenderHint(QPainter.Antialiasing)
 
         self.scene.update()
@@ -115,7 +112,8 @@ class GlispWidget(QGraphicsView) :
         self.setScene(self.scene)
         self.setAlignment(Qt.AlignLeft|Qt.AlignTop)
 
-        self.scene.addItem(RootArrow(None, None, self.scene))
+        self.rootArrow = RootArrow()
+        self.scene.addItem(self.rootArrow)
 
         self.show()
 
@@ -140,7 +138,13 @@ class GlispWidget(QGraphicsView) :
                 car, cdr = dct.get(car_id), dct.get(cdr_id)
                 if car: self.scene.addPointer(Pointer(g, car, 'car'))
                 if cdr: self.scene.addPointer(Pointer(g, cdr, 'cdr'))
-        self.scene.layouting(dct[graph_expr.root])
+
+        root = dct[graph_expr.root]
+        self.scene.layouting(root)
+
+        self.rootArrow = RootArrow()
+        self.scene.addItem(self.rootArrow)
+        self.rootArrow.attach_to(root)
 
     def addCons(self) :
         self.scene.addObj(GCons())
@@ -168,9 +172,8 @@ class GlispWidget(QGraphicsView) :
             pos = mouseEvent.pos()
             it = self.itemAt(pos)
             if isinstance(it, GCons) :
-                self.arrow = Arrow(pos, pos, it)
+                self.arrow = ManualArrow(it, p1=pos, p2=pos)
                 self.arrow.penColor = Qt.red
-                self.startItemType = it.isCarOrCdr(pos - it.pos().toPoint())
                 self.scene.addItem(self.arrow)
         super().mousePressEvent(mouseEvent)
 
@@ -187,11 +190,11 @@ class GlispWidget(QGraphicsView) :
                 if self.arrow.start != endItem and isinstance(endItem, (GCons, GAtom)):
                     #~ Remove prev pointer if nedeed
                     # TODO : faire ça dans la scene
-                    for oldPointer in self.scene.getEdgesFrom(self.arrow.start, self.startItemType):
+                    for oldPointer in self.scene.getEdgesFrom(self.arrow.start, self.arrow.orig):
                         self.scene.removePointer(oldPointer)
 
                     #~ Create new pointer
-                    p = Pointer(self.arrow.start, endItem, self.startItemType)
+                    p = Pointer(self.arrow.start, endItem, self.arrow.orig)
                     self.scene.addPointer(p)
                     break
             self.scene.removeItem(self.arrow)
