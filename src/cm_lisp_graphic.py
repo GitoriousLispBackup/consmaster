@@ -90,7 +90,7 @@ class LispScene(QGraphicsScene):
         for item, pos in positions.items():
             rect = item.boundingRect()
             #~ print(rect)
-            x, y = pos[0] * w  - rect.width(), pos[1] * h - rect.height()
+            x, y = pos[0] * w  - rect.width() / 2, pos[1] * h - rect.height() / 2
             #~ print(item, (x, y))
             item.setPos(x, y)
 
@@ -104,7 +104,7 @@ class GlispWidget(QGraphicsView) :
         self.arrow = None
 
         self.scene = LispScene()
-        self.scene.setSceneRect(QRectF(0, 0, 600, 300))
+        self.scene.setSceneRect(QRectF(0, 0, 650, 300))
         self.setRenderHint(QPainter.Antialiasing)
 
         self.scene.update()
@@ -112,8 +112,8 @@ class GlispWidget(QGraphicsView) :
         self.setScene(self.scene)
         self.setAlignment(Qt.AlignLeft|Qt.AlignTop)
 
-        self.root = RootArrow()
-        self.scene.addItem(self.root)
+        self.rootArrow = RootArrow()
+        self.scene.addItem(self.rootArrow)
 
         self.show()
 
@@ -138,7 +138,13 @@ class GlispWidget(QGraphicsView) :
                 car, cdr = dct.get(car_id), dct.get(cdr_id)
                 if car: self.scene.addPointer(Pointer(g, car, 'car'))
                 if cdr: self.scene.addPointer(Pointer(g, cdr, 'cdr'))
-        self.scene.layouting(dct[graph_expr.root])
+
+        root = dct[graph_expr.root]
+        self.scene.layouting(root)
+
+        self.rootArrow = RootArrow()
+        self.scene.addItem(self.rootArrow)
+        self.rootArrow.attach_to(root)
 
     def addCons(self) :
         self.scene.addObj(GCons())

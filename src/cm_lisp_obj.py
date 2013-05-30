@@ -22,8 +22,8 @@ class GCons(QGraphicsItem):
         self.cdr = cdr
 
         #~ Best should be hSize=wSize/2
-        self.hSize = 40
-        self.wSize = 80
+        self.hSize = 30
+        self.wSize = 70
 
         self.used = ""
 
@@ -248,7 +248,7 @@ class RootArrow (Arrow) :
         super().paint(painter, option, widget)
 
     def mousePressEvent(self, mouseEvent):
-        self.root = None
+        self.detach()
         self.endPos = mouseEvent.scenePos()
         super().mousePressEvent(mouseEvent)
 
@@ -261,10 +261,16 @@ class RootArrow (Arrow) :
         self.endPos = mouseEvent.scenePos()
         for item in self.scene().items(mouseEvent.pos()):
             if isinstance(item, (GCons, GAtom)):
-                self.root = item
+                self.attach_to(item)
                 break
-        self.update()
         super().mouseReleaseEvent(mouseEvent)
+
+    def detach(self):
+        self.root = None
+
+    def attach_to(self, item):
+        self.root = item
+        self.update()
 
 
 class Pointer(Arrow):
