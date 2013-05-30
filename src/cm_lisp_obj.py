@@ -151,13 +151,12 @@ class Arrow(QGraphicsLineItem):
         p2: end QPointF
     """
 
-    def __init__(self, p1, p2, startItem, parent=None, scene=None):
+    def __init__(self, p1, p2, parent=None, scene=None):
         super().__init__(parent, scene)
         self.base = QRectF()
         self.baseSize = 6
         self.bodySize = 2
         self.headSize = 12
-        self.start = startItem
         self.head = QPolygonF()
         self.penColor = Qt.black
         self.penStyle = Qt.SolidLine
@@ -216,22 +215,24 @@ class Arrow(QGraphicsLineItem):
         painter.drawPolygon(head)
         self.head = head
 
+class ManualArrow(Arrow):
+    def __init__(self, startItem, p1, p2, **kwargs):
+        super().__init__(p1, p2, **kwargs)
+        self.start = startItem
+        self.orig = startItem.isCarOrCdr(p1 - startItem.pos().toPoint())
+
+
 class RootArrow (Arrow) :
     """ Special and unique arrow to set root
         Can be open moved, and sticky when assigned
     """
 
-    def __init__(self, position=QPointF(50, 50), rootItem=None, parent=None, scene=None):
-        super().__init__(QPointF(0, 0), QPointF(50, 50), parent, scene)
+    def __init__(self, p1=QPointF(0, 0), p2=QPointF(50, 50), rootItem=None, parent=None, scene=None):
+        super().__init__(p1, p2, parent, scene)
+        self.startPos = p1
+        self.endPos = p2
+        self.root = rootItem
 
-        if rootItem == None :
-            self.pos = QPointF(50, 50)
-            self.root = None
-        else :
-            self.root = rootItem
-            self.pos = rootItem.pos()
-
-        self.setFlags(QGraphicsItem.ItemIsSelectable|QGraphicsItem.ItemIsMovable)
         self.penColor = QColor("steelblue")
         self.penStyle = Qt.SolidLine
         #~ Toujours dessus
@@ -240,30 +241,31 @@ class RootArrow (Arrow) :
     def paint(self, painter, option, widget=None):
         painter.setPen(self.penColor)
         if isinstance(self.root, GCons) :
-            self.pos = self.root.pos() + QPointF(0, self.root.hSize/2)
+            self.endPos = self.root.pos() + QPointF(0, self.root.hSize/2)
         elif isinstance(self.root, GAtom) :
-            self.pos = self.root.pos() + QPointF(0, 15)
-        self.setLine(QLineF(QPointF(0,0), self.pos))
+            self.endPos = self.root.pos() + QPointF(0, 15)
+        self.setLine(QLineF(self.startPos, self.endPos))
         super().paint(painter, option, widget)
 
-    def mousePressEvent(self, mouseEvent) :
-        self.pos = mouseEvent.scenePos()
+    def mousePressEvent(self, mouseEvent):
+        self.root = None
+        self.endPos = mouseEvent.scenePos()
         super().mousePressEvent(mouseEvent)
 
     def mouseMoveEvent(self, mouseEvent) :
-        self.pos = mouseEvent.scenePos()
-        self.setLine(QLineF(QPointF(0,0), self.pos))
+        self.endPos = mouseEvent.scenePos()
+        self.setLine(QLineF(self.startPos, self.endPos))
         super().mouseMoveEvent(mouseEvent)
 
     def mouseReleaseEvent(self, mouseEvent) :
-        self.pos = mouseEvent.scenePos()
+        self.endPos = mouseEvent.scenePos()
         for item in self.scene().items(mouseEvent.pos()):
-            if isinstance(item, GCons) or isinstance(item, GAtom) :
+            if isinstance(item, (GCons, GAtom)):
                 self.root = item
-            else :
-                self.root = None
+                break
         self.update()
         super().mouseReleaseEvent(mouseEvent)
+
 
 class Pointer(Arrow):
     """Pointer.
@@ -274,7 +276,7 @@ class Pointer(Arrow):
     """
 
     def __init__(self, startItem, endItem, orig="", parent=None, scene=None):
-        super().__init__(startItem.pos(), endItem.pos(), None, parent, scene)
+        super().__init__(startItem.pos(), endItem.pos(), parent, scene)
 
         self.startItem = startItem
         self.endItem = endItem

@@ -102,9 +102,6 @@ class GlispWidget(QGraphicsView) :
         super().__init__(parent)
 
         self.arrow = None
-        self.mousePos = None
-        self.startItem = None
-        self.startItemType = ""
 
         self.scene = LispScene()
         self.scene.setSceneRect(QRectF(0, 0, 600, 300))
@@ -115,7 +112,8 @@ class GlispWidget(QGraphicsView) :
         self.setScene(self.scene)
         self.setAlignment(Qt.AlignLeft|Qt.AlignTop)
 
-        self.scene.addItem(RootArrow(None, None, self.scene))
+        self.root = RootArrow()
+        self.scene.addItem(self.root)
 
         self.show()
 
@@ -168,9 +166,8 @@ class GlispWidget(QGraphicsView) :
             pos = mouseEvent.pos()
             it = self.itemAt(pos)
             if isinstance(it, GCons) :
-                self.arrow = Arrow(pos, pos, it)
+                self.arrow = ManualArrow(it, p1=pos, p2=pos)
                 self.arrow.penColor = Qt.red
-                self.startItemType = it.isCarOrCdr(pos - it.pos().toPoint())
                 self.scene.addItem(self.arrow)
         super().mousePressEvent(mouseEvent)
 
@@ -187,11 +184,11 @@ class GlispWidget(QGraphicsView) :
                 if self.arrow.start != endItem and isinstance(endItem, (GCons, GAtom)):
                     #~ Remove prev pointer if nedeed
                     # TODO : faire ça dans la scene
-                    for oldPointer in self.scene.getEdgesFrom(self.arrow.start, self.startItemType):
+                    for oldPointer in self.scene.getEdgesFrom(self.arrow.start, self.arrow.orig):
                         self.scene.removePointer(oldPointer)
 
                     #~ Create new pointer
-                    p = Pointer(self.arrow.start, endItem, self.startItemType)
+                    p = Pointer(self.arrow.start, endItem, self.arrow.orig)
                     self.scene.addPointer(p)
                     break
             self.scene.removeItem(self.arrow)
