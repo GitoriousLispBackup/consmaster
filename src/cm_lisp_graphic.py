@@ -89,9 +89,19 @@ class LispScene(QGraphicsScene):
             self.removeItem(item)
         self.graph.clear()
 
-    def layouting(self, root):
-        positions = layout(self.graph, root=root)
-        #~ print(positions.values())
+    def get_current_layout(self):
+        positions = {}
+        w, h = self.width(), self.height()
+        for item in self.graph.all_nodes():
+            rect = item.boundingRect()
+            x, y = (item.x() + rect.width() / 2) / w, (item.y() + rect.height() / 2) / h
+            positions[str(id(item))] = x, y
+        return positions
+
+    def get_automatic_layout(self, root):
+        return layout(self.graph, root=root)
+
+    def apply_layout(self, positions):
         w, h = self.width(), self.height()
         #~ print('w, h:', (w, h))
         #~ margin = 20
@@ -103,6 +113,7 @@ class LispScene(QGraphicsScene):
             x, y = pos[0] * w  - rect.width() / 2, pos[1] * h - rect.height() / 2
             #~ print(item, (x, y))
             item.setPos(x, y)
+
 
     def get_interm_repr(self, root):
         nil_obj = '#atom', 'nil'
@@ -163,6 +174,7 @@ class GlispWidget(QGraphicsView) :
             return
         
         intermediate = self.scene.get_interm_repr(rootItem)
+        intermediate.layout = self.scene.get_current_layout()
         # print(intermediate.to_lsp_obj())
         
         filename, ok = QFileDialog.getSaveFileName(parent=self, caption="Save file")
@@ -195,7 +207,15 @@ class GlispWidget(QGraphicsView) :
                 if cdr: self.scene.addPointer(Pointer(g, cdr, 'cdr'))
 
         root = dct[graph_expr.root]
-        self.scene.layouting(root)
+
+        positions = getattr(graph_expr, 'layout', None)
+        if not positions:
+            print('Automatic layout')
+            positions = self.scene.get_automatic_layout(root)
+        else:
+            positions = {dct[uid] : pos for uid, pos in positions.items()}
+            
+        self.scene.apply_layout(positions)
 
         self.rootArrow = RootArrow()
         self.scene.addItem(self.rootArrow)
