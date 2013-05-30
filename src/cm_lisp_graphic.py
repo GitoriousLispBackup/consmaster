@@ -153,8 +153,8 @@ class GlispWidget(QGraphicsView) :
     def load(self):
         filename, ok = QFileDialog.getOpenFileName(parent=self, caption="Load file")
         with open(filename, 'r', encoding='utf-8') as fp:
-            pass
-        print(filename)
+            intermediate = json.load(fp, object_hook=decoder)
+            self.insert_expr(intermediate)
 
     def save(self):
         rootItem = self.rootArrow.root
@@ -163,14 +163,13 @@ class GlispWidget(QGraphicsView) :
             return
         
         intermediate = self.scene.get_interm_repr(rootItem)
-        print(intermediate)
-        print(intermediate.to_lsp_obj())
+        # print(intermediate.to_lsp_obj())
         
         filename, ok = QFileDialog.getSaveFileName(parent=self, caption="Save file")
-        if not ok: return
+        if not filename: return
         
         with open(filename, 'w', encoding='utf-8') as fp:
-            pass
+            json.dump(intermediate, fp, cls=Encoder)
 
 
     @Slot(object)
