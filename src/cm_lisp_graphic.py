@@ -104,8 +104,9 @@ class LispScene(QGraphicsScene):
             #~ print(item, (x, y))
             item.setPos(x, y)
 
-    # comment ajouter nil ?
     def get_interm_repr(self, root):
+        nil_obj = '#atom', 'nil'
+        nil_id = str(id(nil_obj))
         graph = {}
         visited = set()
         def walk(node):
@@ -117,7 +118,9 @@ class LispScene(QGraphicsScene):
                 for _, nd, k, _ in self.graph.outcoming_edges(node):
                     tmp[k] = str(id(nd))
                     walk(nd)
-                graph[str(id(node))] = '#cons', [tmp.get('car', None), tmp.get('cdr', None)]
+                children = [tmp.get('car', nil_id), tmp.get('cdr', nil_id)]
+                if nil_id in children: graph[nil_id] = nil_obj
+                graph[str(id(node))] = '#cons', children
             else:
                 raise RuntimeError('unexepted node: ' + repr(node))
         walk(root)
