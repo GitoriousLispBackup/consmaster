@@ -240,7 +240,8 @@ class GlispWidget(QGraphicsView) :
 
     def removeAll(self) :
         self.scene.reset()
-
+        self.rootArrow.detach()
+        self.scene.addItem(self.rootArrow)
 
     def mousePressEvent(self, mouseEvent):
         #~ Allows to create tmp arrows w/ right clic
