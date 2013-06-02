@@ -186,6 +186,8 @@ class GlispWidget(QGraphicsView) :
 
     @Slot(object)
     def insert_expr(self, graph_expr):
+        if not graph_expr: return
+        
         self.scene.reset()
 
         dct = {}
@@ -210,7 +212,7 @@ class GlispWidget(QGraphicsView) :
 
         positions = getattr(graph_expr, 'layout', None)
         if not positions:
-            print('Automatic layout')
+            # Automatic layout
             positions = self.scene.get_automatic_layout(root)
         else:
             positions = {dct[uid] : pos for uid, pos in positions.items()}
