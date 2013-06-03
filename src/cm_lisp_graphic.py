@@ -162,7 +162,7 @@ class GlispWidget(QGraphicsView) :
 
 
     def load(self):
-        filename, ok = QFileDialog.getOpenFileName(parent=self, caption="Load file")
+        filename, ok = QFileDialog.getOpenFileName(self, "Load file", '.', "ConsMaster Files (*.cm)")
         with open(filename, 'r', encoding='utf-8') as fp:
             intermediate = json.load(fp, object_hook=decoder)
             self.insert_expr(intermediate)
@@ -177,9 +177,11 @@ class GlispWidget(QGraphicsView) :
         intermediate.layout = self.scene.get_current_layout()
         # print(intermediate.to_lsp_obj())
         
-        filename, ok = QFileDialog.getSaveFileName(parent=self, caption="Save file")
+        filename, ok = QFileDialog.getSaveFileName(self, "Save file", '.', "ConsMaster Files (*.cm)")
         if not filename: return
-        
+
+        if not filename.endswith('.cm'):
+            filename += '.cm'
         with open(filename, 'w', encoding='utf-8') as fp:
             json.dump(intermediate, fp, cls=Encoder)
 
