@@ -8,7 +8,6 @@ from collections import OrderedDict
 from cm_lisp_graphic import *
 from cm_terminal import *
 from cm_controller import CmController
-from consmaster_widget_rc import *
 
 try:
     from PySide.QtCore import *
@@ -33,6 +32,7 @@ class MainMenu(QWidget) :
         ("Représentation\na points", None, ''),
         ("Représentation\ngraphique", None, ''),
         ]
+    
     """ Main menu creation/gestion
 
     The main menu is used as a laucher for all modules
@@ -98,6 +98,8 @@ class MainMenu(QWidget) :
     def closeWidget(self, widget):
         self.mainwindow.central_widget.removeWidget(widget)
         self.mainwindow.closeAction.setEnabled(False)
+        self.mainwindow.closeAction.triggered.disconnect()
+        widget.destroy()
         del widget.controller  # why I must to manually do that ?
 
     def createFreeMode(self):
