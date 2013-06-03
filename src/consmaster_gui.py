@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
-from consmaster_widgets import *
+from cm_main_menu import MainMenu
 
 try:
     from PySide.QtCore import *
