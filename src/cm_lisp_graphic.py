@@ -194,10 +194,10 @@ class GlispWidget(QGraphicsView) :
 
         dct = {}
         for k, v in graph_expr.graph.items():
-            if v[0] == '#cons':
+            if GraphExpr.tag(v) == '#cons':
                 g = GCons()
-            elif v[0] == '#atom':
-                if v[1] == 'nil': continue
+            elif GraphExpr.tag(v) == '#atom':
+                if GraphExpr.value(v) == 'nil': continue
                 g = GAtom(v[1])
             else:
                 raise RuntimeError('not implemented')
@@ -205,7 +205,7 @@ class GlispWidget(QGraphicsView) :
             dct[k] = g
         for k, g in dct.items():
             if isinstance(g, GCons):
-                car_id, cdr_id = graph_expr.graph[k][1]
+                car_id, cdr_id = GraphExpr.value(graph_expr.graph[k])
                 car, cdr = dct.get(car_id), dct.get(cdr_id)
                 if car: self.scene.addPointer(Pointer(g, car, 'car'))
                 if cdr: self.scene.addPointer(Pointer(g, cdr, 'cdr'))

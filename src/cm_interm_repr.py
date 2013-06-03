@@ -5,17 +5,14 @@ from operator import itemgetter
 
 from pylisp import *
 import pylisp.lisp as lisp
-from lisp import Cons, Lambda, consp, atom
-
-
-
+from lisp import Cons, consp, atom
 # from pprint import pprint
-
-tag = itemgetter(0)
-value = itemgetter(1)
 
 
 class GraphExpr:
+    tag = itemgetter(0)
+    value = itemgetter(1)
+    
     def __init__(self, root, graph, **kwargs):
         self.root = root
         self.graph = graph
@@ -27,15 +24,11 @@ class GraphExpr:
             if uid in visited:
                 return visited[uid]
             internal = self.graph[uid]
-            if tag(internal) == '#cons':
-                id_car, id_cdr = value(internal)
+            if GraphExpr.tag(internal) == '#cons':
+                id_car, id_cdr = GraphExpr.value(internal)
                 obj = Cons(rec_build(id_car), rec_build(id_cdr))
-            #~ elif tag(internal) == '#lambda':
-                #~ s = value(internal)
-                #~ s = '(' + s[s.index(':') + 1:-1] + ')'
-                #~ obj = lisp_parser.parse(s, lexer=lisp_lexer)[0].eval()
-            elif tag(internal) == '#atom':
-                obj = lisp_parser.parse(value(internal), lexer=lisp_lexer)[0] # bof
+            elif GraphExpr.tag(internal) == '#atom':
+                obj = lisp_parser.parse(GraphExpr.value(internal), lexer=lisp_lexer)[0] # bof
             else:
                 raise RuntimeError('Unkown value in tree')
             visited[uid] = obj
@@ -44,7 +37,6 @@ class GraphExpr:
 
     @staticmethod
     def from_lsp_obj(obj):
-        # print('build from obj : ', obj)
         visited = {}
         def rec_build(obj):
             uid = str(id(obj))
@@ -57,15 +49,11 @@ class GraphExpr:
                         rec_build(obj.cdr)
                 elif atom(obj):
                     visited[uid] = '#atom', repr(obj)
-                #~ elif isinstance(obj, Lambda):
-                    #~ visited[uid] = '#lambda', repr(obj)[1:]
                 else:
                     raise RuntimeError('Unkown value in expr')
-            # print(uid) ; pprint(visited); input('continuer ?')
             return uid
         return GraphExpr(rec_build(obj), visited)
 
-    # TODO : gérer les cycles...
     def __eq__(self, other):
         if self is other: return True
         visited = {}
@@ -76,13 +64,13 @@ class GraphExpr:
                 visited[id1] = id2
                 
             node1, node2 = self.graph[id1], other.graph[id2]
-            t1, t2 = tag(node1), tag(node2)
+            t1, t2 = GraphExpr.tag(node1), GraphExpr.tag(node2)
             if t1 != t2:
                 return False
             elif t1 == '#atom':
-                return value(t1) == value(t2)
+                return GraphExpr.value(t1) == GraphExpr.value(t2)
             elif t1 == '#cons':
-                return all(walk(_id1, _id2) for _id1, _id2 in zip(value(node1), value(node2)))
+                return all(walk(_id1, _id2) for _id1, _id2 in zip(GraphExpr.value(node1), GraphExpr.value(node2)))
             else:
                 raise RuntimeError('Unkown value in tree')
 
