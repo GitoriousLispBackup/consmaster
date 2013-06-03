@@ -13,7 +13,6 @@ from lisp import Cons, Lambda, consp, atom
 
 tag = itemgetter(0)
 value = itemgetter(1)
-#children = itemgetter(2)
 
 
 class GraphExpr:
@@ -65,6 +64,25 @@ class GraphExpr:
             # print(uid) ; pprint(visited); input('continuer ?')
             return uid
         return GraphExpr(rec_build(obj), visited)
+
+    # TODO : gérer les cycles...
+    def __eq__(self, other):
+        if self is other: return True
+        visited = {}
+        def walk(id1, id2):
+            if id1 in visited: return id2 == visited[id1]
+            visited[id1] = id2
+            node1, node2 = self.graph[id1], other.graph[id2]
+            t1, t2 = tag(node1), tag(node2)
+            if t1 != t2:
+                return False
+            elif t1 == '#atom':
+                return value(t1) == value(t2)
+            elif t1 == '#cons':
+                return all(walk(_id1, _id2) for _id1, _id2 in zip(value(node1), value(node2)))
+            else:
+                raise RuntimeError('Unkown value in tree')
+        return walk(self.root, other.root)
 
     def __repr__(self):
         return '<root: ' + repr(self.root) + ';  graph: ' + repr(self.graph) + '>'
