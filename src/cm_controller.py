@@ -44,7 +44,8 @@ class CmTextController(QObject):
         self.timer = QElapsedTimer()
 
         lineEdit.send.connect(self.receive)
-        label.setText('expression à convertir :\n' + repr(self.enonce))
+        method_inv = {'normal':'dotted_repr', 'dotted':'__repr__'}[typ]
+        label.setText('expression à convertir :\n' + getattr(self.enonce, method_inv)())
         self.timer.start()
 
     @Slot(str)
@@ -56,8 +57,8 @@ class CmTextController(QObject):
 
     # TODO : add some help to user
     def validate(self, entry):
-        entry = re.sub(r' +', '', entry) # clean entry
+        entry = re.sub(r' +', ' ', entry) # clean user entry
         method = {'dotted':'dotted_repr', 'normal':'__repr__'}[self.typ]
         excepted = getattr(self.enonce, method)()
-        print(entry, excepted)
+        # print(entry, excepted)
         return entry == excepted
