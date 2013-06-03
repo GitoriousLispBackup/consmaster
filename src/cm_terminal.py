@@ -18,7 +18,7 @@ class TerminalGroupWidget(QWidget):
         self.layout = QHBoxLayout()
 
         self.term = TermWidget()
-        termButton = QPushButton("Validate")
+        self.layout.addWidget(self.term)
 
         #~ Main container
         #~ termLabel = QLabel("Terminal")
@@ -26,10 +26,6 @@ class TerminalGroupWidget(QWidget):
         #~ 
         #~ self.layout.addWidget(termLabel)
         
-        self.layout.addWidget(self.term)
-        self.layout.addWidget(termButton)
-
-        #termButton.clicked.connect(termEntry.out)
         self.setLayout(self.layout)
     
 
