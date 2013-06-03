@@ -2,12 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import math
-from collections import OrderedDict
 
 from cm_lisp_graphic import *
 from cm_terminal import *
-from cm_controller import CmController
+from cm_controller import *
 
 try:
     from PySide.QtCore import *
@@ -23,14 +21,26 @@ class ButtonMenu(QPushButton):
         self.description = open(textSrc, 'r', encoding='utf-8').read() if textSrc else 'information manquante sur ce mode'
         self.constructor = func
 
+
+class SimpleLineEdit(QLineEdit):
+    send = Signal(str)
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.returnPressed.connect(self.receive)
+
+    def receive(self):
+        self.send.emit(self.text())
+        self.clear()
+
         
 class MainMenu(QWidget) :
     Modes = [
         ("Mode Libre", './mode-libre.html', 'createFreeMode'),
         ("Entrainement", None, ''),
-        ("Représentation\ndoublets", None, ''),
-        ("Représentation\na points", None, ''),
-        ("Représentation\ngraphique", None, ''),
+        ("Standard \n<-> Dotted", None, 'createTextMode'),
+        ("Standard \n-> Graphique", None, ''),
+        ("Graphique \n-> Standard", None, ''),
         ]
     
     """ Main menu creation/gestion
@@ -110,12 +120,12 @@ class MainMenu(QWidget) :
         graphical_group = GraphicalLispGroupWidget(widget)
         layout.addWidget(graphical_group)
 
-        terminal_group = TerminalGroupWidget()
-        layout.addWidget(terminal_group)
+        terminal = TermWidget()
+        layout.addWidget(terminal)
 
         widget.setLayout(layout)
 
-        widget.controller = CmController(terminal_group.term, graphical_group.glisp_widget)
+        widget.controller = CmController(terminal, graphical_group.glisp_widget)
 
         self.mainwindow.central_widget.addWidget(widget)
         self.mainwindow.central_widget.setCurrentWidget(widget)
@@ -123,4 +133,27 @@ class MainMenu(QWidget) :
         self.mainwindow.closeAction.triggered.connect(lambda: self.closeWidget(widget))
         self.mainwindow.closeAction.setEnabled(True)
 
-        terminal_group.term.setFocus()
+        terminal.setFocus()
+
+    def createTextMode(self):
+        widget = QWidget()
+
+        layout = QVBoxLayout()
+
+        enonce = QLabel(widget)
+        entry = SimpleLineEdit()
+        
+        layout.addWidget(enonce)
+        layout.addWidget(entry)
+
+        widget.setLayout(layout)
+
+        widget.controller = CmTextController(enonce, entry)
+
+        self.mainwindow.central_widget.addWidget(widget)
+        self.mainwindow.central_widget.setCurrentWidget(widget)
+
+        self.mainwindow.closeAction.triggered.connect(lambda: self.closeWidget(widget))
+        self.mainwindow.closeAction.setEnabled(True)
+
+        entry.setFocus()
