@@ -70,8 +70,11 @@ class GraphExpr:
         if self is other: return True
         visited = {}
         def walk(id1, id2):
-            if id1 in visited: return id2 == visited[id1]
-            visited[id1] = id2
+            if id1 in visited:
+                return id2 == visited[id1]
+            else:
+                visited[id1] = id2
+                
             node1, node2 = self.graph[id1], other.graph[id2]
             t1, t2 = tag(node1), tag(node2)
             if t1 != t2:
@@ -82,7 +85,8 @@ class GraphExpr:
                 return all(walk(_id1, _id2) for _id1, _id2 in zip(value(node1), value(node2)))
             else:
                 raise RuntimeError('Unkown value in tree')
+
         return walk(self.root, other.root)
 
     def __repr__(self):
-        return '<root: ' + repr(self.root) + ';  graph: ' + repr(self.graph) + '>'
+        return '<root: ' + repr(self.root) + ';\n  graph: ' + repr(self.graph) + '>'

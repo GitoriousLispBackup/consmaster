@@ -34,7 +34,7 @@ class Interpreter:
         except (LispError, RuntimeError) as err:
             self.out('  Error: ' + repr(err))
             return
-        return GraphExpr.from_lsp_obj(ret)
+        return ret
 
     def getFromEnv(self, symbol):
         return self.namespace.get(symbol)
