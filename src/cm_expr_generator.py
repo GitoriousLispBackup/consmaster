@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import random
+import string
 
 from pylisp import *
 import pylisp.lisp as lisp
 from lisp import Cons, Symbol
 
-import random
-import string
 
 _default_candidates = string.ascii_letters #  + string.digits
 
@@ -31,11 +31,12 @@ def exp_generator(max_depth=1, max_len=4, proper=1., sym_gen=gen_with_doublons()
     sym_gen: générateur de symboles/valeurs atomiques
     """
     def rec_build(_depth, _len):
+        # print('len:', _len, _len / max_len)
         if _depth < max_depth and random.random() < 0.45:
             car = rec_build(_depth + 1, 0)
         else:
             car = 'nil' if random.random() < 0.05 else next(sym_gen)
-        if random.random() > (_len / max_len):
+        if random.random() > (_len + 1) / max_len:
             cdr = rec_build(_depth, _len + 1)
         else:
             cdr = 'nil' if random.random() < proper else next(sym_gen)
@@ -44,15 +45,13 @@ def exp_generator(max_depth=1, max_len=4, proper=1., sym_gen=gen_with_doublons()
         if isinstance(expr, tuple):
             return Cons(get_lisp_obj(expr[0]), get_lisp_obj(expr[1]))
         else:
-            return Symbol(expr)     
+            return Symbol(expr)
     return get_lisp_obj(rec_build(1, 0))
 
 # testing
 if __name__ == '__main__':
-    [(1, 1.), (1, 0.5), (2, 1.), (2, 0.5)]
     for depth, proper in [(1, 1.), (1, 0.5), (2, 1.), (2, 0.5)]:
         print('get for defaul legth, depth =', depth, 'proper =', proper)
         for i in range(20):
             expr = exp_generator(depth, proper=proper)
             print('\t', expr)
-            

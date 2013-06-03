@@ -18,49 +18,52 @@ except:
     sys.exit(1)
 
 
+class ButtonMenu(QPushButton):
+    def __init__(self, textSrc, func, name, parent):
+        super().__init__(name, parent)
+        self.description = open(textSrc, 'r', encoding='utf-8').read() if textSrc else 'information manquante sur ce mode'
+        self.constructor = func
 
+        
 class MainMenu(QWidget) :
+    Modes = [
+        ("Mode Libre", './mode-libre.html', 'createFreeMode'),
+        ("Entrainement", None, ''),
+        ("Représentation\ndoublets", None, ''),
+        ("Représentation\na points", None, ''),
+        ("Représentation\ngraphique", None, ''),
+        ]
     """ Main menu creation/gestion
 
     The main menu is used as a laucher for all modules
     """
     def __init__(self, mainwindow):
         super().__init__()
-
         self.mainwindow = mainwindow
-        
-        self.layout = QHBoxLayout()
-
         self.basicMenu()
-
-        self.setLayout(self.layout)
 
     #~ Basic and static menu
     #~ TODO: should link to the correct text
-    def basicMenu(self) :
+    def basicMenu(self):
+        self.layout = QHBoxLayout()
+        
         scrollContent = QWidget()
         #~ self.resize(50,100)
 
-        btn_names = ["Mode Libre", "Entrainement", "Représentation\ndoublets", "Représentation\na points", "Représentation\ngraphique"]
-        self.buttons_dct = OrderedDict([(name, QPushButton(name, scrollContent)) for name in btn_names])
-
-        self.buttons_dct["Mode Libre"].clicked.connect(self.createFreeMode)
-
         #~ Layout in the scroll area
         vb = QVBoxLayout()
-
-        for button in self.buttons_dct.values():
-            button.setCheckable(True)
-            button.setFixedSize(120,120)
-            vb.addWidget(button)
+        self.buttons_group = QButtonGroup()
+        self.buttons_group.setExclusive(True)
+        
+        for name, src, func in MainMenu.Modes:
+            btn = ButtonMenu(src, getattr(self, func, None), name, scrollContent)
+            btn.setCheckable(True)
+            btn.setFixedSize(120,120)
+            vb.addWidget(btn)
+            self.buttons_group.addButton(btn)
+        self.buttons_group.buttonPressed.connect(self.displayMode)
 
         scrollContent.setLayout(vb)
-
-        #~ Group buttonns to make them exclusive
-        group = QButtonGroup(scrollContent)
-        for button in self.buttons_dct.values():
-            group.addButton(button)
-        group.setExclusive(True)
 
         scroller = QScrollArea()
         scroller.setWidget(scrollContent)
@@ -71,15 +74,26 @@ class MainMenu(QWidget) :
 
         #~ The text/hints display widget + his button
         vb = QVBoxLayout()
-        displayText = QTextEdit()
-        displayText.setReadOnly(True)
-        displayText.setText(modeLibre)
+        self.displayText = QTextEdit()
+        self.displayText.setReadOnly(True)
+        
         launchButton = QPushButton("Démarrer", self)
         launchButton.setFixedHeight(50)
+        launchButton.clicked.connect(self.startSelectedMode)
 
-        vb.addWidget(displayText)
+        vb.addWidget(self.displayText)
         vb.addWidget(launchButton)
         self.layout.addLayout(vb)
+
+        self.setLayout(self.layout)
+
+    Slot(QAbstractButton)
+    def displayMode(self, btn):
+        self.displayText.setText(btn.description)
+
+    def startSelectedMode(self):
+        selectedBtn = self.buttons_group.checkedButton()
+        selectedBtn.constructor()
 
     def closeWidget(self, widget):
         self.mainwindow.central_widget.removeWidget(widget)
@@ -108,30 +122,3 @@ class MainMenu(QWidget) :
         self.mainwindow.closeAction.setEnabled(True)
 
         terminal_group.term.setFocus()
-        
-
-    #~ TODO: Final dynamic Menu
-    def createMenu(self) :
-        #~ Basic modules
-        #~ Should implement custom modules creation via a
-        #~ dedicated class
-
-        scroll = QScrollArea()
-
-        vbox = QVBoxLayout()
-
-    #~ Start of a custom mod creation program, should be in a dedicated
-    #~ file
-    def buttonMod(self, text, icon=None, file=None) :
-        """ Button creator for custom mods
-
-        Args :
-            text : A display text
-
-            Optionnal :
-            icon : An icon can be added
-            file : The file containing summary text and exercices details,
-                    etc... and the exercices themself
-        """
-
-        button = QPushButton()
