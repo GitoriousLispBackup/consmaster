@@ -1,12 +1,18 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+import re
+
 try:
     from PySide.QtCore import *
     from PySide.QtGui import *
 except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
+
+from pylisp import *
+import pylisp.lisp_errors as lisp_errors
+from lisp_errors import LispError, LispParseError
 
 from cm_lisp_graphic import *
 from cm_terminal import *
@@ -26,23 +32,32 @@ class CmController(QObject):
     @Slot(str)
     def receive(self, entry):
         retval = self.interpreter.eval(entry)
-        self.send.emit(retval)
+        gexpr = GraphExpr.from_lsp_obj(retval)
+        self.send.emit(gexpr)
 
-class CmTextController(QObject):
-    send = Signal(GraphExpr)
-    
-    def __init__(self, label, lineEdit):
+class CmTextController(QObject):    
+    def __init__(self, label, lineEdit, typ='normal'):
         super().__init__()
+        self.typ = typ
+        self.enonce = exp_generator()
         self.interpreter = Interpreter(out=print)
+        self.timer = QElapsedTimer()
 
         lineEdit.send.connect(self.receive)
-
-        self.enonce = exp_generator()
         label.setText('expression à convertir :\n' + repr(self.enonce))
-        #self.send.connect(widget.insert_expr)
+        self.timer.start()
 
     @Slot(str)
     def receive(self, entry):
-        retval = self.interpreter.eval(entry)
-        print(retval) # receive GraphExpr
-        # self.send.emit(retval)
+        if self.validate(entry):
+            print('OK', self.timer.elapsed(), 'ms')
+        else:
+            print('KO', self.timer.elapsed(), 'ms')
+
+    # TODO : add some help to user
+    def validate(self, entry):
+        entry = re.sub(r' +', '', entry) # clean entry
+        method = {'dotted':'dotted_repr', 'normal':'__repr__'}[self.typ]
+        excepted = getattr(self.enonce, method)()
+        print(entry, excepted)
+        return entry == excepted
