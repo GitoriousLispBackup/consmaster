@@ -60,5 +60,28 @@ class CmTextController(QObject):
         entry = re.sub(r' +', ' ', entry) # clean user entry
         method = {'dotted':'dotted_repr', 'normal':'__repr__'}[self.typ]
         excepted = getattr(self.enonce, method)()
-        # print(entry, excepted)
         return entry == excepted
+
+class CmNormalToGraphicController(QObject):    
+    def __init__(self, label, glisp, validateBtn):
+        super().__init__()
+        self.glisp = glisp
+
+        self.enonce = exp_generator()
+        self.interpreter = Interpreter(out=print)
+        self.timer = QElapsedTimer()
+
+        label.setText('expression à convertir :\n' + repr(self.enonce))
+
+        validateBtn.clicked.connect(self.receive)
+
+    def receive(self):
+        intermediate_repr = self.glisp.glisp_widget.get_expr()
+        if self.validate(intermediate_repr):
+            print('OK', self.timer.elapsed(), 'ms')
+        else:
+            print('KO', self.timer.elapsed(), 'ms')
+
+    # TODO : add some help to user
+    def validate(self, intermediate):
+        return intermediate == GraphExpr.from_lsp_obj(self.enonce)

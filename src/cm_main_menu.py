@@ -39,10 +39,10 @@ class MainMenu(QWidget) :
         ("Mode Libre", './mode-libre.html', 'createFreeMode'),
         ("Entrainement", None, ''),
         ("Standard \n<-> Dotted", None, 'createTextMode'),
-        ("Standard \n-> Graphique", None, ''),
+        ("Standard \n-> Graphique", None, 'createNormalToGraphicMode'),
         ("Graphique \n-> Standard", None, ''),
         ]
-    
+
     """ Main menu creation/gestion
 
     The main menu is used as a laucher for all modules
@@ -157,3 +157,26 @@ class MainMenu(QWidget) :
         self.mainwindow.closeAction.setEnabled(True)
 
         entry.setFocus()
+
+    def createNormalToGraphicMode(self):
+        widget = QWidget()
+
+        layout = QVBoxLayout()
+
+        enonce = QLabel(widget)
+        glispw = GraphicalLispGroupWidget()
+        btn = QPushButton("Valider l'exercice")
+        
+        layout.addWidget(enonce)
+        layout.addWidget(glispw)
+        layout.addWidget(btn)
+
+        widget.setLayout(layout)
+
+        widget.controller = CmNormalToGraphicController(enonce, glispw, btn)
+
+        self.mainwindow.central_widget.addWidget(widget)
+        self.mainwindow.central_widget.setCurrentWidget(widget)
+
+        self.mainwindow.closeAction.triggered.connect(lambda: self.closeWidget(widget))
+        self.mainwindow.closeAction.setEnabled(True)
