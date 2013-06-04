@@ -160,7 +160,6 @@ class GlispWidget(QGraphicsView) :
         super().__init__(parent)
 
         self.arrow = None
-
         self.scene = LispScene()
         self.scene.setSceneRect(QRectF(0, 0, 650, 300))
         self.setRenderHint(QPainter.Antialiasing)
@@ -174,7 +173,6 @@ class GlispWidget(QGraphicsView) :
         self.scene.addItem(self.rootArrow)
 
         self.show()
-
 
     def load(self):
         filename, ok = QFileDialog.getOpenFileName(self, "Load file", '.', "ConsMaster Files (*.cm)")
@@ -200,6 +198,9 @@ class GlispWidget(QGraphicsView) :
         with open(filename, 'w', encoding='utf-8') as fp:
             json.dump(intermediate, fp, cls=Encoder)
 
+    def get_expr(self):
+        root = self.rootArrow.root
+        return None if not root else self.scene.get_interm_repr(root)
 
     @Slot(object)
     def insert_expr(self, graph_expr):
