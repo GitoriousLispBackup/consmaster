@@ -40,7 +40,7 @@ class MainMenu(QWidget) :
         ("Entrainement", None, ''),
         ("Standard \n<-> Dotted", None, 'createTextMode'),
         ("Standard \n-> Graphique", None, 'createNormalToGraphicMode'),
-        ("Graphique \n-> Standard", None, ''),
+        ("Graphique \n-> Standard", None, 'createGraphicToNormalMode'),
         ]
 
     """ Main menu creation/gestion
@@ -65,7 +65,7 @@ class MainMenu(QWidget) :
         self.buttons_group = QButtonGroup()
         self.buttons_group.setExclusive(True)
         
-        for name, src, func in MainMenu.Modes:
+        for name, src, func in MainMenu.Modes[1:]:
             btn = ButtonMenu(src, getattr(self, func, None), name, scrollContent)
             btn.setCheckable(True)
             btn.setFixedSize(120,120)
@@ -180,3 +180,26 @@ class MainMenu(QWidget) :
 
         self.mainwindow.closeAction.triggered.connect(lambda: self.closeWidget(widget))
         self.mainwindow.closeAction.setEnabled(True)
+
+    def createGraphicToNormalMode(self):
+        widget = QWidget()
+
+        layout = QVBoxLayout()
+
+        glispw = GlispWidget()
+        entry = SimpleLineEdit()
+        
+        layout.addWidget(glispw)
+        layout.addWidget(entry)
+
+        widget.setLayout(layout)
+
+        widget.controller = CmGraphicToNormalController(glispw, entry)
+
+        self.mainwindow.central_widget.addWidget(widget)
+        self.mainwindow.central_widget.setCurrentWidget(widget)
+
+        self.mainwindow.closeAction.triggered.connect(lambda: self.closeWidget(widget))
+        self.mainwindow.closeAction.setEnabled(True)
+
+        entry.setFocus()
