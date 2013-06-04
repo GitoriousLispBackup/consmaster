@@ -19,6 +19,7 @@ from cm_terminal import *
 from cm_interpreter import Interpreter, GraphExpr
 from cm_expr_generator import exp_generator
 
+
 class CmController(QObject):
     send = Signal(GraphExpr)
     
@@ -68,12 +69,14 @@ class CmNormalToGraphicController(QObject):
         self.glisp = glisp
 
         self.enonce = exp_generator()
+        self.interm_enonce = GraphExpr.from_lsp_obj(self.enonce)
         self.interpreter = Interpreter(out=print)
         self.timer = QElapsedTimer()
 
         label.setText('expression à convertir :\n' + repr(self.enonce))
 
         validateBtn.clicked.connect(self.receive)
+        self.timer.start()
 
     def receive(self):
         intermediate_repr = self.glisp.glisp_widget.get_expr()
@@ -84,4 +87,32 @@ class CmNormalToGraphicController(QObject):
 
     # TODO : add some help to user
     def validate(self, intermediate):
-        return intermediate == GraphExpr.from_lsp_obj(self.enonce)
+        return intermediate == self.interm_enonce
+
+
+class CmGraphicToNormalController(QObject):    
+    def __init__(self, glisp, lineEdit):
+        super().__init__()
+
+        self.enonce = exp_generator()
+        self.interm_enonce = GraphExpr.from_lsp_obj(self.enonce)
+        self.interpreter = Interpreter(out=print)
+        self.timer = QElapsedTimer()
+
+        glisp.insert_expr(self.interm_enonce)
+        glisp.setInteractive(False)
+
+        lineEdit.send.connect(self.receive)
+        self.timer.start()
+
+    @Slot(str)
+    def receive(self, entry):
+        if self.validate(entry):
+            print('OK', self.timer.elapsed(), 'ms')
+        else:
+            print('KO', self.timer.elapsed(), 'ms')
+
+    # TODO : add some help to user
+    def validate(self, entry):
+        expr = self.interpreter.read(entry)
+        return self.interm_enonce == GraphExpr.from_lsp_obj(expr)
