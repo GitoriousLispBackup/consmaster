@@ -21,12 +21,16 @@ class Interpreter:
         self.out = out
         self.reset()
 
+    def read(self, expr):
+        return lisp_parser.parse(expr, lexer=lisp_lexer)[0]
+
     def eval(self, expr):
         try:
-            expr = lisp_parser.parse(expr, lexer=lisp_lexer)[0]
+            expr = self.read(expr)
         except LispParseError as err:
-            self.out(repr(err))
+            self.out(repr(err)) 
             return
+        
         # print('expr :', GraphExpr.from_lsp_obj(expr))
         try:
             ret = expr.eval(self.namespace)
