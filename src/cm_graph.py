@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from operator import itemgetter
 
 class DiGraph:
     def __init__(self):
@@ -35,6 +36,8 @@ class DiGraph:
         self._vertices.remove(v)
 
     def incoming_edges(self, vertex, key=None):
+        if vertex not in self._vertices:
+            raise RuntimeError(repr(vertex) + ' not in graph')
         for u, v in filter(lambda v: v[1] is vertex, self._edges.keys()):
             edges = self._edges[u,v]
             if key != None:
@@ -45,6 +48,8 @@ class DiGraph:
                     yield u, v, k, data
                 
     def outcoming_edges(self, vertex, key=None):
+        if vertex not in self._vertices:
+            raise RuntimeError(repr(vertex) + ' not in graph')
         for v, u in filter(lambda v: v[0] is vertex, self._edges.keys()):
             edges = self._edges[v,u]
             if key != None:
@@ -61,7 +66,17 @@ class DiGraph:
         return {u for v, u, _, _ in self.outcoming_edges(vert, key)}
 
     def all_nodes(self):
-        return iter(self._vertices.copy())
+        return self._vertices.copy()
+
+    def get_tree(self, root, order=itemgetter(2)):
+        _graph = {}
+        def make_graph(v):
+            if v in _graph: return
+            _graph[v] = [u for _, u, k, _ in sorted(self.outcoming_edges(v), key=order)]
+            for u in _graph[v]:
+                make_graph(u)
+        make_graph(root)
+        return _graph
     
     def __repr__(self):
         V = repr(self._vertices)

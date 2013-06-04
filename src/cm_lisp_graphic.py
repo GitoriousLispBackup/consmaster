@@ -28,25 +28,28 @@ class GraphicalLispGroupWidget(QWidget):
         glispAddCons = QPushButton("Add Cons")
         glispAddAtom = QPushButton("Add Atom")
         glispRemove = QPushButton("Remove")
+        glispRemUnconnected = QPushButton("Clean")
         glispCleanAll = QPushButton("Clean All")
-        glispSave = QPushButton("Save")
-        glispLoad = QPushButton("Load")
+        #glispSave = QPushButton("Save")
+        #glispLoad = QPushButton("Load")
 
         self.buttons_layout = QVBoxLayout()
         self.buttons_layout.addWidget(glispAddCons)
         self.buttons_layout.addWidget(glispAddAtom)
         self.buttons_layout.addWidget(glispRemove)
+        self.buttons_layout.addWidget(glispRemUnconnected)
         self.buttons_layout.addWidget(glispCleanAll)
-        self.buttons_layout.addWidget(glispSave)
-        self.buttons_layout.addWidget(glispLoad)
+        #self.buttons_layout.addWidget(glispSave)
+        #self.buttons_layout.addWidget(glispLoad)
 
         #~ Actions
         glispAddCons.clicked.connect(self.glisp_widget.addCons)
         glispAddAtom.clicked.connect(self.glisp_widget.addAtom)
         glispRemove.clicked.connect(self.glisp_widget.removeSelectedItem)
+        glispRemUnconnected.clicked.connect(self.glisp_widget.removeDisconnected)
         glispCleanAll.clicked.connect(self.glisp_widget.removeAll)
-        glispLoad.clicked.connect(self.glisp_widget.load)
-        glispSave.clicked.connect(self.glisp_widget.save)
+        #glispLoad.clicked.connect(self.glisp_widget.load)
+        #glispSave.clicked.connect(self.glisp_widget.save)
 
         self.layout.addWidget(self.glisp_widget)
         self.layout.addLayout(self.buttons_layout)
@@ -114,28 +117,29 @@ class LispScene(QGraphicsScene):
             #~ print(item, (x, y))
             item.setPos(x, y)
 
-
     def get_interm_repr(self, root):
         nil_obj = '#atom', 'nil'
         nil_id = str(id(nil_obj))
-        graph = {}
-        visited = set()
-        def walk(node):
-            visited.add(node)
+        _graph = {}
+        _visited = set()
+        def make_graph(node):
+            if node in _visited: return
+            _visited.add(node)
             if isinstance(node, GAtom):
-                graph[str(id(node))] = '#atom', node.value
+                _graph[str(id(node))] = '#atom', node.value
             elif isinstance(node, GCons):
                 tmp = {}
                 for _, nd, k, _ in self.graph.outcoming_edges(node):
                     tmp[k] = str(id(nd))
-                    walk(nd)
+                    make_graph(nd)
                 children = [tmp.get('car', nil_id), tmp.get('cdr', nil_id)]
-                if nil_id in children: graph[nil_id] = nil_obj
-                graph[str(id(node))] = '#cons', children
+                if nil_id in children:
+                    _graph[nil_id] = nil_obj
+                _graph[str(id(node))] = '#cons', children
             else:
                 raise RuntimeError('unexepted node: ' + repr(node))
-        walk(root)
-        return GraphExpr(str(id(root)), graph)
+        make_graph(root)
+        return GraphExpr(str(id(root)), _graph)
 
 
 class GlispWidget(QGraphicsView) :
@@ -190,7 +194,7 @@ class GlispWidget(QGraphicsView) :
     def insert_expr(self, graph_expr):
         if not graph_expr: return
         
-        self.scene.reset()
+        self.removeAll()
 
         dct = {}
         for k, v in graph_expr.graph.items():
@@ -220,9 +224,6 @@ class GlispWidget(QGraphicsView) :
             positions = {dct[uid] : pos for uid, pos in positions.items()}
             
         self.scene.apply_layout(positions)
-
-        self.rootArrow = RootArrow()
-        self.scene.addItem(self.rootArrow)
         self.rootArrow.attach_to(root)
 
     def addCons(self) :
@@ -239,6 +240,12 @@ class GlispWidget(QGraphicsView) :
                 self.scene.removeObj(item)
             else:
                 self.scene.removeItem(item)
+
+    def removeDisconnected(self):
+        root = self.rootArrow.root
+        tree = {} if root is None else self.scene.graph.get_tree(root)
+        for orphan in self.scene.graph.all_nodes().difference(tree.keys()):
+            self.scene.removeObj(orphan)
 
     def removeAll(self) :
         self.scene.reset()
