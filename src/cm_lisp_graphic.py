@@ -14,6 +14,7 @@ except:
 
 from cm_exercice import Encoder, dec as decoder
 from cm_interm_repr import GraphExpr
+from operator import itemgetter
 import json
 
 
@@ -86,6 +87,16 @@ class LispScene(QGraphicsScene):
     def getEdgesFrom(self, vertex, key=None):
         # WARNING : dans un sens seulement
         return [data['arrow'] for u, v, k, data in self.graph.outcoming_edges(vertex, key)]
+
+    def get_tree(self, root):
+        _graph = {}
+        def make_graph(v):
+            if v in _graph: return
+            _graph[v] = [u for _, u, k, _ in sorted(self.graph.outcoming_edges(v), key=itemgetter(2))]
+            for u in _graph[v]:
+                make_graph(u)
+        make_graph(root)
+        return _graph
 
     def reset(self):
         for item in self.items() :
@@ -243,7 +254,7 @@ class GlispWidget(QGraphicsView) :
 
     def removeDisconnected(self):
         root = self.rootArrow.root
-        tree = {} if root is None else self.scene.graph.get_tree(root)
+        tree = {} if root is None else self.scene.get_tree(root)
         for orphan in self.scene.graph.all_nodes().difference(tree.keys()):
             self.scene.removeObj(orphan)
 

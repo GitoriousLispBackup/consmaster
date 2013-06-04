@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from operator import itemgetter
-
 class DiGraph:
     def __init__(self):
         self._vertices = set()
@@ -67,16 +65,6 @@ class DiGraph:
 
     def all_nodes(self):
         return self._vertices.copy()
-
-    def get_tree(self, root, order=itemgetter(2)):
-        _graph = {}
-        def make_graph(v):
-            if v in _graph: return
-            _graph[v] = [u for _, u, k, _ in sorted(self.outcoming_edges(v), key=order)]
-            for u in _graph[v]:
-                make_graph(u)
-        make_graph(root)
-        return _graph
     
     def __repr__(self):
         V = repr(self._vertices)
