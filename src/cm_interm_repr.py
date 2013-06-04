@@ -2,11 +2,12 @@
 # -*- coding: utf-8 -*-
 
 from operator import itemgetter
+from itertools import zip_longest
 
 from pylisp import *
 import pylisp.lisp as lisp
 from lisp import Cons, consp, atom
-# from pprint import pprint
+from pprint import pformat
 
 
 class GraphExpr:
@@ -21,8 +22,7 @@ class GraphExpr:
     def to_lsp_obj(self):
         visited = {}
         def rec_build(uid):
-            if uid in visited:
-                return visited[uid]
+            if uid in visited: return visited[uid]
             internal = self.graph[uid]
             if GraphExpr.tag(internal) == '#cons':
                 id_car, id_cdr = GraphExpr.value(internal)
@@ -58,23 +58,21 @@ class GraphExpr:
         if self is other: return True
         visited = {}
         def walk(id1, id2):
-            if id1 in visited:
-                return id2 == visited[id1]
-            else:
-                visited[id1] = id2
-                
             node1, node2 = self.graph[id1], other.graph[id2]
             t1, t2 = GraphExpr.tag(node1), GraphExpr.tag(node2)
             if t1 != t2:
                 return False
             elif t1 == '#atom':
-                return GraphExpr.value(t1) == GraphExpr.value(t2)
+                return GraphExpr.value(node1) == GraphExpr.value(node2)
             elif t1 == '#cons':
-                return all(walk(_id1, _id2) for _id1, _id2 in zip(GraphExpr.value(node1), GraphExpr.value(node2)))
+                if id1 in visited:
+                    return id2 == visited[id1]
+                else:
+                    visited[id1] = id2
+                    return all(walk(_id1, _id2) for _id1, _id2 in zip_longest(GraphExpr.value(node1), GraphExpr.value(node2)))
             else:
                 raise RuntimeError('Unkown value in tree')
-
         return walk(self.root, other.root)
 
     def __repr__(self):
-        return '<root: ' + repr(self.root) + ';\n  graph: ' + repr(self.graph) + '>'
+        return '< root: ' + repr(self.root) + ';\n  graph:\n' + pformat(self.graph, indent=2) + ' >'
