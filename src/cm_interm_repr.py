@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 from operator import itemgetter
-from itertools import zip_longest
 
 from pylisp import *
 import pylisp.lisp as lisp
@@ -54,7 +53,7 @@ class GraphExpr:
             return uid
         return GraphExpr(rec_build(obj), visited)
 
-    def __eq__(self, other):
+    def _cmp(self, other, cmp_atom):
         if self is other: return True
         visited = {}
         def walk(id1, id2):
@@ -63,16 +62,22 @@ class GraphExpr:
             if t1 != t2:
                 return False
             elif t1 == '#atom':
-                return GraphExpr.value(node1) == GraphExpr.value(node2)
+                return cmp_atom(GraphExpr.value(node1), GraphExpr.value(node2))
             elif t1 == '#cons':
                 if id1 in visited:
                     return id2 == visited[id1]
                 else:
                     visited[id1] = id2
-                    return all(walk(_id1, _id2) for _id1, _id2 in zip_longest(GraphExpr.value(node1), GraphExpr.value(node2)))
+                    return all(walk(_id1, _id2) for _id1, _id2 in zip(GraphExpr.value(node1), GraphExpr.value(node2)))
             else:
                 raise RuntimeError('Unkown value in tree')
         return walk(self.root, other.root)
+
+    def isomorphic_to(self, other):
+        return self._cmp(other, lambda a, b: True)
+
+    def __eq__(self, other):
+        return self._cmp(other, str.__eq__)
 
     def __repr__(self):
         return '< root: ' + repr(self.root) + ';\n  graph:\n' + pformat(self.graph, indent=2) + ' >'

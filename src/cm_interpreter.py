@@ -21,12 +21,12 @@ class Interpreter:
         self.out = out
         self.reset()
 
-    def read(self, expr):
+    def parse(self, expr):
         return lisp_parser.parse(expr, lexer=lisp_lexer)[0]
 
     def eval(self, expr):
         try:
-            expr = self.read(expr)
+            expr = self.parse(expr)
         except LispParseError as err:
             self.out(repr(err)) 
             return

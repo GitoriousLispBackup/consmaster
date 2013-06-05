@@ -114,5 +114,5 @@ class CmGraphicToNormalController(QObject):
 
     # TODO : add some help to user
     def validate(self, entry):
-        expr = self.interpreter.read(entry)
+        expr = self.interpreter.parse(entry)
         return self.interm_enonce == GraphExpr.from_lsp_obj(expr)
