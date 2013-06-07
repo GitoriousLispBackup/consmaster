@@ -69,9 +69,25 @@ class WorkSpace(QWidget):
     def close(self):
         pass
 
-
+# ne respecte pas certains trucs
 def createFreeMode():
-    pass
+    widget = QWidget()
+
+    layout = QVBoxLayout()
+
+    graphical_group = GraphicalLispGroupWidget(widget)
+    layout.addWidget(graphical_group)
+
+    terminal = TermWidget()
+    layout.addWidget(terminal)
+
+    widget.setLayout(layout)
+
+    widget.controller = CmController(terminal, graphical_group.glisp_widget)
+
+    terminal.setFocus()
+
+    return widget
 
 def createTextMode():
     widget = WorkSpace(EnonceTexte(), SimpleLineEdit())
@@ -182,28 +198,4 @@ class MainMenu(QWidget) :
         self.mainwindow.central_widget.removeWidget(widget)
         self.mainwindow.closeAction.setEnabled(False)
         self.mainwindow.closeAction.triggered.disconnect()
-        del widget.controller
-
-    def createFreeMode(self):
-        widget = QWidget()
-
-        layout = QVBoxLayout()
-
-        graphical_group = GraphicalLispGroupWidget(widget)
-        layout.addWidget(graphical_group)
-
-        terminal = TermWidget()
-        layout.addWidget(terminal)
-
-        widget.setLayout(layout)
-
-        widget.controller = CmController(terminal, graphical_group.glisp_widget)
-
-        self.mainwindow.central_widget.addWidget(widget)
-        self.mainwindow.central_widget.setCurrentWidget(widget)
-
-        self.mainwindow.closeAction.triggered.connect(lambda: self.closeWidget(widget))
-        self.mainwindow.closeAction.setEnabled(True)
-
-        terminal.setFocus()
-
+        del widget.controller # because freeMode...

@@ -55,7 +55,6 @@ class CmTextController(QObject):
 
     @Slot(str)
     def receive(self, entry):
-        print('receive :', entry)
         if self.validate(entry):
             print('OK', self.timer.elapsed(), 'ms')
         else:
@@ -85,7 +84,6 @@ class CmNormalToGraphicController(QObject):
 
     @Slot(object)
     def receive(self, intermediate_repr):
-        #intermediate_repr = self.glisp.glisp_widget.get_expr()
         if self.validate(intermediate_repr):
             print('OK', self.timer.elapsed(), 'ms')
         else:
