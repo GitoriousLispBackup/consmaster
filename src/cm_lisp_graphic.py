@@ -56,6 +56,9 @@ class GraphicalLispGroupWidget(QWidget):
         self.layout.addLayout(self.buttons_layout)
         self.setLayout(self.layout)
 
+    def get_expr(self):
+        return self.glisp_widget.get_expr()
+
 
 class LispScene(QGraphicsScene):
     def __init__(self, parent=None):

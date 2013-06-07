@@ -36,21 +36,26 @@ class CmController(QObject):
         gexpr = GraphExpr.from_lsp_obj(retval)
         self.send.emit(gexpr)
 
-class CmTextController(QObject):    
-    def __init__(self, label, lineEdit, typ='normal'):
+class CmTextController(QObject):
+    enonce_changed = Signal(str)
+    def __init__(self, typ='normal'):
         super().__init__()
         self.typ = typ
-        self.enonce = exp_generator()
         self.interpreter = Interpreter(out=print)
         self.timer = QElapsedTimer()
 
-        lineEdit.send.connect(self.receive)
-        method_inv = {'normal':'dotted_repr', 'dotted':'__repr__'}[typ]
-        label.setText('expression à convertir :\n' + getattr(self.enonce, method_inv)())
+    def start(self):
+        self.enonce = exp_generator()
+        self.enonce_changed.emit(self.get_enonce())
         self.timer.start()
+
+    def get_enonce(self):
+        method_inv = {'normal':'dotted_repr', 'dotted':'__repr__'}[self.typ]
+        return 'expression à convertir :\n' + getattr(self.enonce, method_inv)()
 
     @Slot(str)
     def receive(self, entry):
+        print('receive :', entry)
         if self.validate(entry):
             print('OK', self.timer.elapsed(), 'ms')
         else:
@@ -63,23 +68,24 @@ class CmTextController(QObject):
         excepted = getattr(self.enonce, method)()
         return entry == excepted
 
-class CmNormalToGraphicController(QObject):    
-    def __init__(self, label, glisp, validateBtn):
-        super().__init__()
-        self.glisp = glisp
 
-        self.enonce = exp_generator()
-        self.interm_enonce = GraphExpr.from_lsp_obj(self.enonce)
+class CmNormalToGraphicController(QObject):
+    enonce_changed = Signal(str)
+    def __init__(self):
+        super().__init__()
+
         self.interpreter = Interpreter(out=print)
         self.timer = QElapsedTimer()
 
-        label.setText('expression à convertir :\n' + repr(self.enonce))
-
-        validateBtn.clicked.connect(self.receive)
+    def start(self):
+        self.enonce = exp_generator()
+        self.interm_enonce = GraphExpr.from_lsp_obj(self.enonce)
+        self.enonce_changed.emit('expression à convertir :\n' + repr(self.enonce))
         self.timer.start()
 
-    def receive(self):
-        intermediate_repr = self.glisp.glisp_widget.get_expr()
+    @Slot(object)
+    def receive(self, intermediate_repr):
+        #intermediate_repr = self.glisp.glisp_widget.get_expr()
         if self.validate(intermediate_repr):
             print('OK', self.timer.elapsed(), 'ms')
         else:
@@ -90,19 +96,18 @@ class CmNormalToGraphicController(QObject):
         return intermediate == self.interm_enonce
 
 
-class CmGraphicToNormalController(QObject):    
-    def __init__(self, glisp, lineEdit):
+class CmGraphicToNormalController(QObject):
+    enonce_changed = Signal(object)
+    def __init__(self):
         super().__init__()
 
-        self.enonce = exp_generator()
-        self.interm_enonce = GraphExpr.from_lsp_obj(self.enonce)
         self.interpreter = Interpreter(out=print)
         self.timer = QElapsedTimer()
 
-        glisp.insert_expr(self.interm_enonce)
-        glisp.setInteractive(False)
-
-        lineEdit.send.connect(self.receive)
+    def start(self):
+        self.enonce = exp_generator()
+        self.interm_enonce = GraphExpr.from_lsp_obj(self.enonce)
+        self.enonce_changed.emit(self.interm_enonce)
         self.timer.start()
 
     @Slot(str)

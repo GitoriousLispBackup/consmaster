@@ -22,25 +22,92 @@ class ButtonMenu(QPushButton):
         self.constructor = func
 
 
-class SimpleLineEdit(QLineEdit):
-    send = Signal(str)
-    
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.returnPressed.connect(self.receive)
+class SimpleLineEdit(QLineEdit):    
+    def get_expr(self):
+        return self.text()
 
-    def receive(self):
-        self.send.emit(self.text())
-        self.clear()
+class EnonceTexte(QLabel):
+    def set_expr(self, expr):
+        self.setText(expr)
+
+class EnonceGraphique(GlispWidget):
+    def set_expr(self, expr):
+        self.insert_expr(expr)
+
+
+class WorkSpace(QWidget):
+    get_entry = Signal(object)
+    def __init__(self, enonce, _in):
+        super().__init__()
+
+        layout = QVBoxLayout()
+
+        self._in = _in
+        self.enonce = enonce
+        self.validate_btn = QPushButton("Valider")
+        layout.addWidget(enonce)
+        layout.addWidget(_in)
+        layout.addWidget(self.validate_btn)
+
+        self.setLayout(layout)
+        _in.setFocus()
+
+        self.validate_btn.clicked.connect(self.validate_requested)
+
+    def validate_requested(self):
+        expr = self._in.get_expr()
+        self.get_entry.emit(expr)
+
+    def set_controller(self, controller):
+        self.controller = controller
+
+        controller.enonce_changed.connect(self.enonce.set_expr)
+        self.get_entry.connect(controller.receive)
+
+        controller.start()
+
+    def close(self):
+        pass
+
+
+def createFreeMode():
+    pass
+
+def createTextMode():
+    widget = WorkSpace(EnonceTexte(), SimpleLineEdit())
+
+    controller = CmTextController()
+    widget.set_controller(controller)
+    return widget
+
+def createNormalToGraphicMode():
+    widget = WorkSpace(EnonceTexte(), GraphicalLispGroupWidget())
+
+    controller = CmNormalToGraphicController()
+    widget.set_controller(controller)
+
+    return widget
+
+def createGraphicToNormalMode():
+    glispw = EnonceGraphique()
+    glispw.setInteractive(False)
+
+    widget = WorkSpace(glispw, SimpleLineEdit())
+    
+    controller = CmGraphicToNormalController()
+    widget.set_controller(controller)
+
+    return widget
+
 
         
 class MainMenu(QWidget) :
     Modes = [
         ("Mode Libre", './mode-libre.html', 'createFreeMode'),
         ("Entrainement", None, ''),
-        ("Standard \n<-> Dotted", None, 'createTextMode'),
-        ("Standard \n-> Graphique", None, 'createNormalToGraphicMode'),
-        ("Graphique \n-> Standard", None, 'createGraphicToNormalMode'),
+        ("Standard \n<-> Dotted", None, createTextMode),
+        ("Standard \n-> Graphique", None, createNormalToGraphicMode),
+        ("Graphique \n-> Standard", None, createGraphicToNormalMode),
         ]
 
     """ Main menu creation/gestion
@@ -66,7 +133,7 @@ class MainMenu(QWidget) :
         self.buttons_group.setExclusive(True)
         
         for name, src, func in MainMenu.Modes[1:]:
-            btn = ButtonMenu(src, getattr(self, func, None), name, scrollContent)
+            btn = ButtonMenu(src, func, name, scrollContent)
             btn.setCheckable(True)
             btn.setFixedSize(120,120)
             vb.addWidget(btn)
@@ -97,20 +164,25 @@ class MainMenu(QWidget) :
 
         self.setLayout(self.layout)
 
-    Slot(QAbstractButton)
+    @Slot(QAbstractButton)
     def displayMode(self, btn):
         self.displayText.setText(btn.description)
 
     def startSelectedMode(self):
         selectedBtn = self.buttons_group.checkedButton()
-        selectedBtn.constructor()
+        widget = selectedBtn.constructor()
+
+        self.mainwindow.central_widget.addWidget(widget)
+        self.mainwindow.central_widget.setCurrentWidget(widget)
+
+        self.mainwindow.closeAction.triggered.connect(lambda: self.closeWidget(widget))
+        self.mainwindow.closeAction.setEnabled(True)
 
     def closeWidget(self, widget):
         self.mainwindow.central_widget.removeWidget(widget)
         self.mainwindow.closeAction.setEnabled(False)
         self.mainwindow.closeAction.triggered.disconnect()
-        widget.destroy()
-        del widget.controller  # why I must to manually do that ?
+        del widget.controller
 
     def createFreeMode(self):
         widget = QWidget()
@@ -135,71 +207,3 @@ class MainMenu(QWidget) :
 
         terminal.setFocus()
 
-    def createTextMode(self):
-        widget = QWidget()
-
-        layout = QVBoxLayout()
-
-        enonce = QLabel(widget)
-        entry = SimpleLineEdit()
-        
-        layout.addWidget(enonce)
-        layout.addWidget(entry)
-
-        widget.setLayout(layout)
-
-        widget.controller = CmTextController(enonce, entry)
-
-        self.mainwindow.central_widget.addWidget(widget)
-        self.mainwindow.central_widget.setCurrentWidget(widget)
-
-        self.mainwindow.closeAction.triggered.connect(lambda: self.closeWidget(widget))
-        self.mainwindow.closeAction.setEnabled(True)
-
-        entry.setFocus()
-
-    def createNormalToGraphicMode(self):
-        widget = QWidget()
-
-        layout = QVBoxLayout()
-
-        enonce = QLabel(widget)
-        glispw = GraphicalLispGroupWidget()
-        btn = QPushButton("Valider l'exercice")
-        
-        layout.addWidget(enonce)
-        layout.addWidget(glispw)
-        layout.addWidget(btn)
-
-        widget.setLayout(layout)
-
-        widget.controller = CmNormalToGraphicController(enonce, glispw, btn)
-
-        self.mainwindow.central_widget.addWidget(widget)
-        self.mainwindow.central_widget.setCurrentWidget(widget)
-
-        self.mainwindow.closeAction.triggered.connect(lambda: self.closeWidget(widget))
-        self.mainwindow.closeAction.setEnabled(True)
-
-    def createGraphicToNormalMode(self):
-        widget = QWidget()
-
-        layout = QVBoxLayout()
-
-        glispw = GlispWidget()
-        entry = SimpleLineEdit()
-        
-        layout.addWidget(glispw)
-        layout.addWidget(entry)
-
-        widget.setLayout(layout)
-
-        widget.controller = CmGraphicToNormalController(glispw, entry)
-
-        self.mainwindow.central_widget.addWidget(widget)
-        self.mainwindow.central_widget.setCurrentWidget(widget)
-
-        self.mainwindow.closeAction.triggered.connect(lambda: self.closeWidget(widget))
-        self.mainwindow.closeAction.setEnabled(True)
-
-        entry.setFocus()
