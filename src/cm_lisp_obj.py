@@ -76,7 +76,7 @@ class GCons(QGraphicsItem):
         super().mouseMoveEvent(mouseEvent)
 
     def __repr__(self):
-        return 'cons_' + str(id(self)) + '[' + repr(id(self.car)) + ',' + repr(id(self.cdr)) + ']'
+        return 'cons_' + str(id(self))
 
 
 class GAtom(QGraphicsItem):
