@@ -41,7 +41,7 @@ class GCons(QGraphicsItem):
         return QRectF (0 - self.penWidth / 2, 0 - self.penWidth / 2,
                        self.wSize + self.penWidth, self.hSize + self.penWidth)
 
-    def paint(self, painter, option, widget=None) :
+    def paint(self, painter, option, widget=None):
         painter.setPen(self.penColor)
         painter.drawRoundRect(0, 0, self.wSize/2-1, self.hSize)
         painter.drawRoundRect(self.wSize/2, 0, self.wSize/2, self.hSize)
@@ -288,13 +288,8 @@ class Pointer(Arrow):
         self.endItem = endItem
         self.orig = orig
 
-        # gestion des liens directs entre les objets
-        setattr(self.startItem, self.orig, endItem)
-        self.startItem.update()
-
         self.setFlag(QGraphicsItem.ItemIsSelectable, True)
         self.penColor = QColor("black")
-
 
     def paint(self, painter, option, widget=None):
         painter.setPen(self.penColor)
@@ -329,10 +324,6 @@ class Pointer(Arrow):
             self.penStyle = Qt.DotLine
         else:
             self.penStyle = Qt.SolidLine
-
-    def __del__(self):
-        setattr(self.startItem, self.orig, None)
-        self.startItem.update()
 
     def __repr__(self):
         return 'arrow_' + str(id(self))

@@ -70,8 +70,12 @@ class LispScene(QGraphicsScene):
         self.addItem(obj)
 
     def addPointer(self, pointer):
+        for oldPointer in self.getEdgesFrom(pointer.startItem, pointer.orig):
+            self.removePointer(oldPointer)
         self.graph.add_edge(pointer.startItem, pointer.endItem, key=pointer.orig, arrow=pointer)
         self.addItem(pointer)
+        setattr(pointer.startItem, pointer.orig, pointer.endItem)
+        pointer.startItem.update()
 
     def removeObj(self, obj):
         all_edges = [data['arrow'] for u, v, k, data in self.graph.outcoming_edges(obj)]
@@ -86,6 +90,8 @@ class LispScene(QGraphicsScene):
     def removePointer(self, pointer):
         self.graph.remove_edge(pointer.startItem, pointer.endItem, pointer.orig)
         self.removeItem(pointer)
+        setattr(pointer.startItem, pointer.orig, None)
+        pointer.startItem.update()
 
     def getEdgesFrom(self, vertex, key=None):
         # WARNING : dans un sens seulement
@@ -290,12 +296,6 @@ class GlispWidget(QGraphicsView) :
         if self.arrow != None :
             for endItem in self.items(mouseEvent.pos()):
                 if self.arrow.start != endItem and isinstance(endItem, (GCons, GAtom)):
-                    #~ Remove prev pointer if nedeed
-                    # TODO : faire ça dans la scene
-                    for oldPointer in self.scene.getEdgesFrom(self.arrow.start, self.arrow.orig):
-                        self.scene.removePointer(oldPointer)
-
-                    #~ Create new pointer
                     p = Pointer(self.arrow.start, endItem, self.arrow.orig)
                     self.scene.addPointer(p)
                     break

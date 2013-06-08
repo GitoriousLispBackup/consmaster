@@ -20,7 +20,7 @@ class DiGraph:
 
     def remove_edge(self, v1, v2, key):
         self._edges[v1, v2].pop(key)
-        if not self._edges[v1, v2]:
+        if not self._edges[v1, v2]: # if no edge remained
             self._edges.pop((v1, v2))
 
     def remove_all_edges(self, v1, v2):
