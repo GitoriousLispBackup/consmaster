@@ -80,9 +80,9 @@ def createFreeMode():
     layout = QVBoxLayout()
 
     graphical_group = GraphicalLispGroupWidget(widget)
-    layout.addWidget(graphical_group)
-
     terminal = TermWidget()
+
+    layout.addWidget(graphical_group)
     layout.addWidget(terminal)
 
     widget.setLayout(layout)
@@ -123,12 +123,11 @@ def createGraphicToNormalMode():
         
 class MainMenu(QWidget) :
     Modes = [
-        ("Mode Libre", './mode-libre.html', 'createFreeMode'),
-        ("Entrainement", None, ''),
+        ("Mode Libre", './mode-libre.html', createFreeMode),
         ("Standard \n<-> Dotted", None, createTextMode),
         ("Standard \n-> Graphique", None, createNormalToGraphicMode),
         ("Graphique \n-> Standard", None, createGraphicToNormalMode),
-        ]
+            ]
 
     """ Main menu creation/gestion
 
@@ -152,7 +151,7 @@ class MainMenu(QWidget) :
         self.buttons_group = QButtonGroup()
         self.buttons_group.setExclusive(True)
         
-        for name, src, func in MainMenu.Modes[1:]:
+        for name, src, func in MainMenu.Modes:
             btn = ButtonMenu(src, func, name, scrollContent)
             btn.setCheckable(True)
             btn.setFixedSize(120,120)
