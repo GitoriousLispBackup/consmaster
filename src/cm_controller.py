@@ -46,12 +46,9 @@ class CmTextController(QObject):
 
     def start(self):
         self.enonce = exp_generator()
-        self.enonce_changed.emit(self.get_enonce())
-        self.timer.start()
-
-    def get_enonce(self):
         method_inv = {'normal':'dotted_repr', 'dotted':'__repr__'}[self.typ]
-        return 'expression à convertir :\n' + getattr(self.enonce, method_inv)()
+        self.enonce_changed.emit(getattr(self.enonce, method_inv)())
+        self.timer.start()
 
     @Slot(str)
     def receive(self, entry):
@@ -79,7 +76,7 @@ class CmNormalToGraphicController(QObject):
     def start(self):
         self.enonce = exp_generator()
         self.interm_enonce = GraphExpr.from_lsp_obj(self.enonce)
-        self.enonce_changed.emit('expression à convertir :\n' + repr(self.enonce))
+        self.enonce_changed.emit(repr(self.enonce))
         self.timer.start()
 
     @Slot(object)

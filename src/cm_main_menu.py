@@ -42,10 +42,14 @@ class WorkSpace(QWidget):
 
         layout = QVBoxLayout()
 
+        label_in = QLabel('<b>Expression à convertir :</b>')
+        label_out = QLabel('<b>Conversion :</b>')
         self._in = _in
         self.enonce = enonce
         self.validate_btn = QPushButton("Valider")
+        layout.addWidget(label_in)
         layout.addWidget(enonce)
+        layout.addWidget(label_out)
         layout.addWidget(_in)
         layout.addWidget(self.validate_btn)
 
