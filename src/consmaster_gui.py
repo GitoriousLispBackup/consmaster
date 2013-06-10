@@ -34,7 +34,6 @@ class Client(QMainWindow):
         self.menu_widget = MainMenu(self)
         self.central_widget.addWidget(self.menu_widget)
 
-
         self.setCentralWidget(self.central_widget)
 
         self.statusBar().showMessage('Ready')
@@ -45,9 +44,9 @@ class Client(QMainWindow):
         self.quitAction = QAction(QIcon("../icons/application-exit"),
                 "&Quitter", self, shortcut="Ctrl+Shift+Q",
                 statusTip="Quitter l'application", triggered=self.close)
-        self.closeAction = QAction(QIcon("../icons/cancel"),
-                "&Fermer", self, statusTip="Fermer l'exercice en cours")
-        self.closeAction.setEnabled(False)
+        #self.closeAction = QAction(QIcon("../icons/cancel"),
+        #        "&Fermer", self, statusTip="Fermer l'exercice en cours")
+        #self.closeAction.setEnabled(False)
         self.aboutAction = QAction(QIcon("../icons/help-browser"),
                 "A &propos", self, shortcut="Ctrl+Shift+P",
                 triggered=self.about)
@@ -55,9 +54,8 @@ class Client(QMainWindow):
     def createMenus(self):
         self.clientMenu = self.menuBar().addMenu("&Client")
         #~ Options de connexion
-        #~ Options choix exos ?? ou questionBox au démarrage
         self.clientMenu.addAction(self.quitAction)
-        self.clientMenu.addAction(self.closeAction)
+        #self.clientMenu.addAction(self.closeAction)
 
         self.aboutMenu = self.menuBar().addMenu("&Aide")
         self.aboutMenu.addAction(self.aboutAction)      

@@ -37,6 +37,7 @@ class EnonceGraphique(GlispWidget):
 
 class WorkSpace(QWidget):
     get_entry = Signal(object)
+    closeRequested = Signal(QWidget)
     def __init__(self, enonce, _in):
         super().__init__()
 
@@ -50,7 +51,9 @@ class WorkSpace(QWidget):
         self.validate_btn.setFixedHeight(40)
         self.next_btn = QPushButton(QIcon("../icons/go-next"), "Suivant")
         self.next_btn.setFixedHeight(40)
-
+        self.close_btn = QPushButton(QIcon("../icons/cancel"), "Fermer")
+        self.close_btn.setFixedHeight(40)
+        
         topLayout = QVBoxLayout()
         topLayout.setAlignment(Qt.AlignTop)
         topLayout.addWidget(label_in)
@@ -65,6 +68,8 @@ class WorkSpace(QWidget):
         bottomLayout.setAlignment(Qt.AlignBottom)
         bottomLayout.addWidget(self.validate_btn)
         bottomLayout.addWidget(self.next_btn)
+        bottomLayout.addSpacing(50)
+        bottomLayout.addWidget(self.close_btn)
 
         layout.addLayout(topLayout)
         layout.addLayout(centerLayout)
@@ -75,6 +80,7 @@ class WorkSpace(QWidget):
 
         self.validate_btn.clicked.connect(self.validate_requested)
         self.next_btn.clicked.connect(self.go_next)
+        self.close_btn.clicked.connect(self.close)
 
     def validate_requested(self):
         expr = self._in.get_expr()
@@ -95,7 +101,7 @@ class WorkSpace(QWidget):
         self.controller.start()
 
     def close(self):
-        pass
+        self.closeRequested.emit(self)
 
 # ne respecte pas certains trucs
 def createFreeMode():
@@ -214,15 +220,18 @@ class MainMenu(QWidget) :
     def startSelectedMode(self):
         selectedBtn = self.buttons_group.checkedButton()
         widget = selectedBtn.constructor()
+        
+        widget.closeRequested.connect(self.closeWidget)
 
         self.mainwindow.central_widget.addWidget(widget)
         self.mainwindow.central_widget.setCurrentWidget(widget)
 
-        self.mainwindow.closeAction.triggered.connect(lambda: self.closeWidget(widget))
-        self.mainwindow.closeAction.setEnabled(True)
+        #self.mainwindow.closeAction.triggered.connect(self.closeWidget)
+        #self.mainwindow.closeAction.setEnabled(True)
 
     def closeWidget(self, widget):
+        #widget = self.mainwindow.central_widget.currentWidget()
         self.mainwindow.central_widget.removeWidget(widget)
-        self.mainwindow.closeAction.setEnabled(False)
-        self.mainwindow.closeAction.triggered.disconnect()
-        del widget.controller # because freeMode...
+        #self.mainwindow.closeAction.setEnabled(False)
+        #self.mainwindow.closeAction.triggered.disconnect()
+        #del widget.controller # because freeMode...
