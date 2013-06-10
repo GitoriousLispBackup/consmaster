@@ -57,6 +57,9 @@ class GraphicalLispGroupWidget(QWidget):
     def get_expr(self):
         return self.glisp_widget.get_expr()
 
+    def reset(self):
+        self.glisp_widget.removeAll()
+
 
 class GlispWidget(QGraphicsView) :
     """ Widget for graphical lisp """

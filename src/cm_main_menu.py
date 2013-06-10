@@ -25,6 +25,8 @@ class ButtonMenu(QPushButton):
 class SimpleLineEdit(QLineEdit):
     def get_expr(self):
         return self.text()
+    def reset(self):
+        self.clear()
 
 class EnonceTexte(QLabel):
     def set_expr(self, expr):
@@ -94,10 +96,7 @@ class WorkSpace(QWidget):
         controller.start()
 
     def go_next(self):
-        if isinstance(self._in, SimpleLineEdit):
-            self._in.clear()
-        elif isinstance(self._in, EnonceGraphique):
-            self._in.glispWidget.removeAll()
+        self._in.reset()
         self.controller.start()
 
     def close(self):
