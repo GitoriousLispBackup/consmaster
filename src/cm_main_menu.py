@@ -22,7 +22,7 @@ class ButtonMenu(QPushButton):
         self.constructor = func
 
 
-class SimpleLineEdit(QLineEdit):    
+class SimpleLineEdit(QLineEdit):
     def get_expr(self):
         return self.text()
 
@@ -46,17 +46,35 @@ class WorkSpace(QWidget):
         label_out = QLabel('<b>Conversion :</b>')
         self._in = _in
         self.enonce = enonce
-        self.validate_btn = QPushButton("Valider")
-        layout.addWidget(label_in)
-        layout.addWidget(enonce)
-        layout.addWidget(label_out)
-        layout.addWidget(_in)
-        layout.addWidget(self.validate_btn)
+        self.validate_btn = QPushButton(QIcon("../icons/button_accept"), "Valider")
+        self.validate_btn.setFixedHeight(40)
+        self.next_btn = QPushButton(QIcon("../icons/go-next"), "Suivant")
+        self.next_btn.setFixedHeight(40)
+
+        topLayout = QVBoxLayout()
+        topLayout.setAlignment(Qt.AlignTop)
+        topLayout.addWidget(label_in)
+        topLayout.addWidget(enonce)
+
+        centerLayout = QVBoxLayout()
+        centerLayout.setAlignment(Qt.AlignCenter)
+        centerLayout.addWidget(label_out)
+        centerLayout.addWidget(_in)
+
+        bottomLayout = QHBoxLayout()
+        bottomLayout.setAlignment(Qt.AlignBottom)
+        bottomLayout.addWidget(self.validate_btn)
+        bottomLayout.addWidget(self.next_btn)
+
+        layout.addLayout(topLayout)
+        layout.addLayout(centerLayout)
+        layout.addLayout(bottomLayout)
 
         self.setLayout(layout)
         _in.setFocus()
 
         self.validate_btn.clicked.connect(self.validate_requested)
+        self.next_btn.clicked.connect(self.go_next)
 
     def validate_requested(self):
         expr = self._in.get_expr()
@@ -67,8 +85,14 @@ class WorkSpace(QWidget):
 
         controller.enonce_changed.connect(self.enonce.set_expr)
         self.get_entry.connect(controller.receive)
-
         controller.start()
+
+    def go_next(self):
+        if isinstance(self._in, SimpleLineEdit):
+            self._in.clear()
+        elif isinstance(self._in, EnonceGraphique):
+            self._in.glispWidget.removeAll()
+        self.controller.start()
 
     def close(self):
         pass
@@ -113,14 +137,14 @@ def createGraphicToNormalMode():
     glispw.setInteractive(False)
 
     widget = WorkSpace(glispw, SimpleLineEdit())
-    
+
     controller = CmGraphicToNormalController()
     widget.set_controller(controller)
 
     return widget
 
 
-        
+
 class MainMenu(QWidget) :
     Modes = [
         ("Mode Libre", './mode-libre.html', createFreeMode),
@@ -142,7 +166,7 @@ class MainMenu(QWidget) :
     #~ TODO: should link to the correct text
     def basicMenu(self):
         self.layout = QHBoxLayout()
-        
+
         scrollContent = QWidget()
         #~ self.resize(50,100)
 
@@ -150,7 +174,7 @@ class MainMenu(QWidget) :
         vb = QVBoxLayout()
         self.buttons_group = QButtonGroup()
         self.buttons_group.setExclusive(True)
-        
+
         for name, src, func in MainMenu.Modes:
             btn = ButtonMenu(src, func, name, scrollContent)
             btn.setCheckable(True)
@@ -172,7 +196,7 @@ class MainMenu(QWidget) :
         vb = QVBoxLayout()
         self.displayText = QTextEdit()
         self.displayText.setReadOnly(True)
-        
+
         launchButton = QPushButton("Démarrer", self)
         launchButton.setFixedHeight(50)
         launchButton.clicked.connect(self.startSelectedMode)
