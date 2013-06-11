@@ -21,7 +21,7 @@ from cm_expr_generator import exp_generator
 
 
 class CmController(QObject):
-    send = Signal(GraphExpr)
+    send = Signal(object)
 
     def __init__(self, term):
         super().__init__()
@@ -33,6 +33,9 @@ class CmController(QObject):
         gexpr = GraphExpr.from_lsp_obj(retval)
         self.send.emit(gexpr)
 
+############################################################
+#               controllers for exercices
+
 class CmTextController(QObject):
     enonce_changed = Signal(str)
     def __init__(self, typ='normal'):
@@ -42,6 +45,7 @@ class CmTextController(QObject):
         self.timer = QElapsedTimer()
 
     def start(self):
+        self.interpreter.reset()
         self.enonce = exp_generator()
         method_inv = {'normal':'dotted_repr', 'dotted':'__repr__'}[self.typ]
         self.enonce_changed.emit(getattr(self.enonce, method_inv)())
@@ -71,6 +75,7 @@ class CmNormalToGraphicController(QObject):
         self.timer = QElapsedTimer()
 
     def start(self):
+        self.interpreter.reset()
         self.enonce = exp_generator()
         self.interm_enonce = GraphExpr.from_lsp_obj(self.enonce)
         self.enonce_changed.emit(repr(self.enonce))
@@ -97,6 +102,7 @@ class CmGraphicToNormalController(QObject):
         self.timer = QElapsedTimer()
 
     def start(self):
+        self.interpreter.reset()
         self.enonce = exp_generator()
         self.interm_enonce = GraphExpr.from_lsp_obj(self.enonce)
         self.enonce_changed.emit(self.interm_enonce)
