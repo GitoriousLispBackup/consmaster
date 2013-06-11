@@ -92,12 +92,17 @@ class WorkSpace(QWidget):
         self.controller = controller
 
         controller.enonce_changed.connect(self.enonce.set_expr)
+        controller.error.connect(self.get_error)
         self.get_entry.connect(controller.receive)
         controller.start()
 
     def go_next(self):
         self._in.reset()
         self.controller.start()
+
+    @Slot(str)
+    def get_error(self, msg):
+        QMessageBox.critical(self, 'Erreur', msg, QMessageBox.Ok)
 
     def close(self):
         self.closeRequested.emit(self)
