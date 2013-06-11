@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import re
+import random
 
 try:
     from PySide.QtCore import *
@@ -44,20 +45,34 @@ def valid(entry, expr, fmt='normal', strict=True):
     excepted = getattr(expr, method)()
     return entry == excepted
 
+# TODO : deal with level
+def repr_convert_gen(level=None):
+    while True:
+        yield random.choice(['normal', 'dotted']), exp_generator()
+
+def simple_gen(level=None):
+    while True:
+        yield exp_generator()
+
 class CmTextController(QObject):
     enonce_changed = Signal(str)
     error = Signal(str)
-    def __init__(self, typ='normal'):
+    def __init__(self, it=repr_convert_gen()):
         super().__init__()
-        self.typ = typ
         self.interpreter = Interpreter(out=print)
+        self.enonce_iter = it
         self.timer = QElapsedTimer()
 
-    def start(self):
-        self.interpreter.reset()
-        self.enonce = exp_generator()
+    def next(self):
+        try:
+            enonce = next(self.enonce_iter)
+        except StopIteration:
+            # TODO : deal with the end of exercice
+            return
+        self.typ, self.enonce = enonce
         method_inv = {'normal':'dotted_repr', 'dotted':'__repr__'}[self.typ]
-        self.enonce_changed.emit(getattr(self.enonce, method_inv)())
+        self.enonce_changed.emit('<i>[' + self.typ + ']</i> ' + getattr(self.enonce, method_inv)())
+        self.interpreter.reset()
         self.timer.start()
 
     @Slot(str)
@@ -92,17 +107,21 @@ class CmTextController(QObject):
 class CmNormalToGraphicController(QObject):
     enonce_changed = Signal(str)
     error = Signal(str)
-    def __init__(self):
+    def __init__(self, it=simple_gen()):
         super().__init__()
-
+        self.enonce_iter = it
         self.interpreter = Interpreter(out=print)
         self.timer = QElapsedTimer()
 
-    def start(self):
-        self.interpreter.reset()
-        self.enonce = exp_generator()
+    def next(self):
+        try:
+            self.enonce = next(self.enonce_iter)
+        except StopIteration:
+            # TODO : deal with the end of exercice
+            return
         self.interm_enonce = GraphExpr.from_lsp_obj(self.enonce)
         self.enonce_changed.emit(repr(self.enonce))
+        self.interpreter.reset()
         self.timer.start()
 
     @Slot(object)
@@ -120,17 +139,21 @@ class CmNormalToGraphicController(QObject):
 class CmGraphicToNormalController(QObject):
     enonce_changed = Signal(object)
     error = Signal(str)
-    def __init__(self):
+    def __init__(self, it=simple_gen()):
         super().__init__()
-
+        self.enonce_iter = it
         self.interpreter = Interpreter(out=print)
         self.timer = QElapsedTimer()
 
-    def start(self):
-        self.interpreter.reset()
-        self.enonce = exp_generator()
+    def next(self):
+        try:
+            self.enonce = next(self.enonce_iter)
+        except StopIteration:
+            # TODO : deal with the end of exercice
+            return
         self.interm_enonce = GraphExpr.from_lsp_obj(self.enonce)
         self.enonce_changed.emit(self.interm_enonce)
+        self.interpreter.reset()
         self.timer.start()
 
     @Slot(str)

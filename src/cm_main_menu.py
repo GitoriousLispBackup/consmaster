@@ -78,7 +78,6 @@ class WorkSpace(QWidget):
         layout.addLayout(bottomLayout)
 
         self.setLayout(layout)
-        _in.setFocus()
 
         self.validate_btn.clicked.connect(self.validate_requested)
         self.next_btn.clicked.connect(self.go_next)
@@ -94,11 +93,12 @@ class WorkSpace(QWidget):
         controller.enonce_changed.connect(self.enonce.set_expr)
         controller.error.connect(self.get_error)
         self.get_entry.connect(controller.receive)
-        controller.start()
+        self.go_next()
 
     def go_next(self):
         self._in.reset()
-        self.controller.start()
+        self._in.setFocus()
+        self.controller.next()
 
     @Slot(str)
     def get_error(self, msg):
