@@ -20,7 +20,7 @@ class Client(QMainWindow):
         self.createActions()
         self.createMenus()
 
-        self.setGeometry(200, 200, 800, 600)
+        self.setGeometry(200, 200, 800, 620)
         self.setWindowTitle("Consmaster")
         self.setWindowIcon(QIcon("../icons/symbol"))
 

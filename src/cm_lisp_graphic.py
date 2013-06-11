@@ -29,9 +29,10 @@ class GraphicalLispGroupWidget(QWidget):
         glispRemove = QPushButton("Remove")
         glispRemUnconnected = QPushButton("Clean")
         glispCleanAll = QPushButton("Clean All")
-        glispCheck = QPushButton("Check")
-        #glispSave = QPushButton("Save")
-        #glispLoad = QPushButton("Load")
+        glispAutolayout = QPushButton("Auto-layout")
+        #~ glispCheck = QPushButton("Check")
+        #~ glispSave = QPushButton("Save")
+        #~ glispLoad = QPushButton("Load")
 
         self.buttons_layout = QVBoxLayout()
         self.buttons_layout.addWidget(glispAddCons)
@@ -39,9 +40,10 @@ class GraphicalLispGroupWidget(QWidget):
         self.buttons_layout.addWidget(glispRemove)
         self.buttons_layout.addWidget(glispRemUnconnected)
         self.buttons_layout.addWidget(glispCleanAll)
-        self.buttons_layout.addWidget(glispCheck)
-        #self.buttons_layout.addWidget(glispSave)
-        #self.buttons_layout.addWidget(glispLoad)
+        self.buttons_layout.addWidget(glispAutolayout)
+        #~ self.buttons_layout.addWidget(glispCheck)
+        #~ self.buttons_layout.addWidget(glispSave)
+        #~ self.buttons_layout.addWidget(glispLoad)
 
         #~ Actions
         glispAddCons.clicked.connect(self.glisp_widget.addCons)
@@ -49,9 +51,10 @@ class GraphicalLispGroupWidget(QWidget):
         glispRemove.clicked.connect(self.glisp_widget.removeSelectedItem)
         glispRemUnconnected.clicked.connect(self.glisp_widget.removeDisconnected)
         glispCleanAll.clicked.connect(self.glisp_widget.removeAll)
-        glispCheck.clicked.connect(self.glisp_widget.checkExpr)
-        #glispLoad.clicked.connect(self.glisp_widget.load)
-        #glispSave.clicked.connect(self.glisp_widget.save)
+        glispAutolayout.clicked.connect(self.glisp_widget.autoLayout)
+        #~ glispCheck.clicked.connect(self.glisp_widget.checkExpr)
+        #~ glispLoad.clicked.connect(self.glisp_widget.load)
+        #~ glispSave.clicked.connect(self.glisp_widget.save)
 
         self.layout.addWidget(self.glisp_widget)
         self.layout.addLayout(self.buttons_layout)
@@ -113,17 +116,17 @@ class GlispWidget(QGraphicsView) :
         root = self.rootArrow.root
         return None if not root else self.scene.get_interm_repr(root)
 
-    def checkExpr(self):
-        expr = self.get_expr()
-        if expr is not None:
-            print('depth =', expr.depth())
-            print('proper =', expr.proper())
-            print('circ =', expr.circular())
+    #~ def checkExpr(self):
+        #~ expr = self.get_expr()
+        #~ if expr is not None:
+            #~ print('depth =', expr.depth())
+            #~ print('proper =', expr.proper())
+            #~ print('circ =', expr.circular())
 
     @Slot(object)
     def insert_expr(self, graph_expr):
         if not graph_expr: return
-        
+
         self.removeAll()
 
         dct = {}
@@ -153,6 +156,13 @@ class GlispWidget(QGraphicsView) :
         else:
             positions = {dct[uid] : pos for uid, pos in positions.items()}
             
+        self.scene.apply_layout(positions)
+        self.rootArrow.attach_to(root)
+
+    def autoLayout(self):
+        root = self.rootArrow.root
+        if root is None: return
+        positions = self.scene.get_automatic_layout(root)
         self.scene.apply_layout(positions)
         self.rootArrow.attach_to(root)
 
