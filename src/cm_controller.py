@@ -30,8 +30,9 @@ class CmController(QObject):
     @Slot(str)
     def receive(self, entry):
         retval = self.interpreter.eval(entry)
-        gexpr = GraphExpr.from_lsp_obj(retval)
-        self.send.emit(gexpr)
+        if retval is not None:
+            gexpr = GraphExpr.from_lsp_obj(retval)
+            self.send.emit(gexpr)
 
 ############################################################
 #               controllers for exercices

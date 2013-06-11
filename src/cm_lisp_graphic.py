@@ -162,6 +162,7 @@ class GlispWidget(QGraphicsView) :
     def autoLayout(self):
         root = self.rootArrow.root
         if root is None: return
+        # TODO : prevent if some elems are disconnected
         positions = self.scene.get_automatic_layout(root)
         self.scene.apply_layout(positions)
         self.rootArrow.attach_to(root)
