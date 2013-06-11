@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from operator import itemgetter
+from math import log
 
 from pylisp import *
 import pylisp.lisp as lisp
@@ -29,7 +30,7 @@ class GraphExpr:
             elif GraphExpr.tag(internal) == '#atom':
                 obj = lisp_parser.parse(GraphExpr.value(internal), lexer=lisp_lexer)[0] # bof
             else:
-                raise RuntimeError('Unkown value in tree')
+                raise RuntimeError('Unkown value ' + repr(obj) + ' in tree')
             visited[uid] = obj
             return obj
         return rec_build(self.root)
@@ -49,7 +50,7 @@ class GraphExpr:
                 elif atom(obj):
                     visited[uid] = '#atom', repr(obj)
                 else:
-                    raise RuntimeError('Unkown value in expr')
+                    raise RuntimeError('Unkown value ' + repr(obj) + ' in expr')
             return uid
         return GraphExpr(rec_build(obj), visited)
 
@@ -112,6 +113,16 @@ class GraphExpr:
             elif GraphExpr.tag(nd) == '#atom':
                 return not (box == 'cdr' and GraphExpr.value(nd) != 'nil')
         return walk(self.root)
+
+    def level(self):
+        depth = self.depth()
+        if self.circular():
+            cdrType = 2
+        elif not self.proper():
+            cdrType = 1
+        else:
+            cdrType = 0
+        return int(log(depth**2.5)) + 3 * cdrType
 
     def isomorphic_to(self, other):
         return self._cmp(other, lambda a, b: True)
