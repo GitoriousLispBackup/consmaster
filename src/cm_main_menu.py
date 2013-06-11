@@ -102,24 +102,43 @@ class WorkSpace(QWidget):
     def close(self):
         self.closeRequested.emit(self)
 
+class FreeMode(QWidget):
+    closeRequested = Signal(QWidget)
+    
+    def __init__(self):
+        super().__init__()
+
+        layout = QVBoxLayout()
+
+        self.graphical_group = GraphicalLispGroupWidget(self)
+        self.terminal = TermWidget()
+        self.close_btn = QPushButton(QIcon("../icons/cancel"), "Fermer")
+
+        layout.addWidget(self.graphical_group)
+        layout.addWidget(self.terminal)
+        layout.addWidget(self.close_btn)
+
+        self.setLayout(layout)
+
+        self.terminal.setFocus()
+
+        self.close_btn.clicked.connect(self.close)
+
+    def set_controller(self, controller):
+        self.controller = controller
+
+        self.terminal.read.connect(controller.receive)
+        controller.send.connect(self.graphical_group.glisp_widget.insert_expr)
+
+    def close(self):
+        self.closeRequested.emit(self)
+
 # ne respecte pas certains trucs
 def createFreeMode():
-    widget = QWidget()
+    widget = FreeMode()
 
-    layout = QVBoxLayout()
-
-    graphical_group = GraphicalLispGroupWidget(widget)
-    terminal = TermWidget()
-
-    layout.addWidget(graphical_group)
-    layout.addWidget(terminal)
-
-    widget.setLayout(layout)
-
-    widget.controller = CmController(terminal, graphical_group.glisp_widget)
-
-    terminal.setFocus()
-
+    controller = CmController(widget.terminal)
+    widget.set_controller(controller)
     return widget
 
 def createTextMode():
@@ -225,12 +244,6 @@ class MainMenu(QWidget) :
         self.mainwindow.central_widget.addWidget(widget)
         self.mainwindow.central_widget.setCurrentWidget(widget)
 
-        #self.mainwindow.closeAction.triggered.connect(self.closeWidget)
-        #self.mainwindow.closeAction.setEnabled(True)
-
     def closeWidget(self, widget):
-        #widget = self.mainwindow.central_widget.currentWidget()
         self.mainwindow.central_widget.removeWidget(widget)
-        #self.mainwindow.closeAction.setEnabled(False)
-        #self.mainwindow.closeAction.triggered.disconnect()
-        #del widget.controller # because freeMode...
+

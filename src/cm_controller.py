@@ -23,12 +23,9 @@ from cm_expr_generator import exp_generator
 class CmController(QObject):
     send = Signal(GraphExpr)
 
-    def __init__(self, term, widget):
+    def __init__(self, term):
         super().__init__()
         self.interpreter = Interpreter(out=term.out)
-
-        term.read.connect(self.receive)
-        self.send.connect(widget.insert_expr)
 
     @Slot(str)
     def receive(self, entry):
