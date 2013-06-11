@@ -73,6 +73,46 @@ class GraphExpr:
                 raise RuntimeError('Unkown value in tree')
         return walk(self.root, other.root)
 
+    def depth(self):
+        visited = {}
+        def walk(uid, cur):                
+            nd = self.graph[uid]
+            if GraphExpr.tag(nd) == '#atom':
+                return cur
+            elif GraphExpr.tag(nd) == '#cons':
+                if uid in visited:
+                    return visited[uid]
+                visited[uid] = cur
+                car_id, cdr_id = GraphExpr.value(nd)
+                return max(walk(car_id, cur + 1), walk(cdr_id, cur))
+        return walk(self.root, 0)
+
+    def circular(self):
+        visited = set()
+        def walk(uid):
+            nd = self.graph[uid]
+            if GraphExpr.tag(nd) == '#cons':
+                if uid in visited:
+                    return True
+                visited.add(uid)
+                car_id, cdr_id = GraphExpr.value(nd)
+                return walk(car_id) or walk(cdr_id)
+        return walk(self.root)
+
+    def proper(self):
+        visited = set()
+        def walk(uid, box=None):
+            nd = self.graph[uid]
+            if GraphExpr.tag(nd) == '#cons':
+                if uid in visited:
+                    return True
+                visited.add(uid)
+                car_id, cdr_id = GraphExpr.value(nd)
+                return walk(car_id, 'car') and walk(cdr_id, 'cdr')
+            elif GraphExpr.tag(nd) == '#atom':
+                return not (box == 'cdr' and GraphExpr.value(nd) != 'nil')
+        return walk(self.root)
+
     def isomorphic_to(self, other):
         return self._cmp(other, lambda a, b: True)
 
