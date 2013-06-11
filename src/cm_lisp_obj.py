@@ -16,20 +16,14 @@ class GCons(QGraphicsItem):
 
     def __init__(self, car=None, cdr=None, iden=None, parent=None, scene=None):
         super().__init__(parent, scene)
-        self.setFlags(QGraphicsItem.ItemIsMovable|QGraphicsItem.ItemIsSelectable)
+        self.setFlags(QGraphicsItem.ItemIsMovable | QGraphicsItem.ItemIsSelectable)
 
         self.car = car
         self.cdr = cdr
-
-        #~ Best should be hSize=wSize/2
         self.hSize = 30
         self.wSize = 70
-
-        self.used = ""
-
         self.penWidth = 2
         self.penColor = QPen(Qt.black, self.penWidth)
-        self.boundingRect()
 
     def selectedActions(self, value) :
         if value:
@@ -46,13 +40,10 @@ class GCons(QGraphicsItem):
         painter.drawRoundRect(0, 0, self.wSize/2-1, self.hSize)
         painter.drawRoundRect(self.wSize/2, 0, self.wSize/2, self.hSize)
         #~ Drawing / if car/cdr is Nil
-        if self.car == None :
-            #~ painter.drawLine(0+2, 0+2, 50-2, 50-2)
+        if self.car == None:
             painter.drawLine(0+2, self.hSize-2, self.wSize/2-2, 0+2)
-        if self.cdr == None :
+        if self.cdr == None:
             painter.drawLine(self.wSize/2+2, self.hSize-2, self.wSize-2, 0+2)
-            #~ painter.drawLine(50+2, 0+2, 100-2, 50-2)
-
 
     def itemChange(self, change, value) :
         if change == self.ItemSelectedChange:
@@ -60,20 +51,7 @@ class GCons(QGraphicsItem):
         return super().itemChange(change, value)
 
     def isCarOrCdr(self, mousePos) :
-        if mousePos.x() < self.wSize / 2:
-            return "car"
-        else :
-            return "cdr"
-
-    def mousePressEvent(self, mouseEvent) :
-        self.used = self.isCarOrCdr(mouseEvent.pos())
-        #~ Next line needed to force redrawn of the cons
-        self.setSelected(False)
-        super().mousePressEvent(mouseEvent)
-        #self.setSelected(False)
-
-    def mouseMoveEvent(self, mouseEvent):
-        super().mouseMoveEvent(mouseEvent)
+        return "car" if mousePos.x() < self.wSize / 2 else "cdr"
 
     def __repr__(self):
         return 'cons_' + str(id(self))
