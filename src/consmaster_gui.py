@@ -57,6 +57,8 @@ class Client(QMainWindow):
         self.clientMenu.addAction(self.quitAction)
         #self.clientMenu.addAction(self.closeAction)
 
+        self.statMenu = self.menuBar().addMenu("&Statistiques")
+
         self.aboutMenu = self.menuBar().addMenu("&Aide")
         self.aboutMenu.addAction(self.aboutAction)      
 
@@ -65,7 +67,6 @@ class Client(QMainWindow):
                 "Maîtrisez les représentations de listes, en notations parenthésées, à point et en doublets graphiques.")
 
 if __name__ == '__main__':
-
     app = QApplication(sys.argv)
     client = Client()
     sys.exit(app.exec_())
