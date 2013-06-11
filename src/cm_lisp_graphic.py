@@ -30,7 +30,7 @@ class GraphicalLispGroupWidget(QWidget):
         glispRemUnconnected = QPushButton("Clean")
         glispCleanAll = QPushButton("Clean All")
         glispAutolayout = QPushButton("Auto-layout")
-        #~ glispCheck = QPushButton("Check")
+        glispCheck = QPushButton("Check")
         #~ glispSave = QPushButton("Save")
         #~ glispLoad = QPushButton("Load")
 
@@ -41,7 +41,7 @@ class GraphicalLispGroupWidget(QWidget):
         self.buttons_layout.addWidget(glispRemUnconnected)
         self.buttons_layout.addWidget(glispCleanAll)
         self.buttons_layout.addWidget(glispAutolayout)
-        #~ self.buttons_layout.addWidget(glispCheck)
+        self.buttons_layout.addWidget(glispCheck)
         #~ self.buttons_layout.addWidget(glispSave)
         #~ self.buttons_layout.addWidget(glispLoad)
 
@@ -52,7 +52,7 @@ class GraphicalLispGroupWidget(QWidget):
         glispRemUnconnected.clicked.connect(self.glisp_widget.removeDisconnected)
         glispCleanAll.clicked.connect(self.glisp_widget.removeAll)
         glispAutolayout.clicked.connect(self.glisp_widget.autoLayout)
-        #~ glispCheck.clicked.connect(self.glisp_widget.checkExpr)
+        glispCheck.clicked.connect(self.glisp_widget.checkExpr)
         #~ glispLoad.clicked.connect(self.glisp_widget.load)
         #~ glispSave.clicked.connect(self.glisp_widget.save)
 
@@ -114,11 +114,20 @@ class GlispWidget(QGraphicsView) :
 
     def get_expr(self):
         root = self.rootArrow.root
-        return None if not root else self.scene.get_interm_repr(root)
+        if root is None:
+            ret = QMessageBox.warning(self, 'Attention', "La flèche racine n'est connectée à aucun élément.\nVous devez la connecter avant de continuer.")
+            return
+        if len(self.orphans(root)) != 0:
+            ret = QMessageBox.question(self, 'Attention', "Certains éléments ne sont pas reliés à l'arbre.\nVoulez vous continuer ?",
+                                            QMessageBox.Yes, QMessageBox.No)
+            if ret == QMessageBox.No:
+                return
+        return self.scene.get_interm_repr(root)
 
-    #~ def checkExpr(self):
-        #~ expr = self.get_expr()
-        #~ if expr is not None:
+    def checkExpr(self):
+        expr = self.get_expr()
+        if expr is not None:
+            print('level =', expr.level())
             #~ print('depth =', expr.depth())
             #~ print('proper =', expr.proper())
             #~ print('circ =', expr.circular())
@@ -184,10 +193,12 @@ class GlispWidget(QGraphicsView) :
             else:
                 self.scene.removeItem(item)
 
-    def removeDisconnected(self):
-        root = self.rootArrow.root
+    def orphans(self, root):
         tree = {} if root is None else self.scene.get_tree(root)
-        for orphan in self.scene.graph.all_nodes().difference(tree.keys()):
+        return self.scene.graph.all_nodes().difference(tree.keys())
+
+    def removeDisconnected(self):
+        for orphan in self.orphans(self.rootArrow.root):
             self.scene.removeObj(orphan)
 
     def removeAll(self) :
