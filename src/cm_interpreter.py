@@ -17,12 +17,16 @@ class Interpreter:
         return super().__new__(cls)
         
     def __init__(self, out=print):
-        # print(out)
         self.out = out
         self.reset()
 
     def parse(self, expr):
-        return lisp_parser.parse(expr, lexer=lisp_lexer)[0]
+        parser_out = lisp_parser.parse(expr, lexer=lisp_lexer)
+        if len(parser_out) == 0:
+            raise LispParseError('no expression')
+        elif len(parser_out) > 1:
+            raise LispParseError('multiple expressions')
+        return parser_out[0]
 
     def eval(self, expr):
         try:
@@ -30,8 +34,6 @@ class Interpreter:
         except LispParseError as err:
             self.out(repr(err)) 
             return
-        
-        # print('expr :', GraphExpr.from_lsp_obj(expr))
         try:
             ret = expr.eval(self.namespace)
             self.out(repr(ret))
