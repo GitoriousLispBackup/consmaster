@@ -57,6 +57,7 @@ def simple_gen(level=None):
 class CmTextController(QObject):
     enonce_changed = Signal(str)
     error = Signal(str)
+    ok = Signal()
     def __init__(self, it=repr_convert_gen()):
         super().__init__()
         self.interpreter = Interpreter(out=print)
@@ -71,7 +72,7 @@ class CmTextController(QObject):
             return
         self.typ, self.enonce = enonce
         method_inv = {'normal':'dotted_repr', 'dotted':'__repr__'}[self.typ]
-        self.enonce_changed.emit('<i>[' + self.typ + ']</i> ' + getattr(self.enonce, method_inv)())
+        self.enonce_changed.emit('<i>[' + self.typ + ']</i><br>' + getattr(self.enonce, method_inv)())
         self.interpreter.reset()
         self.timer.start()
 
@@ -100,6 +101,7 @@ class CmTextController(QObject):
         excepted = getattr(self.enonce, method)()
         if entry == excepted:
             print('OK', self.timer.elapsed(), 'ms')
+            self.ok.emit()
         else:
             print('KO', self.timer.elapsed(), 'ms')
 
@@ -107,6 +109,7 @@ class CmTextController(QObject):
 class CmNormalToGraphicController(QObject):
     enonce_changed = Signal(str)
     error = Signal(str)
+    ok = Signal()
     def __init__(self, it=simple_gen()):
         super().__init__()
         self.enonce_iter = it
@@ -132,6 +135,7 @@ class CmNormalToGraphicController(QObject):
     def verify(self, intermediate):
         if intermediate == self.interm_enonce:
             print('OK', self.timer.elapsed(), 'ms')
+            self.ok.emit()
         else:
             print('KO', self.timer.elapsed(), 'ms')
 
@@ -139,6 +143,7 @@ class CmNormalToGraphicController(QObject):
 class CmGraphicToNormalController(QObject):
     enonce_changed = Signal(object)
     error = Signal(str)
+    ok = Signal()
     def __init__(self, it=simple_gen()):
         super().__init__()
         self.enonce_iter = it
@@ -175,5 +180,6 @@ class CmGraphicToNormalController(QObject):
     def verify(self, entry):
         if self.interm_enonce == GraphExpr.from_lsp_obj(entry):
             print('OK', self.timer.elapsed(), 'ms')
+            self.ok.emit()
         else:
             print('KO', self.timer.elapsed(), 'ms')

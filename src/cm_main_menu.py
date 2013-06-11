@@ -79,6 +79,7 @@ class WorkSpace(QWidget):
 
         self.setLayout(layout)
 
+        self.next_btn.setDisabled(True)
         self.validate_btn.clicked.connect(self.validate_requested)
         self.next_btn.clicked.connect(self.go_next)
         self.close_btn.clicked.connect(self.close)
@@ -92,13 +93,19 @@ class WorkSpace(QWidget):
 
         controller.enonce_changed.connect(self.enonce.set_expr)
         controller.error.connect(self.get_error)
+        controller.ok.connect(self.get_ok)
         self.get_entry.connect(controller.receive)
         self.go_next()
 
     def go_next(self):
         self._in.reset()
-        self._in.setFocus()
         self.controller.next()
+        self.next_btn.setDisabled(True)
+        self._in.setFocus()
+
+    def get_ok(self):
+        self.next_btn.setDisabled(False)
+        QMessageBox.information(self, 'Bravo!', 'Vous avez répondu correctement à cette question')
 
     @Slot(str)
     def get_error(self, msg):
