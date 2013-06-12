@@ -92,9 +92,13 @@ class MainMenu(QWidget) :
         widget = selectedBtn.constructor()
         
         widget.closeRequested.connect(self.closeWidget)
+        
+        self.mainwindow.setWindowTitle("Consmaster" +
+                        ' [' + selectedBtn.text().replace('\n', '') + ']')
 
         self.mainwindow.central_widget.addWidget(widget)
         self.mainwindow.central_widget.setCurrentWidget(widget)
 
     def closeWidget(self, widget):
         self.mainwindow.central_widget.removeWidget(widget)
+        self.mainwindow.setWindowTitle("Consmaster")
