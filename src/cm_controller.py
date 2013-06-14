@@ -61,10 +61,7 @@ def simple_gen(level=None):
     }
     maxi = max(known_levels.keys())
 
-    if level is None:
-        level = 0
-    elif level > maxi:
-        level = maxi
+    if level > maxi: level = maxi
     while True:
         yield exp_generator(*known_levels[level])
 
@@ -82,8 +79,8 @@ class CmBasicController(QObject):
 class TrainingMixin:
     def __init__(self, userData):
         self.userData = userData
-        self.currentLevel = userData.current_level() if userData else None
-        self.enonceIter = simple_gen(self.currentLevel if self.currentLevel else 0)
+        self.currentLevel = userData.current_level() if userData else 0
+        self.enonceIter = simple_gen(self.currentLevel)
         
     def next(self):
         self.enonce = next(self.enonceIter)
