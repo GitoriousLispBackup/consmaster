@@ -10,6 +10,7 @@ except:
 
 from cm_lisp_graphic import *
 from cm_controller import *
+from cm_globals import *
 
 
 class SimpleLineEdit(QLineEdit):
@@ -30,6 +31,7 @@ class EnonceGraphique(GlispWidget):
 class WorkSpace(QWidget):
     get_entry = Signal(object)
     closeRequested = Signal(QWidget)
+    
     def __init__(self, enonce, _in):
         super().__init__()
 
@@ -74,6 +76,9 @@ class WorkSpace(QWidget):
         self.next_btn.clicked.connect(self.go_next)
         self.close_btn.clicked.connect(self.close)
 
+    def set_monitor(self, monitor):
+        self.monitor = monitor
+
     def validate_requested(self):
         expr = self._in.get_expr()
         self.get_entry.emit(expr)
@@ -81,7 +86,7 @@ class WorkSpace(QWidget):
     def set_controller(self, controller):
         self.controller = controller
 
-        controller.enonce_changed.connect(self.enonce.set_expr)
+        controller.enonceChanged.connect(self.enonce.set_expr)
         controller.error.connect(self.get_error)
         controller.ok.connect(self.get_ok)
         self.get_entry.connect(controller.receive)
@@ -91,10 +96,12 @@ class WorkSpace(QWidget):
         self._in.reset()
         self.controller.next()
         self.next_btn.setDisabled(True)
+        self.validate_btn.setDisabled(False)
         self._in.setFocus()
 
     def get_ok(self):
         self.next_btn.setDisabled(False)
+        self.validate_btn.setDisabled(True)
         QMessageBox.information(self, 'Bravo!', 'Vous avez répondu correctement à cette question')
 
     @Slot(str)
@@ -108,28 +115,25 @@ class WorkSpace(QWidget):
 ######################################################
 #                   constructors
 
-def createTextMode():
+def createTextMode(user):
     widget = WorkSpace(EnonceTexte(), SimpleLineEdit())
-
-    controller = CmTextController()
+    userData = user.get_mode(NDN_CONV_MODE) if user else None
+    controller = CmNormalDottedConvTController(userData)
     widget.set_controller(controller)
     return widget
 
-def createNormalToGraphicMode():
+def createNormalToGraphicMode(user):
     widget = WorkSpace(EnonceTexte(), GraphicalLispGroupWidget())
-
-    controller = CmNormalToGraphicController()
+    userData = user.get_mode(NG_CONV_MODE) if user else None
+    controller = CmNormalToGraphicTController(userData)
     widget.set_controller(controller)
-
     return widget
 
-def createGraphicToNormalMode():
+def createGraphicToNormalMode(user):
     glispw = EnonceGraphique()
     glispw.setInteractive(False)
-
     widget = WorkSpace(glispw, SimpleLineEdit())
-
-    controller = CmGraphicToNormalController()
+    userData = user.get_mode(GN_CONV_MODE) if user else None
+    controller = CmGraphicToNormalTController(userData)
     widget.set_controller(controller)
-
     return widget

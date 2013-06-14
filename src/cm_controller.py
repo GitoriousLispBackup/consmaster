@@ -46,140 +46,132 @@ def valid(entry, expr, fmt='normal', strict=True):
     return entry == excepted
 
 # TODO : deal with level
-def repr_convert_gen(level=None):
-    while True:
-        yield random.choice(['normal', 'dotted']), exp_generator()
-
 def simple_gen(level=None):
     while True:
         yield exp_generator()
 
-class CmTextController(QObject):
-    enonce_changed = Signal(str)
+
+class CmBasicController(QObject):
+    enonceChanged = Signal(object)
     error = Signal(str)
     ok = Signal()
-    def __init__(self, it=repr_convert_gen()):
+    
+    def __init__(self):
         super().__init__()
         self.interpreter = Interpreter(out=print)
-        self.enonce_iter = it
-        self.timer = QElapsedTimer()
+    
 
+class TrainingMixin:
+    def __init__(self, userData):
+        self.userData = userData
+        self.currentLevel = userData.current_level() if userData else None
+        self.enonceIter = simple_gen(self.currentLevel if self.currentLevel else 0)
+        
     def next(self):
-        try:
-            enonce = next(self.enonce_iter)
-        except StopIteration:
-            # TODO : deal with the end of exercice
-            return
-        self.typ, self.enonce = enonce
-        method_inv = {'normal':'dotted_repr', 'dotted':'__repr__'}[self.typ]
-        self.enonce_changed.emit('<i>[' + self.typ + ']</i><br>' + getattr(self.enonce, method_inv)())
-        self.interpreter.reset()
-        self.timer.start()
-
-    @Slot(str)
+        self.enonce = next(self.enonceIter)
+        return self.enonce
+        
+    @Slot(object)
     def receive(self, entry):
+        if self.validate(entry):
+            self.verify(entry)
+            
+    def updateData(self, score):
+        if self.userData:
+            self.userData.training[self.currentLevel].append(score)
+            lvl = self.userData.current_level()
+            if lvl > self.currentLevel:
+                # TODO : announce that
+                print('upgrade level to', lvl)
+                self.currentLevel = lvl
+                self.enonceIter = simple_gen(self.currentLevel)
+        
+    def verify(self, entry):
+        ok = self.test(entry)
+        self.updateData(1 if ok else 0)
+        if ok:                
+            self.ok.emit()
+        else:
+            # TODO : add help to user
+            print('KO')
+
+
+class CmNormalDottedConvTController(CmBasicController, TrainingMixin):
+    methods = {'dotted':'dotted_repr', 'normal':'__repr__'}
+    inv_methods = {'normal':'dotted_repr', 'dotted':'__repr__'}
+
+    def __init__(self, userData=None):
+        CmBasicController.__init__(self)
+        TrainingMixin.__init__(self, userData)
+    
+    def next(self):
+        super().next()
+        self.typ = random.choice(list(self.methods.keys()))
+        method_inv = self.inv_methods[self.typ]
+        self.enonceChanged.emit('<i>[' + self.typ + ']</i><br>' + getattr(self.enonce, method_inv)())
+    
+    def validate(self, entry):
         # step 1 : check for empty data 
         if not entry.strip():
             self.error.emit('Vous devez entrer une expression valide.')
-            return
+            return False
         # step 2 : check for parsing errors
         try:
             expr = self.interpreter.parse(entry)
         except LispParseError as err:
             self.error.emit("Erreur dans l'expression fournie.\nLe parseur a retourné " + repr(err))
-            return
+            return False
         # step 3 : check for conformity
         if not valid(entry, expr, self.typ):
             self.error.emit("L'expression n'est pas conforme au format attendu.\nVeuillez vérifier l'énoncé et le pretty-print.")
-            return
-        # step 4 : verify the entry
-        self.verify(entry)            
-
-    # TODO : add some help to user
-    def verify(self, entry):
-        method = {'dotted':'dotted_repr', 'normal':'__repr__'}[self.typ]
+            return False
+        return True
+        
+    def test(self, entry):
+        method = self.methods[self.typ]
         excepted = getattr(self.enonce, method)()
-        if entry == excepted:
-            print('OK', self.timer.elapsed(), 'ms')
-            self.ok.emit()
-        else:
-            print('KO', self.timer.elapsed(), 'ms')
+        return entry == excepted
 
 
-class CmNormalToGraphicController(QObject):
-    enonce_changed = Signal(str)
-    error = Signal(str)
-    ok = Signal()
-    def __init__(self, it=simple_gen()):
-        super().__init__()
-        self.enonce_iter = it
-        self.interpreter = Interpreter(out=print)
-        self.timer = QElapsedTimer()
+class CmNormalToGraphicTController(CmBasicController, TrainingMixin):
+    def __init__(self, userData=None):
+        CmBasicController.__init__(self)
+        TrainingMixin.__init__(self, userData)
 
     def next(self):
-        try:
-            self.enonce = next(self.enonce_iter)
-        except StopIteration:
-            # TODO : deal with the end of exercice
-            return
-        self.interm_enonce = GraphExpr.from_lsp_obj(self.enonce)
-        self.enonce_changed.emit(repr(self.enonce))
-        self.interpreter.reset()
-        self.timer.start()
+        super().next()
+        self.enonceChanged.emit(repr(self.enonce))
 
-    @Slot(object)
-    def receive(self, intermediate_repr):
-        self.verify(intermediate_repr)
+    def validate(self, entry):
+        # occurs at GUI level
+        return True
+        
+    def test(self, entry):
+        return entry == GraphExpr.from_lsp_obj(self.enonce)
 
-    # TODO : add some help to user
-    def verify(self, intermediate):
-        if intermediate == self.interm_enonce:
-            print('OK', self.timer.elapsed(), 'ms')
-            self.ok.emit()
-        else:
-            print('KO', self.timer.elapsed(), 'ms')
-
-
-class CmGraphicToNormalController(QObject):
-    enonce_changed = Signal(object)
-    error = Signal(str)
-    ok = Signal()
-    def __init__(self, it=simple_gen()):
-        super().__init__()
-        self.enonce_iter = it
-        self.interpreter = Interpreter(out=print)
-        self.timer = QElapsedTimer()
+        
+class CmGraphicToNormalTController(CmBasicController, TrainingMixin):
+    def __init__(self, userData=None):
+        CmBasicController.__init__(self)
+        TrainingMixin.__init__(self, userData)
 
     def next(self):
-        try:
-            self.enonce = next(self.enonce_iter)
-        except StopIteration:
-            # TODO : deal with the end of exercice
-            return
-        self.interm_enonce = GraphExpr.from_lsp_obj(self.enonce)
-        self.enonce_changed.emit(self.interm_enonce)
-        self.interpreter.reset()
-        self.timer.start()
+        super().next()
+        self.enonce_intermediate = GraphExpr.from_lsp_obj(self.enonce)
+        self.enonceChanged.emit(self.enonce_intermediate)
 
-    @Slot(str)
-    def receive(self, entry):
+    def validate(self, entry):
         # step 1 : check for empty data 
         if not entry.strip():
             self.error.emit('Vous devez entrer une expression valide.')
-            return
+            return False
         # step 2 : check for parsing errors
         try:
             expr = self.interpreter.parse(entry)
         except LispParseError as err:
             self.error.emit("Erreur dans l'expression fournie.\nLe parseur a retourné " + repr(err))
-            return
-        # step 3 : verify expr
-        self.verify(expr)
+            return False
+        return True
 
-    # TODO : add some help to user
-    def verify(self, entry):
-        if self.interm_enonce == GraphExpr.from_lsp_obj(entry):
-            print('OK', self.timer.elapsed(), 'ms')
-            self.ok.emit()
-        else:
-            print('KO', self.timer.elapsed(), 'ms')
+    def test(self, entry):
+        return GraphExpr.from_lsp_obj(entry) == self.enonce_intermediate
