@@ -169,11 +169,11 @@ class CmGraphicToNormalTController(CmBasicController, TrainingMixin):
             return False
         # step 2 : check for parsing errors
         try:
-            expr = self.interpreter.parse(entry)
+            self.iexpr = self.interpreter.parse(entry)
         except LispParseError as err:
             self.error.emit("Erreur dans l'expression fournie.\nLe parseur a retourné " + repr(err))
             return False
         return True
 
     def test(self, entry):
-        return GraphExpr.from_lsp_obj(entry) == self.enonce_intermediate
+        return GraphExpr.from_lsp_obj(self.iexpr) == self.enonce_intermediate
