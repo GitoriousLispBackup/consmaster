@@ -32,7 +32,6 @@ class FreeMode(QWidget):
         self.setLayout(layout)
 
         self.terminal.setFocus()
-
         self.close_btn.clicked.connect(self.close)
 
     def set_controller(self, controller):

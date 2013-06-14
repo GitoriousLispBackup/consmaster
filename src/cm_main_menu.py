@@ -2,9 +2,12 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import pickle
 
+from cm_globals import *
 from cm_free_mode import *
 from cm_workspace import *
+from cm_monitor import *
 
 try:
     from PySide.QtCore import *
@@ -89,7 +92,7 @@ class MainMenu(QWidget) :
 
     def startSelectedMode(self):
         selectedBtn = self.buttons_group.checkedButton()
-        widget = selectedBtn.constructor()
+        widget = selectedBtn.constructor(self.mainwindow.currentUser)
         
         widget.closeRequested.connect(self.closeWidget)
         
