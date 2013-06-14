@@ -21,4 +21,4 @@ class UserData:
     def get_mode(self, n):
         return self.modes[n]
     def __repr__(self):
-        return '<UserData: ' + self.name + ', ' + self.mail + '>'
+        return '<UserData:\n' + self.name + ',\n' + self.mail + ',\n' + '\n'.join(repr(mode) for mode in self.modes) + '\n>'
