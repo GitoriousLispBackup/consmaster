@@ -26,7 +26,7 @@ class ButtonMenu(QPushButton):
 
 class MainMenu(QWidget) :
     Modes = [
-        ("Mode Libre", './mode-libre.html', createFreeMode),
+        ("Mode Libre", '../data/mode-libre.html', createFreeMode),
         ("Standard \n<-> Dotted", None, createTextMode),
         ("Standard \n-> Graphique", None, createNormalToGraphicMode),
         ("Graphique \n-> Standard", None, createGraphicToNormalMode),
