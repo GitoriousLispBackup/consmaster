@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+
 import re
 import random
 
@@ -35,6 +36,7 @@ class CmController(QObject):
             gexpr = GraphExpr.from_lsp_obj(retval)
             self.send.emit(gexpr)
 
+
 ############################################################
 #               controllers for exercices
 
@@ -45,10 +47,26 @@ def valid(entry, expr, fmt='normal', strict=True):
     excepted = getattr(expr, method)()
     return entry == excepted
 
-# TODO : deal with level
+
 def simple_gen(level=None):
+    # max_depth, max_len, proper
+    known_levels = {
+        0: (1, 4, 1.),
+        1: (2, 4, 1.),
+        2: (3, 5, 1.),
+        3: (1, 4, 0.5),
+        4: (2, 4, 0.5),
+        5: (3, 5, 0.5),
+        6: (4, 6, 0.5)
+    }
+    maxi = max(known_levels.keys())
+
+    if level is None:
+        level = 0
+    elif level > maxi:
+        level = maxi
     while True:
-        yield exp_generator()
+        yield exp_generator(*known_levels[level])
 
 
 class CmBasicController(QObject):
