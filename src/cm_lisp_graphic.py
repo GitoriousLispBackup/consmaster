@@ -115,7 +115,7 @@ class GlispWidget(QGraphicsView) :
     def get_expr(self):
         root = self.rootArrow.root
         if root is None:
-            ret = QMessageBox.warning(self, 'Attention', "La flèche racine n'est connectée à aucun élément.\nVous devez la connecter avant de continuer.")
+            QMessageBox.warning(self, 'Attention', "La flèche racine n'est connectée à aucun élément.\nVous devez la connecter avant de continuer.")
             return
         if len(self.orphans(root)) != 0:
             ret = QMessageBox.question(self, 'Attention', "Certains éléments ne sont pas reliés à l'arbre.\nVoulez vous continuer ?",

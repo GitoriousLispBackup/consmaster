@@ -143,7 +143,9 @@ class CmNormalToGraphicTController(CmBasicController, TrainingMixin):
         self.enonceChanged.emit(repr(self.enonce))
 
     def validate(self, entry):
-        # occurs at GUI level
+        # some verifications occurs at GUI level
+        if entry is None:
+            return False
         return True
         
     def test(self, entry):
