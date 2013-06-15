@@ -19,7 +19,7 @@ from lisp_errors import LispError, LispParseError
 from cm_lisp_graphic import *
 from cm_terminal import *
 from cm_interpreter import Interpreter, GraphExpr
-from cm_expr_generator import exp_generator
+from cm_expr_generator import level_expr_gen
 
 
 class CmController(QObject):
@@ -48,24 +48,6 @@ def valid(entry, expr, fmt='normal', strict=True):
     return entry == excepted
 
 
-def simple_gen(level=None):
-    # max_depth, max_len, proper
-    known_levels = {
-        0: (1, 4, 1.),
-        1: (2, 4, 1.),
-        2: (3, 5, 1.),
-        3: (1, 4, 0.5),
-        4: (2, 4, 0.5),
-        5: (3, 5, 0.5),
-        6: (4, 6, 0.5)
-    }
-    maxi = max(known_levels.keys())
-
-    if level > maxi: level = maxi
-    while True:
-        yield exp_generator(*known_levels[level])
-
-
 class CmBasicController(QObject):
     enonceChanged = Signal(object)
     error = Signal(str)
@@ -80,7 +62,7 @@ class TrainingMixin:
     def __init__(self, userData):
         self.userData = userData
         self.currentLevel = userData.current_level() if userData else 0
-        self.enonceIter = simple_gen(self.currentLevel)
+        self.enonceIter = level_expr_gen(self.currentLevel)
         
     def next(self):
         self.enonce = next(self.enonceIter)
@@ -99,7 +81,7 @@ class TrainingMixin:
                 # TODO : announce that
                 print('upgrade level to', lvl)
                 self.currentLevel = lvl
-                self.enonceIter = simple_gen(self.currentLevel)
+                self.enonceIter = level_expr_gen(self.currentLevel)
         
     def verify(self, entry):
         ok = self.test(entry)

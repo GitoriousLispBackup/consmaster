@@ -9,6 +9,18 @@ import pylisp.lisp as lisp
 from lisp import Cons, Symbol
 
 
+# max_depth, max_len, proper
+_cm_levels = {
+    0: (1, 4, 1.),
+    1: (2, 4, 1.),
+    2: (3, 5, 1.),
+    3: (1, 4, 0.5),
+    4: (2, 4, 0.5),
+    5: (3, 5, 0.5),
+    6: (4, 6, 0.5)
+}
+
+
 _default_candidates = string.ascii_letters #  + string.digits
 
 
@@ -47,6 +59,13 @@ def exp_generator(max_depth=1, max_len=4, proper=1., sym_gen=gen_with_doublons()
         else:
             return Symbol(expr)
     return get_lisp_obj(rec_build(1, 0))
+
+
+def level_expr_gen(level=None):
+    maxi = max(_cm_levels.keys())
+    if level > maxi: level = maxi
+    while True:
+        yield exp_generator(*_cm_levels[level])
 
 # testing
 if __name__ == '__main__':
