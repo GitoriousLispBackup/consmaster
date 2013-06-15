@@ -5,6 +5,7 @@ import sys
 
 from cm_globals import *
 from cm_main_menu import MainMenu
+from cm_stats import *
 
 try:
     from PySide.QtCore import *
@@ -12,8 +13,6 @@ try:
 except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
-
-from cm_stats import *
     
 
 class Client(QMainWindow):
@@ -107,8 +106,7 @@ class Client(QMainWindow):
                 "Maîtrisez les représentations de listes, en notations parenthésées, à point et en doublets graphiques.")
 
     def getStats(self):
-        self.stat_dlg = StatsDialog(self.currentUser)
-        self.stat_dlg.show()
+        StatsDialog(self.currentUser).exec_()
 
     def closeEvent(self, event):
         cm_save_data(self.data)

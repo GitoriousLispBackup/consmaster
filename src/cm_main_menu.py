@@ -3,6 +3,7 @@
 
 import sys
 import pickle
+import textwrap
 
 from cm_globals import *
 from cm_free_mode import *
@@ -27,9 +28,9 @@ class ButtonMenu(QPushButton):
 class MainMenu(QWidget) :
     Modes = [
         ("Mode Libre", '../data/mode-libre.html', createFreeMode),
-        ("Standard \n<-> Dotted", None, createTextMode),
-        ("Standard \n-> Graphique", None, createNormalToGraphicMode),
-        ("Graphique \n-> Standard", None, createGraphicToNormalMode),
+        (ModeName[NDN_CONV_MODE], None, createTextMode),
+        (ModeName[NG_CONV_MODE], None, createNormalToGraphicMode),
+        (ModeName[GN_CONV_MODE], None, createGraphicToNormalMode),
             ]
 
     """ Main menu creation/gestion
@@ -55,12 +56,16 @@ class MainMenu(QWidget) :
         self.buttons_group.setExclusive(True)
 
         for name, src, func in MainMenu.Modes:
+            name = '\n'.join(textwrap.wrap(name, 10))
             btn = ButtonMenu(src, func, name, scrollContent)
             btn.setCheckable(True)
             btn.setFixedSize(120,120)
             vb.addWidget(btn)
             self.buttons_group.addButton(btn)
-        self.buttons_group.buttonPressed.connect(self.displayMode)
+        self.buttons_group.buttonClicked.connect(self.displayMode)
+
+        #~ btns = self.buttons_group.buttons()
+        #~ if btns: btns[0].click()
 
         scrollContent.setLayout(vb)
 

@@ -9,9 +9,12 @@ except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
+from cm_globals import *
+
+
 def getModeTab(mode):
     nrows = len(mode.training)
-    htmlTable = '<tr><td>Niveau</td><td>Moyenne</td></tr>'
+    htmlTable = '<tr><th>Niveau</th><th>Moyenne</th></tr>'
     for lvl in sorted(mode.training.keys()):
         lst = mode.training[lvl]
         avg = sum(lst) / len(lst)
@@ -29,11 +32,12 @@ class StatsDialog(QDialog):
         label = QLabel('<b>User :</b> ' + userData.name + '<br> mail : <i>' + userData.mail + '<i>')
         
         tabWidget = QTabWidget()
-        for mode in userData.modes:
-            tabWidget.addTab(getModeTab(mode), 'test')
+        for name, mode in zip(ModeName, userData.modes):
+            tabWidget.addTab(getModeTab(mode), name)
 
         layout = QVBoxLayout()
         layout.addWidget(label)
         layout.addWidget(tabWidget)
 
         self.setLayout(layout)
+        self.resize(400, 200)

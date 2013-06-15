@@ -1,6 +1,13 @@
 DATA_PATH = '../data/cm.dat'
 # CURRENT_USER = None
 
+
+ModeName = [
+    "Standard <-> Dotted", 
+    "Expr -> Graphique",
+    "Graphique -> Expr"
+    ]
+
 NDN_CONV_MODE = 0   # normal <-> dotted
 NG_CONV_MODE = 1    # normal -> graphic
 GN_CONV_MODE = 2    # graphic -> normal
