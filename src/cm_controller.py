@@ -50,8 +50,8 @@ def valid(entry, expr, fmt='normal', strict=True):
 
 class CmBasicController(QObject):
     enonceChanged = Signal(object)
-    error = Signal(str)
-    ok = Signal()
+    errorMsg = Signal(str)
+    okMsg = Signal(str)
     
     def __init__(self):
         super().__init__()
@@ -87,7 +87,7 @@ class TrainingMixin:
         ok = self.test(entry)
         self.updateData(1 if ok else 0)
         if ok:                
-            self.ok.emit()
+            self.okMsg.emit('Vous avez répondu correctement à cette question')
         else:
             # TODO : add help to user
             print('KO')
@@ -110,17 +110,17 @@ class CmNormalDottedConvTController(CmBasicController, TrainingMixin):
     def validate(self, entry):
         # step 1 : check for empty data 
         if not entry.strip():
-            self.error.emit('Vous devez entrer une expression valide.')
+            self.errorMsg.emit('Vous devez entrer une expression valide.')
             return False
         # step 2 : check for parsing errors
         try:
             expr = self.interpreter.parse(entry)
         except LispParseError as err:
-            self.error.emit("Erreur dans l'expression fournie.\nLe parseur a retourné " + repr(err))
+            self.errorMsg.emit("Erreur dans l'expression fournie.\nLe parseur a retourné " + repr(err))
             return False
         # step 3 : check for conformity
         if not valid(entry, expr, self.typ):
-            self.error.emit("L'expression n'est pas conforme au format attendu.\nVeuillez vérifier l'énoncé et le pretty-print.")
+            self.errorMsg.emit("L'expression n'est pas conforme au format attendu.\nVeuillez vérifier l'énoncé et le pretty-print.")
             return False
         return True
         
@@ -162,13 +162,13 @@ class CmGraphicToNormalTController(CmBasicController, TrainingMixin):
     def validate(self, entry):
         # step 1 : check for empty data 
         if not entry.strip():
-            self.error.emit('Vous devez entrer une expression valide.')
+            self.errorMsg.emit('Vous devez entrer une expression valide.')
             return False
         # step 2 : check for parsing errors
         try:
             self.iexpr = self.interpreter.parse(entry)
         except LispParseError as err:
-            self.error.emit("Erreur dans l'expression fournie.\nLe parseur a retourné " + repr(err))
+            self.errorMsg.emit("Erreur dans l'expression fournie.\nLe parseur a retourné " + repr(err))
             return False
         return True
 

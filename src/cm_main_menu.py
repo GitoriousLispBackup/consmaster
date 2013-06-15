@@ -81,7 +81,7 @@ class MainMenu(QWidget) :
         self.displayText = QTextEdit()
         self.displayText.setReadOnly(True)
 
-        launchButton = QPushButton("Démarrer", self)
+        launchButton = QPushButton("S'entrainer", self)
         launchButton.setFixedHeight(50)
         launchButton.clicked.connect(self.startSelectedMode)
 

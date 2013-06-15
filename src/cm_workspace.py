@@ -24,6 +24,9 @@ class EnonceTexte(QLabel):
         self.setText(expr)
 
 class EnonceGraphique(GlispWidget):
+    def __init__(self):
+        super().__init__()
+        self.setInteractive(False)
     def set_expr(self, expr):
         self.insert_expr(expr)
 
@@ -32,15 +35,15 @@ class WorkSpace(QWidget):
     get_entry = Signal(object)
     closeRequested = Signal(QWidget)
     
-    def __init__(self, enonce, _in):
+    def __init__(self, w_enonce, _in):
         super().__init__()
 
         layout = QVBoxLayout()
 
-        label_in = QLabel('<b>Expression à convertir :</b>')
-        label_out = QLabel('<b>Conversion :</b>')
+        label_en = QLabel('<b>Expression à convertir :</b>')
+        label_in = QLabel('<b>Conversion :</b>')
         self._in = _in
-        self.enonce = enonce
+        self.w_enonce = w_enonce
         self.validate_btn = QPushButton(QIcon("../icons/button_accept"), "Valider")
         self.validate_btn.setFixedHeight(40)
         self.next_btn = QPushButton(QIcon("../icons/go-next"), "Suivant")
@@ -50,12 +53,12 @@ class WorkSpace(QWidget):
         
         topLayout = QVBoxLayout()
         topLayout.setAlignment(Qt.AlignTop)
-        topLayout.addWidget(label_in)
-        topLayout.addWidget(enonce)
+        topLayout.addWidget(label_en)
+        topLayout.addWidget(w_enonce)
 
         centerLayout = QVBoxLayout()
         centerLayout.setAlignment(Qt.AlignCenter)
-        centerLayout.addWidget(label_out)
+        centerLayout.addWidget(label_in)
         centerLayout.addWidget(_in)
 
         bottomLayout = QHBoxLayout()
@@ -71,13 +74,9 @@ class WorkSpace(QWidget):
 
         self.setLayout(layout)
 
-        self.next_btn.setDisabled(True)
         self.validate_btn.clicked.connect(self.validate_requested)
         self.next_btn.clicked.connect(self.go_next)
         self.close_btn.clicked.connect(self.close)
-
-    def set_monitor(self, monitor):
-        self.monitor = monitor
 
     def validate_requested(self):
         expr = self._in.get_expr()
@@ -86,23 +85,24 @@ class WorkSpace(QWidget):
     def set_controller(self, controller):
         self.controller = controller
 
-        controller.enonceChanged.connect(self.enonce.set_expr)
-        controller.error.connect(self.get_error)
-        controller.ok.connect(self.get_ok)
+        controller.enonceChanged.connect(self.w_enonce.set_expr)
+        controller.errorMsg.connect(self.get_error)
+        controller.okMsg.connect(self.get_ok)
         self.get_entry.connect(controller.receive)
         self.go_next()
 
     def go_next(self):
         self._in.reset()
         self.controller.next()
-        self.next_btn.setDisabled(True)
+        #self.next_btn.setDisabled(True) #
         self.validate_btn.setDisabled(False)
         self._in.setFocus()
 
-    def get_ok(self):
-        self.next_btn.setDisabled(False)
+    @Slot(str)
+    def get_ok(self, msg):
+        #self.next_btn.setDisabled(False) #
         self.validate_btn.setDisabled(True)
-        QMessageBox.information(self, 'Bravo!', 'Vous avez répondu correctement à cette question')
+        QMessageBox.information(self, 'Bravo!', msg)
 
     @Slot(str)
     def get_error(self, msg):
@@ -130,9 +130,7 @@ def createNormalToGraphicMode(user):
     return widget
 
 def createGraphicToNormalMode(user):
-    glispw = EnonceGraphique()
-    glispw.setInteractive(False)
-    widget = WorkSpace(glispw, SimpleLineEdit())
+    widget = WorkSpace(EnonceGraphique(), SimpleLineEdit())
     userData = user.get_mode(GN_CONV_MODE) if user else None
     controller = CmGraphicToNormalTController(userData)
     widget.set_controller(controller)
