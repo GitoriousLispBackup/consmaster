@@ -11,15 +11,14 @@ except:
 
 def getModeTab(mode):
     nrows = len(mode.training)
-    table = QTableWidget(nrows, 2)
-    table.setHorizontalHeaderLabels(['Niveau', 'Moyenne'])
+    htmlTable = '<tr><td>Niveau</td><td>Moyenne</td></tr>'
     for lvl in sorted(mode.training.keys()):
         lst = mode.training[lvl]
-        average = sum(lst) / len(lst)
-        table.setItem(lvl, 0, QTableWidgetItem(str(lvl)))
-        table.setItem(lvl, 1, QTableWidgetItem(str(average)))
-        print(lvl, average)
-    table.setDisabled(True)
+        avg = sum(lst) / len(lst)
+        row = '<tr><td>{}</td><td>{:.2%}</td></tr>'.format(lvl, avg)
+        htmlTable += row
+    htmlTable = '<table border="1">' + htmlTable + '</table>'
+    table = QLabel(htmlTable)
     return table
 
 class StatsDialog(QDialog):

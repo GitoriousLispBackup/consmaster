@@ -107,8 +107,8 @@ class Client(QMainWindow):
                 "Maîtrisez les représentations de listes, en notations parenthésées, à point et en doublets graphiques.")
 
     def getStats(self):
-        dlg = StatsDialog(self.currentUser)
-        dlg.exec_()
+        self.stat_dlg = StatsDialog(self.currentUser)
+        self.stat_dlg.show()
 
     def closeEvent(self, event):
         cm_save_data(self.data)
