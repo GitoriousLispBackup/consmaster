@@ -14,11 +14,12 @@ from cm_globals import *
 
 def getModeTab(mode):
     nrows = len(mode.training)
-    htmlTable = '<tr><th>Niveau</th><th>Moyenne</th></tr>'
+    htmlTable = '<tr><th>Niveau</th><th>Réalisations</th><th>Moyenne</th></tr>'
     for lvl in sorted(mode.training.keys()):
         lst = mode.training[lvl]
-        avg = sum(lst) / len(lst)
-        row = '<tr><td>{}</td><td>{:.2%}</td></tr>'.format(lvl, avg)
+        k = len(lst)
+        avg = sum(lst) / k
+        row = '<tr><td>{}</td><td>{}</td><td>{:.2%}</td></tr>'.format(lvl, k, avg)
         htmlTable += row
     htmlTable = '<table border="1">' + htmlTable + '</table>'
     table = QLabel(htmlTable)
