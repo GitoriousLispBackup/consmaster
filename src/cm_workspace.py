@@ -30,13 +30,13 @@ class EnonceTexte(QLabel):
 class EnonceGraphique(GlispWidget):
     def __init__(self):
         super().__init__()
-        self.setInteractive(False)
+        # self.setInteractive(False)
     def set_expr(self, expr):
         self.insert_expr(expr)
 
 
 class WorkSpace(QWidget):
-    get_entry = Signal(object)
+    getEntry = Signal(object)
     closeRequested = Signal(QWidget)
     
     def __init__(self, w_enonce, _in):
@@ -49,11 +49,11 @@ class WorkSpace(QWidget):
         self._in = _in
         self.w_enonce = w_enonce
         self.validate_btn = QPushButton(QIcon("../icons/button_accept"), "Valider")
-        self.validate_btn.setFixedHeight(40)
+        self.validate_btn.setFixedHeight(35)
         self.next_btn = QPushButton(QIcon("../icons/go-next"), "Suivant")
-        self.next_btn.setFixedHeight(40)
+        self.next_btn.setFixedHeight(35)
         self.close_btn = QPushButton(QIcon("../icons/cancel"), "Fermer")
-        self.close_btn.setFixedHeight(40)
+        self.close_btn.setFixedHeight(35)
         
         topLayout = QVBoxLayout()
         topLayout.setAlignment(Qt.AlignTop)
@@ -78,65 +78,70 @@ class WorkSpace(QWidget):
 
         self.setLayout(layout)
 
-        self.validate_btn.clicked.connect(self.validate_requested)
-        self.next_btn.clicked.connect(self.go_next)
+        self.validate_btn.clicked.connect(self.validateRequested)
+        self.next_btn.clicked.connect(self.goNext)
         self.close_btn.clicked.connect(self.close)
 
-    def validate_requested(self):
+    def validateRequested(self):
         expr = self._in.get_expr()
         if expr is not None:
-            self.get_entry.emit(expr)
+            self.getEntry.emit(expr)
 
-    def set_controller(self, controller):
+    def setController(self, controller):
         self.controller = controller
-
+        controller.setWidget(self)
+        
         controller.enonceChanged.connect(self.w_enonce.set_expr)
-        controller.errorMsg.connect(self.get_error)
-        controller.okMsg.connect(self.get_ok)
-        self.get_entry.connect(controller.receive)
-        self.go_next()
+        controller.ok.connect(self.valided)
+        self.getEntry.connect(controller.receive)
+        self.goNext()
 
-    def go_next(self):
-        self._in.reset()
+    def goNext(self):
         self.controller.next()
-        #self.next_btn.setDisabled(True) #
         self.validate_btn.setDisabled(False)
+        self._in.reset()
         self._in.setFocus()
 
-    @Slot(str)
-    def get_ok(self, msg):
-        #self.next_btn.setDisabled(False) #
+    def valided(self):
         self.validate_btn.setDisabled(True)
-        QMessageBox.information(self, 'Bravo!', msg)
-
-    @Slot(str)
-    def get_error(self, msg):
-        QMessageBox.critical(self, 'Erreur', msg, QMessageBox.Ok)
 
     def close(self):
         self.closeRequested.emit(self)
 
 
+class TrainingWorkSpace(WorkSpace):
+    pass
+
+class ExerciceWorkSpace(WorkSpace):
+    def goNext(self):
+        self.next_btn.setDisabled(True)
+        super().goNext()
+
+    def valided(self):
+        self.next_btn.setDisabled(False)
+        super().valided()
+        
+
 ######################################################
 #                   constructors
 
 def createTextMode(user):
-    widget = WorkSpace(EnonceTexte(), SimpleLineEdit())
+    widget = TrainingWorkSpace(EnonceTexte(), SimpleLineEdit())
     userData = user.get_mode(NDN_CONV_MODE) if user else None
-    controller = CmNormalDottedConvTController(userData)
-    widget.set_controller(controller)
+    controller = CmNDConvTrainingController(userData)
+    widget.setController(controller)
     return widget
 
 def createNormalToGraphicMode(user):
-    widget = WorkSpace(EnonceTexte(), GraphicalLispGroupWidget())
+    widget = TrainingWorkSpace(EnonceTexte(), GraphicalLispGroupWidget())
     userData = user.get_mode(NG_CONV_MODE) if user else None
-    controller = CmNormalToGraphicTController(userData)
-    widget.set_controller(controller)
+    controller = CmNTGConvTrainingController(userData)
+    widget.setController(controller)
     return widget
 
 def createGraphicToNormalMode(user):
-    widget = WorkSpace(EnonceGraphique(), SimpleLineEdit())
+    widget = TrainingWorkSpace(EnonceGraphique(), SimpleLineEdit())
     userData = user.get_mode(GN_CONV_MODE) if user else None
-    controller = CmGraphicToNormalTController(userData)
-    widget.set_controller(controller)
+    controller = CmGTNConvTrainingController(userData)
+    widget.setController(controller)
     return widget
