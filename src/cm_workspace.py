@@ -15,7 +15,11 @@ from cm_globals import *
 
 class SimpleLineEdit(QLineEdit):
     def get_expr(self):
-        return self.text()
+        entry = self.text().strip()
+        if not entry:
+            QMessageBox.critical(self, 'Erreur', 'Vous devez entrer une expression valide.')
+            return None
+        return entry
     def reset(self):
         self.clear()
 
@@ -80,7 +84,8 @@ class WorkSpace(QWidget):
 
     def validate_requested(self):
         expr = self._in.get_expr()
-        self.get_entry.emit(expr)
+        if expr is not None:
+            self.get_entry.emit(expr)
 
     def set_controller(self, controller):
         self.controller = controller

@@ -108,17 +108,13 @@ class CmNormalDottedConvTController(CmBasicController, TrainingMixin):
         self.enonceChanged.emit('<i>[' + self.typ + ']</i><br>' + getattr(self.enonce, method_inv)())
     
     def validate(self, entry):
-        # step 1 : check for empty data 
-        if not entry.strip():
-            self.errorMsg.emit('Vous devez entrer une expression valide.')
-            return False
-        # step 2 : check for parsing errors
+        # step 1 : check for parsing errors
         try:
             expr = self.interpreter.parse(entry)
         except LispParseError as err:
             self.errorMsg.emit("Erreur dans l'expression fournie.\nLe parseur a retourné " + repr(err))
             return False
-        # step 3 : check for conformity
+        # step 2 : check for conformity
         if not valid(entry, expr, self.typ):
             self.errorMsg.emit("L'expression n'est pas conforme au format attendu.\nVeuillez vérifier l'énoncé et le pretty-print.")
             return False
@@ -141,8 +137,6 @@ class CmNormalToGraphicTController(CmBasicController, TrainingMixin):
 
     def validate(self, entry):
         # some verifications occurs at GUI level
-        if entry is None:
-            return False
         return True
         
     def test(self, entry):
@@ -160,11 +154,7 @@ class CmGraphicToNormalTController(CmBasicController, TrainingMixin):
         self.enonceChanged.emit(self.enonce_intermediate)
 
     def validate(self, entry):
-        # step 1 : check for empty data 
-        if not entry.strip():
-            self.errorMsg.emit('Vous devez entrer une expression valide.')
-            return False
-        # step 2 : check for parsing errors
+        # check for parsing errors
         try:
             self.iexpr = self.interpreter.parse(entry)
         except LispParseError as err:
