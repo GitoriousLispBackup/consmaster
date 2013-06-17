@@ -10,7 +10,6 @@ except:
 
 from cm_lisp_graphic import *
 from cm_controller import *
-from cm_globals import *
 
 
 class SimpleLineEdit(QLineEdit):
@@ -112,6 +111,7 @@ class WorkSpace(QWidget):
 class TrainingWorkSpace(WorkSpace):
     pass
 
+# TODO: ajouter un compteur faits/total
 class ExerciceWorkSpace(WorkSpace):
     def goNext(self):
         self.next_btn.setDisabled(True)
@@ -125,23 +125,20 @@ class ExerciceWorkSpace(WorkSpace):
 ######################################################
 #                   constructors
 
-def createTextMode(user):
+def createTextMode(userData):
     widget = TrainingWorkSpace(EnonceTexte(), SimpleLineEdit())
-    userData = user.get_mode(NDN_CONV_MODE) if user else None
     controller = CmNDConvTrainingController(userData)
     widget.setController(controller)
     return widget
 
-def createNormalToGraphicMode(user):
+def createNormalToGraphicMode(userData):
     widget = TrainingWorkSpace(EnonceTexte(), GraphicalLispGroupWidget())
-    userData = user.get_mode(NG_CONV_MODE) if user else None
     controller = CmNTGConvTrainingController(userData)
     widget.setController(controller)
     return widget
 
-def createGraphicToNormalMode(user):
+def createGraphicToNormalMode(userData):
     widget = TrainingWorkSpace(EnonceGraphique(), SimpleLineEdit())
-    userData = user.get_mode(GN_CONV_MODE) if user else None
     controller = CmGTNConvTrainingController(userData)
     widget.setController(controller)
     return widget
