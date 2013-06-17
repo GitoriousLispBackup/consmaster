@@ -33,7 +33,7 @@ class StatsDialog(QDialog):
         label = QLabel('<b>User :</b> ' + userData.name + '<br> mail : <i>' + userData.mail + '<i>')
         
         tabWidget = QTabWidget()
-        for name, mode in zip(ModeName, userData.modes):
+        for name, mode in userData.modes.items():
             tabWidget.addTab(getModeTab(mode), name)
 
         layout = QVBoxLayout()

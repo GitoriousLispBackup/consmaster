@@ -1,4 +1,5 @@
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
+from cm_globals import MODES
 
 class ExoType:
     def __init__(self):
@@ -14,11 +15,14 @@ class ExoType:
         return 'ExoType(training=' + repr(self.training) + ', exercices=' + repr(self.exercices) + ')'
 
 class UserData:
-    def __init__(self, name, mail, nmodes=3):
+    def __init__(self, name, mail):
         self.name = name
         self.mail = mail
-        self.modes = [ExoType() for _ in range(nmodes)]
-    def get_mode(self, n):
-        return self.modes[n]
+        self.modes = OrderedDict()
+        for mode in MODES:
+            if mode.name != "Mode Libre":
+                self.modes[mode.name] = ExoType()
+    def get_mode(self, name):
+        return self.modes.get(name)
     def __repr__(self):
-        return '<UserData:\n' + self.name + ',\n' + self.mail + ',\n' + '\n'.join(repr(mode) for mode in self.modes) + '\n>'
+        return '<UserData:\n' + self.name + ',\n' + self.mail + ',\n' + '\n'.join(repr(mode) for mode in self.modes.values()) + '\n>'

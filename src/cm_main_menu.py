@@ -9,6 +9,7 @@ from cm_globals import *
 from cm_free_mode import *
 from cm_workspace import *
 from cm_monitor import *
+from cm_expr_generator import _cm_levels
 
 try:
     from PySide.QtCore import *
@@ -19,20 +20,14 @@ except:
 
 
 class ButtonMenu(QPushButton):
-    def __init__(self, textSrc, func, name, parent):
-        super().__init__(name, parent)
-        self.description = open(textSrc, 'r', encoding='utf-8').read() if textSrc else 'information manquante sur ce mode'
-        self.constructor = func
+    def __init__(self, mode, parent):
+        super().__init__('\n'.join(textwrap.wrap(mode.name, 10)), parent)
+        self.description = open(mode.src, 'r', encoding='utf-8').read() if mode.src else 'information manquante sur ce mode'
+        self.constructor = mode.constructor
+        self.id = mode.name
 
 
-class MainMenu(QWidget) :
-    Modes = [
-        ("Mode Libre", '../data/mode-libre.html', createFreeMode),
-        (ModeName[NDN_CONV_MODE], None, createTextMode),
-        (ModeName[NG_CONV_MODE], None, createNormalToGraphicMode),
-        (ModeName[GN_CONV_MODE], None, createGraphicToNormalMode),
-            ]
-
+class MainMenu(QWidget):
     """ Main menu creation/gestion
 
     The main menu is used as a laucher for all modules
@@ -43,21 +38,18 @@ class MainMenu(QWidget) :
         self.basicMenu()
 
     #~ Basic and static menu
-    #~ TODO: should link to the correct text
     def basicMenu(self):
         self.layout = QHBoxLayout()
 
         scrollContent = QWidget()
-        #~ self.resize(50,100)
 
         #~ Layout in the scroll area
         vb = QVBoxLayout()
         self.buttons_group = QButtonGroup()
         self.buttons_group.setExclusive(True)
 
-        for name, src, func in MainMenu.Modes:
-            name = '\n'.join(textwrap.wrap(name, 10))
-            btn = ButtonMenu(src, func, name, scrollContent)
+        for mode in MODES:
+            btn = ButtonMenu(mode, scrollContent)
             btn.setCheckable(True)
             btn.setFixedSize(120,120)
             vb.addWidget(btn)
@@ -78,13 +70,17 @@ class MainMenu(QWidget) :
 
         #~ The text/hints display widget + his button
         vb = QVBoxLayout()
+
+        self.level = QProgressBar()
+        self.level.setMaximum(max(_cm_levels.keys()))
+        self.level.setFormat('niveau %v/%m')
         self.displayText = QTextEdit()
         self.displayText.setReadOnly(True)
-
         launchButton = QPushButton("S'entrainer", self)
         launchButton.setFixedHeight(50)
         launchButton.clicked.connect(self.startSelectedMode)
 
+        vb.addWidget(self.level)
         vb.addWidget(self.displayText)
         vb.addWidget(launchButton)
         self.layout.addLayout(vb)
@@ -94,10 +90,15 @@ class MainMenu(QWidget) :
     @Slot(QAbstractButton)
     def displayMode(self, btn):
         self.displayText.setText(btn.description)
+        user = self.mainwindow.currentUser
+        if user is not None:
+            current_level = user.get_mode(btn.id).current_level()
+            self.level.setValue(current_level)
 
     def startSelectedMode(self):
         selectedBtn = self.buttons_group.checkedButton()
-        widget = selectedBtn.constructor(self.mainwindow.currentUser)
+        user = self.mainwindow.currentUser
+        widget = selectedBtn.constructor(user.get_mode(selectedBtn.id) if user else None)
         
         widget.closeRequested.connect(self.closeWidget)
         

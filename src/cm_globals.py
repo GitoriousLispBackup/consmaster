@@ -1,16 +1,20 @@
+from cm_workspace import createTextMode, createNormalToGraphicMode, createGraphicToNormalMode
+from cm_free_mode import createFreeMode
+
 DATA_PATH = '../data/cm.dat'
 # CURRENT_USER = None
 
+from collections import namedtuple
 
-ModeName = [
-    "Standard <-> Dotted", 
-    "Expr -> Graphique",
-    "Graphique -> Expr"
-    ]
+Mode = namedtuple('Mode', ['name', 'src', 'constructor'])
 
-NDN_CONV_MODE = 0   # normal <-> dotted
-NG_CONV_MODE = 1    # normal -> graphic
-GN_CONV_MODE = 2    # graphic -> normal
+MODES = [
+    Mode("Mode Libre", '../data/mode-libre.html', createFreeMode),
+    Mode("Standard <-> Dotted", None, createTextMode),
+    Mode("Expr -> Graphique", None, createNormalToGraphicMode),
+    Mode("Graphique -> Expr", None, createGraphicToNormalMode),
+        ]
+
 
 import os.path
 import pickle
