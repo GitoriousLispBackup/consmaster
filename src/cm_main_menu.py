@@ -26,6 +26,21 @@ class ButtonMenu(QPushButton):
         self.constructor = mode.constructor
         self.id = mode.name
 
+class ExosList(QWidget):
+    def __init__(self):
+        super().__init__()
+        label = QLabel("<b>Liste d'exercices</b>")
+        self.lst = QListWidget()
+        layout = QVBoxLayout()
+        layout.addWidget(label)
+        layout.addWidget(self.lst)
+        self.setLayout(layout)
+
+    def populate(self, mode):
+        level = mode.current_level()
+        # TODO: populate list from mode and level
+
+
 
 class MainMenu(QWidget):
     """ Main menu creation/gestion
@@ -35,10 +50,7 @@ class MainMenu(QWidget):
     def __init__(self, mainwindow):
         super().__init__()
         self.mainwindow = mainwindow
-        self.basicMenu()
 
-    #~ Basic and static menu
-    def basicMenu(self):
         self.layout = QHBoxLayout()
 
         scrollContent = QWidget()
@@ -74,15 +86,33 @@ class MainMenu(QWidget):
         self.level = QProgressBar()
         self.level.setMaximum(max(_cm_levels.keys()))
         self.level.setFormat('niveau %v/%m')
+        self.level.hide()
+        
         self.displayText = QTextEdit()
         self.displayText.setReadOnly(True)
+        self.lstWidget = ExosList()
+        self.lstWidget.setFixedWidth(200)
+        self.lstWidget.hide()
+
+        buttonsLayout = QHBoxLayout()
         launchButton = QPushButton("S'entrainer", self)
-        launchButton.setFixedHeight(50)
+        launchButton.setFixedHeight(40)
         launchButton.clicked.connect(self.startSelectedMode)
+        self.exosButton = QPushButton("[*]", self)
+        self.exosButton.setFixedSize(40, 40)
+        self.exosButton.setCheckable(True)
+        self.exosButton.hide()
+        self.exosButton.toggled.connect(self.lstWidget.setVisible)
+        buttonsLayout.addWidget(launchButton)
+        buttonsLayout.addWidget(self.exosButton)
+
+        viewLayout = QHBoxLayout()
+        viewLayout.addWidget(self.displayText)
+        viewLayout.addWidget(self.lstWidget)
 
         vb.addWidget(self.level)
-        vb.addWidget(self.displayText)
-        vb.addWidget(launchButton)
+        vb.addLayout(viewLayout)
+        vb.addLayout(buttonsLayout)
         self.layout.addLayout(vb)
 
         self.setLayout(self.layout)
@@ -92,8 +122,19 @@ class MainMenu(QWidget):
         self.displayText.setText(btn.description)
         user = self.mainwindow.currentUser
         if user is not None:
-            current_level = user.get_mode(btn.id).current_level()
-            self.level.setValue(current_level)
+            try:
+                # check if mode is available
+                mode = user.get_mode(btn.id)
+            except:
+                self.level.hide()
+                self.lstWidget.hide()
+                self.exosButton.hide()
+            else:
+                self.level.show()
+                self.level.setValue(mode.current_level())
+                self.exosButton.show()
+                self.lstWidget.populate(mode)
+                self.lstWidget.setVisible(self.exosButton.isChecked())
 
     def startSelectedMode(self):
         selectedBtn = self.buttons_group.checkedButton()

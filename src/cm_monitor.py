@@ -23,6 +23,6 @@ class UserData:
             if mode.name != "Mode Libre":
                 self.modes[mode.name] = ExoType()
     def get_mode(self, name):
-        return self.modes.get(name)
+        return self.modes[name]
     def __repr__(self):
         return '<UserData:\n' + self.name + ',\n' + self.mail + ',\n' + '\n'.join(repr(mode) for mode in self.modes.values()) + '\n>'
