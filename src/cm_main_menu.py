@@ -8,7 +8,6 @@ import textwrap
 from cm_globals import *
 from cm_free_mode import *
 from cm_workspace import *
-from cm_monitor import *
 from cm_expr_generator import _cm_levels
 
 try:

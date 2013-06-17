@@ -8,7 +8,7 @@ except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
-
+from cm_monitor import UserData
 
 class AddUser(QDialog):
     def __init__(self, data, parent=None):
