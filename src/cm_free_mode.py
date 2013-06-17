@@ -34,9 +34,8 @@ class FreeMode(QWidget):
         self.terminal.setFocus()
         self.close_btn.clicked.connect(self.close)
 
-    def set_controller(self, controller):
+    def setController(self, controller):
         self.controller = controller
-
         self.terminal.read.connect(controller.receive)
         controller.send.connect(self.graphical_group.glisp_widget.insert_expr)
 
@@ -46,9 +45,8 @@ class FreeMode(QWidget):
 ######################################################
 #                   constructors
 
-def createFreeMode():
+def createFreeMode(userData):
     widget = FreeMode()
-
     controller = CmController(widget.terminal)
-    widget.set_controller(controller)
+    widget.setController(controller)
     return widget
