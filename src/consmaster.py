@@ -3,6 +3,13 @@
 
 import sys
 
+try:
+    from PySide.QtCore import *
+    from PySide.QtGui import *
+except:
+    print ("Error: This program needs PySide module.", file=sys.stderr)
+    sys.exit(1)
+
 from cm_globals import *
 from cm_main_menu import MainMenu
 from cm_stats import *
@@ -18,14 +25,15 @@ class Client(QMainWindow):
         self.data = cm_load_data()
 
         if not self.data:
-            print("Il est préférable de vous enregistrer afin de bénéficier des fonctions du suivi de progression.")
-            #TODO : add dialog to add new users
+            self.currentUser = None
+            QMessageBox.information(self, "Info",
+                    "Il est préférable de vous enregistrer afin de bénéficier des fonctionnalités du suivi de progression.")
 
         self.createMenus()
 
         self.setGeometry(200, 200, 800, 620)
         self.setWindowTitle("Consmaster")
-        self.setWindowIcon(QIcon("../icons/symbol"))
+        self.setWindowIcon(QIcon("../icons/cons"))
 
         self.central_widget = QStackedWidget()
 
@@ -59,7 +67,7 @@ class Client(QMainWindow):
         addUserAction.triggered.connect(self.addUser)
 
         statsAction = QAction(QIcon("../icons/help-browser"), # TODO: change this icon
-                "&Stats", self, triggered=self.getStats)
+                "&Statistiques", self, triggered=self.getStats)
 
         self.groupUser = QActionGroup(menu)  
         for user in self.data:
@@ -72,10 +80,7 @@ class Client(QMainWindow):
         # select some user
         users = self.groupUser.actions()
         if users:
-            users[0].setChecked(True)
-        else:
-            # TODO : prevent
-            self.currentUser = None
+            users[0].setChecked(True)            
 
         menu.addSeparator()
         menu.addAction(addUserAction)
