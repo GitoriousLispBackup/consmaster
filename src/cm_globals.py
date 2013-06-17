@@ -1,10 +1,9 @@
+import os.path
+import pickle
+from collections import namedtuple
 from cm_workspace import createTextMode, createNormalToGraphicMode, createGraphicToNormalMode
 from cm_free_mode import createFreeMode
 
-DATA_PATH = '../data/cm.dat'
-# CURRENT_USER = None
-
-from collections import namedtuple
 
 Mode = namedtuple('Mode', ['name', 'src', 'constructor'])
 
@@ -16,9 +15,7 @@ MODES = [
         ]
 
 
-import os.path
-import pickle
-from cm_monitor import *
+DATA_PATH = '../data/cm.dat'
 
 def cm_load_data():
     fp = open(DATA_PATH, 'rb')
