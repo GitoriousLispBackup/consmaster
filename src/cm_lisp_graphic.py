@@ -24,13 +24,13 @@ class GraphicalLispGroupWidget(QWidget):
 
         self.glisp_widget = GlispWidget(self)
 
-        glispAddCons = QPushButton("Add Cons")
-        glispAddAtom = QPushButton("Add Atom")
+        glispAddCons = QPushButton(QIcon("../icons/cons"), "Add Cons")
+        glispAddAtom = QPushButton(QIcon("../icons/insert-atom"), "Add Atom")
         glispRemove = QPushButton("Remove")
         glispRemUnconnected = QPushButton("Clean")
-        glispCleanAll = QPushButton("Clean All")
+        glispCleanAll = QPushButton(QIcon("../icons/clear"), "Clean All")
         glispAutolayout = QPushButton("Auto-layout")
-        glispCheck = QPushButton("Check")
+        #~ glispCheck = QPushButton("Check")
         #~ glispSave = QPushButton("Save")
         #~ glispLoad = QPushButton("Load")
 
@@ -41,7 +41,7 @@ class GraphicalLispGroupWidget(QWidget):
         self.buttons_layout.addWidget(glispRemUnconnected)
         self.buttons_layout.addWidget(glispCleanAll)
         self.buttons_layout.addWidget(glispAutolayout)
-        self.buttons_layout.addWidget(glispCheck)
+        #~ self.buttons_layout.addWidget(glispCheck)
         #~ self.buttons_layout.addWidget(glispSave)
         #~ self.buttons_layout.addWidget(glispLoad)
 
@@ -52,7 +52,7 @@ class GraphicalLispGroupWidget(QWidget):
         glispRemUnconnected.clicked.connect(self.glisp_widget.removeDisconnected)
         glispCleanAll.clicked.connect(self.glisp_widget.removeAll)
         glispAutolayout.clicked.connect(self.glisp_widget.autoLayout)
-        glispCheck.clicked.connect(self.glisp_widget.checkExpr)
+        #~ glispCheck.clicked.connect(self.glisp_widget.checkExpr)
         #~ glispLoad.clicked.connect(self.glisp_widget.load)
         #~ glispSave.clicked.connect(self.glisp_widget.save)
 
@@ -124,10 +124,10 @@ class GlispWidget(QGraphicsView) :
                 return
         return self.scene.get_interm_repr(root)
 
-    def checkExpr(self):
-        expr = self.get_expr()
-        if expr is not None:
-            print('level =', expr.level())
+    #~ def checkExpr(self):
+        #~ expr = self.get_expr()
+        #~ if expr is not None:
+            #~ print('level =', expr.level())
             #~ print('depth =', expr.depth())
             #~ print('proper =', expr.proper())
             #~ print('circ =', expr.circular())

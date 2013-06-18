@@ -24,11 +24,6 @@ class Client(QMainWindow):
 
         self.data = cm_load_data()
 
-        if not self.data:
-            self.currentUser = None
-            QMessageBox.information(self, "Info",
-                    "Il est préférable de vous enregistrer afin de bénéficier des fonctionnalités du suivi de progression.")
-
         self.createMenus()
 
         self.setGeometry(200, 200, 800, 620)
@@ -45,6 +40,11 @@ class Client(QMainWindow):
         self.statusBar().showMessage('Ready')
 
         self.show()
+
+        if not self.data:
+            self.currentUser = None
+            QMessageBox.information(self, "Info",
+                    "Il est préférable de vous enregistrer afin de bénéficier des fonctionnalités du suivi de progression.")
 
     def createMenus(self):
         self.clientMenu = self.menuBar().addMenu("&Client")
@@ -63,10 +63,11 @@ class Client(QMainWindow):
 
 
     def setUserMenu(self, menu):
-        addUserAction = menu.addAction("&Ajouter un utilisateur")
+        addUserAction = menu.addAction(QIcon("../icons/add-user"),
+                "&Ajouter un utilisateur")
         addUserAction.triggered.connect(self.addUser)
 
-        statsAction = QAction(QIcon("../icons/help-browser"), # TODO: change this icon
+        statsAction = QAction(QIcon("../icons/chart"), # TODO: change this icon
                 "&Statistiques", self, triggered=self.getStats)
 
         self.groupUser = QActionGroup(menu)  
@@ -112,6 +113,7 @@ class Client(QMainWindow):
                 "Maîtrisez les représentations de listes, en notations parenthésées, à point et en doublets graphiques.")
 
     def getStats(self):
+        # TODO: activer seulement si un user existe
         StatsDialog(self.currentUser).exec_()
 
     def closeEvent(self, event):

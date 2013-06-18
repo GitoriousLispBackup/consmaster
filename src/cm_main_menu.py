@@ -138,8 +138,10 @@ class MainMenu(QWidget):
     def startSelectedMode(self):
         selectedBtn = self.buttons_group.checkedButton()
         user = self.mainwindow.currentUser
-        widget = selectedBtn.constructor(user.get_mode(selectedBtn.id) if user else None)
-        
+        try:
+            widget = selectedBtn.constructor(user.get_mode(selectedBtn.id))
+        except:
+            widget = selectedBtn.constructor(None)
         widget.closeRequested.connect(self.closeWidget)
         
         self.mainwindow.setWindowTitle("Consmaster" +
