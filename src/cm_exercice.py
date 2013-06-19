@@ -59,4 +59,17 @@ class CmDemo(CmExerciceBase):
         self.__dict__.update(kwargs)
 
 
+######################################################
+
+def load(filename):
+    #~ filename, ok = QFileDialog.getOpenFileName(self, "Load file", '.', "ConsMaster Files (*.cm)")
+    with open(filename, 'r', encoding='utf-8') as fp:
+        return json.load(fp, object_hook=decoder)
+
+def save(intermediate, filename):
+    #~ filename, ok = QFileDialog.getSaveFileName(self, "Save file", '.', "ConsMaster Files (*.cm)")
+    #~ if not filename.endswith('.cm'):
+        #~ filename += '.cm'
+    with open(filename, 'w', encoding='utf-8') as fp:
+        json.dump(intermediate, fp, cls=Encoder)
 

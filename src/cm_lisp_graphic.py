@@ -13,14 +13,17 @@ from cm_lisp_obj import *
 from cm_lisp_scene import LispScene
 from cm_exercice import Encoder, dec as decoder
 from cm_interm_repr import GraphExpr
-import json
 
 
 class GraphicalLispGroupWidget(QWidget):
+    """
+    Group widget for graphical lisp widget,
+    contain and connect additionals buttons
+    and methods for usage.
+    """
+
     def __init__(self, parent=None):
         super().__init__(parent)
-
-        self.layout = QHBoxLayout()
 
         self.glisp_widget = GlispWidget(self)
 
@@ -31,8 +34,6 @@ class GraphicalLispGroupWidget(QWidget):
         glispCleanAll = QPushButton(QIcon("../icons/clear"), "Clean All")
         glispAutolayout = QPushButton("Auto-layout")
         #~ glispCheck = QPushButton("Check")
-        #~ glispSave = QPushButton("Save")
-        #~ glispLoad = QPushButton("Load")
 
         self.buttons_layout = QVBoxLayout()
         self.buttons_layout.addWidget(glispAddCons)
@@ -42,8 +43,6 @@ class GraphicalLispGroupWidget(QWidget):
         self.buttons_layout.addWidget(glispCleanAll)
         self.buttons_layout.addWidget(glispAutolayout)
         #~ self.buttons_layout.addWidget(glispCheck)
-        #~ self.buttons_layout.addWidget(glispSave)
-        #~ self.buttons_layout.addWidget(glispLoad)
 
         #~ Actions
         glispAddCons.clicked.connect(self.glisp_widget.addCons)
@@ -53,17 +52,24 @@ class GraphicalLispGroupWidget(QWidget):
         glispCleanAll.clicked.connect(self.glisp_widget.removeAll)
         glispAutolayout.clicked.connect(self.glisp_widget.autoLayout)
         #~ glispCheck.clicked.connect(self.glisp_widget.checkExpr)
-        #~ glispLoad.clicked.connect(self.glisp_widget.load)
-        #~ glispSave.clicked.connect(self.glisp_widget.save)
 
+        self.layout = QHBoxLayout()
         self.layout.addWidget(self.glisp_widget)
         self.layout.addLayout(self.buttons_layout)
         self.setLayout(self.layout)
 
     def get_expr(self):
+        """
+        get the lisp expression content in
+        graphical widget (in intermediate
+        format)
+        """
         return self.glisp_widget.get_expr()
 
     def reset(self):
+        """
+        reset the graphical widget content
+        """
         self.glisp_widget.removeAll()
 
 
@@ -88,41 +94,27 @@ class GlispWidget(QGraphicsView) :
 
         self.show()
 
-    def load(self):
-        filename, ok = QFileDialog.getOpenFileName(self, "Load file", '.', "ConsMaster Files (*.cm)")
-        with open(filename, 'r', encoding='utf-8') as fp:
-            intermediate = json.load(fp, object_hook=decoder)
-            self.insert_expr(intermediate)
-
-    def save(self):
-        rootItem = self.rootArrow.root
-        if not isinstance(rootItem, (GCons, GAtom)):
-            print('not root set. please set a root before saving')
-            return
-        
-        intermediate = self.scene.get_interm_repr(rootItem)
-        intermediate.layout = self.scene.get_current_layout()
-        # print(intermediate.to_lsp_obj())
-        
-        filename, ok = QFileDialog.getSaveFileName(self, "Save file", '.', "ConsMaster Files (*.cm)")
-        if not filename: return
-
-        if not filename.endswith('.cm'):
-            filename += '.cm'
-        with open(filename, 'w', encoding='utf-8') as fp:
-            json.dump(intermediate, fp, cls=Encoder)
-
-    def get_expr(self):
+    def get_expr(self, with_layout=False):
+        """
+        get intermediate representation of lisp expression
+        connected to the root arrow
+        """
         root = self.rootArrow.root
-        if root is None:
+        # if root isn't connected
+        if not isinstance(root, (GCons, GAtom)):
             QMessageBox.warning(self, 'Attention', "La flèche racine n'est connectée à aucun élément.\nVous devez la connecter avant de continuer.")
             return
+        # if some elems are disconnected
         if len(self.orphans(root)) != 0:
             ret = QMessageBox.question(self, 'Attention', "Certains éléments ne sont pas reliés à l'arbre.\nVoulez vous continuer ?",
                                             QMessageBox.Yes, QMessageBox.No)
             if ret == QMessageBox.No:
                 return
-        return self.scene.get_interm_repr(root)
+        # get intermediate lisp representation
+        retval = self.scene.get_interm_repr(root)
+        # add current layout, if required
+        if with_layout: retval.layout = self.scene.get_current_layout()
+        return retval
 
     #~ def checkExpr(self):
         #~ expr = self.get_expr()
@@ -134,6 +126,10 @@ class GlispWidget(QGraphicsView) :
 
     @Slot(object)
     def insert_expr(self, graph_expr):
+        """
+        insert lisp expression (in intermediate representation)
+        in the graphical lisp widget
+        """
         if not graph_expr: return
 
         self.removeAll()
@@ -158,13 +154,13 @@ class GlispWidget(QGraphicsView) :
 
         root = dct[graph_expr.root]
 
-        positions = getattr(graph_expr, 'layout', None)
-        if not positions:
-            # Automatic layout
+        try:
+            # if intermediate repr have a layout, use it
+            positions = {dct[uid] : pos for uid, pos in graph_expr.layout.items()}
+        except AttributeError:
+            # use automatic layout
             positions = self.scene.get_automatic_layout(root)
-        else:
-            positions = {dct[uid] : pos for uid, pos in positions.items()}
-            
+
         self.scene.apply_layout(positions)
         self.rootArrow.attach_to(root)
 
@@ -176,10 +172,12 @@ class GlispWidget(QGraphicsView) :
         self.scene.apply_layout(positions)
         self.rootArrow.attach_to(root)
 
-    def addCons(self) :
+    def addCons(self):
+        # TODO: ajouter l'objet à une place libre
         self.scene.addObj(GCons())
 
-    def addAtom(self, value=None) :
+    def addAtom(self, value=None):
+        # TODO: ajouter l'objet à une place libre
         self.scene.addObj(GAtom(value))
 
     def removeSelectedItem(self) :
