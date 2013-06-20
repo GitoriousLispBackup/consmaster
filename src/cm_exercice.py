@@ -20,7 +20,6 @@ class Encoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
 
 def decoder(dct):
-    # print('entry', dct, dir(dct))
     if dct.pop('__GraphExpr__', None):
         return GraphExpr(**dct)
     elif dct.pop('__ExoBase__', None):
@@ -43,15 +42,6 @@ class CmExerciceBase:
     JSON serialization support.
     """
     pass
-#    def dump(self, filename):
-#        with open(filename, 'w', encoding='utf-8') as fp:
-#            return json.dump(self.__dict__, fp, cls=Encoder)
-
-#    @staticmethod
-#    def load(filename):
-#        with open(filename, 'r', encoding='utf-8') as fp:
-#            dct = json.load(fp, object_hook=dec)
-#            return cmExerciceFactory(dct)
 
 
 class CmNDNExercice(CmExerciceBase):
@@ -82,15 +72,10 @@ class CmGNExercice(CmExerciceBase):
 ######################################################
 
 def ex_load(filename):
-    print('load', filename)
-    #~ filename, ok = QFileDialog.getOpenFileName(self, "Load file", '.', "ConsMaster Files (*.cm)")
     with open(filename, 'r', encoding='utf-8') as fp:
         return json.load(fp, object_hook=decoder)
 
 def ex_save(obj, filename):
-    #~ filename, ok = QFileDialog.getSaveFileName(self, "Save file", '.', "ConsMaster Files (*.cm)")
-    #~ if not filename.endswith('.cm'):
-        #~ filename += '.cm'
     with open(filename, 'w', encoding='utf-8') as fp:
         json.dump(obj, fp, cls=Encoder)
 
