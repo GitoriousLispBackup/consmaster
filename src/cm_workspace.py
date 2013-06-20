@@ -13,7 +13,11 @@ from cm_controller import *
 
 
 class SimpleLineEdit(QLineEdit):
-    def get_expr(self):
+    """
+    Input widget : subclass of QLineEdit that support
+    getExpr() and reset() methods.
+    """
+    def getExpr(self):
         entry = self.text().strip()
         if not entry:
             QMessageBox.critical(self, 'Erreur', 'Vous devez entrer une expression valide.')
@@ -23,14 +27,18 @@ class SimpleLineEdit(QLineEdit):
         self.clear()
 
 class EnonceTexte(QLabel):
-    def set_expr(self, expr):
+    """
+    Display widget: subclass of QLabel that support
+    setExpr() method.
+    """
+    def setExpr(self, expr):
         self.setText(expr)
 
 class EnonceGraphique(GlispWidget):
     def __init__(self):
         super().__init__()
         # self.setInteractive(False)
-    def set_expr(self, expr):
+    def setExpr(self, expr):
         self.insert_expr(expr)
 
 
@@ -86,15 +94,14 @@ class WorkSpace(QWidget):
         self.close_btn.clicked.connect(self.close)
 
     def validateRequested(self):
-        expr = self._in.get_expr()
+        expr = self._in.getExpr()
         if expr is not None:
             self.getEntry.emit(expr)
 
     def setController(self, controller):
         self.controller = controller
         controller.setWidget(self)
-        
-        controller.enonceChanged.connect(self.w_enonce.set_expr)
+        controller.enonceChanged.connect(self.w_enonce.setExpr)
         controller.setCounterText.connect(self.label_counter.setText)
         controller.ok.connect(self.valided)
         self.getEntry.connect(controller.receive)
