@@ -141,31 +141,29 @@ class Compozer(QMainWindow):
     def populate(self):
         """ Populate tab widgets w/ files names """
         self.clearAll()
-        for dir in os.listdir(EXOS_DIR):
-            for file in os.listdir(EXOS_DIR + '/' + dir):
+        for dirname in os.listdir(EXOS_DIR):
+            for filename in os.listdir(EXOS_DIR + '/' + dirname):
+                lvl, _, nm = filename.partition('_')
                 
-                name = QTableWidgetItem(file.split("_")[1])
+                name = QTableWidgetItem(nm)
                 #~ Custom class for sorting
                 diff = IntQTableWidgetItem()
-                diff.setData(Qt.EditRole, str(file.split("_")[0]))
+                diff.setData(Qt.EditRole, lvl)
     
                 diff.setFlags(Qt.ItemIsSelectable)
     
-                if dir == "NormDot":
+                if dirname == "NormDot":
                     self.tabND.setRowCount(self.tabND.rowCount() + 1)
                     self.tabND.setItem(self.tabND.rowCount() - 1, 0, name)
                     self.tabND.setItem(self.tabND.rowCount() - 1, 1, diff)
-                    
-                elif dir == "NormGraph":
+                elif dirname == "NormGraph":
                     self.tabNG.setRowCount(self.tabNG.rowCount() + 1)
                     self.tabNG.setItem(self.tabNG.rowCount() - 1, 0, name)
                     self.tabNG.setItem(self.tabNG.rowCount() - 1, 1, diff)
-    
-                elif dir == "GraphNorm":
+                elif dirname == "GraphNorm":
                     self.tabGN.setRowCount(self.tabGN.rowCount() + 1)
                     self.tabGN.setItem(self.tabGN.rowCount() - 1, 0, name)
                     self.tabGN.setItem(self.tabGN.rowCount() - 1, 1, diff)
-                    
                 else:
                     print("Dossiers inconnus rencontrés")
 

@@ -100,7 +100,7 @@ class NewNormDotExo(QDialog):
 
         return list_wid
 
-    def add(self, value="None", checked=False):
+    def add(self, value="nil", checked=False):
         """ Create an entry with nedeed flags
         checked: False=Unchecked, True=Checked
         """
@@ -112,11 +112,11 @@ class NewNormDotExo(QDialog):
         qdot.setFlags(Qt.ItemIsUserCheckable | Qt.ItemIsEnabled)
         if checked is True:
             qdot.setCheckState(Qt.Checked)
-        else :
+        else:
             qdot.setCheckState(Qt.Unchecked)
 
         # ~ On ajoute une ligne
-        # ~ Les rowCount ont un décalage de 1 Oo"
+        # ~ Les rowCount ont un décalage de 1 O_o"
         self.list_widget.setRowCount(self.list_widget.rowCount() + 1)
 
         self.list_widget.setItem(self.list_widget.rowCount() - 1, 0, qdot)
@@ -129,7 +129,7 @@ class NewNormDotExo(QDialog):
     def verify(self, item):
         # ~ Should check for valid lisp expr
         if (item.text() == "") and (item.column() == 1):
-            item.setText("None")
+            item.setText("nil")
 
     #~ def fileExist(self, item):
         #~ for f in os.listdir("save/"):
@@ -147,16 +147,16 @@ class NewNormDotExo(QDialog):
         if self.name_field.text() is not "":
             if self.list_widget.rowCount() > 0:
                 location = '{}/NormDot/{}_{}'.format(EXOS_DIR, self.difficulty_value.value(), self.name_field.text())
-                file = open(location, 'w+')
+                fp = open(location, 'w')
                 try:
-                    file.write("# Normal/Dotted serie\n")
+                    fp.write("# Normal/Dotted serie\n")
 
                     for s, item in self.iterAllItems():
-                        checked = (True if s.checkState() == Qt.Checked else False)
-                        file.write("{0}\t{1}".format(checked, item.text()))
-                        file.write("\n")
+                        checked = s.checkState() == Qt.Checked
+                        fp.write("{0}\t{1}".format(checked, item.text()))
+                        fp.write("\n")
                 finally:
-                    file.close()
+                    fp.close()
                     if self.prev_file is not "" and self.prev_file != location:
                         os.remove(self.prev_file)
                 self.done(1)
@@ -171,16 +171,16 @@ class NewNormDotExo(QDialog):
         self.prev_file = location
         self.name_field.setText(exo)
         try:
-            file = open(location, 'r+')
+            fp = open(location, 'r+')
 
-            info = file.readline().rstrip('\n\r')
+            info = fp.readline().rstrip('\n\r')
 
-            for line in file:
+            for line in fp:
                 checked = (True if line.rstrip('\n\r').split("\t")[0] == "True" else False)
                 expr = line.rstrip('\n\r').split("\t")[1]
                 self.add(expr, checked)
 
-            file.close()
+            fp.close()
         except IOError as e:
             print(e)
             self.done(0)
@@ -257,7 +257,7 @@ class NewNormGraphExo(QDialog):
 
         return list_wid
 
-    def add(self, value="None"):
+    def add(self, value="nil"):
         """ Create an entry with nedeed flags """
 
         qi = QTableWidgetItem(value)
@@ -273,7 +273,7 @@ class NewNormGraphExo(QDialog):
     def verify(self, item):
         # ~ Should check for valid lisp expr
         if (item.text() == ""):
-            item.setText("None")
+            item.setText("nil")
 
     # ~ Cute iterator creator
     def iterAllItems(self):
@@ -285,15 +285,15 @@ class NewNormGraphExo(QDialog):
         if self.name_field.text() is not "":
             if self.list_widget.rowCount() > 0:
                 location = '{}/NormGraph/{}_{}'.format(EXOS_DIR, self.difficulty_value.value(), self.name_field.text())
-                file = open(location, 'w+')
+                fp = open(location, 'w+')
                 try:
-                    file.write("# Normal/Graph serie\n")
+                    fp.write("# Normal/Graph serie\n")
 
                     for item in self.iterAllItems():
-                        file.write("{0}".format(item.text()))
-                        file.write("\n")
+                        fp.write("{0}".format(item.text()))
+                        fp.write("\n")
                 finally:
-                    file.close()
+                    fp.close()
                     if self.prev_file is not "" and self.prev_file != location:
                         os.remove(self.prev_file)
                 self.done(1)
@@ -308,14 +308,14 @@ class NewNormGraphExo(QDialog):
         self.prev_file = location
         self.name_field.setText(exo)
         try:
-            file = open(location, 'r+')
+            fp = open(location, 'r')
 
-            info = file.readline().rstrip('\n\r')
+            info = fp.readline().rstrip('\n\r')
 
-            for line in file:
+            for line in fp:
                 self.add(line.rstrip('\n\r'))
 
-            file.close()
+            fp.close()
         except IOError as e:
             print(e)
             self.done(0)
@@ -394,7 +394,7 @@ class NewGraphNormExo(QDialog):
     def openEditGraph(self, item):
         GraphEditor(self, item)
 
-    def add(self, value="None"):
+    def add(self, value="nil"):
         """ Create an entry with nedeed flags """
 
         qi = QTableWidgetItem(value)
@@ -413,7 +413,7 @@ class NewGraphNormExo(QDialog):
     def verify(self, item):
         # ~ Should check for valid lisp expr
         if (item.text() == ""):
-            item.setText("None")
+            item.setText("nil")
 
     # ~ Cute iterator creator
     def iterAllItems(self):
@@ -425,15 +425,15 @@ class NewGraphNormExo(QDialog):
         if self.name_field.text() is not "":
             if self.list_widget.rowCount() > 0:
                 location = '{}/GraphNorm/{}_{}'.format(EXOS_DIR, self.difficulty_value.value(), self.name_field.text())
-                file = open(location, 'w+')
+                fp = open(location, 'w')
                 try:
-                    file.write("# Graph/Norm serie\n")
+                    fp.write("# Graph/Norm serie\n")
 
                     for item in self.iterAllItems():
-                        file.write("{0}".format(item.text()))
-                        file.write("\n")
+                        fp.write("{0}".format(item.text()))
+                        fp.write("\n")
                 finally:
-                    file.close()
+                    fp.close()
                     if self.prev_file is not "" and self.prev_file != location:
                         os.remove(self.prev_file)
                 self.done(1)
@@ -448,11 +448,11 @@ class NewGraphNormExo(QDialog):
         self.prev_file = location
         self.name_field.setText(exo)
         try:
-            file = open(location, 'r+')
+            fp = open(location, 'r')
 
-            info = file.readline().rstrip('\n\r')
+            info = fp.readline().rstrip('\n\r')
 
-            content = file.readlines()
+            content = fp.readlines()
             
             matches = re.findall("<.*>", content)
             
@@ -460,7 +460,7 @@ class NewGraphNormExo(QDialog):
                 print(match)
                 self.add(match)
 
-            file.close()
+            fp.close()
         except IOError as e:
             print(e)
             self.done(0)
