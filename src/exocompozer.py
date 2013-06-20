@@ -70,7 +70,7 @@ class Compozer(QMainWindow):
         menu.addAction(self.removeAllExo)
         menu.addSeparator()
         menu.addAction(self.refresh)
-        menu.addSeparator()        
+        menu.addSeparator()
         menu.addAction(self.quitAction)
 
     def createWidget(self):
@@ -131,7 +131,8 @@ class Compozer(QMainWindow):
         self.clearAll()
         for dir in os.listdir("save/"):
             for file in os.listdir('save/'+dir):
-                enonce = QTableWidgetItem(file.split("_")[1])
+                
+                name = QTableWidgetItem(file.split("_")[1])
                 #~ Custom class for sorting
                 diff = IntQTableWidgetItem()
                 diff.setData(Qt.EditRole, str(file.split("_")[0]))
@@ -140,18 +141,21 @@ class Compozer(QMainWindow):
     
                 if dir == "NormDot":
                     self.tabND.setRowCount(self.tabND.rowCount() + 1)
-                    self.tabND.setItem(self.tabND.rowCount() - 1, 0, enonce)
+                    self.tabND.setItem(self.tabND.rowCount() - 1, 0, name)
                     self.tabND.setItem(self.tabND.rowCount() - 1, 1, diff)
                     
                 elif dir == "NormGraph":
                     self.tabNG.setRowCount(self.tabNG.rowCount() + 1)
-                    self.tabNG.setItem(self.tabNG.rowCount() - 1, 0, enonce)
+                    self.tabNG.setItem(self.tabNG.rowCount() - 1, 0, name)
                     self.tabNG.setItem(self.tabNG.rowCount() - 1, 1, diff)
     
                 elif dir == "GraphNorm":
                     self.tabGN.setRowCount(self.tabGN.rowCount() + 1)
-                    self.tabGN.setItem(self.tabGN.rowCount() - 1, 0, enonce)
+                    self.tabGN.setItem(self.tabGN.rowCount() - 1, 0, name)
                     self.tabGN.setItem(self.tabGN.rowCount() - 1, 1, diff)
+                    
+                else:
+                    print("Dossiers inconnus rencontrés")
 
         self.tabND.sortItems(1)
         self.tabNG.sortItems(1)
@@ -201,6 +205,7 @@ class Compozer(QMainWindow):
         params = "self, item.text(), int(self.tabWidget.currentWidget().item(item.row(), 1).text())"
         class_call = "New{0}Exo({1})".format(exo_type, params)
         #~ C'est moche ça
+        print(exo_type)
         eval(class_call)
 
     def newNormDotExo(self):
@@ -217,6 +222,7 @@ class Compozer(QMainWindow):
 
     def newFreeExo(self):
         pass
+
 
 class IntQTableWidgetItem(QTableWidgetItem):
     """ Custom QTableWidget for sorting
