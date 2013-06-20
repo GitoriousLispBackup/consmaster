@@ -5,6 +5,7 @@
 import re
 import random
 
+
 try:
     from PySide.QtCore import *
     from PySide.QtGui import *
@@ -65,7 +66,7 @@ class CmBasicController(QObject):
                     "Expression correctement formée, mais erreur sur un symbole.")
             return
         # TODO: add more help
-        QMessageBox.warning(self.widget, "Erreur***",
+        QMessageBox.warning(self.widget, "Erreur",
                     "L'expression fournie est incorrecte.")
 
 

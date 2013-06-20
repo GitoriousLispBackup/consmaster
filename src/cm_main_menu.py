@@ -150,6 +150,8 @@ class MainMenu(QWidget):
         self.mainwindow.central_widget.addWidget(widget)
         self.mainwindow.central_widget.setCurrentWidget(widget)
 
+    @Slot(QWidget)
     def closeWidget(self, widget):
         self.mainwindow.central_widget.removeWidget(widget)
         self.mainwindow.setWindowTitle("Consmaster")
+        del widget.controller   # hack: force cotroller deleting, to remove interpreter if necessary
