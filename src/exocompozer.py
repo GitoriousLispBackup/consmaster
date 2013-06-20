@@ -99,6 +99,7 @@ class Compozer(QMainWindow):
         self.tabND.setSelectionMode(QAbstractItemView.SingleSelection)
         self.tabND.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.tabND.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.tabND.editor = NewNormDotExo
 
         self.tabNG = QTableWidget()  # ~ Normal - Graph
         self.tabNG.setColumnCount(2)
@@ -108,6 +109,7 @@ class Compozer(QMainWindow):
         self.tabNG.setSelectionMode(QAbstractItemView.SingleSelection)
         self.tabNG.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.tabNG.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.tabNG.editor = NewNormGraphExo
 
         self.tabGN = QTableWidget()  # ~ Graph - Normal
         self.tabGN.setColumnCount(2)
@@ -117,6 +119,7 @@ class Compozer(QMainWindow):
         self.tabGN.setSelectionMode(QAbstractItemView.SingleSelection)
         self.tabGN.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.tabGN.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.tabGN.editor = NewGraphNormExo
 
         self.tabWidget.addTab(self.tabND, "Normal - Dotted")
         self.tabWidget.addTab(self.tabNG, "Normal - Graph")
@@ -211,12 +214,8 @@ class Compozer(QMainWindow):
 
     def editExo(self, item):
         """ Launch the correct widget to edit the exo """
-        exo_type = eq[self.tabWidget.tabText(self.tabWidget.currentWidget().currentRow())]
-        params = "self, item.text(), int(self.tabWidget.currentWidget().item(item.row(), 1).text())"
-        class_call = "New{0}Exo({1})".format(exo_type, params)
-        #~ C'est moche ça
-        print(exo_type)
-        eval(class_call)
+        editor = self.tabWidget.currentWidget().editor
+        editor(self, item.text(), int(self.tabWidget.currentWidget().item(item.row(), 1).text()))
 
     def newNormDotExo(self):
         """ New Norm <-> Dot exo """

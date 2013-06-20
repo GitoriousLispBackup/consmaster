@@ -6,7 +6,8 @@ import re
 import os
 
 from cm_lisp_graphic import *
-from cm_globals import EXOS_DIR 
+from cm_globals import EXOS_DIR
+from cm_exercice import *
 
 try:
     from PySide.QtCore import *
@@ -141,46 +142,34 @@ class NewNormDotExo(QDialog):
     # ~ Cute iterator creator
     def iterAllItems(self):
         for i in range(self.list_widget.rowCount()):
-            yield self.list_widget.item(i, 0), self.list_widget.item(i, 1)
+            checkbox = self.list_widget.item(i, 0)
+            textbox = self.list_widget.item(i, 1)
+            yield ('dotted' if checkbox.checkState() == Qt.Checked else 'normal'), textbox.text()
             
     def save(self):
-        if self.name_field.text() is not "":
-            if self.list_widget.rowCount() > 0:
-                location = '{}/NormDot/{}_{}'.format(EXOS_DIR, self.difficulty_value.value(), self.name_field.text())
-                fp = open(location, 'w')
-                try:
-                    fp.write("# Normal/Dotted serie\n")
-
-                    for s, item in self.iterAllItems():
-                        checked = s.checkState() == Qt.Checked
-                        fp.write("{0}\t{1}".format(checked, item.text()))
-                        fp.write("\n")
-                finally:
-                    fp.close()
-                    if self.prev_file is not "" and self.prev_file != location:
-                        os.remove(self.prev_file)
-                self.done(1)
-            else:
-                InfoWindows("Entrez au moins un exercice")
-        else:
+        if not self.name_field.text():
             InfoWindows("Entrez un nom de fichier")
-                    
-    # ~ Also need de-serial
+        elif self.list_widget.rowCount() == 0:
+            InfoWindows("Entrez au moins un exercice")
+        else:
+            level = self.difficulty_value.value()
+            filepath = '{}/NormDot/{}_{}'.format(EXOS_DIR, level, self.name_field.text())
+            lst = list(self.iterAllItems())
+            ex_save(CmNDNExercice(level, lst), filepath)
+            if self.prev_file and self.prev_file != filepath:
+                os.remove(self.prev_file)
+            self.prev_file = filepath  # need this ?
+            self.done(1)
+
     def load(self, exo):
-        location = '{}/NormDot/{}_{}'.format(EXOS_DIR, self.diff, exo)
-        self.prev_file = location
+        filepath = '{}/NormDot/{}_{}'.format(EXOS_DIR, self.diff, exo)
+        self.prev_file = filepath
         self.name_field.setText(exo)
         try:
-            fp = open(location, 'r+')
-
-            info = fp.readline().rstrip('\n\r')
-
-            for line in fp:
-                checked = (True if line.rstrip('\n\r').split("\t")[0] == "True" else False)
-                expr = line.rstrip('\n\r').split("\t")[1]
+            exo = ex_load(filepath)
+            for mode, expr in exo.lst:
+                checked = mode == 'dotted'
                 self.add(expr, checked)
-
-            fp.close()
         except IOError as e:
             print(e)
             self.done(0)
@@ -278,44 +267,32 @@ class NewNormGraphExo(QDialog):
     # ~ Cute iterator creator
     def iterAllItems(self):
         for i in range(self.list_widget.rowCount()):
-            yield self.list_widget.item(i, 0)
+            yield self.list_widget.item(i, 0).text()
 
     # ~ Save to file, need to be serialized
     def save(self):
-        if self.name_field.text() is not "":
-            if self.list_widget.rowCount() > 0:
-                location = '{}/NormGraph/{}_{}'.format(EXOS_DIR, self.difficulty_value.value(), self.name_field.text())
-                fp = open(location, 'w+')
-                try:
-                    fp.write("# Normal/Graph serie\n")
-
-                    for item in self.iterAllItems():
-                        fp.write("{0}".format(item.text()))
-                        fp.write("\n")
-                finally:
-                    fp.close()
-                    if self.prev_file is not "" and self.prev_file != location:
-                        os.remove(self.prev_file)
-                self.done(1)
-            else:
-                InfoWindows("Entrez au moins un exercice")
-        else:
+        if not self.name_field.text():
             InfoWindows("Entrez un nom de fichier")
+        elif self.list_widget.rowCount() == 0:
+            InfoWindows("Entrez au moins un exercice")
+        else:
+            level = self.difficulty_value.value()
+            filepath = '{}/NormGraph/{}_{}'.format(EXOS_DIR, level, self.name_field.text())
+            lst = list(self.iterAllItems())
+            ex_save(CmNDNExercice(level, lst), filepath)
+            if self.prev_file and self.prev_file != filepath:
+                os.remove(self.prev_file)
+            self.prev_file = filepath  # need this ?
+            self.done(1)
 
-    # ~ Also need de-serial
     def load(self, exo):
-        location = '{}/NormGraph/{}_{}'.format(EXOS_DIR, self.diff, exo)
-        self.prev_file = location
+        filepath = '{}/NormGraph/{}_{}'.format(EXOS_DIR, self.diff, exo)
+        self.prev_file = filepath
         self.name_field.setText(exo)
         try:
-            fp = open(location, 'r')
-
-            info = fp.readline().rstrip('\n\r')
-
-            for line in fp:
-                self.add(line.rstrip('\n\r'))
-
-            fp.close()
+            exo = ex_load(filepath)
+            for expr in exo.lst:
+                self.add(expr)
         except IOError as e:
             print(e)
             self.done(0)
@@ -394,18 +371,20 @@ class NewGraphNormExo(QDialog):
     def openEditGraph(self, item):
         GraphEditor(self, item)
 
-    def add(self, value="nil"):
+    def add(self, interm_expr=None):
         """ Create an entry with nedeed flags """
 
+        value = 'nil' if interm_expr is None else str(interm_expr)
         qi = QTableWidgetItem(value)
+        qi.setData(Qt.UserRole, interm_expr)
         qi.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
 
         self.list_widget.setRowCount(self.list_widget.rowCount() + 1)
-
         self.list_widget.setItem(self.list_widget.rowCount() - 1, 0, qi)
     
-    def edit(self, value, item):
-        item.setText(value)
+    def edit(self, expr, item):
+        item.setData(Qt.UserRole, expr)
+        item.setText(str(expr))
 
     def delete(self):
         self.list_widget.removeRow(self.list_widget.currentRow())
@@ -418,49 +397,31 @@ class NewGraphNormExo(QDialog):
     # ~ Cute iterator creator
     def iterAllItems(self):
         for i in range(self.list_widget.rowCount()):
-            yield self.list_widget.item(i, 0)
+            yield self.list_widget.item(i, 0).data(Qt.UserRole)
 
-    # ~ Save to file, need to be serialized
     def save(self):
-        if self.name_field.text() is not "":
-            if self.list_widget.rowCount() > 0:
-                location = '{}/GraphNorm/{}_{}'.format(EXOS_DIR, self.difficulty_value.value(), self.name_field.text())
-                fp = open(location, 'w')
-                try:
-                    fp.write("# Graph/Norm serie\n")
-
-                    for item in self.iterAllItems():
-                        fp.write("{0}".format(item.text()))
-                        fp.write("\n")
-                finally:
-                    fp.close()
-                    if self.prev_file is not "" and self.prev_file != location:
-                        os.remove(self.prev_file)
-                self.done(1)
-            else:
-                InfoWindows("Entrez au moins un exercice")
-        else:
+        if not self.name_field.text():
             InfoWindows("Entrez un nom de fichier")
+        elif self.list_widget.rowCount() == 0:
+            InfoWindows("Entrez au moins un exercice")
+        else:
+            level = self.difficulty_value.value()
+            filepath = '{}/GraphNorm/{}_{}'.format(EXOS_DIR, level, self.name_field.text())
+            lst = list(self.iterAllItems())
+            ex_save(CmNDNExercice(level, lst), filepath)
+            if self.prev_file and self.prev_file != filepath:
+                os.remove(self.prev_file)
+            self.prev_file = filepath  # need this ?
+            self.done(1)
 
-    # ~ Also need de-serial
     def load(self, exo):
-        location = '{}/GraphNorm/{}_{}'.format(EXOS_DIR, self.diff, exo)
-        self.prev_file = location
+        filepath = '{}/GraphNorm/{}_{}'.format(EXOS_DIR, self.diff, exo)
+        self.prev_file = filepath
         self.name_field.setText(exo)
         try:
-            fp = open(location, 'r')
-
-            info = fp.readline().rstrip('\n\r')
-
-            content = fp.readlines()
-            
-            matches = re.findall("<.*>", content)
-            
-            for match in matches:
-                print(match)
-                self.add(match)
-
-            fp.close()
+            exo = ex_load(filepath)
+            for expr in exo.lst:
+                self.add(expr)
         except IOError as e:
             print(e)
             self.done(0)
@@ -470,9 +431,11 @@ class GraphEditor(QDialog):
         super().__init__(parent)
         
         self.parent = parent
+
+        expr = item.data(Qt.UserRole)
         self.item = item
         
-        self.setGeometry(200, 200, 800, 380)
+        self.setGeometry(200, 200, 820, 400)
         
         buttons_grp = QDialogButtonBox(self)
         save_btn = buttons_grp.addButton(QDialogButtonBox.Save)
@@ -481,6 +444,8 @@ class GraphEditor(QDialog):
         buttons_grp.rejected.connect(self.close)
         
         self.widget = GraphicalLispGroupWidget(self)
+        if expr:
+            self.widget.set_expr(expr)
         
         layout = QGridLayout()
         layout.addWidget(self.widget, 0, 0)
@@ -491,6 +456,7 @@ class GraphEditor(QDialog):
         self.exec_()
 
     def saveAndQuit(self):
-        #Validity Check ?
-        self.parent.edit(str(self.widget.get_expr()), self.item)
-        self.close()
+        expr = self.widget.get_expr()
+        if expr: # Validity Check
+            self.parent.edit(expr, self.item)
+            self.close()

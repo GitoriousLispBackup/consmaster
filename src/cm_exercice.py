@@ -9,67 +9,88 @@ class Encoder(json.JSONEncoder):
     """
     def default(self, obj):
         if isinstance(obj, GraphExpr):
-            dct = obj.__dict__
+            dct = obj.__dict__.copy()
             dct['__GraphExpr__'] = True
+            return dct
+        elif isinstance(obj, CmExerciceBase):
+            dct = obj.__dict__.copy()
+            dct['__ExoBase__'] = True
             return dct
         # Let the base class default method raise the TypeError
         return json.JSONEncoder.default(self, obj)
 
-def dec(dct):
+def decoder(dct):
     # print('entry', dct, dir(dct))
     if dct.pop('__GraphExpr__', None):
         return GraphExpr(**dct)
+    elif dct.pop('__ExoBase__', None):
+        typ = dct.pop('type')
+        if typ == '__NDN__':
+            return CmNDNExercice(**dct)
+        elif typ == '__NG__':
+            return CmNGExercice(**dct)
+        elif typ == '__GN__':
+            return CmGNExercice(**dct)
+        else:
+            raise RuntimeError('unkown type: ' + typ)
     return dct
 
 
-def cmExerciceFactory(dct):
-    typ = dct['typ']
-    if typ == 'demo':
-        return CmDemo(**dct)
-    elif typ == '...':
-        return None
-    else:
-        raise RuntimeError('unkown type: ' + typ)
 
 class CmExerciceBase:
     """
     base class of exercices with
     JSON serialization support.
     """
-    def __init__(self, typ):
-        self.typ = typ
+    pass
+#    def dump(self, filename):
+#        with open(filename, 'w', encoding='utf-8') as fp:
+#            return json.dump(self.__dict__, fp, cls=Encoder)
 
-    def dump(self, filename):
-        with open(filename, 'w', encoding='utf-8') as fp:
-            return json.dump(self.__dict__, fp, cls=Encoder)
-
-    @staticmethod
-    def load(filename):
-        with open(filename, 'r', encoding='utf-8') as fp:
-            dct = json.load(fp, object_hook=dec)
-            return cmExerciceFactory(dct)
+#    @staticmethod
+#    def load(filename):
+#        with open(filename, 'r', encoding='utf-8') as fp:
+#            dct = json.load(fp, object_hook=dec)
+#            return cmExerciceFactory(dct)
 
 
-class CmDemo(CmExerciceBase):
+class CmNDNExercice(CmExerciceBase):
     """
-    demo class : not a real exercice
     """
-    def __init__(self, **kwargs):
-        super().__init__(typ=':demo')
-        self.__dict__.update(kwargs)
+    def __init__(self, level, lst):
+        self.type = '__NDN__'
+        self.level = level
+        self.lst = lst
+        
+class CmNGExercice(CmExerciceBase):
+    """
+    """
+    def __init__(self, level, lst):
+        self.type = '__NG__'
+        self.level = level
+        self.lst = lst
+        
+class CmGNExercice(CmExerciceBase):
+    """
+    """
+    def __init__(self, level, lst):
+        self.type = '__GN__'
+        self.level = level
+        self.lst = lst
 
 
 ######################################################
 
-def load(filename):
+def ex_load(filename):
+    print('load', filename)
     #~ filename, ok = QFileDialog.getOpenFileName(self, "Load file", '.', "ConsMaster Files (*.cm)")
     with open(filename, 'r', encoding='utf-8') as fp:
         return json.load(fp, object_hook=decoder)
 
-def save(intermediate, filename):
+def ex_save(obj, filename):
     #~ filename, ok = QFileDialog.getSaveFileName(self, "Save file", '.', "ConsMaster Files (*.cm)")
     #~ if not filename.endswith('.cm'):
         #~ filename += '.cm'
     with open(filename, 'w', encoding='utf-8') as fp:
-        json.dump(intermediate, fp, cls=Encoder)
+        json.dump(obj, fp, cls=Encoder)
 

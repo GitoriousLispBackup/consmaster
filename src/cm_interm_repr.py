@@ -183,5 +183,8 @@ class GraphExpr:
             cdrType = 0
         return int(log(depth**2.5)) + 3 * cdrType
 
+    def __str__(self):
+        return repr(self.to_lsp_obj())
+
     def __repr__(self):
         return '< root: ' + repr(self.root) + ';\n  graph:\n' + pprint.pformat(self.graph, indent=2) + ' >'

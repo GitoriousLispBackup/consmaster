@@ -11,7 +11,6 @@ except:
 
 from cm_lisp_obj import *
 from cm_lisp_scene import LispScene
-from cm_exercice import Encoder, dec as decoder
 from cm_interm_repr import GraphExpr
 
 
@@ -65,6 +64,9 @@ class GraphicalLispGroupWidget(QWidget):
         format)
         """
         return self.glisp_widget.get_expr()
+
+    def set_expr(self, expr):
+        self.glisp_widget.insert_expr(expr)
 
     def reset(self):
         """
