@@ -279,7 +279,7 @@ class NewNormGraphExo(QDialog):
             level = self.difficulty_value.value()
             filepath = '{}/NormGraph/{}_{}'.format(EXOS_DIR, level, self.name_field.text())
             lst = list(self.iterAllItems())
-            ex_save(CmNDNExercice(level, lst), filepath)
+            ex_save(CmNGExercice(level, lst), filepath)
             if self.prev_file and self.prev_file != filepath:
                 os.remove(self.prev_file)
             self.prev_file = filepath  # need this ?
@@ -408,7 +408,7 @@ class NewGraphNormExo(QDialog):
             level = self.difficulty_value.value()
             filepath = '{}/GraphNorm/{}_{}'.format(EXOS_DIR, level, self.name_field.text())
             lst = list(self.iterAllItems())
-            ex_save(CmNDNExercice(level, lst), filepath)
+            ex_save(CmGNExercice(level, lst), filepath)
             if self.prev_file and self.prev_file != filepath:
                 os.remove(self.prev_file)
             self.prev_file = filepath  # need this ?
