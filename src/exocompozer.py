@@ -3,8 +3,10 @@
 
 import sys
 import os
+import os.path
 
 from ec_editors import NewNormDotExo, NewNormGraphExo, NewGraphNormExo
+from cm_globals import EXOS_DIR 
 
 try:
     from PySide.QtCore import *
@@ -13,20 +15,22 @@ except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
-eq = {  "Normal - Dotted": "NormDot",
+eq = {  "Normal - Dotted" : "NormDot",
         "Normal - Graph": "NormGraph",
         "Graph - Normal": "GraphNorm"}
 
 
 class Compozer(QMainWindow):
-    """ Display all exercices listed in "save/" dir
+    """ Display all exercices listed in "../save/" dir
         Double click to edit
         Create a new exercice w/ menus
     """
 
     def __init__(self, parent=None):
         super().__init__(parent)
-
+        
+        self.checkDirs()      
+        
         self.createActions()
         self.createMenus()
 
@@ -40,6 +44,14 @@ class Compozer(QMainWindow):
         self.populate()
 
         self.show()
+        
+    def checkDirs(self):
+        if not os.path.exists(EXOS_DIR):
+            os.mkdir(EXOS_DIR)
+        for subdir in eq.values():
+            path = EXOS_DIR + '/' + subdir
+            if not os.path.exists(path):
+                os.mkdir(path)
 
     def createActions(self):
         self.quitAction = QAction("Quitter", self, triggered=self.close)
@@ -129,8 +141,8 @@ class Compozer(QMainWindow):
     def populate(self):
         """ Populate tab widgets w/ files names """
         self.clearAll()
-        for dir in os.listdir("save/"):
-            for file in os.listdir('save/'+dir):
+        for dir in os.listdir(EXOS_DIR):
+            for file in os.listdir(EXOS_DIR + '/' + dir):
                 
                 name = QTableWidgetItem(file.split("_")[1])
                 #~ Custom class for sorting
@@ -177,7 +189,7 @@ class Compozer(QMainWindow):
         #~ Get diff
         exo_diff = self.tabWidget.currentWidget().item(self.tabWidget.currentWidget().currentRow(), 1).text()
         #~ Remove file
-        os.remove("save/{0}/{1}_{2}".format(exo_type, exo_diff, exo_name))
+        os.remove("{}/{}/{}_{}".format(EXOS_DIR, exo_type, exo_diff, exo_name))
 
         self.tabWidget.currentWidget().removeRow(self.tabWidget.currentWidget().currentRow())
 
@@ -195,7 +207,7 @@ class Compozer(QMainWindow):
                 #~ Get diff
                 exo_diff = tab.item(row, 1).text()
                 #~ Remove file
-                os.remove("save/{0}/{1}_{2}".format(exo_type, exo_diff, exo_name))
+                os.remove("{}/{}/{}_{}".format(EXOS_DIR, exo_type, exo_diff, exo_name))
 
                 tab.removeRow(row)
 

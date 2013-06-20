@@ -17,6 +17,7 @@ MODES = [
 
 
 DATA_PATH = '../data/cm.dat'
+EXOS_DIR = '../save'
 
 def cm_load_data():
     fp = open(DATA_PATH, 'rb')

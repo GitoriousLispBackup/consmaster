@@ -5,7 +5,8 @@ import sys
 import re
 import os
 
-from cm_lisp_graphic import * 
+from cm_lisp_graphic import *
+from cm_globals import EXOS_DIR 
 
 try:
     from PySide.QtCore import *
@@ -145,7 +146,7 @@ class NewNormDotExo(QDialog):
     def save(self):
         if self.name_field.text() is not "":
             if self.list_widget.rowCount() > 0:
-                location = 'save/NormDot/{0}_{1}'.format(self.difficulty_value.value(), self.name_field.text())
+                location = '{}/NormDot/{}_{}'.format(EXOS_DIR, self.difficulty_value.value(), self.name_field.text())
                 file = open(location, 'w+')
                 try:
                     file.write("# Normal/Dotted serie\n")
@@ -166,7 +167,7 @@ class NewNormDotExo(QDialog):
                     
     # ~ Also need de-serial
     def load(self, exo):
-        location = 'save/NormDot/{0}_{1}'.format(self.diff, exo)
+        location = '{}/NormDot/{}_{}'.format(EXOS_DIR, self.diff, exo)
         self.prev_file = location
         self.name_field.setText(exo)
         try:
@@ -283,7 +284,7 @@ class NewNormGraphExo(QDialog):
     def save(self):
         if self.name_field.text() is not "":
             if self.list_widget.rowCount() > 0:
-                location = 'save/NormGraph/{0}_{1}'.format(self.difficulty_value.value(), self.name_field.text())
+                location = '{}/NormGraph/{}_{}'.format(EXOS_DIR, self.difficulty_value.value(), self.name_field.text())
                 file = open(location, 'w+')
                 try:
                     file.write("# Normal/Graph serie\n")
@@ -303,7 +304,7 @@ class NewNormGraphExo(QDialog):
 
     # ~ Also need de-serial
     def load(self, exo):
-        location = 'save/NormGraph/{0}_{1}'.format(self.diff, exo)
+        location = '{}/NormGraph/{}_{}'.format(EXOS_DIR, self.diff, exo)
         self.prev_file = location
         self.name_field.setText(exo)
         try:
@@ -423,7 +424,7 @@ class NewGraphNormExo(QDialog):
     def save(self):
         if self.name_field.text() is not "":
             if self.list_widget.rowCount() > 0:
-                location = 'save/GraphNorm/{0}_{1}'.format(self.difficulty_value.value(), self.name_field.text())
+                location = '{}/GraphNorm/{}_{}'.format(EXOS_DIR, self.difficulty_value.value(), self.name_field.text())
                 file = open(location, 'w+')
                 try:
                     file.write("# Graph/Norm serie\n")
@@ -443,7 +444,7 @@ class NewGraphNormExo(QDialog):
 
     # ~ Also need de-serial
     def load(self, exo):
-        location = 'save/GraphNorm/{0}_{1}'.format(self.diff, exo)
+        location = '{}/GraphNorm/{}_{}'.format(EXOS_DIR, self.diff, exo)
         self.prev_file = location
         self.name_field.setText(exo)
         try:
