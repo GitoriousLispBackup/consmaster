@@ -2,24 +2,53 @@
 # -*- coding: utf-8 -*-
 
 from operator import itemgetter
+import pprint
 from math import log
 
 from pylisp import *
 import pylisp.lisp as lisp
 from lisp import Cons, consp, atom
-from pprint import pformat
 
 
 class GraphExpr:
+    """
+    Intermediate representation for a lisp expression.
+
+    s-expr are re presented by root element and adjacent matrix,
+    like this :
+    'root': "140501648984400",
+    'graph': {
+           '140501648983464': ['#atom', '1'],
+           '140501648983608': ['#cons',
+                               ['140501648984184', '140501754739024']],
+           '140501648983752': ['#cons',
+                               ['140501648983968', '140501648983608']],
+           '140501648983968': ['#atom', '2'],
+           '140501648984184': ['#atom', '3'],
+           '140501648984400': ['#cons',
+                               ['140501648983464', '140501648983752']],
+           '140501754739024': ['#atom', 'nil'] }
+
+    Convenience functions for converting internal lisp expression to intermediate
+    representation and vice versa are provided.
+    
+    There is also some interesting functions on lisp s-expressions :
+    compare if two expr are equivalent, if they are isomorphic, etc.
+    """
+    
     tag = itemgetter(0)
     value = itemgetter(1)
     
     def __init__(self, root, graph, **kwargs):
         self.root = root
         self.graph = graph
+        # add additionnals attributes (like layout)
         self.__dict__.update(**kwargs)
     
     def to_lsp_obj(self):
+        """
+        Convert intermediate representation to a internal lisp object.
+        """
         visited = {}
         def rec_build(uid):
             if uid in visited: return visited[uid]
@@ -37,6 +66,9 @@ class GraphExpr:
 
     @staticmethod
     def from_lsp_obj(obj):
+        """
+        Get intermediate representation from a lisp object.
+        """
         visited = {}
         def rec_build(obj):
             uid = str(id(obj))
@@ -55,6 +87,10 @@ class GraphExpr:
         return GraphExpr(rec_build(obj), visited)
 
     def _cmp(self, other, cmp_atom):
+        """
+        Compare two expressions, by using cmp_atom()
+        comparizon function.
+        """
         if self is other: return True
         visited = {}
         def walk(id1, id2):
@@ -74,7 +110,24 @@ class GraphExpr:
                 raise RuntimeError('Unkown value in tree')
         return walk(self.root, other.root)
 
+    def isomorphic_to(self, other):
+        """
+        return True if two lisp expressions are structurally
+        equivalent (isomorphic), else return False.
+        """
+        return self._cmp(other, lambda a, b: True)
+
+    def __eq__(self, other):
+        """
+        return True if two lisp expressions are equivalent,
+        else return False.
+        """
+        return self._cmp(other, str.__eq__)
+
     def depth(self):
+        """
+        Get the depth of an lisp expression.
+        """
         visited = {}
         def walk(uid, cur):                
             nd = self.graph[uid]
@@ -89,6 +142,9 @@ class GraphExpr:
         return walk(self.root, 0)
 
     def circular(self):
+        """
+        Check circularity.
+        """
         visited = set()
         def walk(uid):
             nd = self.graph[uid]
@@ -101,6 +157,9 @@ class GraphExpr:
         return walk(self.root)
 
     def proper(self):
+        """
+        Check if all conses objects have a list cdr.
+        """
         visited = set()
         def walk(uid, box=None):
             nd = self.graph[uid]
@@ -124,11 +183,5 @@ class GraphExpr:
             cdrType = 0
         return int(log(depth**2.5)) + 3 * cdrType
 
-    def isomorphic_to(self, other):
-        return self._cmp(other, lambda a, b: True)
-
-    def __eq__(self, other):
-        return self._cmp(other, str.__eq__)
-
     def __repr__(self):
-        return '< root: ' + repr(self.root) + ';\n  graph:\n' + pformat(self.graph, indent=2) + ' >'
+        return '< root: ' + repr(self.root) + ';\n  graph:\n' + pprint.pformat(self.graph, indent=2) + ' >'

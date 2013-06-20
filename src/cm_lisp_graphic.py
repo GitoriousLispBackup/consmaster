@@ -158,16 +158,19 @@ class GlispWidget(QGraphicsView) :
             # if intermediate repr have a layout, use it
             positions = {dct[uid] : pos for uid, pos in graph_expr.layout.items()}
         except AttributeError:
-            # use automatic layout
+            # else, use automatic layout
             positions = self.scene.get_automatic_layout(root)
 
         self.scene.apply_layout(positions)
         self.rootArrow.attach_to(root)
 
     def autoLayout(self):
+        """
+        auto-positionning tree connected to
+        the root arrow
+        """
         root = self.rootArrow.root
         if root is None: return
-        # TODO : prevent if some elems are disconnected
         positions = self.scene.get_automatic_layout(root)
         self.scene.apply_layout(positions)
         self.rootArrow.attach_to(root)
@@ -192,6 +195,10 @@ class GlispWidget(QGraphicsView) :
                 self.scene.removeItem(item)
 
     def orphans(self, root):
+        """
+        return set of disconnected nodes in
+        the graph
+        """
         tree = {} if root is None else self.scene.get_tree(root)
         return self.scene.graph.all_nodes().difference(tree.keys())
 
