@@ -50,7 +50,7 @@ def valid(entry, expr, fmt='normal', strict=True):
 
 class CmBasicController(QObject):
     enonceChanged = Signal(object)
-    sendMsg = Signal(dict)
+    setCounterText = Signal(str)
     ok = Signal()
     
     def __init__(self):
@@ -156,19 +156,25 @@ class TrainingMixin:
         self.userData = userData
         self.currentLevel = userData.currentLevel() if userData else 0
         self.enonceIter = level_expr_gen(self.currentLevel)
+        self.total = 0
+        self.realised = 0
 
     def next(self):
         self.enonce = next(self.enonceIter)
         formatted = self.fmt(self.enonce)
         self.enonceChanged.emit(formatted)
+        self.setCounterText.emit('{} / {}'.format(self.realised, self.total))
 
     @Slot(object)
     def receive(self, entry):
         ok = self.validate(entry)
+        self.total += 1
         if ok:
+            self.realised += 1
             self.ok.emit()
             QMessageBox.information(self.widget, "Bravo !",
                     "Vous avez répondu correctement à cette question")
+        self.setCounterText.emit('{} / {}'.format(self.realised, self.total))
         self.updateData(1 if ok else 0)
 
     def updateData(self, score):
@@ -184,6 +190,8 @@ class TrainingMixin:
 
 class ExerciceMixin:
     def __init__(self, src):
+        self.exoNum = 0
+        self.len = len(src)
         self.enonceIter = iter(src) # TODO : make it work
         self.results = []
         
@@ -193,7 +201,9 @@ class ExerciceMixin:
         self.ok.emit()  # bloque la touche de validation
 
     def next(self):
+        self.exoNum += 1
         try:
+            self.setCounterText.emit('exo {} / {}'.format(self.realised, self.total))
             self.enonce = next(self.enonceIter)
             formatted = self.fmt(self.enonce)
             self.enonceChanged.emit(formatted)

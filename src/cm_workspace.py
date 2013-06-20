@@ -44,6 +44,7 @@ class WorkSpace(QWidget):
         layout = QVBoxLayout()
 
         label_en = QLabel('<b>Expression à convertir :</b>')
+        self.label_counter = QLabel()
         label_in = QLabel('<b>Conversion :</b>')
         self._in = _in
         self.w_enonce = w_enonce
@@ -54,9 +55,12 @@ class WorkSpace(QWidget):
         self.close_btn = QPushButton(QIcon("../icons/cancel"), "Fermer")
         self.close_btn.setFixedHeight(35)
         
+        lblLayout = QHBoxLayout()
+        lblLayout.addWidget(label_en)
+        lblLayout.addWidget(self.label_counter)
         topLayout = QVBoxLayout()
         topLayout.setAlignment(Qt.AlignTop)
-        topLayout.addWidget(label_en)
+        topLayout.addLayout(lblLayout)
         topLayout.addWidget(w_enonce)
 
         centerLayout = QVBoxLayout()
@@ -91,6 +95,7 @@ class WorkSpace(QWidget):
         controller.setWidget(self)
         
         controller.enonceChanged.connect(self.w_enonce.set_expr)
+        controller.setCounterText.connect(self.label_counter.setText)
         controller.ok.connect(self.valided)
         self.getEntry.connect(controller.receive)
         self.goNext()
