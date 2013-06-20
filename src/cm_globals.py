@@ -1,6 +1,7 @@
 import os.path
 import pickle
 from collections import namedtuple
+
 from cm_workspace import createTextMode, createNormalToGraphicMode, createGraphicToNormalMode
 from cm_free_mode import createFreeMode
 

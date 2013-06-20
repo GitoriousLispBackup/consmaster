@@ -5,12 +5,14 @@ class ExoType:
     def __init__(self):
         self.training = defaultdict(list)
         self.exercices = defaultdict(dict)
-    def current_level(self):
+    def currentLevel(self):
         for lvl in sorted(self.training.keys(), reverse=True):
             results = self.training[lvl]
             if len(results) >= 10 and sum(results[-10:]) >= 7:
                 return lvl + 1
         return 0
+    def addTrainingData(self, lvl, score):
+        self.training[lvl].append(score)
     def __repr__(self):
         return 'ExoType(training=' + repr(self.training) + ', exercices=' + repr(self.exercices) + ')'
 

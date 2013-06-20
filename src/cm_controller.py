@@ -154,7 +154,7 @@ class CmGraphicToNormalController(CmBasicController):
 class TrainingMixin:
     def __init__(self, userData):
         self.userData = userData
-        self.currentLevel = userData.current_level() if userData else 0
+        self.currentLevel = userData.currentLevel() if userData else 0
         self.enonceIter = level_expr_gen(self.currentLevel)
 
     def next(self):
@@ -173,8 +173,8 @@ class TrainingMixin:
 
     def updateData(self, score):
         if self.userData:
-            self.userData.training[self.currentLevel].append(score)
-            lvl = self.userData.current_level()
+            self.userData.addTrainingData(self.currentLevel, score)
+            lvl = self.userData.currentLevel()
             if lvl > self.currentLevel:
                 QMessageBox.information(self.widget, "Bravo !",
                     "Vous passez dorénavant au niveau " + str(lvl))

@@ -36,7 +36,7 @@ class ExosList(QWidget):
         self.setLayout(layout)
 
     def populate(self, mode):
-        level = mode.current_level()
+        level = mode.currentLevel()
         # TODO: populate list from mode and level
 
 
@@ -130,7 +130,7 @@ class MainMenu(QWidget):
                 self.exosButton.hide()
             else:
                 self.level.show()
-                self.level.setValue(mode.current_level())
+                self.level.setValue(mode.currentLevel())
                 self.exosButton.show()
                 self.lstWidget.populate(mode)
                 self.lstWidget.setVisible(self.exosButton.isChecked())
