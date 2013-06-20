@@ -4,8 +4,7 @@
 import sys
 import os
 
-from ec_editors import NewNormDotExo
-from ec_editors import NewNormGraphExo
+from ec_editors import NewNormDotExo, NewNormGraphExo, NewGraphNormExo
 
 try:
     from PySide.QtCore import *
@@ -56,6 +55,8 @@ class Compozer(QMainWindow):
                                       triggered=self.deleteExo)
         self.removeAllExo = QAction("Remove _All_ Entry", self, \
                                       triggered=self.deleteAllExo)
+        self.refresh = QAction("Refresh", self, \
+                                              triggered=self.populate)
 
     def createMenus(self):
         menu = self.menuBar().addMenu("Menu")
@@ -68,6 +69,8 @@ class Compozer(QMainWindow):
         menu.addSeparator()
         menu.addAction(self.removeAllExo)
         menu.addSeparator()
+        menu.addAction(self.refresh)
+        menu.addSeparator()        
         menu.addAction(self.quitAction)
 
     def createWidget(self):
@@ -128,7 +131,6 @@ class Compozer(QMainWindow):
         self.clearAll()
         for dir in os.listdir("save/"):
             for file in os.listdir('save/'+dir):
-                print(file)
                 enonce = QTableWidgetItem(file.split("_")[1])
                 #~ Custom class for sorting
                 diff = IntQTableWidgetItem()
@@ -171,7 +173,7 @@ class Compozer(QMainWindow):
         #~ Get diff
         exo_diff = self.tabWidget.currentWidget().item(self.tabWidget.currentWidget().currentRow(), 1).text()
         #~ Remove file
-        os.remove("save/{0}_{1}_{2}".format(exo_type, exo_diff, exo_name))
+        os.remove("save/{0}/{1}_{2}".format(exo_type, exo_diff, exo_name))
 
         self.tabWidget.currentWidget().removeRow(self.tabWidget.currentWidget().currentRow())
 
@@ -189,8 +191,7 @@ class Compozer(QMainWindow):
                 #~ Get diff
                 exo_diff = tab.item(row, 1).text()
                 #~ Remove file
-                #~ print("save/{0}_{1}_{2}".format(exo_type, exo_diff, exo_name))
-                os.remove("save/{0}_{1}_{2}".format(exo_type, exo_diff, exo_name))
+                os.remove("save/{0}/{1}_{2}".format(exo_type, exo_diff, exo_name))
 
                 tab.removeRow(row)
 
