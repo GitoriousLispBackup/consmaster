@@ -24,7 +24,7 @@ class DiGraph:
             self._edges.pop((v1, v2))
 
     def remove_all_edges(self, v1, v2):
-        self._edges.pop((v1, v2))            
+        self._edges.pop((v1, v2))
 
     def remove_vertex(self, v):
         for u in self.successors(v):
@@ -77,6 +77,13 @@ from collections import OrderedDict
 
 
 def layout(G, root):
+    """
+    Automatically set layout for the directed graph
+    connected to root elem (this is adapted for layouting
+    tree expression, but a bit inconsistent because there're
+    no valid position for remaining objets).
+    """
+    
     levels = OrderedDict()
     visited = set()
     def set_dist(node=root, dst=0):

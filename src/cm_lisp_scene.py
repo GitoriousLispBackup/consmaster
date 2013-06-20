@@ -1,6 +1,6 @@
 
 from cm_lisp_obj import *
-from cm_graph import *
+from cm_graph import DiGraph, layout
 from cm_interm_repr import GraphExpr
 from operator import itemgetter
 
@@ -13,15 +13,30 @@ except:
 
 
 class LispScene(QGraphicsScene):
+    """
+    Scene manager. Inherits QGraphicsScene, and use
+    a multi-edge directed graph to store the lisp objects,
+    in order to add and remove them easily into the scene. 
+    """
+    
     def __init__(self, parent=None):
         super().__init__(parent)
         self.graph = DiGraph()
         
     def addObj(self, obj):
+        """
+        Add lisp object into the scene.
+        """
+        # TODO: ajouter l'objet à une place libre
         self.graph.add_vertex(obj)
         self.addItem(obj)
 
     def addPointer(self, pointer):
+        """
+        Add pointer from a lisp object to another
+        lisp object, and manage old pointers and
+        internal objects references.
+        """
         for oldPointer in self.getEdgesFrom(pointer.startItem, pointer.orig):
             self.removePointer(oldPointer)
         self.graph.add_edge(pointer.startItem, pointer.endItem, key=pointer.orig, arrow=pointer)
@@ -30,6 +45,10 @@ class LispScene(QGraphicsScene):
         pointer.startItem.update()
 
     def removeObj(self, obj):
+        """
+        Remove a lisp object from scene, and manage
+        connected objects.
+        """
         all_edges = [data['arrow'] for u, v, k, data in self.graph.outcoming_edges(obj)]
         all_edges += [data['arrow'] for u, v, k, data in self.graph.incoming_edges(obj)]
 
@@ -39,6 +58,10 @@ class LispScene(QGraphicsScene):
         self.removeItem(obj)
         
     def removePointer(self, pointer):
+        """
+        Remove a pointer object from scene, and manage
+        connected objects.
+        """
         self.graph.remove_edge(pointer.startItem, pointer.endItem, pointer.orig)
         self.removeItem(pointer)
         setattr(pointer.startItem, pointer.orig, None)
@@ -49,6 +72,10 @@ class LispScene(QGraphicsScene):
         return [data['arrow'] for u, v, k, data in self.graph.outcoming_edges(vertex, key)]
 
     def get_tree(self, root):
+        """
+        Return objects connected to the root argument
+        in adjacent matrix.
+        """
         _graph = {}
         def make_graph(v):
             if v in _graph: return
@@ -59,11 +86,18 @@ class LispScene(QGraphicsScene):
         return _graph
 
     def reset(self):
+        """
+        Reset the scene.
+        """
         for item in self.items() :
             self.removeItem(item)
         self.graph.clear()
 
     def get_current_layout(self):
+        """
+        Get current scene objects layout, in percents of
+        width an height.
+        """
         positions = {}
         w, h = self.width(), self.height()
         for item in self.graph.all_nodes():
@@ -73,22 +107,28 @@ class LispScene(QGraphicsScene):
         return positions
 
     def get_automatic_layout(self, root):
+        """
+        Call layout() function (in cm_graph) to get
+        automatic layout of the graph expression
+        connected to the root.
+        """
         return layout(self.graph, root=root)
 
     def apply_layout(self, positions):
+        """
+        Apply the argument layout to the scene objects.
+        """
         w, h = self.width(), self.height()
-        #~ print('w, h:', (w, h))
-        #~ margin = 20
-        #~ w -= 2 * margin
-        #~ h -= 2 * margin
         for item, pos in positions.items():
             rect = item.boundingRect()
-            #~ print(rect)
             x, y = pos[0] * w  - rect.width() / 2, pos[1] * h - rect.height() / 2
-            #~ print(item, (x, y))
             item.setPos(x, y)
 
     def get_interm_repr(self, root):
+        """
+        Return lisp intermediate representation from the
+        connected lisp objects to root.
+        """
         nil_obj = '#atom', 'nil'
         nil_id = str(id(nil_obj))
         _graph = {}

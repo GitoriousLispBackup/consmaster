@@ -176,14 +176,21 @@ class GlispWidget(QGraphicsView) :
         self.rootArrow.attach_to(root)
 
     def addCons(self):
-        # TODO: ajouter l'objet à une place libre
+        """
+        Add graphical conse object into scene.
+        """
         self.scene.addObj(GCons())
 
     def addAtom(self, value=None):
-        # TODO: ajouter l'objet à une place libre
+        """
+        Add graphical atom object into scene.
+        """
         self.scene.addObj(GAtom(value))
 
-    def removeSelectedItem(self) :
+    def removeSelectedItem(self):
+        """
+        Remove selected item.
+        """
         for item in self.scene.selectedItems() :
             if isinstance(item, Pointer):
                 self.scene.removePointer(item)
