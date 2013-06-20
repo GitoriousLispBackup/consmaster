@@ -24,17 +24,22 @@ _cm_levels = {
 _default_candidates = string.ascii_letters #  + string.digits
 
 
-def gen_with_doublons(candidates=_default_candidates):
-    while True:
-        yield random.choice(candidates)
+def gen_with_duplicates(candidates=_default_candidates):
+    """
+    symbol generator (with duplicates) : yield random choice in candidates
+    """
+    while 1: yield random.choice(candidates)
 
-def gen_with_no_doublons(candidates=_default_candidates):
+def gen_without_duplicates(candidates=_default_candidates):
+    """
+    symbol generator (without duplicates) : yield random choice in candidates;
+    raise StopIteration exception if no more candidate available."""
     for sym in random.shuffle(candidates):
         yield sym
 
 
 # allow lopps ?
-def exp_generator(max_depth=1, max_len=4, proper=1., sym_gen=gen_with_doublons()):
+def exp_generator(max_depth=1, max_len=4, proper=1., sym_gen=gen_with_duplicates()):
     """
     générateur aléatoire d'expressions lisp
     max_depth:   profondeur de la liste
@@ -62,6 +67,9 @@ def exp_generator(max_depth=1, max_len=4, proper=1., sym_gen=gen_with_doublons()
 
 
 def level_expr_gen(level=None):
+    """
+    Expression generator for defined level.
+    """
     maxi = max(_cm_levels.keys())
     if level > maxi: level = maxi
     while True:
