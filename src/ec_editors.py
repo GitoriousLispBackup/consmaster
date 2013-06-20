@@ -93,7 +93,6 @@ class NewNormDotExo(QDialog):
         list_wid.setColumnWidth(0, 40)
         list_wid.horizontalHeader().setStretchLastSection(True)
         list_wid.setSortingEnabled(False)
-
         list_wid.setSelectionMode(QAbstractItemView.SingleSelection)
         list_wid.setEditTriggers(QAbstractItemView.AllEditTriggers)
 
@@ -111,15 +110,11 @@ class NewNormDotExo(QDialog):
 
         qdot = QTableWidgetItem()
         qdot.setFlags(Qt.ItemIsUserCheckable | Qt.ItemIsEnabled)
-        if checked is True:
-            qdot.setCheckState(Qt.Checked)
-        else:
-            qdot.setCheckState(Qt.Unchecked)
+        qdot.setCheckState(Qt.Checked if checked else Qt.Unchecked)
 
         # ~ On ajoute une ligne
         # ~ Les rowCount ont un décalage de 1 O_o"
         self.list_widget.setRowCount(self.list_widget.rowCount() + 1)
-
         self.list_widget.setItem(self.list_widget.rowCount() - 1, 0, qdot)
         self.list_widget.setItem(self.list_widget.rowCount() - 1, 1, qi)
 
@@ -131,13 +126,6 @@ class NewNormDotExo(QDialog):
         # ~ Should check for valid lisp expr
         if (item.text() == "") and (item.column() == 1):
             item.setText("nil")
-
-    #~ def fileExist(self, item):
-        #~ for f in os.listdir("save/"):
-            #~ if f.split('_')[2] == item:
-                #~ return True
-            #~ else:
-                #~ return False
 
     # ~ Cute iterator creator
     def iterAllItems(self):
@@ -253,7 +241,6 @@ class NewNormGraphExo(QDialog):
         qi.setFlags(Qt.ItemIsEditable | Qt.ItemIsSelectable | Qt.ItemIsEnabled)
 
         self.list_widget.setRowCount(self.list_widget.rowCount() + 1)
-
         self.list_widget.setItem(self.list_widget.rowCount() - 1, 0, qi)
 
     def delete(self):
@@ -361,9 +348,7 @@ class NewGraphNormExo(QDialog):
         list_wid.setHorizontalHeaderLabels(["Expression"])
         list_wid.horizontalHeader().setStretchLastSection(True)
         list_wid.setSortingEnabled(False)
-
         list_wid.setSelectionMode(QAbstractItemView.SingleSelection)
-
         list_wid.itemDoubleClicked.connect(self.openEditGraph)
 
         return list_wid
@@ -439,13 +424,12 @@ class GraphEditor(QDialog):
         
         buttons_grp = QDialogButtonBox(self)
         save_btn = buttons_grp.addButton(QDialogButtonBox.Save)
-        abort_btn = buttons_grp.addButton(QDialogButtonBox.Discard)
+        abort_btn = buttons_grp.addButton(QDialogButtonBox.Cancel)
         buttons_grp.accepted.connect(self.saveAndQuit)
         buttons_grp.rejected.connect(self.close)
         
         self.widget = GraphicalLispGroupWidget(self)
-        if expr:
-            self.widget.set_expr(expr)
+        if expr: self.widget.set_expr(expr)
         
         layout = QGridLayout()
         layout.addWidget(self.widget, 0, 0)
@@ -456,7 +440,7 @@ class GraphEditor(QDialog):
         self.exec_()
 
     def saveAndQuit(self):
-        expr = self.widget.get_expr()
+        expr = self.widget.get_expr(True)
         if expr: # Validity Check
             self.parent.edit(expr, self.item)
             self.close()

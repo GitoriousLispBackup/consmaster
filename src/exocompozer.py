@@ -150,9 +150,7 @@ class Compozer(QMainWindow):
                 
                 name = QTableWidgetItem(nm)
                 #~ Custom class for sorting
-                diff = IntQTableWidgetItem()
-                diff.setData(Qt.EditRole, lvl)
-    
+                diff = IntQTableWidgetItem(lvl)
                 diff.setFlags(Qt.ItemIsSelectable)
     
                 if dirname == "NormDot":
@@ -173,14 +171,6 @@ class Compozer(QMainWindow):
         self.tabND.sortItems(1)
         self.tabNG.sortItems(1)
         self.tabGN.sortItems(1)
-
-    def displayDifficulty(self):
-        difficulty = 5
-        text = ""
-        for i in range(0, difficulty):
-            if i % 2 == 0:
-                text += "*"
-        return text
 
     def deleteExo(self):
         #~ Get file type
@@ -215,7 +205,8 @@ class Compozer(QMainWindow):
     def editExo(self, item):
         """ Launch the correct widget to edit the exo """
         editor = self.tabWidget.currentWidget().editor
-        editor(self, item.text(), int(self.tabWidget.currentWidget().item(item.row(), 1).text()))
+        level = int(self.tabWidget.currentWidget().item(item.row(), 1).text())
+        editor(self, item.text(), level)
 
     def newNormDotExo(self):
         """ New Norm <-> Dot exo """
@@ -236,11 +227,14 @@ class Compozer(QMainWindow):
 class IntQTableWidgetItem(QTableWidgetItem):
     """ Custom QTableWidget for sorting
         QTableWidget can't sort integers, must reimplement this """
+    def __init__(self, txt):
+        super().__init__(txt)
+        self.setData(Qt.UserRole, int(txt))
     def __lt__(self, other):
-        return (int(self.data(Qt.EditRole)) < int(other.data(Qt.EditRole)))
+        return (self.data(Qt.UserRole) < other.data(Qt.UserRole))
 
 if __name__ == '__main__':
-
     app = QApplication(sys.argv)
     main = Compozer()
     sys.exit(app.exec_())
+

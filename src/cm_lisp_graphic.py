@@ -57,13 +57,13 @@ class GraphicalLispGroupWidget(QWidget):
         self.layout.addLayout(self.buttons_layout)
         self.setLayout(self.layout)
 
-    def get_expr(self):
+    def get_expr(self, with_layout=False):
         """
         get the lisp expression content in
         graphical widget (in intermediate
         format)
         """
-        return self.glisp_widget.get_expr()
+        return self.glisp_widget.get_expr(with_layout)
 
     def set_expr(self, expr):
         self.glisp_widget.insert_expr(expr)
