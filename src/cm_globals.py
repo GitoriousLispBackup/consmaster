@@ -6,13 +6,13 @@ from cm_workspace import createTextMode, createNormalToGraphicMode, createGraphi
 from cm_free_mode import createFreeMode
 
 
-Mode = namedtuple('Mode', ['name', 'src', 'constructor'])
+Mode = namedtuple('Mode', ['name', 'src', 'location', 'constructor'])
 
 MODES = [
-    Mode("Mode Libre", '../data/mode-libre.html', createFreeMode),
-    Mode("Standard <-> Dotted", None, createTextMode),
-    Mode("Expr -> Graphique", None, createNormalToGraphicMode),
-    Mode("Graphique -> Expr", None, createGraphicToNormalMode),
+    Mode("Mode Libre", '../data/mode-libre.html', None, createFreeMode),
+    Mode("Standard <-> Dotted", None, "NormDot", createTextMode),
+    Mode("Expr -> Graphique", None, "NormGraph", createNormalToGraphicMode),
+    Mode("Graphique -> Expr", None, "GraphNorm", createGraphicToNormalMode),
         ]
 
 
@@ -33,3 +33,9 @@ def cm_save_data(data):
 def cm_init():
     if not os.path.exists(DATA_PATH):
         cm_save_data([])
+    if not os.path.exists(EXOS_DIR):
+        os.mkdir(EXOS_DIR)
+    for subdir in [mode.location for mode in MODES if mode.location is not None]:
+        path = EXOS_DIR + '/' + subdir
+        if not os.path.exists(path):
+            os.mkdir(path)

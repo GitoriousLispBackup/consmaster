@@ -24,20 +24,47 @@ class ButtonMenu(QPushButton):
         self.description = open(mode.src, 'r', encoding='utf-8').read() if mode.src else 'information manquante sur ce mode'
         self.constructor = mode.constructor
         self.id = mode.name
+        self.location = mode.location
+
+
+class ButtonList(QPushButton):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.toggled.connect(self.setMode)
+        self.setMode(False)
+
+    @Slot(bool)
+    def setMode(self, checked):
+        self.setText({True: '>', False: '<'}[checked])
+        self.setToolTip({True: "cacher la liste d'exercices", False: "montrer la liste d'exercices"}[checked])
+
 
 class ExosList(QWidget):
     def __init__(self):
         super().__init__()
         label = QLabel("<b>Liste d'exercices</b>")
-        self.lst = QListWidget()
+        self.lst = QTableWidget()
+        self.lst.setColumnCount(2)
+        self.lst.setHorizontalHeaderLabels(["Exercice", "Difficulté"])
+        self.lst.setColumnWidth(0, 70)
+        self.lst.horizontalHeader().setResizeMode(0, QHeaderView.Stretch);
+        self.lst.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.lst.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.lst.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        # self.lst.itemDoubleClicked.connect(...)
+        
         layout = QVBoxLayout()
         layout.addWidget(label)
         layout.addWidget(self.lst)
         self.setLayout(layout)
 
     def populate(self, mode):
+        """
+        Populate list from local directory.
+        """
         level = mode.currentLevel()
-        # TODO: populate list from mode and level
+        # pouvoir refaire un exercice déjà fait ?
+
 
 
 
@@ -97,7 +124,7 @@ class MainMenu(QWidget):
         launchButton = QPushButton("S'entrainer", self)
         launchButton.setFixedHeight(40)
         launchButton.clicked.connect(self.startSelectedMode)
-        self.exosButton = QPushButton("[*]", self)
+        self.exosButton = ButtonList(self)
         self.exosButton.setFixedSize(40, 40)
         self.exosButton.setCheckable(True)
         self.exosButton.hide()
