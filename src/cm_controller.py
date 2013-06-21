@@ -56,6 +56,7 @@ class CmBasicController(QObject):
     
     def __init__(self):
         super().__init__()
+        self.interpreter = Interpreter()
         
     def setWidget(self, widget):
         self.widget = widget
@@ -75,12 +76,6 @@ class CmNormalDottedConvController(CmBasicController):
 
     def __init__(self):
         super().__init__()
-        self.interpreter = Interpreter()
-    
-    def fmt(self, enonce):
-        self.typ = random.choice(list(self.inv_methods.keys()))
-        method_inv = self.inv_methods[self.typ]
-        return '<i>[' + self.typ + ']</i><br>' + getattr(self.enonce, method_inv)()
 
     def validate(self, entry):
         # step 1 : check for parsing errors
@@ -110,9 +105,6 @@ class CmNormalToGraphicController(CmBasicController):
     def __init__(self):
         super().__init__()
 
-    def fmt(self, enonce):
-        return repr(enonce)
-
     def validate(self, entry):
         # some verifications occurs at GUI level
         intermediate_enonce = GraphExpr.from_lsp_obj(self.enonce)
@@ -126,12 +118,6 @@ class CmNormalToGraphicController(CmBasicController):
 class CmGraphicToNormalController(CmBasicController):
     def __init__(self):
         super().__init__()
-        self.interpreter = Interpreter()
-
-    def fmt(self, enonce):
-        formatted = GraphExpr.from_lsp_obj(enonce)
-        self.enonce_intermediate = formatted
-        self.enonceChanged.emit(formatted)
 
     def validate(self, entry):
         # step 1 : check for parsing errors
@@ -192,7 +178,7 @@ class TrainingMixin:
 class ExerciceMixin:
     def __init__(self, src):
         self.exoNum = 0
-        self.len = len(src)
+        self.total = len(src)
         self.enonceIter = iter(src) # TODO : make it work
         self.results = []
         
@@ -204,14 +190,14 @@ class ExerciceMixin:
     def next(self):
         self.exoNum += 1
         try:
-            self.setCounterText.emit('exo {} / {}'.format(self.realised, self.total))
-            self.enonce = next(self.enonceIter)
+            self.setCounterText.emit('exo {} / {}'.format(self.exoNum, self.total))
+            self.enonce = next(self.enonceIter) # l'enonce n'est pas au format habituel
             formatted = self.fmt(self.enonce)
             self.enonceChanged.emit(formatted)
         except StopIteration:
             # TODO : end of exercice
             # self.end.emit(results)
-            pass
+            print('end')
 
 #########################################################################
 
@@ -220,12 +206,54 @@ class CmNDConvTrainingController(CmNormalDottedConvController, TrainingMixin):
         CmNormalDottedConvController.__init__(self)
         TrainingMixin.__init__(self, userData)
 
+    def fmt(self, enonce):
+        self.typ = random.choice(list(self.inv_methods.keys()))
+        method_inv = self.inv_methods[self.typ]
+        return '<i>[' + self.typ + ']</i><br>' + getattr(self.enonce, method_inv)()
+
+
 class CmNTGConvTrainingController(CmNormalToGraphicController, TrainingMixin):
     def __init__(self, userData):
         CmNormalToGraphicController.__init__(self)
         TrainingMixin.__init__(self, userData)
 
+    def fmt(self, enonce):
+        return repr(enonce)
+
+
 class CmGTNConvTrainingController(CmGraphicToNormalController, TrainingMixin):
     def __init__(self, userData):
         CmGraphicToNormalController.__init__(self)
         TrainingMixin.__init__(self, userData)
+
+    def fmt(self, enonce):
+        formatted = GraphExpr.from_lsp_obj(enonce)
+        self.enonce_intermediate = formatted
+        self.enonceChanged.emit(formatted)
+
+################################################################################
+
+class CmNDConvExerciceController(CmNormalDottedConvController, ExerciceMixin):
+    def __init__(self, userData, src):
+        CmNormalDottedConvController.__init__(self)
+        ExerciceMixin.__init__(self, src.lst)
+
+    def fmt(self, enonce):
+        self.typ = enonce[0]
+        return '<i>[' + self.typ + ']</i><br>' + enonce[1]
+
+class CmNTGConvExerciceController(CmNormalToGraphicController, ExerciceMixin):
+    def __init__(self, userData, src):
+        CmNormalToGraphicController.__init__(self)
+        ExerciceMixin.__init__(self, src.lst)
+
+    def fmt(self, enonce):
+        return enonce
+
+class CmGTNConvExerciceController(CmGraphicToNormalController, ExerciceMixin):
+    def __init__(self, userData, src):
+        CmGraphicToNormalController.__init__(self)
+        ExerciceMixin.__init__(self, src.lst)
+
+    def fmt(self, enonce):
+        return enonce
