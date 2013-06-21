@@ -57,15 +57,15 @@ class GraphicalLispGroupWidget(QWidget):
         self.layout.addLayout(self.buttons_layout)
         self.setLayout(self.layout)
 
-    def get_expr(self, with_layout=False):
+    def getExpr(self, with_layout=False):
         """
         get the lisp expression content in
         graphical widget (in intermediate
         format)
         """
-        return self.glisp_widget.get_expr(with_layout)
+        return self.glisp_widget.getExpr(with_layout)
 
-    def set_expr(self, expr):
+    def setExpr(self, expr):
         self.glisp_widget.insert_expr(expr)
 
     def reset(self):
@@ -96,7 +96,7 @@ class GlispWidget(QGraphicsView) :
 
         self.show()
 
-    def get_expr(self, with_layout=False):
+    def getExpr(self, with_layout=False):
         """
         get intermediate representation of lisp expression
         connected to the root arrow
@@ -119,7 +119,7 @@ class GlispWidget(QGraphicsView) :
         return retval
 
     #~ def checkExpr(self):
-        #~ expr = self.get_expr()
+        #~ expr = self.getExpr()
         #~ if expr is not None:
             #~ print('level =', expr.level())
             #~ print('depth =', expr.depth())

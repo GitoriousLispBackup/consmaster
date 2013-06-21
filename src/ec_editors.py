@@ -429,7 +429,7 @@ class GraphEditor(QDialog):
         buttons_grp.rejected.connect(self.close)
         
         self.widget = GraphicalLispGroupWidget(self)
-        if expr: self.widget.set_expr(expr)
+        if expr: self.widget.setExpr(expr)
         
         layout = QGridLayout()
         layout.addWidget(self.widget, 0, 0)
@@ -440,7 +440,7 @@ class GraphEditor(QDialog):
         self.exec_()
 
     def saveAndQuit(self):
-        expr = self.widget.get_expr(True)
+        expr = self.widget.getExpr(True)
         if expr: # Validity Check
             self.parent.edit(expr, self.item)
             self.close()
