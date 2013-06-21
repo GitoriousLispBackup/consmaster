@@ -60,11 +60,11 @@ class CmBasicController(QObject):
         
     def setWidget(self, widget):
         self.widget = widget
-        
+
     def help(self, entry, enonce):
         if entry.isomorphic_to(enonce):
             QMessageBox.warning(self.widget, "Erreur",
-                    "Expression correctement formée, mais erreur sur un symbole.")
+                    "Expression correctement formée, mais erreur sur un/des symbole/s.")
             return
         # TODO: add more help
         QMessageBox.warning(self.widget, "Erreur",
@@ -85,20 +85,14 @@ class CmNormalDottedConvController(CmBasicController):
             QMessageBox.warning(self.widget, "Erreur",
                         "L'expression fournie est incorrecte.\n"
                         "Le parseur a retourné " + repr(err))
-            return False
+            return None
         # step 2 : check for conformity
         if not valid(entry, expr, self.typ):
             QMessageBox.warning(self.widget, "Erreur",
                         "L'expression n'est pas conforme au format attendu.\n"
                         "Veuillez vérifier l'énoncé et le pretty-print.")
-            return False
-        intermediate_enonce = GraphExpr.from_lsp_obj(self.enonce)
-        interm = GraphExpr.from_lsp_obj(expr)
-        if not interm == intermediate_enonce:
-            self.help(interm, intermediate_enonce)
-            return False
-        else:
-            return True
+            return None
+        return GraphExpr.from_lsp_obj(expr)
 
 
 class CmNormalToGraphicController(CmBasicController):
@@ -107,12 +101,7 @@ class CmNormalToGraphicController(CmBasicController):
 
     def validate(self, entry):
         # some verifications occurs at GUI level
-        intermediate_enonce = GraphExpr.from_lsp_obj(self.enonce)
-        if not entry == intermediate_enonce:
-            self.help(entry, intermediate_enonce)
-            return False
-        else:
-            return True
+        return entry
 
         
 class CmGraphicToNormalController(CmBasicController):
@@ -127,14 +116,10 @@ class CmGraphicToNormalController(CmBasicController):
             QMessageBox.warning(self.widget, "Erreur", 
                         "Erreur dans l'expression fournie.\n"
                         "Le parseur a retourné " + repr(err))
-            return False
+            return None
         # TODO : add adapted help to user
-        interm = GraphExpr.from_lsp_obj(expr)
-        if not interm  == self.enonce_intermediate:
-            self.help(interm, self.enonce_intermediate)
-            return False
-        else:
-            return True
+        return GraphExpr.from_lsp_obj(expr)
+
 
 ################################################################################
 
@@ -148,19 +133,26 @@ class TrainingMixin:
 
     def next(self):
         self.enonce = next(self.enonceIter)
+        self.interm_enonce = GraphExpr.from_lsp_obj(self.enonce)
         formatted = self.fmt(self.enonce)
         self.enonceChanged.emit(formatted)
         self.setCounterText.emit('{} / {}'.format(self.realised, self.total))
 
     @Slot(object)
     def receive(self, entry):
-        ok = self.validate(entry)
+        interm = self.validate(entry)
+        if not interm:
+            self.updateData(0)
+            return
+        ok = interm == self.interm_enonce
         self.total += 1
         if ok:
             self.realised += 1
             self.ok.emit()
             QMessageBox.information(self.widget, "Bravo !",
                     "Vous avez répondu correctement à cette question")
+        else:
+            self.help(interm, self.interm_enonce)
         self.setCounterText.emit('{} / {}'.format(self.realised, self.total))
         self.updateData(1 if ok else 0)
 
@@ -184,15 +176,17 @@ class ExerciceMixin:
         
     @Slot(object)
     def receive(self, entry):
-        self.results.append(entry)
-        self.ok.emit()  # bloque la touche de validation
+        interm = self.validate(entry)
+        if interm:  # des parties de la validation sont une grande aide, notament en mode NDN
+            self.results.append(entry)
+            self.ok.emit()  # bloque la touche de validation
 
     def next(self):
         self.exoNum += 1
         try:
             self.setCounterText.emit('exo {} / {}'.format(self.exoNum, self.total))
             self.enonce = next(self.enonceIter) # l'enonce n'est pas au format habituel
-            formatted = self.fmt(self.enonce)
+            formatted = self.fmt(self.enonce)   # side effect : set interm_repr
             self.enonceChanged.emit(formatted)
         except StopIteration:
             # TODO : end of exercice
@@ -227,9 +221,7 @@ class CmGTNConvTrainingController(CmGraphicToNormalController, TrainingMixin):
         TrainingMixin.__init__(self, userData)
 
     def fmt(self, enonce):
-        formatted = GraphExpr.from_lsp_obj(enonce)
-        self.enonce_intermediate = formatted
-        self.enonceChanged.emit(formatted)
+        return GraphExpr.from_lsp_obj(enonce)
 
 ################################################################################
 
@@ -240,6 +232,8 @@ class CmNDConvExerciceController(CmNormalDottedConvController, ExerciceMixin):
 
     def fmt(self, enonce):
         self.typ = enonce[0]
+        expr = self.interpreter.parse(enonce[1])
+        self.interm_enonce = GraphExpr.from_lsp_obj(expr)
         return '<i>[' + self.typ + ']</i><br>' + enonce[1]
 
 class CmNTGConvExerciceController(CmNormalToGraphicController, ExerciceMixin):
@@ -248,6 +242,8 @@ class CmNTGConvExerciceController(CmNormalToGraphicController, ExerciceMixin):
         ExerciceMixin.__init__(self, src.lst)
 
     def fmt(self, enonce):
+        expr = self.interpreter.parse(enonce)
+        self.interm_enonce = GraphExpr.from_lsp_obj(expr)
         return enonce
 
 class CmGTNConvExerciceController(CmGraphicToNormalController, ExerciceMixin):
@@ -256,4 +252,5 @@ class CmGTNConvExerciceController(CmGraphicToNormalController, ExerciceMixin):
         ExerciceMixin.__init__(self, src.lst)
 
     def fmt(self, enonce):
+        self.interm_enonce = enonce
         return enonce
