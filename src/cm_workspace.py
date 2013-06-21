@@ -35,9 +35,9 @@ class EnonceTexte(QLabel):
         self.setText(expr)
 
 class EnonceGraphique(GlispWidget):
-    def __init__(self):
+    def __init__(self, interactive=True):
         super().__init__()
-        # self.setInteractive(False)
+        self.setInteractive(interactive)
     def setExpr(self, expr):
         self.insert_expr(expr)
 
@@ -137,20 +137,32 @@ class ExerciceWorkSpace(WorkSpace):
 ######################################################
 #                   constructors
 
-def createTextMode(userData):
-    widget = TrainingWorkSpace(EnonceTexte(), SimpleLineEdit())
-    controller = CmNDConvTrainingController(userData)
+def createTextMode(userData, src=None):
+    if not src:
+        widget = TrainingWorkSpace(EnonceTexte(), SimpleLineEdit())
+        controller = CmNDConvTrainingController(userData)
+    else:
+        widget = ExerciceWorkSpace(EnonceTexte(), SimpleLineEdit())
+        controller = CmNDConvExerciceController(userData, src)
     widget.setController(controller)
     return widget
 
-def createNormalToGraphicMode(userData):
-    widget = TrainingWorkSpace(EnonceTexte(), GraphicalLispGroupWidget())
-    controller = CmNTGConvTrainingController(userData)
+def createNormalToGraphicMode(userData, src=None):
+    if not src:
+        widget = TrainingWorkSpace(EnonceTexte(), GraphicalLispGroupWidget())
+        controller = CmNTGConvTrainingController(userData)
+    else:
+        widget = ExerciceWorkSpace(EnonceTexte(), GraphicalLispGroupWidget())
+        controller = CmNTGConvExerciceController(userData, src)        
     widget.setController(controller)
     return widget
 
-def createGraphicToNormalMode(userData):
-    widget = TrainingWorkSpace(EnonceGraphique(), SimpleLineEdit())
-    controller = CmGTNConvTrainingController(userData)
+def createGraphicToNormalMode(userData, src=None):
+    if not src:
+        widget = TrainingWorkSpace(EnonceGraphique(), SimpleLineEdit())
+        controller = CmGTNConvTrainingController(userData)
+    else:
+        widget = ExerciceWorkSpace(EnonceGraphique(False), SimpleLineEdit())
+        controller = CmNTGConvExerciceController(userData, src)
     widget.setController(controller)
     return widget
