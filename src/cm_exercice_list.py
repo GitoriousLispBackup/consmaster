@@ -15,6 +15,10 @@ from cm_exercice import CmExerciceBase, ex_load
 
 
 class ButtonList(QPushButton):
+    """
+    Special button, for displaying / hidding
+    exercices list widget.
+    """
     def __init__(self, parent):
         super().__init__(parent)
         self.toggled.connect(self.setMode)
@@ -22,23 +26,34 @@ class ButtonList(QPushButton):
 
     @Slot(bool)
     def setMode(self, checked):
+        """
+        Configure the button state.
+        """
         self.setText({True: '>', False: '<'}[checked])
         self.setToolTip({True: "cacher la liste d'exercices", False: "montrer la liste d'exercices"}[checked])
 
 
 class ExosList(QWidget):
+    """
+    Widget for displaying and manage exercices list.
+    """
     openExerciceRequested = Signal(CmExerciceBase)
 
     class QTableWidgetLevelItem(QTableWidgetItem):
-        """ Custom QTableWidgetItem """
+        """
+        Custom QTableWidgetItem for displaying level,
+        and sorting.
+        """
         def __init__(self, lvl):
             super().__init__('*' * lvl)
             self.setData(Qt.UserRole, lvl)
         def __lt__(self, other):
-            return (self.data(Qt.UserRole) < other.data(Qt.UserRole))
+            return self.data(Qt.UserRole) < other.data(Qt.UserRole)
 
     class QTableWidgetExoItem(QTableWidgetItem):
-        """ Custom QTableWidgetItem """
+        """
+        Custom QTableWidgetItem for save exercices data.
+        """
         def __init__(self, name, filepath):
             super().__init__(name)
             self.setData(Qt.UserRole, ex_load(filepath))
@@ -62,12 +77,15 @@ class ExosList(QWidget):
         self.setLayout(layout)
 
     def reset(self):
+        """
+        Reset the list widget.
+        """
         self.lst.clearContents()
         self.lst.setRowCount(0)
 
     def populate(self, mode, path):
         """
-        Populate list from local directory.
+        Populate list from local exercices directory.
         """
         self.reset()
         
@@ -78,11 +96,12 @@ class ExosList(QWidget):
             lvl, _, name = filename.partition('_')
             n = self.lst.rowCount()
             self.lst.setRowCount(n + 1)
-            self.lst.setItem(n, 0, ExosList.QTableWidgetExoItem(name, path + '/' + filename))
-            self.lst.setItem(n, 1, ExosList.QTableWidgetLevelItem(int(lvl)))
+            self.lst.setItem(n, 0, self.QTableWidgetExoItem(name, path + '/' + filename))
+            self.lst.setItem(n, 1, self.QTableWidgetLevelItem(int(lvl)))
         self.lst.sortItems(1)
 
     @Slot(QTableWidgetItem)
     def openItem(self, item):
         if isinstance(item, ExosList.QTableWidgetExoItem):
+            # emit a signal for open requested exercice
             self.openExerciceRequested.emit(item.data(Qt.UserRole))
