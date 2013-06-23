@@ -12,7 +12,10 @@ except:
 from cm_globals import *
 
 
-def getModeTab(mode):
+def getModeStats(mode):
+    """
+    Make statistics html table for defined training mode.
+    """
     nrows = len(mode.training)
     htmlTable = '<tr><th>Niveau</th><th>Réalisations</th><th>Moyenne</th></tr>'
     for lvl in sorted(mode.training.keys()):
@@ -21,20 +24,21 @@ def getModeTab(mode):
         avg = sum(lst) / k
         row = '<tr><td>{}</td><td>{}</td><td>{:.2%}</td></tr>'.format(lvl, k, avg)
         htmlTable += row
-    htmlTable = '<table border="1">' + htmlTable + '</table>'
-    table = QLabel(htmlTable)
-    return table
+    return  '<table border="1">' + htmlTable + '</table>'
+
 
 class StatsDialog(QDialog):
+    """
+    Dialog for display statistics for current selected user.
+    """
     def __init__(self, userData):
         super().__init__()
-        self.userData = userData
 
         label = QLabel('<b>User :</b> ' + userData.name + '<br> mail : <i>' + userData.mail + '<i>')
         
         tabWidget = QTabWidget()
         for name, mode in userData.modes.items():
-            tabWidget.addTab(getModeTab(mode), name)
+            tabWidget.addTab(QLabel(getModeStats(mode)), name)
 
         layout = QVBoxLayout()
         layout.addWidget(label)
