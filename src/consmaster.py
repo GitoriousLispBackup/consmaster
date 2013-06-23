@@ -44,7 +44,8 @@ class Client(QMainWindow):
         if not self.data:
             self.currentUser = None
             QMessageBox.information(self, "Info",
-                    "Il est préférable de vous enregistrer afin de bénéficier des fonctionnalités du suivi de progression.")
+                    "Il est préférable de vous enregistrer afin de bénéficier "
+                    "des fonctionnalités du suivi de progression.")
 
     def createMenus(self):
         self.clientMenu = self.menuBar().addMenu("&Client")
@@ -60,7 +61,6 @@ class Client(QMainWindow):
                 statusTip="Quitter l'application", triggered=self.close)
         # self.connectAction = self.clientMenu.addAction("Se connecter") 
         menu.addAction(quitAction)
-
 
     def setUserMenu(self, menu):
         addUserAction = menu.addAction(QIcon("../icons/add-user"),
@@ -110,7 +110,8 @@ class Client(QMainWindow):
 
     def about(self):
         QMessageBox.about(self, "A propos ConsMaster",
-                "Maîtrisez les représentations de listes, en notations parenthésées, à point et en doublets graphiques.")
+                "Maîtrisez les représentations de listes, en notations parenthésées, "
+                "à point et en doublets graphiques.")
 
     def getStats(self):
         # TODO: activer seulement si un user existe
@@ -119,8 +120,8 @@ class Client(QMainWindow):
     def closeEvent(self, event):
         cm_save_data(self.data)
         super().closeEvent(event)
-        
 
+################################################################################
 
 if __name__ == '__main__':
     cm_init()
