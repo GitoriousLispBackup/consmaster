@@ -35,6 +35,10 @@ class EnonceTexte(QLabel):
         self.setText(expr)
 
 class EnonceGraphique(GlispWidget):
+    """
+    Display widget: subclass of GlispWidget that support
+    setExpr() method.
+    """
     def __init__(self, interactive=True):
         super().__init__()
         self.setInteractive(interactive)
@@ -43,19 +47,31 @@ class EnonceGraphique(GlispWidget):
 
 
 class WorkSpace(QWidget):
+    """
+    A generic GUI widget class for training or exercices.
+    Allow to connect the GUI to corresponding controller
+    transparently.
+    """
+
     getEntry = Signal(object)
     closeRequested = Signal(QWidget)
     
     def __init__(self, w_enonce, _in):
+        """
+        Constructor : get an statement and input widget,
+        places them according to a generic layout style,
+        with buttons for interact.
+        """
         super().__init__()
 
         layout = QVBoxLayout()
 
+        # creating and storing widgets
         label_en = QLabel('<b>Expression à convertir :</b>')
         self.label_counter = QLabel()
+        self.w_enonce = w_enonce
         label_in = QLabel('<b>Conversion :</b>')
         self._in = _in
-        self.w_enonce = w_enonce
         self.validate_btn = QPushButton(QIcon("../icons/button_accept"), "Valider")
         self.validate_btn.setFixedHeight(35)
         self.next_btn = QPushButton(QIcon("../icons/go-next"), "Suivant")
@@ -94,26 +110,39 @@ class WorkSpace(QWidget):
         self.close_btn.clicked.connect(self.close)
 
     def validateRequested(self):
+        """
+        Get validation request (from validate button).
+        Emit a signal to the controller. 
+        """
         expr = self._in.getExpr()
         if expr is not None:
             self.getEntry.emit(expr)
 
     def setController(self, controller):
+        """
+        Connect the passed controller to the corresponding
+        signals and slots.
+        """
         self.controller = controller
-        controller.setWidget(self)
         controller.enonceChanged.connect(self.w_enonce.setExpr)
         controller.setCounterText.connect(self.label_counter.setText)
         controller.ok.connect(self.valided)
         self.getEntry.connect(controller.receive)
-        self.goNext()
+        self.goNext()       # ugly
 
     def goNext(self):
+        """
+        Go to next exercice.
+        """
         self.controller.next()
-        self.validate_btn.setDisabled(False)
+        self.validate_btn.setEnabled(True)
         self._in.reset()
         self._in.setFocus()
 
     def valided(self):
+        """
+        Entry valided, disable validate button.
+        """
         self.validate_btn.setDisabled(True)
 
     def close(self):

@@ -56,17 +56,14 @@ class CmBasicController(QObject):
     
     def __init__(self):
         super().__init__()
-        
-    def setWidget(self, widget):
-        self.widget = widget
 
     def help(self, entry, enonce):
         if entry.isomorphic_to(enonce):
-            QMessageBox.warning(self.widget, "Erreur",
+            QMessageBox.warning(None, "Erreur",
                     "Expression correctement formée, mais erreur sur un/des symbole/s.")
             return
         # TODO: add more help
-        QMessageBox.warning(self.widget, "Erreur",
+        QMessageBox.warning(None, "Erreur",
                     "L'expression fournie est incorrecte.")
 
 
@@ -81,13 +78,13 @@ class CmNormalDottedConvController(CmBasicController):
         try:
             expr = Interpreter.parse(entry)
         except LispParseError as err:
-            QMessageBox.warning(self.widget, "Erreur",
+            QMessageBox.warning(None, "Erreur",
                         "L'expression fournie est incorrecte.\n"
                         "Le parseur a retourné " + repr(err))
             return None
         # step 2 : check for conformity
         if not valid(entry, expr, self.typ):
-            QMessageBox.warning(self.widget, "Erreur",
+            QMessageBox.warning(None, "Erreur",
                         "L'expression n'est pas conforme au format attendu.\n"
                         "Veuillez vérifier l'énoncé et le pretty-print.")
             return None
@@ -112,7 +109,7 @@ class CmGraphicToNormalController(CmBasicController):
         try:
             expr = Interpreter.parse(entry)
         except LispParseError as err:
-            QMessageBox.warning(self.widget, "Erreur", 
+            QMessageBox.warning(None, "Erreur", 
                         "Erreur dans l'expression fournie.\n"
                         "Le parseur a retourné " + repr(err))
             return None
@@ -148,7 +145,7 @@ class TrainingMixin:
         if ok:
             self.realised += 1
             self.ok.emit()
-            QMessageBox.information(self.widget, "Bravo !",
+            QMessageBox.information(None, "Bravo !",
                     "Vous avez répondu correctement à cette question")
         else:
             self.help(interm, self.interm_enonce)
@@ -160,7 +157,7 @@ class TrainingMixin:
             self.userData.addTrainingData(self.currentLevel, score)
             lvl = self.userData.currentLevel()
             if lvl > self.currentLevel:
-                QMessageBox.information(self.widget, "Bravo !",
+                QMessageBox.information(None, "Bravo !",
                     "Vous passez dorénavant au niveau " + str(lvl))
                 self.currentLevel = lvl
                 self.enonceIter = level_expr_gen(self.currentLevel)
