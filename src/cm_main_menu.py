@@ -9,7 +9,8 @@ from cm_globals import *
 from cm_free_mode import *
 from cm_workspace import *
 from cm_expr_generator import _cm_levels
-from cm_exercice import CmExerciceBase, ex_load
+from cm_exercice_list import ExosList, ButtonList
+from cm_exercice import CmExerciceBase
 
 try:
     from PySide.QtCore import *
@@ -20,97 +21,18 @@ except:
 
 
 class ButtonMenu(QPushButton):
-    def __init__(self, mode, parent):
-        super().__init__('\n'.join(textwrap.wrap(mode.name, 10)), parent)
+    def __init__(self, mode):
+        super().__init__('\n'.join(textwrap.wrap(mode.name, 10)))
         self.description = open(mode.src, 'r', encoding='utf-8').read() if mode.src else 'information manquante sur ce mode'
         self.constructor = mode.constructor
         self.id = mode.name
         if mode.location:
             self.location = EXOS_DIR + '/' + mode.location
-
-
-class ButtonList(QPushButton):
-    def __init__(self, parent):
-        super().__init__(parent)
-        self.toggled.connect(self.setMode)
-        self.setMode(False)
-
-    @Slot(bool)
-    def setMode(self, checked):
-        self.setText({True: '>', False: '<'}[checked])
-        self.setToolTip({True: "cacher la liste d'exercices", False: "montrer la liste d'exercices"}[checked])
-
-
-class ExosList(QWidget):
-    shown = Signal()
-    openExerciceRequested = Signal(CmExerciceBase)
-
-    class QTableWidgetLevelItem(QTableWidgetItem):
-        """ Custom QTableWidgetItem """
-        def __init__(self, lvl):
-            super().__init__('*' * lvl)
-            self.setData(Qt.UserRole, lvl)
-        def __lt__(self, other):
-            return (self.data(Qt.UserRole) < other.data(Qt.UserRole))
-
-    class QTableWidgetExoItem(QTableWidgetItem):
-        """ Custom QTableWidgetItem """
-        def __init__(self, name, filepath):
-            super().__init__(name)
-            self.setData(Qt.UserRole, ex_load(filepath))
-    
-    def __init__(self):
-        super().__init__()
-        label = QLabel("<b>Liste d'exercices</b>")
-        self.lst = QTableWidget()
-        self.lst.setColumnCount(2)
-        self.lst.setHorizontalHeaderLabels([" Exercice ", "Niveau"])
-        #self.lst.setColumnWidth(0, 100)
-        self.lst.horizontalHeader().setResizeMode(0, QHeaderView.Stretch);
-        self.lst.setSelectionMode(QAbstractItemView.SingleSelection)
-        self.lst.setSelectionBehavior(QAbstractItemView.SelectRows)
-        self.lst.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.lst.itemDoubleClicked.connect(self.openItem)
-        
-        layout = QVBoxLayout()
-        layout.addWidget(label)
-        layout.addWidget(self.lst)
-        self.setLayout(layout)
-
-    def showEvent(self, event):
-        self.shown.emit()
-        super().showEvent(event)
-
-    def reset(self):
-        self.lst.clearContents()
-        self.lst.setRowCount(0)
-
-    def populate(self, mode, path):
-        """
-        Populate list from local directory.
-        """
-        self.reset()
-        
-        level = mode.currentLevel()
-        # pouvoir refaire un exercice déjà fait ?
-        # filtrer d'après le level
-        for filename in os.listdir(path):
-            lvl, _, name = filename.partition('_')
-            n = self.lst.rowCount()
-            self.lst.setRowCount(n + 1)
-            self.lst.setItem(n, 0, ExosList.QTableWidgetExoItem(name, path + '/' + filename))
-            self.lst.setItem(n, 1, ExosList.QTableWidgetLevelItem(int(lvl)))
-        self.lst.sortItems(1)
-
-    @Slot(QTableWidgetItem)
-    def openItem(self, item):
-        if isinstance(item, ExosList.QTableWidgetExoItem):
-            self.openExerciceRequested.emit(item.data(Qt.UserRole))
         
 
 class MainMenu(QWidget):
-    """ Main menu creation/gestion
-
+    """
+    Main menu creation / gestion.
     The main menu is used as a laucher for all modules
     """
     def __init__(self, mainwindow):
@@ -119,53 +41,49 @@ class MainMenu(QWidget):
 
         self.layout = QHBoxLayout()
 
-        scrollContent = QWidget()
-
         #~ Layout in the scroll area
         vb = QVBoxLayout()
         self.buttons_group = QButtonGroup()
         self.buttons_group.setExclusive(True)
-
+        # add buttons for all exists modules
         for mode in MODES:
-            btn = ButtonMenu(mode, scrollContent)
+            btn = ButtonMenu(mode)
             btn.setCheckable(True)
             btn.setFixedSize(120,120)
             vb.addWidget(btn)
             self.buttons_group.addButton(btn)
         self.buttons_group.buttonClicked.connect(self.displayMode)
 
-        #~ btns = self.buttons_group.buttons()
-        #~ if btns: btns[0].click()
-
+        scrollContent = QWidget() # container widget
         scrollContent.setLayout(vb)
-
         scroller = QScrollArea()
         scroller.setWidget(scrollContent)
         scroller.setFixedWidth(155)
-        scroller.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
-
+        #scroller.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.layout.addWidget(scroller)
 
         #~ The text/hints display widget + his button
         vb = QVBoxLayout()
-
+        # progress bar for displaying user's current level
         self.level = QProgressBar()
         self.level.setMaximum(max(_cm_levels.keys()))
         self.level.setFormat('niveau %v/%m')
         self.level.hide()
-        
+        # widget for displaying informations about selected module
         self.displayText = QTextEdit()
         self.displayText.setReadOnly(True)
+        # list widget: manage exercices of selected module
         self.lstWidget = ExosList()
         self.lstWidget.setFixedWidth(230)
         self.lstWidget.hide()
-        self.lstWidget.shown.connect(self.refreshExosLst)
         self.lstWidget.openExerciceRequested.connect(self.startExercice)
 
         buttonsLayout = QHBoxLayout()
+        # button for start training mode of selected module
         launchButton = QPushButton("S'entrainer", self)
         launchButton.setFixedHeight(40)
         launchButton.clicked.connect(self.startSelectedMode)
+        # button for display exercices list, if exists
         self.exosButton = ButtonList(self)
         self.exosButton.setFixedSize(40, 40)
         self.exosButton.setCheckable(True)
@@ -187,9 +105,14 @@ class MainMenu(QWidget):
 
     @Slot(QAbstractButton)
     def displayMode(self, btn):
+        """
+        Display informations about the selected mode.
+        If exercices are supported by this module, display
+        widgets of corresponding mode.
+        """
         self.displayText.setText(btn.description)
         user = self.mainwindow.currentUser
-        if user is not None:
+        if user is not None:    # if an user is selected
             try:
                 # check if mode is available
                 mode = user.get_mode(btn.id)
@@ -201,22 +124,19 @@ class MainMenu(QWidget):
                 self.level.show()
                 self.level.setValue(mode.currentLevel())
                 self.exosButton.show()
-                visible = self.exosButton.isChecked()
-                self.lstWidget.setVisible(visible)
-                if visible: self.lstWidget.populate(mode, btn.location) # refresh
-
-    def refreshExosLst(self):
-        btn = self.buttons_group.checkedButton()
-        user = self.mainwindow.currentUser
-        if user is not None:
-            mode = user.get_mode(btn.id)
-            self.lstWidget.populate(mode, btn.location)
+                self.lstWidget.setVisible(self.exosButton.isChecked())
+                self.lstWidget.populate(mode, btn.location) # refresh exercices list
 
     def startSelectedMode(self):
         """
         Start selected mode in training.
         """
         selectedBtn = self.buttons_group.checkedButton()
+        if selectedBtn is None:
+            QMessageBox.information(self, 'Attention', 'Aucun mode selectionné.\n'
+                                                       'Vous devez choisir un mode avant de le lancer.')
+            return
+        
         user = self.mainwindow.currentUser
         try:
             widget = selectedBtn.constructor(user.get_mode(selectedBtn.id))
@@ -232,6 +152,9 @@ class MainMenu(QWidget):
 
     @Slot(CmExerciceBase)
     def startExercice(self, exo):
+        """
+        Start selected exercice.
+        """
         selectedBtn = self.buttons_group.checkedButton()
         user = self.mainwindow.currentUser
         widget = selectedBtn.constructor(user.get_mode(selectedBtn.id), exo)
@@ -246,6 +169,9 @@ class MainMenu(QWidget):
 
     @Slot(QWidget)
     def closeWidget(self, widget):
+        """
+        Close the current worspace widget.
+        """
         self.mainwindow.central_widget.removeWidget(widget)
         self.mainwindow.setWindowTitle("Consmaster")
         del widget.controller   # hack: force cotroller deleting, to remove interpreter if necessary
