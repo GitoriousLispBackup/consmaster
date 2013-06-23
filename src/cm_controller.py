@@ -56,7 +56,6 @@ class CmBasicController(QObject):
     
     def __init__(self):
         super().__init__()
-        self.interpreter = Interpreter()
         
     def setWidget(self, widget):
         self.widget = widget
@@ -80,7 +79,7 @@ class CmNormalDottedConvController(CmBasicController):
     def validate(self, entry):
         # step 1 : check for parsing errors
         try:
-            expr = self.interpreter.parse(entry)
+            expr = Interpreter.parse(entry)
         except LispParseError as err:
             QMessageBox.warning(self.widget, "Erreur",
                         "L'expression fournie est incorrecte.\n"
@@ -111,7 +110,7 @@ class CmGraphicToNormalController(CmBasicController):
     def validate(self, entry):
         # step 1 : check for parsing errors
         try:
-            expr = self.interpreter.parse(entry)
+            expr = Interpreter.parse(entry)
         except LispParseError as err:
             QMessageBox.warning(self.widget, "Erreur", 
                         "Erreur dans l'expression fournie.\n"
@@ -232,7 +231,7 @@ class CmNDConvExerciceController(CmNormalDottedConvController, ExerciceMixin):
 
     def fmt(self, enonce):
         self.typ = enonce[0]
-        expr = self.interpreter.parse(enonce[1])
+        expr = Interpreter.parse(enonce[1])
         self.interm_enonce = GraphExpr.from_lsp_obj(expr)
         return '<i>[' + self.typ + ']</i><br>' + enonce[1]
 
@@ -242,7 +241,7 @@ class CmNTGConvExerciceController(CmNormalToGraphicController, ExerciceMixin):
         ExerciceMixin.__init__(self, src.lst)
 
     def fmt(self, enonce):
-        expr = self.interpreter.parse(enonce)
+        expr = Interpreter.parse(enonce)
         self.interm_enonce = GraphExpr.from_lsp_obj(expr)
         return enonce
 

@@ -20,7 +20,8 @@ class Interpreter:
         self.out = out
         self.reset()
 
-    def parse(self, expr):
+    @staticmethod
+    def parse(expr):
         parser_out = lisp_parser.parse(expr, lexer=lisp_lexer)
         if len(parser_out) == 0:
             raise LispParseError('no expression')
