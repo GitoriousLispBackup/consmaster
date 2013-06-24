@@ -1,3 +1,3 @@
 [submodule "src/pylisp"]
 	path = src/pylisp
-	url = git@gitorious.org:pylisp/pylisp.git
+	url = git://gitorious.org/pylisp/pylisp.git
