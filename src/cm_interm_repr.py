@@ -209,7 +209,7 @@ def lisp_expr_level(depth, cdrType):
     return int(log(depth**2.5)) + 3 * cdrType
 
 def interm_level(interm):
-   if expr.circular():
+    if expr.circular():
         cdrType = 2
     elif not expr.proper():
         cdrType = 1
