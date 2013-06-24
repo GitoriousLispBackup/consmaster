@@ -14,6 +14,10 @@ from cm_controller import *
 
 
 class FreeMode(QWidget):
+    """
+    Workspace widget for free-mode prototype.
+    """
+    
     closeRequested = Signal(QWidget)
     
     def __init__(self):
@@ -37,7 +41,7 @@ class FreeMode(QWidget):
     def setController(self, controller):
         self.controller = controller
         self.terminal.read.connect(controller.receive)
-        controller.send.connect(self.graphical_group.glisp_widget.insert_expr)
+        controller.send.connect(self.graphical_group.setExpr)
 
     def close(self):
         self.closeRequested.emit(self)

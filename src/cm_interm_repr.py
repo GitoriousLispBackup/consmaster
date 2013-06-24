@@ -3,7 +3,7 @@
 
 from operator import itemgetter
 import pprint
-from math import log
+
 
 from pylisp import *
 import pylisp.lisp as lisp
@@ -42,7 +42,7 @@ class GraphExpr:
     def __init__(self, root, graph, **kwargs):
         self.root = root
         self.graph = graph
-        # add additionnals attributes (like layout)
+        # add additionnals optional attributes (like layout)
         self.__dict__.update(**kwargs)
     
     def to_lsp_obj(self):
@@ -173,18 +173,46 @@ class GraphExpr:
                 return not (box == 'cdr' and GraphExpr.value(nd) != 'nil')
         return walk(self.root)
 
-    def level(self):
-        depth = self.depth()
-        if self.circular():
-            cdrType = 2
-        elif not self.proper():
-            cdrType = 1
-        else:
-            cdrType = 0
-        return int(log(depth**2.5)) + 3 * cdrType
+    def atoms(self):
+        """
+        Get atoms list, in traversal order (a single atom
+        can appear twice or more).
+        """
+        visited = set()
+        def walk(uid, acc):
+            node = self.graph[uid]
+            tag = GraphExpr.tag(node)
+            if tag == '#atom':
+                acc.append(GraphExpr.value(node))
+            elif tag == '#cons':
+                if uid not in visited:
+                    visited.add(uid)
+                    car, cdr = GraphExpr.value(node)
+                    walk(car, acc)
+                    walk(cdr, acc)
+            else:
+                raise RuntimeError('Unkown value in tree')
+        lst = []
+        walk(self.root, lst)
+        return lst
 
     def __str__(self):
         return repr(self.to_lsp_obj())
 
     def __repr__(self):
         return '< root: ' + repr(self.root) + ';\n  graph:\n' + pprint.pformat(self.graph, indent=2) + ' >'
+
+
+from math import log
+
+def lisp_expr_level(depth, cdrType):
+    return int(log(depth**2.5)) + 3 * cdrType
+
+def interm_level(interm):
+   if expr.circular():
+        cdrType = 2
+    elif not expr.proper():
+        cdrType = 1
+    else:
+        cdrType = 0
+    return lisp_expr_level(expr.depth(), cdrType)

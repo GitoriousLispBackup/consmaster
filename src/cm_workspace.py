@@ -150,10 +150,12 @@ class WorkSpace(QWidget):
 
 
 class TrainingWorkSpace(WorkSpace):
+    """ Class specialisation for training workspace """
     pass
 
 # TODO: ajouter un compteur faits/total
 class ExerciceWorkSpace(WorkSpace):
+    """ Class specialisation for exercices workspace """
     def goNext(self):
         self.next_btn.setDisabled(True)
         super().goNext()
