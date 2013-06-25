@@ -36,14 +36,14 @@ class FreeMode(QWidget):
         self.setLayout(layout)
 
         self.terminal.setFocus()
-        self.close_btn.clicked.connect(self.close)
+        self.close_btn.clicked.connect(self.closeReq)
 
     def setController(self, controller):
         self.controller = controller
         self.terminal.read.connect(controller.receive)
         controller.send.connect(self.graphical_group.setExpr)
 
-    def close(self):
+    def closeReq(self):
         self.closeRequested.emit(self)
 
 ######################################################

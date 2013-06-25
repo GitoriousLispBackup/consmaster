@@ -107,7 +107,7 @@ class WorkSpace(QWidget):
 
         self.validate_btn.clicked.connect(self.validateRequested)
         self.next_btn.clicked.connect(self.goNext)
-        self.close_btn.clicked.connect(self.close)
+        self.close_btn.clicked.connect(self.closeReq)
 
     def validateRequested(self):
         """
@@ -145,7 +145,7 @@ class WorkSpace(QWidget):
         """
         self.validate_btn.setDisabled(True)
 
-    def close(self):
+    def closeReq(self):
         self.closeRequested.emit(self)
 
 

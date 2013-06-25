@@ -39,8 +39,6 @@ class Client(QMainWindow):
 
         self.statusBar().showMessage('Ready')
 
-        self.show()
-
         if not self.data:
             self.currentUser = None
             QMessageBox.information(self, "Info",
@@ -127,4 +125,5 @@ if __name__ == '__main__':
     cm_init()
     app = QApplication(sys.argv)
     client = Client()
+    client.show()
     sys.exit(app.exec_())
