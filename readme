@@ -1,0 +1,17 @@
+Pour installer ConsMaster depuis le dépot git, 
+il faut suivre ces étapes :
+
+1. Installation des dépendances
+    - avoir qt4 installé
+    - avoir python3 installé
+    - installer PySide et PLY ( sous ubuntu : 'sudo apt-get install python3-ply python3-pyside' )
+
+2. Télécharger le dépot git (il faut avois git installé), avec les commandes :
+    cd /home/
+    git clone git://gitorious.org/consmaster2/consmaster.git
+    cd consmaster
+    git submodule init
+    git submodule update
+
+3. Lancer consmaster avec la commande :
+    ./consmaster.py
