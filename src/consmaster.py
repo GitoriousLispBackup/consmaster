@@ -22,6 +22,7 @@ class Client(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
 
+        cm_init()
         self.data = cm_load_data()
 
         self.createMenus()
@@ -122,7 +123,6 @@ class Client(QMainWindow):
 ################################################################################
 
 if __name__ == '__main__':
-    cm_init()
     app = QApplication(sys.argv)
     client = Client()
     client.show()

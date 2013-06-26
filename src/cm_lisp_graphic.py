@@ -83,7 +83,6 @@ class GlispWidget(QGraphicsView) :
 
         self.arrow = None
         self.scene = LispScene()
-        self.scene.setSceneRect(QRectF(0, 0, 650, 300))
         self.setRenderHint(QPainter.Antialiasing)
 
         self.scene.update()
@@ -247,3 +246,9 @@ class GlispWidget(QGraphicsView) :
             self.scene.removeItem(self.arrow)
             self.arrow = None
         super().mouseReleaseEvent(mouseEvent)
+
+    def resizeEvent(self, resizeEvent):
+        sz = resizeEvent.size()
+        w, h = sz.width(), sz.height()
+        self.scene.setSceneRect(QRectF(0, 0, w, h))
+        super().resizeEvent(resizeEvent)
