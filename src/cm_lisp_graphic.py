@@ -93,6 +93,10 @@ class GlispWidget(QGraphicsView) :
         self.rootArrow = RootArrow()
         self.scene.addItem(self.rootArrow)
 
+        # hack - force to resizeEvent()
+        self.show()
+        self.resize(650, 400)
+
     def getExpr(self, with_layout=False):
         """
         get intermediate representation of lisp expression
