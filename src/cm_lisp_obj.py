@@ -16,7 +16,7 @@ class GCons(QGraphicsItem):
 
     def __init__(self, car=None, cdr=None, iden=None, parent=None, scene=None):
         super().__init__(parent, scene)
-        self.setFlags(QGraphicsItem.ItemIsMovable | QGraphicsItem.ItemIsSelectable)
+        self.setFlags(QGraphicsItem.ItemIsMovable | QGraphicsItem.ItemIsSelectable | QGraphicsItem.ItemSendsGeometryChanges)
 
         self.car = car
         self.cdr = cdr
@@ -45,9 +45,17 @@ class GCons(QGraphicsItem):
         if self.cdr == None:
             painter.drawLine(self.wSize/2+2, self.hSize-2, self.wSize-2, 0+2)
 
-    def itemChange(self, change, value) :
+    def itemChange(self, change, value):
         if change == self.ItemSelectedChange:
             self.selectedActions(value)
+        elif change == self.ItemPositionChange:
+            # value is the new position.
+            rect = self.scene().sceneRect().translated(-self.wSize/2, -self.hSize/2)
+            if not rect.contains(value):
+                # Keep the item inside the scene rect.
+                value.setX(min(rect.right(), max(value.x(), rect.left())))
+                value.setY(min(rect.bottom(), max(value.y(), rect.top())))
+                return value
         return super().itemChange(change, value)
 
     def isCarOrCdr(self, mousePos) :
@@ -63,7 +71,7 @@ class GAtom(QGraphicsItem):
     def __init__(self, value=None, parent=None, scene=None):
         super().__init__(parent, scene)
 
-        self.setFlags(QGraphicsItem.ItemIsMovable|QGraphicsItem.ItemIsSelectable)
+        self.setFlags(QGraphicsItem.ItemIsMovable | QGraphicsItem.ItemIsSelectable | QGraphicsItem.ItemSendsGeometryChanges)
 
         self._value = "nil"  # ??
         self.sizedBound = 0
@@ -78,7 +86,7 @@ class GAtom(QGraphicsItem):
 
     def setValue(self, value):
         self._value = value
-        self.sizedBound = 20 + len(self.value)*10
+        self.sizedBound = 20 + len(self.value) * 10
         #~ Seems to be working without this, but is asked in
         #~  documentation, as we change the bounding box
         self.prepareGeometryChange()
@@ -87,25 +95,35 @@ class GAtom(QGraphicsItem):
 
     value = property(fget=lambda self: self._value, fset=setValue)
 
-    def selectedActions(self, value) :
+    def selectedActions(self, value):
         if value:
             self.pen = QPen(QColor("crimson"), self.penWidth)
         else:
             self.pen = QPen(QColor("black"), self.penWidth)
 
-    def boundingRect(self) :
+    def boundingRect(self):
         return QRectF (0 - self.penWidth / 2, 0 - self.penWidth / 2,
                        self.sizedBound + self.penWidth, 30 + self.penWidth)
 
-    def paint(self, painter, option, widget=None) :
+    def paint(self, painter, option, widget=None):
         painter.setPen(self.pen)
         rect = QRectF(0, 0, self.sizedBound, 30)
         painter.drawEllipse(rect)
         painter.drawText(rect, Qt.AlignCenter, self.value)
 
-    def itemChange(self, change, value) :
-        if change == self.ItemSelectedChange :
+    def itemChange(self, change, value):
+        if change == self.ItemSelectedChange:
             self.selectedActions(value)
+        elif change == self.ItemPositionChange:
+            # value is the new position.
+            brect = self.boundingRect()
+            w, h = brect.width(), brect.height()
+            rect = self.scene().sceneRect().translated(-w/2, -h/2)
+            if not rect.contains(value):
+                # Keep the item inside the scene rect.
+                value.setX(min(rect.right(), max(value.x(), rect.left())))
+                value.setY(min(rect.bottom(), max(value.y(), rect.top())))
+                return value
         return super().itemChange(change, value)
 
     def setValueBox(self, currentName=None):
@@ -279,8 +297,8 @@ class Pointer(Arrow):
         else:
             print("1. problème qq part ...", self.orig)
             return
-        #~ Set destination position
 
+        #~ Set destination position
         if isinstance(self.endItem, GCons) :
             p2 = self.endItem.scenePos() + QPointF(0, self.startItem.hSize/2)
         elif isinstance(self.endItem, GAtom) :
