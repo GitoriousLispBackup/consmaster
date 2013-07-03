@@ -354,7 +354,8 @@ class NewGraphNormExo(QDialog):
         return list_wid
     
     def openEditGraph(self, item):
-        GraphEditor(self, item)
+        editor = GraphEditor(self, item)
+        editor.exec_()
 
     def add(self, interm_expr=None):
         """ Create an entry with nedeed flags """
@@ -411,6 +412,7 @@ class NewGraphNormExo(QDialog):
             print(e)
             self.done(0)
 
+
 class GraphEditor(QDialog):
     def __init__(self, parent, item):
         super().__init__(parent)
@@ -429,7 +431,6 @@ class GraphEditor(QDialog):
         buttons_grp.rejected.connect(self.close)
         
         self.widget = GraphicalLispGroupWidget(self)
-        if expr: self.widget.setExpr(expr)
         
         layout = QGridLayout()
         layout.addWidget(self.widget, 0, 0)
@@ -437,7 +438,11 @@ class GraphEditor(QDialog):
 
         self.setLayout(layout)
 
-        self.exec_()
+        # HACK : force to setting size
+        self.show()
+
+        if expr:
+            self.widget.setExpr(expr)
 
     def saveAndQuit(self):
         expr = self.widget.getExpr(True)
