@@ -93,7 +93,7 @@ class LispScene(QGraphicsScene):
             self.removeItem(item)
         self.graph.clear()
 
-    def get_current_layout(self):
+    def getCurrentLayout(self):
         """
         Get current scene objects layout, in percents of
         width an height.
@@ -103,10 +103,10 @@ class LispScene(QGraphicsScene):
         for item in self.graph.all_nodes():
             rect = item.boundingRect()
             x, y = (item.x() + rect.width() / 2) / w, (item.y() + rect.height() / 2) / h
-            positions[str(id(item))] = x, y
+            positions[item] = x, y
         return positions
 
-    def get_automatic_layout(self, root):
+    def getAutoLayout(self, root):
         """
         Call layout() function (in cm_graph) to get
         automatic layout of the graph expression
@@ -114,7 +114,7 @@ class LispScene(QGraphicsScene):
         """
         return layout(self.graph, root=root)
 
-    def apply_layout(self, positions):
+    def applyLayout(self, positions):
         """
         Apply the argument layout to the scene objects.
         """
@@ -124,7 +124,7 @@ class LispScene(QGraphicsScene):
             x, y = pos[0] * w  - rect.width() / 2, pos[1] * h - rect.height() / 2
             item.setPos(x, y)
 
-    def get_interm_repr(self, root):
+    def getIntermRepr(self, root):
         """
         Return lisp intermediate representation from the
         connected lisp objects to root.

@@ -257,14 +257,14 @@ class RootArrow (Arrow) :
         self.endPos = mouseEvent.scenePos()
         for item in self.scene().items(mouseEvent.pos()):
             if isinstance(item, (GCons, GAtom)):
-                self.attach_to(item)
+                self.attachTo(item)
                 break
         super().mouseReleaseEvent(mouseEvent)
 
     def detach(self):
         self.root = None
 
-    def attach_to(self, item):
+    def attachTo(self, item):
         self.root = item
         self.update()
 

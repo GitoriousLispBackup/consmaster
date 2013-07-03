@@ -94,7 +94,7 @@ class GlispWidget(QGraphicsView) :
         self.scene.addItem(self.rootArrow)
 
         # hack - force to resizeEvent()
-        self.show()
+        #~ self.show()
         self.resize(650, 400)
 
     def getExpr(self, with_layout=False):
@@ -114,9 +114,11 @@ class GlispWidget(QGraphicsView) :
             if ret == QMessageBox.No:
                 return
         # get intermediate lisp representation
-        retval = self.scene.get_interm_repr(root)
+        retval = self.scene.getIntermRepr(root)
         # add current layout, if required
-        if with_layout: retval.layout = self.scene.get_current_layout()
+        if with_layout:
+            positions = self.scene.getCurrentLayout()
+            retval.layout = {str(id(item)): value for item, value in positions.items() if str(id(item)) in retval.graph}
         return retval
 
     #~ def checkExpr(self):
@@ -162,10 +164,10 @@ class GlispWidget(QGraphicsView) :
             positions = {dct[uid] : pos for uid, pos in graph_expr.layout.items()}
         except AttributeError:
             # else, use automatic layout
-            positions = self.scene.get_automatic_layout(root)
+            positions = self.scene.getAutoLayout(root)
 
-        self.scene.apply_layout(positions)
-        self.rootArrow.attach_to(root)
+        self.scene.applyLayout(positions)
+        self.rootArrow.attachTo(root)
 
     def autoLayout(self):
         """
@@ -174,9 +176,9 @@ class GlispWidget(QGraphicsView) :
         """
         root = self.rootArrow.root
         if root is None: return
-        positions = self.scene.get_automatic_layout(root)
-        self.scene.apply_layout(positions)
-        self.rootArrow.attach_to(root)
+        positions = self.scene.getAutoLayout(root)
+        self.scene.applyLayout(positions)
+        self.rootArrow.attachTo(root)
 
     def addCons(self):
         """
@@ -252,7 +254,10 @@ class GlispWidget(QGraphicsView) :
         super().mouseReleaseEvent(mouseEvent)
 
     def resizeEvent(self, resizeEvent):
+        positions = self.scene.getCurrentLayout()
+        # print(positions)
         sz = resizeEvent.size()
         w, h = sz.width(), sz.height()
         self.scene.setSceneRect(QRectF(0, 0, w, h))
         super().resizeEvent(resizeEvent)
+        self.scene.applyLayout(positions)
