@@ -194,6 +194,6 @@ def createGraphicToNormalMode(userData, src=None):
         controller = CmGTNConvTrainingController(userData)
     else:
         widget = ExerciceWorkSpace(EnonceGraphique(False), SimpleLineEdit())
-        controller = CmNTGConvExerciceController(userData, src)
+        controller = CmGTNConvExerciceController(userData, src)
     widget.setController(controller)
     return widget
