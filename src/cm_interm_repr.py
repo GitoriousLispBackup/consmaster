@@ -5,7 +5,6 @@ from operator import itemgetter
 import pprint
 
 
-from pylisp import *
 import pylisp.lisp as lisp
 from lisp import Cons, consp, atom
 

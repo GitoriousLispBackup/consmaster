@@ -4,7 +4,6 @@
 import random
 import string
 
-from pylisp import *
 import pylisp.lisp as lisp
 from lisp import Cons, Symbol
 

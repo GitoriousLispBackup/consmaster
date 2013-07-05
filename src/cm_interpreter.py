@@ -1,8 +1,7 @@
 from pylisp import *
-import pylisp.lisp_errors as lisp_errors
 import pylisp.lisp as lisp
-from lisp_errors import LispError, LispParseError
 from lisp import _Fvals as Fvals, nil
+
 
 from cm_interm_repr import GraphExpr
 

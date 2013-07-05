@@ -14,8 +14,6 @@ except:
     sys.exit(1)
 
 from pylisp import *
-import pylisp.lisp_errors as lisp_errors
-from lisp_errors import LispError, LispParseError
 
 from cm_lisp_graphic import *
 from cm_terminal import *

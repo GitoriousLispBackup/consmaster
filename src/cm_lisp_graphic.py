@@ -190,7 +190,9 @@ class GlispWidget(QGraphicsView) :
         """
         Add graphical atom object into scene.
         """
-        self.scene.addObj(GAtom(value))
+        atom = GAtom(value)
+        if atom.value is not None:
+            self.scene.addObj(atom)
 
     def removeSelectedItem(self):
         """

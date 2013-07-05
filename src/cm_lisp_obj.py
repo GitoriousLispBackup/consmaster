@@ -10,6 +10,47 @@ except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
+from cm_interpreter import Interpreter
+import pylisp.lisp as lisp
+from lisp import atom, nilp
+
+class LispInputDialog(QDialog):
+    def __init__(self, title="", label=""):
+        super().__init__()
+        self.lineEdit = QLineEdit()
+        btnBox = QDialogButtonBox(self)
+        btnBox.addButton(QDialogButtonBox.Ok)
+        btnBox.addButton(QDialogButtonBox.Cancel)
+        btnBox.rejected.connect(self.reject)
+        btnBox.accepted.connect(self.check)
+        layout = QVBoxLayout()
+        layout.addWidget(QLabel(label))
+        layout.addWidget(self.lineEdit)
+        layout.addWidget(btnBox)
+        self.setLayout(layout)
+        self.lineEdit.setFocus()
+
+    def check(self):
+        try:
+            obj = Interpreter.parse(self.lineEdit.text())
+            assert atom(obj)
+            assert not nilp(obj)
+        except BaseException as err:
+            QMessageBox.warning(self, 'Attention',
+                "La valeur entrée n'est pas un atome valide.")
+            print(repr(err))
+        else:
+            self.accept()
+
+    @staticmethod
+    def getText(title="", label="", default=None):
+        dlg = LispInputDialog(title, label)
+        if default:
+            dlg.lineEdit.setText(default)
+        if dlg.exec_() == QDialog.Accepted:
+            return dlg.lineEdit.text()
+        return ''
+
 #~ QGraphicsItem can handle animations, could be funny
 class GCons(QGraphicsItem):
     """ A graphical cons base class """
@@ -73,16 +114,14 @@ class GAtom(QGraphicsItem):
 
         self.setFlags(QGraphicsItem.ItemIsMovable | QGraphicsItem.ItemIsSelectable | QGraphicsItem.ItemSendsGeometryChanges)
 
-        self._value = "nil"  # ??
+        self._value = value
         self.sizedBound = 0
 
         self.penWidth = 2
         self.pen = QPen(Qt.black, self.penWidth)
 
-        if value is None:
+        if self.value is None:
             self.setValueBox()
-        else:
-            self.value = value
 
     def setValue(self, value):
         self._value = value
@@ -127,11 +166,9 @@ class GAtom(QGraphicsItem):
         return super().itemChange(change, value)
 
     def setValueBox(self, currentName=None):
-        name, ok = QInputDialog.getText(None, "Atom", "Contenu de l'atome :",
-                    QLineEdit.Normal, currentName)
+        val = LispInputDialog.getText("Atom", "Contenu de l'atome :", currentName)
         # TODO: control if name is valid
-        if ok and name != "":
-            self.value = name
+        if val: self.value = val
 
     def mouseDoubleClickEvent(self, mouseEvent) :
         self.setValueBox(self.value)
