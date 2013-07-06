@@ -82,16 +82,16 @@ class GlispWidget(QGraphicsView) :
         super().__init__(parent)
 
         self.arrow = None
-        self.scene = LispScene()
+        scene = LispScene()
         self.setRenderHint(QPainter.Antialiasing)
 
-        self.scene.update()
+        scene.update()
 
-        self.setScene(self.scene)
+        self.setScene(scene)
         self.setAlignment(Qt.AlignLeft|Qt.AlignTop)
 
         self.rootArrow = RootArrow()
-        self.scene.addItem(self.rootArrow)
+        scene.addItem(self.rootArrow)
 
         # hack - force to resizeEvent()
         #~ self.show()
@@ -114,10 +114,10 @@ class GlispWidget(QGraphicsView) :
             if ret == QMessageBox.No:
                 return
         # get intermediate lisp representation
-        retval = self.scene.getIntermRepr(root)
+        retval = self.scene().getIntermRepr(root)
         # add current layout, if required
         if with_layout:
-            positions = self.scene.getCurrentLayout()
+            positions = self.scene().getCurrentLayout()
             retval.layout = {str(id(item)): value for item, value in positions.items() if str(id(item)) in retval.graph}
         return retval
 
@@ -148,14 +148,14 @@ class GlispWidget(QGraphicsView) :
                 g = GAtom(v[1])
             else:
                 raise RuntimeError('not implemented')
-            self.scene.addObj(g)
+            self.scene().addObj(g)
             dct[k] = g
         for k, g in dct.items():
             if isinstance(g, GCons):
                 car_id, cdr_id = GraphExpr.value(graph_expr.graph[k])
                 car, cdr = dct.get(car_id), dct.get(cdr_id)
-                if car: self.scene.addPointer(Pointer(g, car, 'car'))
-                if cdr: self.scene.addPointer(Pointer(g, cdr, 'cdr'))
+                if car: self.scene().addPointer(Pointer(g, car, 'car'))
+                if cdr: self.scene().addPointer(Pointer(g, cdr, 'cdr'))
 
         root = dct[graph_expr.root]
 
@@ -164,9 +164,9 @@ class GlispWidget(QGraphicsView) :
             positions = {dct[uid] : pos for uid, pos in graph_expr.layout.items()}
         except AttributeError:
             # else, use automatic layout
-            positions = self.scene.getAutoLayout(root)
+            positions = self.scene().getAutoLayout(root)
 
-        self.scene.applyLayout(positions)
+        self.scene().applyLayout(positions)
         self.rootArrow.attachTo(root)
 
     def autoLayout(self):
@@ -176,15 +176,15 @@ class GlispWidget(QGraphicsView) :
         """
         root = self.rootArrow.root
         if root is None: return
-        positions = self.scene.getAutoLayout(root)
-        self.scene.applyLayout(positions)
+        positions = self.scene().getAutoLayout(root)
+        self.scene().applyLayout(positions)
         self.rootArrow.attachTo(root)
 
     def addCons(self):
         """
         Add graphical conse object into scene.
         """
-        self.scene.addObj(GCons())
+        self.scene().addObj(GCons())
 
     def addAtom(self, value=None):
         """
@@ -192,49 +192,49 @@ class GlispWidget(QGraphicsView) :
         """
         atom = GAtom(value)
         if atom.value is not None:
-            self.scene.addObj(atom)
+            self.scene().addObj(atom)
 
     def removeSelectedItem(self):
         """
         Remove selected item.
         """
-        for item in self.scene.selectedItems() :
+        for item in self.scene().selectedItems():
             if isinstance(item, Pointer):
-                self.scene.removePointer(item)
+                self.scene().removePointer(item)
             elif isinstance(item, (GCons, GAtom)):
                 if self.rootArrow.root == item:
                     self.rootArrow.detach()
-                self.scene.removeObj(item)
+                self.scene().removeObj(item)
             else:
-                self.scene.removeItem(item)
+                self.scene().removeItem(item)
 
     def orphans(self, root):
         """
         return set of disconnected nodes in
         the graph
         """
-        tree = {} if root is None else self.scene.get_tree(root)
-        return self.scene.graph.all_nodes().difference(tree.keys())
+        tree = {} if root is None else self.scene().get_tree(root)
+        return self.scene().graph.all_nodes().difference(tree.keys())
 
     def removeDisconnected(self):
         for orphan in self.orphans(self.rootArrow.root):
-            self.scene.removeObj(orphan)
+            self.scene().removeObj(orphan)
 
     def removeAll(self) :
-        self.scene.reset()
+        self.scene().reset()
         self.rootArrow.detach()
-        self.scene.addItem(self.rootArrow)
+        self.scene().addItem(self.rootArrow)
 
     def mousePressEvent(self, mouseEvent):
         #~ Allows to create tmp arrows w/ right clic
-        self.scene.clearSelection()
+        self.scene().clearSelection()
         if mouseEvent.button() == Qt.RightButton:
             pos = mouseEvent.pos()
             it = self.itemAt(pos)
             if isinstance(it, GCons) :
                 self.arrow = ManualArrow(it, p1=pos, p2=pos)
                 self.arrow.penColor = Qt.red
-                self.scene.addItem(self.arrow)
+                self.scene().addItem(self.arrow)
         super().mousePressEvent(mouseEvent)
 
     def mouseMoveEvent(self, mouseEvent):
@@ -245,21 +245,21 @@ class GlispWidget(QGraphicsView) :
         super().mouseMoveEvent(mouseEvent)
 
     def mouseReleaseEvent(self, mouseEvent):
-        if self.arrow != None :
+        if self.arrow != None:
             for endItem in self.items(mouseEvent.pos()):
                 if isinstance(endItem, (GCons, GAtom)):
                     p = Pointer(self.arrow.start, endItem, self.arrow.orig)
-                    self.scene.addPointer(p)
+                    self.scene().addPointer(p)
                     break
-            self.scene.removeItem(self.arrow)
+            self.scene().removeItem(self.arrow)
             self.arrow = None
         super().mouseReleaseEvent(mouseEvent)
 
     def resizeEvent(self, resizeEvent):
-        positions = self.scene.getCurrentLayout()
+        positions = self.scene().getCurrentLayout()
         # print(positions)
         sz = resizeEvent.size()
         w, h = sz.width(), sz.height()
-        self.scene.setSceneRect(QRectF(0, 0, w, h))
+        self.scene().setSceneRect(QRectF(0, 0, w, h))
         super().resizeEvent(resizeEvent)
-        self.scene.applyLayout(positions)
+        self.scene().applyLayout(positions)
