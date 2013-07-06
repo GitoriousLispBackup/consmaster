@@ -186,11 +186,11 @@ class GlispWidget(QGraphicsView) :
         """
         self.scene().addObj(GCons())
 
-    def addAtom(self, value=None):
+    def addAtom(self):
         """
         Add graphical atom object into scene.
         """
-        atom = GAtom(value)
+        atom = GAtom()
         if atom.value is not None:
             self.scene().addObj(atom)
 

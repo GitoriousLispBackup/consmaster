@@ -37,8 +37,8 @@ class LispInputDialog(QDialog):
             assert not nilp(obj)
         except BaseException as err:
             QMessageBox.warning(self, 'Attention',
-                "La valeur entrée n'est pas un atome valide.")
-            print(repr(err))
+                "'" + self.lineEdit.text() + "' n'est pas un atome valide.")
+            #~ print(repr(err))
         else:
             self.accept()
 
@@ -49,7 +49,7 @@ class LispInputDialog(QDialog):
             dlg.lineEdit.setText(default)
         if dlg.exec_() == QDialog.Accepted:
             return dlg.lineEdit.text()
-        return ''
+
 
 #~ QGraphicsItem can handle animations, could be funny
 class GCons(QGraphicsItem):
@@ -114,18 +114,18 @@ class GAtom(QGraphicsItem):
 
         self.setFlags(QGraphicsItem.ItemIsMovable | QGraphicsItem.ItemIsSelectable | QGraphicsItem.ItemSendsGeometryChanges)
 
-        self._value = value
-        self.sizedBound = 0
+        if value is None:
+            value = LispInputDialog.getText("Atom", "Contenu de l'atome :")
 
+        self.sizedBound = 0
         self.penWidth = 2
         self.pen = QPen(Qt.black, self.penWidth)
-
-        if self.value is None:
-            self.setValueBox()
+        self.value = value
 
     def setValue(self, value):
         self._value = value
-        self.sizedBound = 20 + len(self.value) * 10
+        if value is None: return
+        self.sizedBound = 20 + len(value) * 10
         #~ Seems to be working without this, but is asked in
         #~  documentation, as we change the bounding box
         self.prepareGeometryChange()
@@ -165,9 +165,8 @@ class GAtom(QGraphicsItem):
                 return value
         return super().itemChange(change, value)
 
-    def setValueBox(self, currentName=None):
-        val = LispInputDialog.getText("Atom", "Contenu de l'atome :", currentName)
-        # TODO: control if name is valid
+    def setValueBox(self, currentValue):
+        val = LispInputDialog.getText("Atom", "Contenu de l'atome :", currentValue)
         if val: self.value = val
 
     def mouseDoubleClickEvent(self, mouseEvent) :
