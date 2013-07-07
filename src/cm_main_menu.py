@@ -169,7 +169,7 @@ class MainMenu(QWidget):
     @Slot(QWidget)
     def closeWidget(self, widget):
         """
-        Close the current worspace widget.
+        Close the current workspace widget.
         """
         self.mainwindow.central_widget.removeWidget(widget)
         self.mainwindow.setWindowTitle("Consmaster")

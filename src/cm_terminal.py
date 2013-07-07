@@ -25,6 +25,7 @@ class TermWidget(QTextEdit):
         self.reset()
 
     def reset(self):
+        """ Clean all text """
         self.i = 0
         self.hpos = 0
         self.history = []
