@@ -10,9 +10,9 @@ Mode = namedtuple('Mode', ['name', 'src', 'location', 'constructor'])
 
 MODES = [
     Mode("Mode Libre", '../data/mode-libre.html', None, createFreeMode),
-    Mode("Standard <-> Dotted", None, "NormDot", createTextMode),
-    Mode("Expr -> Graphique", None, "NormGraph", createNormalToGraphicMode),
-    Mode("Graphique -> Expr", None, "GraphNorm", createGraphicToNormalMode),
+    Mode("Standard <-> Dotted", '../data/norm-dot.html', "NormDot", createTextMode),
+    Mode("Expr -> Graphique", '../data/norm-graph.html', "NormGraph", createNormalToGraphicMode),
+    Mode("Graphique -> Expr", '../data/graph-norm.html', "GraphNorm", createGraphicToNormalMode),
         ]
 
 
