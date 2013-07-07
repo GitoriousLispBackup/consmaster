@@ -35,7 +35,7 @@ class NewNormDotExo(QDialog):
 
         self.diff = diff
 
-        # ~ To remove the prev file when changing name/diff
+        # ~ Used to remove the prev file when changing name/diff
         # ~ of a loaded file
         self.prev_file = ""
 
