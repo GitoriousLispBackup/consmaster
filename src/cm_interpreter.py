@@ -8,13 +8,13 @@ from cm_interm_repr import GraphExpr
 
 class Interpreter:
     counter = 0
-    
+
     def __new__(cls, **kwargs):
         if Interpreter.counter != 0:
             raise RuntimeError('unable to create more than one interpreter')
         Interpreter.counter += 1
         return super().__new__(cls)
-        
+
     def __init__(self, out=print):
         self.out = out
         self.reset()
@@ -32,7 +32,7 @@ class Interpreter:
         try:
             expr = self.parse(expr)
         except LispParseError as err:
-            self.out(repr(err)) 
+            self.out(repr(err))
             return
         try:
             ret = expr.eval(self.namespace)

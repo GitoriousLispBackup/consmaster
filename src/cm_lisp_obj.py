@@ -38,7 +38,7 @@ class LispInputDialog(QDialog):
         except BaseException as err:
             QMessageBox.warning(self, 'Attention',
                 "'" + self.lineEdit.text() + "' n'est pas un atome valide.")
-            #~ print(repr(err))
+            # ~ print(repr(err))
         else:
             self.accept()
 
@@ -51,7 +51,7 @@ class LispInputDialog(QDialog):
             return dlg.lineEdit.text()
 
 
-#~ QGraphicsItem can handle animations, could be funny
+# ~ QGraphicsItem can handle animations, could be funny
 class GCons(QGraphicsItem):
     """ A graphical cons base class """
 
@@ -66,32 +66,32 @@ class GCons(QGraphicsItem):
         self.penWidth = 2
         self.penColor = QPen(Qt.black, self.penWidth)
 
-    def selectedActions(self, value) :
+    def selectedActions(self, value):
         if value:
             self.penColor = QPen(QColor("crimson"), self.penWidth)
         else:
             self.penColor = QPen(QColor("black"), self.penWidth)
 
-    def boundingRect(self) :
-        return QRectF (0 - self.penWidth / 2, 0 - self.penWidth / 2,
+    def boundingRect(self):
+        return QRectF(0 - self.penWidth / 2, 0 - self.penWidth / 2,
                        self.wSize + self.penWidth, self.hSize + self.penWidth)
 
     def paint(self, painter, option, widget=None):
         painter.setPen(self.penColor)
-        painter.drawRoundRect(0, 0, self.wSize/2-1, self.hSize)
-        painter.drawRoundRect(self.wSize/2, 0, self.wSize/2, self.hSize)
-        #~ Drawing / if car/cdr is Nil
+        painter.drawRoundRect(0, 0, self.wSize / 2 - 1, self.hSize)
+        painter.drawRoundRect(self.wSize / 2, 0, self.wSize / 2, self.hSize)
+        # ~ Drawing / if car/cdr is Nil
         if self.car == None:
-            painter.drawLine(0+2, self.hSize-2, self.wSize/2-2, 0+2)
+            painter.drawLine(0 + 2, self.hSize - 2, self.wSize / 2 - 2, 0 + 2)
         if self.cdr == None:
-            painter.drawLine(self.wSize/2+2, self.hSize-2, self.wSize-2, 0+2)
+            painter.drawLine(self.wSize / 2 + 2, self.hSize - 2, self.wSize - 2, 0 + 2)
 
     def itemChange(self, change, value):
         if change == self.ItemSelectedChange:
             self.selectedActions(value)
         elif change == self.ItemPositionChange:
             # value is the new position.
-            rect = self.scene().sceneRect().translated(-self.wSize/2, -self.hSize/2)
+            rect = self.scene().sceneRect().translated(-self.wSize / 2, -self.hSize / 2)
             if not rect.contains(value):
                 # Keep the item inside the scene rect.
                 value.setX(min(rect.right(), max(value.x(), rect.left())))
@@ -99,7 +99,7 @@ class GCons(QGraphicsItem):
                 return value
         return super().itemChange(change, value)
 
-    def isCarOrCdr(self, mousePos) :
+    def isCarOrCdr(self, mousePos):
         return "car" if mousePos.x() < self.wSize / 2 else "cdr"
 
     def __repr__(self):
@@ -126,11 +126,11 @@ class GAtom(QGraphicsItem):
         self._value = value
         if value is None: return
         self.sizedBound = 20 + len(value) * 10
-        #~ Seems to be working without this, but is asked in
-        #~  documentation, as we change the bounding box
+        # ~ Seems to be working without this, but is asked in
+        # ~  documentation, as we change the bounding box
         self.prepareGeometryChange()
-        #~ self.boundingRect()
-        #~ self.update()
+        # ~ self.boundingRect()
+        # ~ self.update()
 
     value = property(fget=lambda self: self._value, fset=setValue)
 
@@ -141,7 +141,7 @@ class GAtom(QGraphicsItem):
             self.pen = QPen(QColor("black"), self.penWidth)
 
     def boundingRect(self):
-        return QRectF (0 - self.penWidth / 2, 0 - self.penWidth / 2,
+        return QRectF(0 - self.penWidth / 2, 0 - self.penWidth / 2,
                        self.sizedBound + self.penWidth, 30 + self.penWidth)
 
     def paint(self, painter, option, widget=None):
@@ -157,7 +157,7 @@ class GAtom(QGraphicsItem):
             # value is the new position.
             brect = self.boundingRect()
             w, h = brect.width(), brect.height()
-            rect = self.scene().sceneRect().translated(-w/2, -h/2)
+            rect = self.scene().sceneRect().translated(-w / 2, -h / 2)
             if not rect.contains(value):
                 # Keep the item inside the scene rect.
                 value.setX(min(rect.right(), max(value.x(), rect.left())))
@@ -169,7 +169,7 @@ class GAtom(QGraphicsItem):
         val = LispInputDialog.getText("Atom", "Contenu de l'atome :", currentValue)
         if val: self.value = val
 
-    def mouseDoubleClickEvent(self, mouseEvent) :
+    def mouseDoubleClickEvent(self, mouseEvent):
         self.setValueBox(self.value)
 
     def __repr__(self):
@@ -267,14 +267,14 @@ class RootArrow (Arrow) :
 
         self.penColor = QColor("steelblue")
         self.penStyle = Qt.SolidLine
-        #~ Toujours dessus
+        # ~ Toujours dessus
         self.setZValue(200)
 
     def paint(self, painter, option, widget=None):
         painter.setPen(self.penColor)
-        if isinstance(self.root, GCons) :
-            self.endPos = self.root.pos() + QPointF(0, self.root.hSize/2)
-        elif isinstance(self.root, GAtom) :
+        if isinstance(self.root, GCons):
+            self.endPos = self.root.pos() + QPointF(0, self.root.hSize / 2)
+        elif isinstance(self.root, GAtom):
             self.endPos = self.root.pos() + QPointF(0, 15)
         self.setLine(QLineF(self.startPos, self.endPos))
         super().paint(painter, option, widget)
@@ -284,12 +284,12 @@ class RootArrow (Arrow) :
         self.endPos = mouseEvent.scenePos()
         super().mousePressEvent(mouseEvent)
 
-    def mouseMoveEvent(self, mouseEvent) :
+    def mouseMoveEvent(self, mouseEvent):
         self.endPos = mouseEvent.scenePos()
         self.setLine(QLineF(self.startPos, self.endPos))
         super().mouseMoveEvent(mouseEvent)
 
-    def mouseReleaseEvent(self, mouseEvent) :
+    def mouseReleaseEvent(self, mouseEvent):
         self.endPos = mouseEvent.scenePos()
         for item in self.scene().items(mouseEvent.pos()):
             if isinstance(item, (GCons, GAtom)):
@@ -325,19 +325,19 @@ class Pointer(Arrow):
 
     def paint(self, painter, option, widget=None):
         painter.setPen(self.penColor)
-        #~ Set origin position
-        if self.orig == "car" :
-            p1 = self.startItem.scenePos() + QPointF(self.startItem.wSize/4, self.startItem.hSize/2)
+        # ~ Set origin position
+        if self.orig == "car":
+            p1 = self.startItem.scenePos() + QPointF(self.startItem.wSize / 4, self.startItem.hSize / 2)
         elif self.orig == "cdr":
-            p1 = self.startItem.scenePos() + QPointF(self.startItem.wSize*3/4, self.startItem.hSize/2)
+            p1 = self.startItem.scenePos() + QPointF(self.startItem.wSize * 3 / 4, self.startItem.hSize / 2)
         else:
             print("1. problème qq part ...", self.orig)
             return
 
-        #~ Set destination position
-        if isinstance(self.endItem, GCons) :
-            p2 = self.endItem.scenePos() + QPointF(0, self.startItem.hSize/2)
-        elif isinstance(self.endItem, GAtom) :
+        # ~ Set destination position
+        if isinstance(self.endItem, GCons):
+            p2 = self.endItem.scenePos() + QPointF(0, self.startItem.hSize / 2)
+        elif isinstance(self.endItem, GAtom):
             p2 = self.endItem.scenePos() + QPointF(0, 15)
         else:
             print("2. problème qq part ...", type(self.endItem))
@@ -346,12 +346,12 @@ class Pointer(Arrow):
         self.setLine(QLineF(p1, p2))
         super().paint(painter, option, widget)
 
-    def itemChange(self, change, value) :
-        if change == self.ItemSelectedChange :
+    def itemChange(self, change, value):
+        if change == self.ItemSelectedChange:
             self.selectedActions(value)
         return super().itemChange(change, value)
 
-    def selectedActions(self, value) :
+    def selectedActions(self, value):
         if value:
             self.penStyle = Qt.DotLine
         else:

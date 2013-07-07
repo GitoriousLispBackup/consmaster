@@ -17,9 +17,9 @@ class FreeMode(QWidget):
     """
     Workspace widget for free-mode prototype.
     """
-    
+
     closeRequested = Signal(QWidget)
-    
+
     def __init__(self):
         super().__init__()
 

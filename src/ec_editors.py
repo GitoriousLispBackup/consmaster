@@ -35,8 +35,8 @@ class NewNormDotExo(QDialog):
 
         self.diff = diff
 
-        #~ To remove the prev file when changing name/diff
-        #~ of a loaded file
+        # ~ To remove the prev file when changing name/diff
+        # ~ of a loaded file
         self.prev_file = ""
 
         self.setResult(0)
@@ -46,7 +46,7 @@ class NewNormDotExo(QDialog):
         name_label = QLabel("Nom du fichier")
         self.name_field = QLineEdit()
 
-        #~ Should be auto or not ?
+        # ~ Should be auto or not ?
         difficulty_label = QLabel("Difficulté")
         self.difficulty_value = QSpinBox()
         self.difficulty_value.setMinimum(1)
@@ -55,7 +55,7 @@ class NewNormDotExo(QDialog):
 
         list_add_btn = QPushButton("Ajouter")
         list_rm_btn = QPushButton("Supprimer")
-        
+
         list_add_btn.clicked.connect(self.add)
         list_rm_btn.clicked.connect(self.delete)
 
@@ -133,7 +133,7 @@ class NewNormDotExo(QDialog):
             checkbox = self.list_widget.item(i, 0)
             textbox = self.list_widget.item(i, 1)
             yield ('dotted' if checkbox.checkState() == Qt.Checked else 'normal'), textbox.text()
-            
+
     def save(self):
         if not self.name_field.text():
             InfoWindows("Entrez un nom de fichier")
@@ -171,8 +171,8 @@ class NewNormGraphExo(QDialog):
 
         self.diff = diff
 
-        #~ To remove the prev file when changing name/diff
-        #~ of a loaded file
+        # ~ To remove the prev file when changing name/diff
+        # ~ of a loaded file
         self.prev_file = ""
 
         self.setResult(0)
@@ -182,7 +182,7 @@ class NewNormGraphExo(QDialog):
         name_label = QLabel("Nom du fichier")
         self.name_field = QLineEdit()
 
-        #~ Should be auto or not ?
+        # ~ Should be auto or not ?
         difficulty_label = QLabel("Difficulté")
         self.difficulty_value = QSpinBox()
         self.difficulty_value.setMinimum(1)
@@ -293,8 +293,8 @@ class NewGraphNormExo(QDialog):
 
         self.diff = diff
 
-        #~ To remove the prev file when changing name/diff
-        #~ of a loaded file
+        # ~ To remove the prev file when changing name/diff
+        # ~ of a loaded file
         self.prev_file = ""
 
         self.setResult(0)
@@ -304,7 +304,7 @@ class NewGraphNormExo(QDialog):
         name_label = QLabel("Nom du fichier")
         self.name_field = QLineEdit()
 
-        #~ Should be auto or not ?
+        # ~ Should be auto or not ?
         difficulty_label = QLabel("Difficulté")
         self.difficulty_value = QSpinBox()
         self.difficulty_value.setMinimum(1)
@@ -352,7 +352,7 @@ class NewGraphNormExo(QDialog):
         list_wid.itemDoubleClicked.connect(self.openEditGraph)
 
         return list_wid
-    
+
     def openEditGraph(self, item):
         editor = GraphEditor(self, item)
         editor.exec_()
@@ -367,7 +367,7 @@ class NewGraphNormExo(QDialog):
 
         self.list_widget.setRowCount(self.list_widget.rowCount() + 1)
         self.list_widget.setItem(self.list_widget.rowCount() - 1, 0, qi)
-    
+
     def edit(self, expr, item):
         item.setData(Qt.UserRole, expr)
         item.setText(str(expr))
@@ -416,22 +416,22 @@ class NewGraphNormExo(QDialog):
 class GraphEditor(QDialog):
     def __init__(self, parent, item):
         super().__init__(parent)
-        
+
         self.parent = parent
 
         expr = item.data(Qt.UserRole)
         self.item = item
-        
+
         self.setGeometry(200, 200, 820, 400)
-        
+
         buttons_grp = QDialogButtonBox(self)
         save_btn = buttons_grp.addButton(QDialogButtonBox.Save)
         abort_btn = buttons_grp.addButton(QDialogButtonBox.Cancel)
         buttons_grp.accepted.connect(self.saveAndQuit)
         buttons_grp.rejected.connect(self.close)
-        
+
         self.widget = GraphicalLispGroupWidget(self)
-        
+
         layout = QGridLayout()
         layout.addWidget(self.widget, 0, 0)
         layout.addWidget(buttons_grp, 2, 0)
@@ -446,6 +446,6 @@ class GraphEditor(QDialog):
 
     def saveAndQuit(self):
         expr = self.widget.getExpr(True)
-        if expr: # Validity Check
+        if expr:  # Validity Check
             self.parent.edit(expr, self.item)
             self.close()

@@ -58,7 +58,7 @@ class Client(QMainWindow):
         quitAction = QAction(QIcon("../icons/application-exit"),
                 "&Quitter", self, shortcut="Ctrl+Shift+Q",
                 statusTip="Quitter l'application", triggered=self.close)
-        # self.connectAction = self.clientMenu.addAction("Se connecter") 
+        # self.connectAction = self.clientMenu.addAction("Se connecter")
         menu.addAction(quitAction)
 
     def setUserMenu(self, menu):
@@ -66,33 +66,32 @@ class Client(QMainWindow):
                 "&Ajouter un utilisateur")
         addUserAction.triggered.connect(self.addUser)
 
-        statsAction = QAction(QIcon("../icons/chart"), # TODO: change this icon
+        statsAction = QAction(QIcon("../icons/chart"),  # TODO: change this icon
                 "&Statistiques", self, triggered=self.getStats)
 
-        self.groupUser = QActionGroup(menu)  
+        self.groupUser = QActionGroup(menu)
         for user in self.data:
             setUsernameAction = menu.addAction(user.name)
             setUsernameAction.setCheckable(True)
             setUsernameAction.setData(user)
             setUsernameAction.toggled.connect(self.userChanged)
             self.groupUser.addAction(setUsernameAction)
-        
+
         # select some user
         users = self.groupUser.actions()
         if users:
-            users[0].setChecked(True)            
+            users[0].setChecked(True)
 
         menu.addSeparator()
         menu.addAction(addUserAction)
         menu.addSeparator()
         menu.addAction(statsAction)
-        
+
     def setHelpMenu(self, menu):
         aboutAction = QAction(QIcon("../icons/help-browser"),
                 "A &propos", self, shortcut="Ctrl+Shift+P",
                 triggered=self.about)
         menu.addAction(aboutAction)
-
 
     @Slot(bool)
     def userChanged(self, checked):
@@ -105,7 +104,7 @@ class Client(QMainWindow):
         ret = dlg.exec_()
         if ret == QDialog.Accepted:
             self.userMenu.clear()
-            self.setUserMenu(self.userMenu)   
+            self.setUserMenu(self.userMenu)
 
     def about(self):
         QMessageBox.about(self, "A propos ConsMaster",
@@ -120,7 +119,7 @@ class Client(QMainWindow):
         cm_save_data(self.data)
         super().closeEvent(event)
 
-################################################################################
+###############################################################################
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

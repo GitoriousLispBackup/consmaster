@@ -20,7 +20,7 @@ _cm_levels = {
 }
 
 
-_default_candidates = string.ascii_letters #  + string.digits
+_default_candidates = string.ascii_letters  # + string.digits
 
 
 def gen_with_duplicates(candidates=_default_candidates):
@@ -57,6 +57,7 @@ def exp_generator(max_depth=1, max_len=4, proper=1., sym_gen=gen_with_duplicates
         else:
             cdr = 'nil' if random.random() < proper else next(sym_gen)
         return car, cdr
+
     def get_lisp_obj(expr):
         if isinstance(expr, tuple):
             return Cons(get_lisp_obj(expr[0]), get_lisp_obj(expr[1]))

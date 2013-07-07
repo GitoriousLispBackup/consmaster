@@ -18,11 +18,11 @@ class LispScene(QGraphicsScene):
     a multi-edge directed graph to store the lisp objects,
     in order to add and remove them easily into the scene. 
     """
-    
+
     def __init__(self, parent=None):
         super().__init__(parent)
         self.graph = DiGraph()
-        
+
     def addObj(self, obj):
         """
         Add lisp object into the scene.
@@ -56,7 +56,7 @@ class LispScene(QGraphicsScene):
             self.removePointer(arrow)
         self.graph.remove_vertex(obj)
         self.removeItem(obj)
-        
+
     def removePointer(self, pointer):
         """
         Remove a pointer object from scene, and manage
@@ -77,6 +77,7 @@ class LispScene(QGraphicsScene):
         in adjacent matrix.
         """
         _graph = {}
+
         def make_graph(v):
             if v in _graph: return
             _graph[v] = [u for _, u, k, _ in sorted(self.graph.outcoming_edges(v), key=itemgetter(2))]
@@ -89,7 +90,7 @@ class LispScene(QGraphicsScene):
         """
         Reset the scene.
         """
-        for item in self.items() :
+        for item in self.items():
             self.removeItem(item)
         self.graph.clear()
 
@@ -121,7 +122,7 @@ class LispScene(QGraphicsScene):
         w, h = self.width(), self.height()
         for item, pos in positions.items():
             rect = item.boundingRect()
-            x, y = pos[0] * w  - rect.width() / 2, pos[1] * h - rect.height() / 2
+            x, y = pos[0] * w - rect.width() / 2, pos[1] * h - rect.height() / 2
             item.setPos(x, y)
 
     def getIntermRepr(self, root):
@@ -133,6 +134,7 @@ class LispScene(QGraphicsScene):
         nil_id = str(id(nil_obj))
         _graph = {}
         _visited = set()
+
         def make_graph(node):
             if node in _visited: return
             _visited.add(node)

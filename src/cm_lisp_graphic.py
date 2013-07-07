@@ -32,7 +32,7 @@ class GraphicalLispGroupWidget(QWidget):
         glispRemUnconnected = QPushButton("Clean")
         glispCleanAll = QPushButton(QIcon("../icons/clear"), "Clean All")
         glispAutolayout = QPushButton("Auto-layout")
-        #~ glispCheck = QPushButton("Check")
+        # ~ glispCheck = QPushButton("Check")
 
         self.buttons_layout = QVBoxLayout()
         self.buttons_layout.addWidget(glispAddCons)
@@ -41,16 +41,16 @@ class GraphicalLispGroupWidget(QWidget):
         self.buttons_layout.addWidget(glispRemUnconnected)
         self.buttons_layout.addWidget(glispCleanAll)
         self.buttons_layout.addWidget(glispAutolayout)
-        #~ self.buttons_layout.addWidget(glispCheck)
+        # ~ self.buttons_layout.addWidget(glispCheck)
 
-        #~ Actions
+        # ~ Actions
         glispAddCons.clicked.connect(self.glisp_widget.addCons)
         glispAddAtom.clicked.connect(self.glisp_widget.addAtom)
         glispRemove.clicked.connect(self.glisp_widget.removeSelectedItem)
         glispRemUnconnected.clicked.connect(self.glisp_widget.removeDisconnected)
         glispCleanAll.clicked.connect(self.glisp_widget.removeAll)
         glispAutolayout.clicked.connect(self.glisp_widget.autoLayout)
-        #~ glispCheck.clicked.connect(self.glisp_widget.checkExpr)
+        # ~ glispCheck.clicked.connect(self.glisp_widget.checkExpr)
 
         self.layout = QHBoxLayout()
         self.layout.addWidget(self.glisp_widget)
@@ -75,7 +75,7 @@ class GraphicalLispGroupWidget(QWidget):
         self.glisp_widget.removeAll()
 
 
-class GlispWidget(QGraphicsView) :
+class GlispWidget(QGraphicsView):
     """ Widget for graphical lisp """
 
     def __init__(self, parent=None):
@@ -88,13 +88,13 @@ class GlispWidget(QGraphicsView) :
         scene.update()
 
         self.setScene(scene)
-        self.setAlignment(Qt.AlignLeft|Qt.AlignTop)
+        self.setAlignment(Qt.AlignLeft | Qt.AlignTop)
 
         self.rootArrow = RootArrow()
         scene.addItem(self.rootArrow)
 
         # hack - force to resizeEvent()
-        #~ self.show()
+        # ~ self.show()
         self.resize(650, 400)
 
     def getExpr(self, with_layout=False):
@@ -121,13 +121,13 @@ class GlispWidget(QGraphicsView) :
             retval.layout = {str(id(item)): value for item, value in positions.items() if str(id(item)) in retval.graph}
         return retval
 
-    #~ def checkExpr(self):
-        #~ expr = self.getExpr()
-        #~ if expr is not None:
-            #~ print('level =', expr.level())
-            #~ print('depth =', expr.depth())
-            #~ print('proper =', expr.proper())
-            #~ print('circ =', expr.circular())
+    # ~ def checkExpr(self):
+        # ~ expr = self.getExpr()
+        # ~ if expr is not None:
+            # ~ print('level =', expr.level())
+            # ~ print('depth =', expr.depth())
+            # ~ print('proper =', expr.proper())
+            # ~ print('circ =', expr.circular())
 
     @Slot(object)
     def insert_expr(self, graph_expr):
@@ -220,25 +220,25 @@ class GlispWidget(QGraphicsView) :
         for orphan in self.orphans(self.rootArrow.root):
             self.scene().removeObj(orphan)
 
-    def removeAll(self) :
+    def removeAll(self):
         self.scene().reset()
         self.rootArrow.detach()
         self.scene().addItem(self.rootArrow)
 
     def mousePressEvent(self, mouseEvent):
-        #~ Allows to create tmp arrows w/ right clic
+        # ~ Allows to create tmp arrows w/ right clic
         self.scene().clearSelection()
         if mouseEvent.button() == Qt.RightButton:
             pos = mouseEvent.pos()
             it = self.itemAt(pos)
-            if isinstance(it, GCons) :
+            if isinstance(it, GCons):
                 self.arrow = ManualArrow(it, p1=pos, p2=pos)
                 self.arrow.penColor = Qt.red
                 self.scene().addItem(self.arrow)
         super().mousePressEvent(mouseEvent)
 
     def mouseMoveEvent(self, mouseEvent):
-        #~ Redraw temp arrow according to mouse pos
+        # ~ Redraw temp arrow according to mouse pos
         if self.arrow != None:
             newLine = QLineF(self.arrow.line().p1(), mouseEvent.pos())
             self.arrow.setLine(newLine)

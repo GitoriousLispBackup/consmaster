@@ -47,6 +47,7 @@ class ExosList(QWidget):
         def __init__(self, lvl):
             super().__init__('*' * lvl)
             self.setData(Qt.UserRole, lvl)
+
         def __lt__(self, other):
             return self.data(Qt.UserRole) < other.data(Qt.UserRole)
 
@@ -57,20 +58,20 @@ class ExosList(QWidget):
         def __init__(self, name, filepath):
             super().__init__(name)
             self.setData(Qt.UserRole, ex_load(filepath))
-    
+
     def __init__(self):
         super().__init__()
         label = QLabel("<b>Liste d'exercices</b>")
         self.lst = QTableWidget()
         self.lst.setColumnCount(2)
         self.lst.setHorizontalHeaderLabels([" Exercice ", "Niveau"])
-        #self.lst.setColumnWidth(0, 100)
-        self.lst.horizontalHeader().setResizeMode(0, QHeaderView.Stretch);
+        # self.lst.setColumnWidth(0, 100)
+        self.lst.horizontalHeader().setResizeMode(0, QHeaderView.Stretch)
         self.lst.setSelectionMode(QAbstractItemView.SingleSelection)
         self.lst.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.lst.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.lst.itemDoubleClicked.connect(self.openItem)
-        
+
         layout = QVBoxLayout()
         layout.addWidget(label)
         layout.addWidget(self.lst)
@@ -88,7 +89,7 @@ class ExosList(QWidget):
         Populate list from local exercices directory.
         """
         self.reset()
-        
+
         level = mode.currentLevel()
         # pouvoir refaire un exercice déjà fait ?
         # filtrer d'après le level

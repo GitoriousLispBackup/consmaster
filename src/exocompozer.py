@@ -6,7 +6,7 @@ import os
 import os.path
 
 from ec_editors import NewNormDotExo, NewNormGraphExo, NewGraphNormExo
-from cm_globals import EXOS_DIR 
+from cm_globals import EXOS_DIR
 
 try:
     from PySide.QtCore import *
@@ -15,7 +15,7 @@ except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
-eq = {  "Normal - Dotted" : "NormDot",
+eq = {"Normal - Dotted": "NormDot",
         "Normal - Graph": "NormGraph",
         "Graph - Normal": "GraphNorm"}
 
@@ -28,9 +28,9 @@ class Compozer(QMainWindow):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        
-        self.checkDirs()      
-        
+
+        self.checkDirs()
+
         self.createActions()
         self.createMenus()
 
@@ -44,7 +44,7 @@ class Compozer(QMainWindow):
         self.populate()
 
         self.show()
-        
+
     def checkDirs(self):
         if not os.path.exists(EXOS_DIR):
             os.mkdir(EXOS_DIR)
@@ -95,7 +95,7 @@ class Compozer(QMainWindow):
         self.tabND.setColumnCount(2)
         self.tabND.setHorizontalHeaderLabels(["Exercice", "Difficulté"])
         self.tabND.setColumnWidth(1, 120)
-        self.tabND.horizontalHeader().setResizeMode(0, QHeaderView.Stretch);
+        self.tabND.horizontalHeader().setResizeMode(0, QHeaderView.Stretch)
         self.tabND.setSelectionMode(QAbstractItemView.SingleSelection)
         self.tabND.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.tabND.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -105,7 +105,7 @@ class Compozer(QMainWindow):
         self.tabNG.setColumnCount(2)
         self.tabNG.setHorizontalHeaderLabels(["Exercice", "Difficulté"])
         self.tabNG.setColumnWidth(1, 120)
-        self.tabNG.horizontalHeader().setResizeMode(0, QHeaderView.Stretch);
+        self.tabNG.horizontalHeader().setResizeMode(0, QHeaderView.Stretch)
         self.tabNG.setSelectionMode(QAbstractItemView.SingleSelection)
         self.tabNG.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.tabNG.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -115,7 +115,7 @@ class Compozer(QMainWindow):
         self.tabGN.setColumnCount(2)
         self.tabGN.setHorizontalHeaderLabels(["Exercice", "Difficulté"])
         self.tabGN.setColumnWidth(1, 120)
-        self.tabGN.horizontalHeader().setResizeMode(0, QHeaderView.Stretch);
+        self.tabGN.horizontalHeader().setResizeMode(0, QHeaderView.Stretch)
         self.tabGN.setSelectionMode(QAbstractItemView.SingleSelection)
         self.tabGN.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.tabGN.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -147,12 +147,12 @@ class Compozer(QMainWindow):
         for dirname in os.listdir(EXOS_DIR):
             for filename in os.listdir(EXOS_DIR + '/' + dirname):
                 lvl, _, nm = filename.partition('_')
-                
+
                 name = QTableWidgetItem(nm)
-                #~ Custom class for sorting
+                # ~ Custom class for sorting
                 diff = IntQTableWidgetItem(lvl)
                 diff.setFlags(Qt.ItemIsSelectable)
-    
+
                 if dirname == "NormDot":
                     self.tabND.setRowCount(self.tabND.rowCount() + 1)
                     self.tabND.setItem(self.tabND.rowCount() - 1, 0, name)
@@ -173,31 +173,31 @@ class Compozer(QMainWindow):
         self.tabGN.sortItems(1)
 
     def deleteExo(self):
-        #~ Get file type
+        # ~ Get file type
         exo_type = eq[self.tabWidget.tabText(self.tabWidget.currentWidget())]
-        #~ Get file name
+        # ~ Get file name
         exo_name = self.tabWidget.currentWidget().item(self.tabWidget.currentWidget().currentRow(), 0).text()
-        #~ Get diff
+        # ~ Get diff
         exo_diff = self.tabWidget.currentWidget().item(self.tabWidget.currentWidget().currentRow(), 1).text()
-        #~ Remove file
+        # ~ Remove file
         os.remove("{}/{}/{}_{}".format(EXOS_DIR, exo_type, exo_diff, exo_name))
 
         self.tabWidget.currentWidget().removeRow(self.tabWidget.currentWidget().currentRow())
 
     def deleteAllExo(self):
-        #~ Why delete all ?
+        # ~ Why delete all ?
         for i in range(0, self.tabWidget.count()):
             tab = self.tabWidget.widget(i)
 
-            #~ Get file type
+            # ~ Get file type
             exo_type = eq[self.tabWidget.tabText(i)]
 
             for row in range(0, tab.rowCount()):
-                #~ Get file name
+                # ~ Get file name
                 exo_name = tab.item(row, 0).text()
-                #~ Get diff
+                # ~ Get diff
                 exo_diff = tab.item(row, 1).text()
-                #~ Remove file
+                # ~ Remove file
                 os.remove("{}/{}/{}_{}".format(EXOS_DIR, exo_type, exo_diff, exo_name))
 
                 tab.removeRow(row)
@@ -230,6 +230,7 @@ class IntQTableWidgetItem(QTableWidgetItem):
     def __init__(self, txt):
         super().__init__(txt)
         self.setData(Qt.UserRole, int(txt))
+
     def __lt__(self, other):
         return (self.data(Qt.UserRole) < other.data(Qt.UserRole))
 
@@ -237,4 +238,3 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     main = Compozer()
     sys.exit(app.exec_())
-

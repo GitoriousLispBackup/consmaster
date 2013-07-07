@@ -10,12 +10,10 @@ except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
-    
-
-class TermWidget(QTextEdit) :
+class TermWidget(QTextEdit):
     """ A terminal-like Widget """
 
-    #~ TODO: Finaliser backward
+    # ~ TODO: Finaliser backward
     read = Signal(str)
 
     def __init__(self, parent=None):
@@ -34,7 +32,7 @@ class TermWidget(QTextEdit) :
         self.displayPrompt()
         # missing reset current text
 
-    def setColor(self, textColor, baseColor) :
+    def setColor(self, textColor, baseColor):
         palette = QPalette()
         palette.setColor(QPalette.Text, textColor)
         palette.setColor(QPalette.Base, baseColor)
@@ -85,15 +83,15 @@ class TermWidget(QTextEdit) :
             # self.out(line)  # hook
             self.displayPrompt()
         elif event.key() == Qt.Key_Up:
-            #~ History up
+            # ~ History up
             self.eraseLine()
             self.insertPlainText(self.histPrev())
         elif event.key() == Qt.Key_Down:
-            #~ History down
+            # ~ History down
             self.eraseLine()
             self.insertPlainText(self.histNext())
         elif event.key() == Qt.Key_Backspace or event.key() == Qt.Key_Left:
-            #~ Ensure Backspace not erasing other lines
+            # ~ Ensure Backspace not erasing other lines
             if self.textCursor().position() > self.startCursor:
                 super().keyPressEvent(event)
         else:

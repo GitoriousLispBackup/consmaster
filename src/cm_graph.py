@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+
 class DiGraph:
     def __init__(self):
         self._vertices = set()
@@ -16,11 +17,11 @@ class DiGraph:
     def add_edge(self, v1, v2, key, **kwargs):
         self.add_vertex(v1)
         self.add_vertex(v2)
-        self._edges.setdefault((v1, v2), {}).update({key : kwargs})
+        self._edges.setdefault((v1, v2), {}).update({key: kwargs})
 
     def remove_edge(self, v1, v2, key):
         self._edges[v1, v2].pop(key)
-        if not self._edges[v1, v2]: # if no edge remained
+        if not self._edges[v1, v2]:  # if no edge remained
             self._edges.pop((v1, v2))
 
     def remove_all_edges(self, v1, v2):
@@ -37,19 +38,19 @@ class DiGraph:
         if vertex not in self._vertices:
             raise RuntimeError(repr(vertex) + ' not in graph')
         for u, v in filter(lambda v: v[1] is vertex, self._edges.keys()):
-            edges = self._edges[u,v]
+            edges = self._edges[u, v]
             if key != None:
                 if key in edges:
                     yield u, v, key, edges[key]
             else:
                 for k, data in edges.items():
                     yield u, v, k, data
-                
+
     def outcoming_edges(self, vertex, key=None):
         if vertex not in self._vertices:
             raise RuntimeError(repr(vertex) + ' not in graph')
         for v, u in filter(lambda v: v[0] is vertex, self._edges.keys()):
-            edges = self._edges[v,u]
+            edges = self._edges[v, u]
             if key != None:
                 if key in edges:
                     yield v, u, key, edges[key]
@@ -65,12 +66,11 @@ class DiGraph:
 
     def all_nodes(self):
         return self._vertices.copy()
-    
+
     def __repr__(self):
         V = repr(self._vertices)
         E = '\n'.join('   ' + repr(u) + ' -> ' + repr(v) for u, v in self._edges.keys())
         return '<digraph:\n\tvertices = ' + V + '\n\tedges = [\n' + E + ' ]\n>'
-
 
 
 from collections import OrderedDict
@@ -83,9 +83,10 @@ def layout(G, root):
     tree expression, but a bit inconsistent because there're
     no valid position for remaining objets).
     """
-    
+
     levels = OrderedDict()
     visited = set()
+
     def set_dist(node=root, dst=0):
         visited.add(node)
         levels.setdefault(dst, []).append(node)
@@ -102,7 +103,7 @@ def layout(G, root):
         for i, nd in enumerate(nodes):
             x = (i + 1) / (w + 1)
             positions[nd] = x, y
-    
-    #print(levels)
+
+    # print(levels)
 
     return positions

@@ -23,6 +23,7 @@ class SimpleLineEdit(QLineEdit):
             QMessageBox.critical(self, 'Erreur', 'Vous devez entrer une expression valide.')
             return None
         return entry
+
     def reset(self):
         self.clear()
 
@@ -42,6 +43,7 @@ class EnonceGraphique(GlispWidget):
     def __init__(self, interactive=True):
         super().__init__()
         self.setInteractive(interactive)
+
     def setExpr(self, expr):
         self.insert_expr(expr)
 
@@ -55,7 +57,7 @@ class WorkSpace(QWidget):
 
     getEntry = Signal(object)
     closeRequested = Signal(QWidget)
-    
+
     def __init__(self, w_enonce, _in):
         """
         Constructor : get an statement and input widget,
@@ -78,7 +80,7 @@ class WorkSpace(QWidget):
         self.next_btn.setFixedHeight(35)
         self.close_btn = QPushButton(QIcon("../icons/cancel"), "Fermer")
         self.close_btn.setFixedHeight(35)
-        
+
         lblLayout = QHBoxLayout()
         lblLayout.addWidget(label_en)
         lblLayout.addWidget(self.label_counter)
@@ -112,7 +114,7 @@ class WorkSpace(QWidget):
     def validateRequested(self):
         """
         Get validation request (from validate button).
-        Emit a signal to the controller. 
+        Emit a signal to the controller.
         """
         expr = self._in.getExpr()
         if expr is not None:
@@ -128,7 +130,7 @@ class WorkSpace(QWidget):
         controller.setCounterText.connect(self.label_counter.setText)
         controller.ok.connect(self.valided)
         self.getEntry.connect(controller.receive)
-        self.goNext()       # ugly
+        self.goNext()  # ugly
 
     def goNext(self):
         """
@@ -163,7 +165,7 @@ class ExerciceWorkSpace(WorkSpace):
     def valided(self):
         self.next_btn.setDisabled(False)
         super().valided()
-        
+
 
 ######################################################
 #                   constructors
@@ -184,7 +186,7 @@ def createNormalToGraphicMode(userData, src=None):
         controller = CmNTGConvTrainingController(userData)
     else:
         widget = ExerciceWorkSpace(EnonceTexte(), GraphicalLispGroupWidget())
-        controller = CmNTGConvExerciceController(userData, src)        
+        controller = CmNTGConvExerciceController(userData, src)
     widget.setController(controller)
     return widget
 

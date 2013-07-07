@@ -41,8 +41,8 @@ class CmController(QObject):
 
 def valid(entry, expr, fmt='normal', strict=True):
     if not strict:
-        entry = re.sub(r' +', ' ', entry)   # clean user entry
-    method = {'dotted':'dotted_repr', 'normal':'__repr__'}[fmt]
+        entry = re.sub(r' +', ' ', entry)  # clean user entry
+    method = {'dotted': 'dotted_repr', 'normal': '__repr__'}[fmt]
     excepted = getattr(expr, method)()
     return entry == excepted
 
@@ -51,14 +51,15 @@ class CmBasicController(QObject):
     enonceChanged = Signal(object)
     setCounterText = Signal(str)
     ok = Signal()
-    
+
     def __init__(self):
         super().__init__()
 
     def help(self, entry, enonce):
         if entry.isomorphic_to(enonce):
             QMessageBox.warning(None, "Erreur",
-                    "Expression correctement formée, mais erreur sur un/des symbole/s.")
+                    "Expression correctement formée,\
+                     mais erreur sur un/des symbole/s.")
             return
         # TODO: add more help
         QMessageBox.warning(None, "Erreur",
@@ -66,7 +67,7 @@ class CmBasicController(QObject):
 
 
 class CmNormalDottedConvController(CmBasicController):
-    inv_methods = {'normal':'dotted_repr', 'dotted':'__repr__'}
+    inv_methods = {'normal': 'dotted_repr', 'dotted': '__repr__'}
 
     def __init__(self):
         super().__init__()
@@ -97,7 +98,7 @@ class CmNormalToGraphicController(CmBasicController):
         # some verifications occurs at GUI level
         return entry
 
-        
+
 class CmGraphicToNormalController(CmBasicController):
     def __init__(self):
         super().__init__()
@@ -107,7 +108,7 @@ class CmGraphicToNormalController(CmBasicController):
         try:
             expr = Interpreter.parse(entry)
         except LispParseError as err:
-            QMessageBox.warning(None, "Erreur", 
+            QMessageBox.warning(None, "Erreur",
                         "Erreur dans l'expression fournie.\n"
                         "Le parseur a retourné " + repr(err))
             return None
@@ -115,7 +116,7 @@ class CmGraphicToNormalController(CmBasicController):
         return GraphExpr.from_lsp_obj(expr)
 
 
-################################################################################
+###############################################################################
 
 class TrainingMixin:
     def __init__(self, userData):
@@ -165,9 +166,9 @@ class ExerciceMixin:
     def __init__(self, src):
         self.exoNum = 0
         self.total = len(src)
-        self.enonceIter = iter(src) # TODO : make it work
+        self.enonceIter = iter(src)  # TODO : make it work
         self.results = []
-        
+
     @Slot(object)
     def receive(self, entry):
         interm = self.validate(entry)
@@ -179,8 +180,8 @@ class ExerciceMixin:
         self.exoNum += 1
         try:
             self.setCounterText.emit('exo {} / {}'.format(self.exoNum, self.total))
-            self.enonce = next(self.enonceIter) # l'enonce n'est pas au format habituel
-            formatted = self.fmt(self.enonce)   # side effect : set interm_repr
+            self.enonce = next(self.enonceIter)  # l'enonce n'est pas au format habituel
+            formatted = self.fmt(self.enonce)  # side effect : set interm_repr
             self.enonceChanged.emit(formatted)
         except StopIteration:
             # TODO : end of exercice
@@ -217,7 +218,7 @@ class CmGTNConvTrainingController(CmGraphicToNormalController, TrainingMixin):
     def fmt(self, enonce):
         return GraphExpr.from_lsp_obj(enonce)
 
-################################################################################
+###############################################################################
 
 class CmNDConvExerciceController(CmNormalDottedConvController, ExerciceMixin):
     def __init__(self, userData, src):

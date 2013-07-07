@@ -28,7 +28,6 @@ class ButtonMenu(QPushButton):
         self.id = mode.name
         if mode.location:
             self.location = EXOS_DIR + '/' + mode.location
-        
 
 class MainMenu(QWidget):
     """
@@ -41,7 +40,7 @@ class MainMenu(QWidget):
 
         self.layout = QHBoxLayout()
 
-        #~ Layout in the scroll area
+        # ~ Layout in the scroll area
         vb = QVBoxLayout()
         self.buttons_group = QButtonGroup()
         self.buttons_group.setExclusive(True)
@@ -49,20 +48,20 @@ class MainMenu(QWidget):
         for mode in MODES:
             btn = ButtonMenu(mode)
             btn.setCheckable(True)
-            btn.setFixedSize(120,120)
+            btn.setFixedSize(120, 120)
             vb.addWidget(btn)
             self.buttons_group.addButton(btn)
         self.buttons_group.buttonClicked.connect(self.displayMode)
 
-        scrollContent = QWidget() # container widget
+        scrollContent = QWidget()  # container widget
         scrollContent.setLayout(vb)
         scroller = QScrollArea()
         scroller.setWidget(scrollContent)
         scroller.setFixedWidth(155)
-        #scroller.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        # scroller.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.layout.addWidget(scroller)
 
-        #~ The text/hints display widget + his button
+        # ~ The text/hints display widget + his button
         vb = QVBoxLayout()
         # progress bar for displaying user's current level
         self.level = QProgressBar()
@@ -112,7 +111,7 @@ class MainMenu(QWidget):
         """
         self.displayText.setText(btn.description)
         user = self.mainwindow.currentUser
-        if user is not None:    # if an user is selected
+        if user is not None:  # if an user is selected
             try:
                 # check if mode is available
                 mode = user.get_mode(btn.id)
@@ -125,7 +124,7 @@ class MainMenu(QWidget):
                 self.level.setValue(mode.currentLevel())
                 self.exosButton.show()
                 self.lstWidget.setVisible(self.exosButton.isChecked())
-                self.lstWidget.populate(mode, btn.location) # refresh exercices list
+                self.lstWidget.populate(mode, btn.location)  # refresh exercices list
 
     def startSelectedMode(self):
         """
@@ -136,14 +135,14 @@ class MainMenu(QWidget):
             QMessageBox.information(self, 'Attention', 'Aucun mode selectionné.\n'
                                                        'Vous devez choisir un mode avant de le lancer.')
             return
-        
+
         user = self.mainwindow.currentUser
         try:
             widget = selectedBtn.constructor(user.get_mode(selectedBtn.id))
         except:
             widget = selectedBtn.constructor(None)
         widget.closeRequested.connect(self.closeWidget)
-        
+
         self.mainwindow.setWindowTitle("Consmaster" +
                         ' [' + selectedBtn.text().replace('\n', '') + ']')
 
@@ -160,7 +159,7 @@ class MainMenu(QWidget):
         widget = selectedBtn.constructor(user.get_mode(selectedBtn.id), exo)
 
         widget.closeRequested.connect(self.closeWidget)
-        
+
         self.mainwindow.setWindowTitle("Consmaster" +
                         ' [' + selectedBtn.text().replace('\n', '') + ']')
 
@@ -174,4 +173,4 @@ class MainMenu(QWidget):
         """
         self.mainwindow.central_widget.removeWidget(widget)
         self.mainwindow.setWindowTitle("Consmaster")
-        del widget.controller   # hack: force cotroller deleting, to remove interpreter if necessary
+        del widget.controller  # hack: force cotroller deleting, to remove interpreter if necessary

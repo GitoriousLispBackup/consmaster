@@ -30,25 +30,26 @@ class GraphExpr:
 
     Convenience functions for converting internal lisp expression to intermediate
     representation and vice versa are provided.
-    
+
     There is also some interesting functions on lisp s-expressions :
     compare if two expr are equivalent, if they are isomorphic, etc.
     """
-    
+
     tag = itemgetter(0)
     value = itemgetter(1)
-    
+
     def __init__(self, root, graph, **kwargs):
         self.root = root
         self.graph = graph
         # add additionnals optional attributes (like layout)
         self.__dict__.update(**kwargs)
-    
+
     def to_lsp_obj(self):
         """
         Convert intermediate representation to a internal lisp object.
         """
         visited = {}
+
         def rec_build(uid):
             if uid in visited: return visited[uid]
             internal = self.graph[uid]
@@ -56,7 +57,7 @@ class GraphExpr:
                 id_car, id_cdr = GraphExpr.value(internal)
                 obj = Cons(rec_build(id_car), rec_build(id_cdr))
             elif GraphExpr.tag(internal) == '#atom':
-                obj = lisp_parser.parse(GraphExpr.value(internal), lexer=lisp_lexer)[0] # bof
+                obj = lisp_parser.parse(GraphExpr.value(internal), lexer=lisp_lexer)[0]  # bof
             else:
                 raise RuntimeError('Unkown value ' + repr(obj) + ' in tree')
             visited[uid] = obj
@@ -69,6 +70,7 @@ class GraphExpr:
         Get intermediate representation from a lisp object.
         """
         visited = {}
+
         def rec_build(obj):
             uid = str(id(obj))
             if uid not in visited:
@@ -92,6 +94,7 @@ class GraphExpr:
         """
         if self is other: return True
         visited = {}
+
         def walk(id1, id2):
             node1, node2 = self.graph[id1], other.graph[id2]
             t1, t2 = GraphExpr.tag(node1), GraphExpr.tag(node2)
@@ -128,7 +131,8 @@ class GraphExpr:
         Get the depth of an lisp expression.
         """
         visited = {}
-        def walk(uid, cur):                
+
+        def walk(uid, cur):
             nd = self.graph[uid]
             if GraphExpr.tag(nd) == '#atom':
                 return cur
@@ -145,6 +149,7 @@ class GraphExpr:
         Check circularity.
         """
         visited = set()
+
         def walk(uid):
             nd = self.graph[uid]
             if GraphExpr.tag(nd) == '#cons':
@@ -160,6 +165,7 @@ class GraphExpr:
         Check if all conses objects have a list cdr.
         """
         visited = set()
+
         def walk(uid, box=None):
             nd = self.graph[uid]
             if GraphExpr.tag(nd) == '#cons':
@@ -178,6 +184,7 @@ class GraphExpr:
         can appear twice or more).
         """
         visited = set()
+
         def walk(uid, acc):
             node = self.graph[uid]
             tag = GraphExpr.tag(node)
@@ -205,7 +212,7 @@ class GraphExpr:
 from math import log
 
 def lisp_expr_level(depth, cdrType):
-    return int(log(depth**2.5)) + 3 * cdrType
+    return int(log(depth ** 2.5)) + 3 * cdrType
 
 def interm_level(interm):
     if expr.circular():

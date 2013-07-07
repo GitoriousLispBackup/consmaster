@@ -51,7 +51,7 @@ class CmNDNExercice(CmExerciceBase):
         self.type = '__NDN__'
         self.level = level
         self.lst = lst
-        
+
 class CmNGExercice(CmExerciceBase):
     """
     """
@@ -59,7 +59,7 @@ class CmNGExercice(CmExerciceBase):
         self.type = '__NG__'
         self.level = level
         self.lst = lst
-        
+
 class CmGNExercice(CmExerciceBase):
     """
     """
@@ -78,4 +78,3 @@ def ex_load(filename):
 def ex_save(obj, filename):
     with open(filename, 'w', encoding='utf-8') as fp:
         json.dump(obj, fp, cls=Encoder)
-

@@ -14,10 +14,10 @@ class AddUser(QDialog):
     def __init__(self, data, parent=None):
         super().__init__(parent)
         self.data = data
-        
+
         layout = QVBoxLayout()
-        
-        self.nameLineEdit  = QLineEdit(self)
+
+        self.nameLineEdit = QLineEdit(self)
         self.emailLineEdit = QLineEdit(self)
 
         saveBtn = QPushButton("Sauvegarder", self)
@@ -47,7 +47,7 @@ class AddUser(QDialog):
         elif name in {user.name for user in self.data}:
             errMsg.append('- Ce nom existe déjà')
         email = self.emailLineEdit.text().strip()
-        if not email: # TODO: add email validator
+        if not email:  # TODO: add email validator
             errMsg.append('- Vous devez spéfifier un email valide')
         elif email in {user.mail for user in self.data}:
             errMsg.append('- Cet email est déjà utilisé')
