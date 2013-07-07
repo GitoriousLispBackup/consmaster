@@ -101,7 +101,7 @@ class NewNormDotExo(QDialog):
         return list_wid
 
     def add(self, value="nil", checked=False):
-        """ Create an entry with nedeed flags
+        """ Create a new entry with nedeed flags
         checked: False=Unchecked, True=Checked
         """
 
@@ -123,18 +123,21 @@ class NewNormDotExo(QDialog):
         self.list_widget.removeRow(self.list_widget.currentRow())
 
     def verify(self, item):
+        """ Check if not empty line """
         # ~ Should check for valid lisp expr
         if (item.text() == "") and (item.column() == 1):
             item.setText("nil")
 
     # ~ Cute iterator creator
     def iterAllItems(self):
+        """ Create an iterator for lists' items """
         for i in range(self.list_widget.rowCount()):
             checkbox = self.list_widget.item(i, 0)
             textbox = self.list_widget.item(i, 1)
             yield ('dotted' if checkbox.checkState() == Qt.Checked else 'normal'), textbox.text()
 
     def save(self):
+        """Save file on disk """
         if not self.name_field.text():
             InfoWindows("Entrez un nom de fichier")
         elif self.list_widget.rowCount() == 0:
@@ -150,6 +153,7 @@ class NewNormDotExo(QDialog):
             self.done(1)
 
     def load(self, exo):
+        """ Load a saved file """
         filepath = '{}/NormDot/{}_{}'.format(EXOS_DIR, self.diff, exo)
         self.prev_file = filepath
         self.name_field.setText(exo)
@@ -221,6 +225,7 @@ class NewNormGraphExo(QDialog):
         self.exec_()
 
     def listExo(self):
+        """ Create the table for listing """
         list_wid = QTableWidget()
         list_wid.setColumnCount(1)
         list_wid.setHorizontalHeaderLabels(["Expression"])
@@ -244,20 +249,24 @@ class NewNormGraphExo(QDialog):
         self.list_widget.setItem(self.list_widget.rowCount() - 1, 0, qi)
 
     def delete(self):
+        """ Delete the current item """
         self.list_widget.removeRow(self.list_widget.currentRow())
 
     def verify(self, item):
+        """ Check if not empty line """
         # ~ Should check for valid lisp expr
         if (item.text() == ""):
             item.setText("nil")
 
     # ~ Cute iterator creator
     def iterAllItems(self):
+        """ Create an iterator for lists' items """
         for i in range(self.list_widget.rowCount()):
             yield self.list_widget.item(i, 0).text()
 
     # ~ Save to file, need to be serialized
     def save(self):
+        """Save file on disk """
         if not self.name_field.text():
             InfoWindows("Entrez un nom de fichier")
         elif self.list_widget.rowCount() == 0:
@@ -273,6 +282,7 @@ class NewNormGraphExo(QDialog):
             self.done(1)
 
     def load(self, exo):
+        """ Load a saved file """
         filepath = '{}/NormGraph/{}_{}'.format(EXOS_DIR, self.diff, exo)
         self.prev_file = filepath
         self.name_field.setText(exo)
@@ -343,6 +353,7 @@ class NewGraphNormExo(QDialog):
         self.exec_()
 
     def listExo(self):
+        """ Create the table for listing """
         list_wid = QTableWidget()
         list_wid.setColumnCount(1)
         list_wid.setHorizontalHeaderLabels(["Expression"])
@@ -354,6 +365,7 @@ class NewGraphNormExo(QDialog):
         return list_wid
 
     def openEditGraph(self, item):
+        """ Open a modal graphic editor window """
         editor = GraphEditor(self, item)
         editor.exec_()
 
@@ -369,23 +381,28 @@ class NewGraphNormExo(QDialog):
         self.list_widget.setItem(self.list_widget.rowCount() - 1, 0, qi)
 
     def edit(self, expr, item):
+        """ Edit an item """
         item.setData(Qt.UserRole, expr)
         item.setText(str(expr))
 
     def delete(self):
+        """ Remove an item """
         self.list_widget.removeRow(self.list_widget.currentRow())
 
     def verify(self, item):
+        """ Check if not empty line """
         # ~ Should check for valid lisp expr
         if (item.text() == ""):
             item.setText("nil")
 
     # ~ Cute iterator creator
     def iterAllItems(self):
+        """ Create an iterator for lists' items """
         for i in range(self.list_widget.rowCount()):
             yield self.list_widget.item(i, 0).data(Qt.UserRole)
 
     def save(self):
+        """Save file on disk """
         if not self.name_field.text():
             InfoWindows("Entrez un nom de fichier")
         elif self.list_widget.rowCount() == 0:
@@ -401,6 +418,7 @@ class NewGraphNormExo(QDialog):
             self.done(1)
 
     def load(self, exo):
+        """ Load a saved file """
         filepath = '{}/GraphNorm/{}_{}'.format(EXOS_DIR, self.diff, exo)
         self.prev_file = filepath
         self.name_field.setText(exo)
@@ -414,6 +432,8 @@ class NewGraphNormExo(QDialog):
 
 
 class GraphEditor(QDialog):
+    """ A modal graphic widget dialog to create a graphic representation """
+
     def __init__(self, parent, item):
         super().__init__(parent)
 
@@ -445,6 +465,7 @@ class GraphEditor(QDialog):
             self.widget.setExpr(expr)
 
     def saveAndQuit(self):
+        """ Save current graphical editing and go back to list """
         expr = self.widget.getExpr(True)
         if expr:  # Validity Check
             self.parent.edit(expr, self.item)

@@ -46,6 +46,7 @@ class Compozer(QMainWindow):
         self.show()
 
     def checkDirs(self):
+        """ Checks if valid path, create if not """
         if not os.path.exists(EXOS_DIR):
             os.mkdir(EXOS_DIR)
         for subdir in eq.values():
@@ -173,6 +174,7 @@ class Compozer(QMainWindow):
         self.tabGN.sortItems(1)
 
     def deleteExo(self):
+        """ Remoce an exo from list and from disk """
         # ~ Get file type
         exo_type = eq[self.tabWidget.tabText(self.tabWidget.currentWidget())]
         # ~ Get file name
@@ -185,6 +187,7 @@ class Compozer(QMainWindow):
         self.tabWidget.currentWidget().removeRow(self.tabWidget.currentWidget().currentRow())
 
     def deleteAllExo(self):
+        """ Dangerous one, use with caution """
         # ~ Why delete all ?
         for i in range(0, self.tabWidget.count()):
             tab = self.tabWidget.widget(i)
@@ -227,6 +230,7 @@ class Compozer(QMainWindow):
 class IntQTableWidgetItem(QTableWidgetItem):
     """ Custom QTableWidget for sorting
         QTableWidget can't sort integers, must reimplement this """
+
     def __init__(self, txt):
         super().__init__(txt)
         self.setData(Qt.UserRole, int(txt))
