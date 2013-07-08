@@ -7,6 +7,8 @@ import os.path
 
 from ec_editors import NewNormDotExo, NewNormGraphExo, NewGraphNormExo
 from cm_globals import EXOS_DIR
+# from checkbox.properties import Int
+# from ctypes.wintypes import INT
 
 try:
     from PySide.QtCore import *
@@ -87,14 +89,19 @@ class Compozer(QMainWindow):
         menu.addAction(self.quitAction)
 
     def createWidget(self):
-        """ Create main tab widget """
+        """ 
+        Create main tab widget 
+        Table have 3 cols: name, diff(int), diff(img)
+        The 1st diff isn't display in list mode
+        """
         # ~ widget = QWidget()
 
         self.tabWidget = QTabWidget()
 
         self.tabND = QTableWidget()  # ~ Normal - Dotted
-        self.tabND.setColumnCount(2)
-        self.tabND.setHorizontalHeaderLabels(["Exercice", "Difficulté"])
+        self.tabND.setColumnCount(3)
+        self.tabND.setColumnHidden(1, True)
+        self.tabND.setHorizontalHeaderLabels(["Exercice", "", "Difficulté"])
         self.tabND.setColumnWidth(1, 120)
         self.tabND.horizontalHeader().setResizeMode(0, QHeaderView.Stretch)
         self.tabND.setSelectionMode(QAbstractItemView.SingleSelection)
@@ -103,8 +110,9 @@ class Compozer(QMainWindow):
         self.tabND.editor = NewNormDotExo
 
         self.tabNG = QTableWidget()  # ~ Normal - Graph
-        self.tabNG.setColumnCount(2)
-        self.tabNG.setHorizontalHeaderLabels(["Exercice", "Difficulté"])
+        self.tabNG.setColumnCount(3)
+        self.tabNG.setColumnHidden(1, True)
+        self.tabNG.setHorizontalHeaderLabels(["Exercice", "", "Difficulté"])
         self.tabNG.setColumnWidth(1, 120)
         self.tabNG.horizontalHeader().setResizeMode(0, QHeaderView.Stretch)
         self.tabNG.setSelectionMode(QAbstractItemView.SingleSelection)
@@ -113,8 +121,9 @@ class Compozer(QMainWindow):
         self.tabNG.editor = NewNormGraphExo
 
         self.tabGN = QTableWidget()  # ~ Graph - Normal
-        self.tabGN.setColumnCount(2)
-        self.tabGN.setHorizontalHeaderLabels(["Exercice", "Difficulté"])
+        self.tabGN.setColumnCount(3)
+        self.tabGN.setColumnHidden(1, True)
+        self.tabGN.setHorizontalHeaderLabels(["Exercice", "", "Difficulté"])
         self.tabGN.setColumnWidth(1, 120)
         self.tabGN.horizontalHeader().setResizeMode(0, QHeaderView.Stretch)
         self.tabGN.setSelectionMode(QAbstractItemView.SingleSelection)
@@ -153,18 +162,22 @@ class Compozer(QMainWindow):
                 # ~ Custom class for sorting
                 diff = IntQTableWidgetItem(lvl)
                 diff.setFlags(Qt.ItemIsSelectable)
+                graphDiff = QLabel(self.graphicalDiff(lvl))
 
                 if dirname == "NormDot":
                     self.tabND.setRowCount(self.tabND.rowCount() + 1)
                     self.tabND.setItem(self.tabND.rowCount() - 1, 0, name)
+                    self.tabND.setCellWidget(self.tabND.rowCount() - 1, 2, graphDiff)
                     self.tabND.setItem(self.tabND.rowCount() - 1, 1, diff)
                 elif dirname == "NormGraph":
                     self.tabNG.setRowCount(self.tabNG.rowCount() + 1)
                     self.tabNG.setItem(self.tabNG.rowCount() - 1, 0, name)
+                    self.tabNG.setCellWidget(self.tabNG.rowCount() - 1, 2, graphDiff)
                     self.tabNG.setItem(self.tabNG.rowCount() - 1, 1, diff)
                 elif dirname == "GraphNorm":
                     self.tabGN.setRowCount(self.tabGN.rowCount() + 1)
                     self.tabGN.setItem(self.tabGN.rowCount() - 1, 0, name)
+                    self.tabGN.setCellWidget(self.tabGN.rowCount() - 1, 2, graphDiff)
                     self.tabGN.setItem(self.tabGN.rowCount() - 1, 1, diff)
                 else:
                     print("Dossiers inconnus rencontrés")
@@ -172,6 +185,24 @@ class Compozer(QMainWindow):
         self.tabND.sortItems(1)
         self.tabNG.sortItems(1)
         self.tabGN.sortItems(1)
+
+    def graphicalDiff(self, lvl):
+        """
+            Display difficulty as images
+        """
+        base = int(float(lvl)) // 2
+        frac = int(float(lvl)) % 2
+
+        stars = ''
+
+        # Better to use QPixmap ?
+        for x in range(0, base):
+            stars += '<img src=../icons/star.png /> '
+
+        if frac:
+            stars += '<img src=../icons/star_h.png />'
+
+        return stars
 
     def deleteExo(self):
         """ Remoce an exo from list and from disk """
