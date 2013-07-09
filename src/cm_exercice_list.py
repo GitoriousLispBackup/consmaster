@@ -3,6 +3,7 @@
 
 
 import os
+from checkbox.properties import Int
 
 try:
     from PySide.QtCore import *
@@ -41,11 +42,10 @@ class ExosList(QWidget):
 
     class QTableWidgetLevelItem(QTableWidgetItem):
         """
-        Custom QTableWidgetItem for displaying level,
-        and sorting.
+        Custom QTableWidgetItem for sorting.
         """
         def __init__(self, lvl):
-            super().__init__('*' * lvl)
+            super().__init__(lvl)
             self.setData(Qt.UserRole, lvl)
 
         def __lt__(self, other):
@@ -59,12 +59,23 @@ class ExosList(QWidget):
             super().__init__(name)
             self.setData(Qt.UserRole, ex_load(filepath))
 
+    class QLabelStar(QLabel):
+        """
+        Custom QTableWidgetItem for graphical display.
+        """
+        def __init__(self, lvl):
+            super().__init__()
+            stars = '<img src=../icons/star.png /> ' * (int(float(lvl)) // 2)
+            stars += '<img src=../icons/star_h.png />' * (int(float(lvl)) % 2)
+            self.setText(stars)
+
     def __init__(self):
         super().__init__()
         label = QLabel("<b>Liste d'exercices</b>")
         self.lst = QTableWidget()
-        self.lst.setColumnCount(2)
-        self.lst.setHorizontalHeaderLabels([" Exercice ", "Niveau"])
+        self.lst.setColumnCount(3)
+        self.lst.setHorizontalHeaderLabels([" Exercice ", "Niveau", "Niveau"])
+        self.lst.setColumnHidden(1, True)
         # self.lst.setColumnWidth(0, 100)
         self.lst.horizontalHeader().setResizeMode(0, QHeaderView.Stretch)
         self.lst.setSelectionMode(QAbstractItemView.SingleSelection)
@@ -99,6 +110,7 @@ class ExosList(QWidget):
             self.lst.setRowCount(n + 1)
             self.lst.setItem(n, 0, self.QTableWidgetExoItem(name, path + '/' + filename))
             self.lst.setItem(n, 1, self.QTableWidgetLevelItem(int(lvl)))
+            self.lst.setCellWidget(n, 2, self.QLabelStar(int(lvl)))
         self.lst.sortItems(1)
 
     @Slot(QTableWidgetItem)
