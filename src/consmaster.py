@@ -26,6 +26,7 @@ class Client(QMainWindow):
         self.data = cm_load_data()
 
         self.createMenus()
+        self.initStatusBar()
 
         self.setGeometry(200, 200, 800, 620)
         self.setWindowTitle("Consmaster")
@@ -38,8 +39,6 @@ class Client(QMainWindow):
         self.central_widget.addWidget(self.menu_widget)
 
         self.setCentralWidget(self.central_widget)
-
-        self.initStatusBar()
 
         if not self.data:
             self.currentUser = None
@@ -67,7 +66,8 @@ class Client(QMainWindow):
                 "&Ajouter un utilisateur")
         addUserAction.triggered.connect(self.addUser)
 
-        statsAction = QAction(QIcon("../icons/chart"),  # TODO: change this icon
+        if self.data:
+            statsAction = QAction(QIcon("../icons/chart"),  # TODO: change this icon
                 "&Statistiques", self, triggered=self.getStats)
 
         self.groupUser = QActionGroup(menu)
@@ -85,8 +85,9 @@ class Client(QMainWindow):
 
         menu.addSeparator()
         menu.addAction(addUserAction)
-        menu.addSeparator()
-        menu.addAction(statsAction)
+        if self.data:
+            menu.addSeparator()
+            menu.addAction(statsAction)
 
     def setHelpMenu(self, menu):
         aboutAction = QAction(QIcon("../icons/help-browser"),
@@ -110,6 +111,8 @@ class Client(QMainWindow):
             self.setUserMenu(self.userMenu)
 
     def showOrHideUserMenu(self, index):
+        """ Do not show if playing """
+
         if index == 0:
             self.groupUser.setVisible(True)
         else:
