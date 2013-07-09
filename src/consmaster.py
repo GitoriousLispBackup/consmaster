@@ -38,7 +38,7 @@ class Client(QMainWindow):
 
         self.setCentralWidget(self.central_widget)
 
-        self.statusBar().showMessage('Ready')
+        self.initStatusBar()
 
         if not self.data:
             self.currentUser = None
@@ -99,6 +99,8 @@ class Client(QMainWindow):
             selected_action = self.groupUser.checkedAction()
             self.currentUser = selected_action.data()
 
+        self.updateStatusBar()
+
     def addUser(self):
         dlg = AddUser(self.data, self)
         ret = dlg.exec_()
@@ -119,6 +121,36 @@ class Client(QMainWindow):
         cm_save_data(self.data)
         super().closeEvent(event)
 
+    def initStatusBar(self):
+        self.userWid = QLabel()
+        self.servWid = QLabel()
+        self.servWid.setAlignment(Qt.AlignRight)
+        self.statusBar().addWidget(self.userWid)
+        self.statusBar().addPermanentWidget(self.servWid)
+        self.updateStatusBar()
+
+    def updateStatusBar(self):
+        connected = 0  # For testing
+
+        if self.data:
+            userLabel = 'Enregistré : {}'.format(self.currentUser.name)
+        else:
+            userLabel = 'Mode anonyme'
+
+        if connected:
+            servLabel = 'Connecté au serveur'
+        else:
+            servLabel = 'Déconnecté du serveur'
+
+        self.userWid.setText(userLabel)
+        self.servWid.setText(servLabel)
+
+
+
+class DynamicLabel(QLabel):
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
 ###############################################################################
 
 if __name__ == '__main__':
