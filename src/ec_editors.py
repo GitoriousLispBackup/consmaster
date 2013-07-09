@@ -8,6 +8,8 @@ import os
 from cm_lisp_graphic import *
 from cm_globals import EXOS_DIR
 from cm_exercice import *
+from pylisp import *
+from cm_interpreter import Interpreter, GraphExpr
 
 try:
     from PySide.QtCore import *
@@ -34,6 +36,7 @@ class NewNormDotExo(QDialog):
         super().__init__(parent)
 
         self.diff = diff
+        self.previousText = '(nil)'  # Used by verify system
 
         # ~ Used to remove the prev file when changing name/diff
         # ~ of a loaded file
@@ -65,6 +68,8 @@ class NewNormDotExo(QDialog):
         abort_btn.clicked.connect(self.close)
 
         self.list_widget = self.listExo()
+        self.list_widget.itemClicked.connect(self.keep)
+        self.list_widget.itemChanged.connect(self.verify)
 
         layout = QGridLayout()
         layout.addWidget(name_label, 0, 0)
@@ -96,15 +101,12 @@ class NewNormDotExo(QDialog):
         list_wid.setSelectionMode(QAbstractItemView.SingleSelection)
         list_wid.setEditTriggers(QAbstractItemView.AllEditTriggers)
 
-        list_wid.itemChanged.connect(self.verify)
-
         return list_wid
 
-    def add(self, value="nil", checked=False):
+    def add(self, value="(nil)", checked=False):
         """ Create a new entry with nedeed flags
         checked: False=Unchecked, True=Checked
         """
-
         qi = QTableWidgetItem(value)
         qi.setFlags(Qt.ItemIsEditable | Qt.ItemIsSelectable | Qt.ItemIsEnabled)
 
@@ -122,13 +124,25 @@ class NewNormDotExo(QDialog):
         """ Delete the current item """
         self.list_widget.removeRow(self.list_widget.currentRow())
 
+    def keep(self, item):
+        self.previousText = item.text()
+
     def verify(self, item):
         """ Check if not empty line """
         # ~ Should check for valid lisp expr
         if (item.text() == "") and (item.column() == 1):
-            item.setText("nil")
+            item.setText("(nil)")
+        elif (item.column() == 1):
+            try:
+                Interpreter.parse(item.text())
+            except LispParseError as err:
+                QMessageBox.warning(None, "Erreur",
+                            "L'expression fournie est incorrecte.\n"
+                            "Le parseur a retourné " + repr(err))
+                print(item.text())
+                self.list_widget.setFocus()
+                item.setText(self.previousText)
 
-    # ~ Cute iterator creator
     def iterAllItems(self):
         """ Create an iterator for lists' items """
         for i in range(self.list_widget.rowCount()):
@@ -167,6 +181,7 @@ class NewNormDotExo(QDialog):
             self.done(0)
 
 
+
 class NewNormGraphExo(QDialog):
     """ Modal widget to create and edit Normal->Graph exercices """
 
@@ -174,6 +189,7 @@ class NewNormGraphExo(QDialog):
         super().__init__(parent)
 
         self.diff = diff
+        self.previousText = '(nil)'  # Used by verify system
 
         # ~ To remove the prev file when changing name/diff
         # ~ of a loaded file
@@ -204,6 +220,8 @@ class NewNormGraphExo(QDialog):
         abort_btn.clicked.connect(self.close)
 
         self.list_widget = self.listExo()
+        self.list_widget.itemClicked.connect(self.keep)
+        self.list_widget.itemChanged.connect(self.verify)
 
         layout = QGridLayout()
         layout.addWidget(name_label, 0, 0)
@@ -252,11 +270,24 @@ class NewNormGraphExo(QDialog):
         """ Delete the current item """
         self.list_widget.removeRow(self.list_widget.currentRow())
 
+    def keep(self, item):
+        self.previousText = item.text()
+
     def verify(self, item):
         """ Check if not empty line """
         # ~ Should check for valid lisp expr
         if (item.text() == ""):
             item.setText("nil")
+        else:
+            try:
+                Interpreter.parse(item.text())
+            except LispParseError as err:
+                QMessageBox.warning(None, "Erreur",
+                            "L'expression fournie est incorrecte.\n"
+                            "Le parseur a retourné " + repr(err))
+                print(item.text())
+                self.list_widget.setFocus()
+                item.setText(self.previousText)
 
     # ~ Cute iterator creator
     def iterAllItems(self):
@@ -388,12 +419,6 @@ class NewGraphNormExo(QDialog):
     def delete(self):
         """ Remove an item """
         self.list_widget.removeRow(self.list_widget.currentRow())
-
-    def verify(self, item):
-        """ Check if not empty line """
-        # ~ Should check for valid lisp expr
-        if (item.text() == ""):
-            item.setText("nil")
 
     # ~ Cute iterator creator
     def iterAllItems(self):

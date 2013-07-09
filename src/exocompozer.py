@@ -193,14 +193,9 @@ class Compozer(QMainWindow):
         base = int(float(lvl)) // 2
         frac = int(float(lvl)) % 2
 
-        stars = ''
-
         # Better to use QPixmap ?
-        for x in range(0, base):
-            stars += '<img src=../icons/star.png /> '
-
-        if frac:
-            stars += '<img src=../icons/star_h.png />'
+        stars = '<img src=../icons/star.png /> ' * base
+        stars += '<img src=../icons/star_h.png />' * frac
 
         return stars
 
