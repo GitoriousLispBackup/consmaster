@@ -32,6 +32,7 @@ class Client(QMainWindow):
         self.setWindowIcon(QIcon("../icons/cons"))
 
         self.central_widget = QStackedWidget()
+        self.central_widget.currentChanged.connect(self.showOrHideUserMenu)
 
         self.menu_widget = MainMenu(self)
         self.central_widget.addWidget(self.menu_widget)
@@ -108,6 +109,12 @@ class Client(QMainWindow):
             self.userMenu.clear()
             self.setUserMenu(self.userMenu)
 
+    def showOrHideUserMenu(self, index):
+        if index == 0:
+            self.groupUser.setVisible(True)
+        else:
+            self.groupUser.setVisible(False)
+
     def about(self):
         QMessageBox.about(self, "A propos ConsMaster",
                 "Maîtrisez les représentations de listes, en notations parenthésées, "
@@ -145,12 +152,6 @@ class Client(QMainWindow):
         self.userWid.setText(userLabel)
         self.servWid.setText(servLabel)
 
-
-
-class DynamicLabel(QLabel):
-
-    def __init__(self, parent=None):
-        super().__init__(parent)
 ###############################################################################
 
 if __name__ == '__main__':
