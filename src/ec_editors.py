@@ -9,7 +9,7 @@ from cm_lisp_graphic import *
 from cm_globals import EXOS_DIR
 from cm_exercice import *
 from pylisp import *
-from cm_interpreter import Interpreter, GraphExpr
+from cm_interpreter import Interpreter
 
 try:
     from PySide.QtCore import *

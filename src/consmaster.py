@@ -23,10 +23,11 @@ class Client(QMainWindow):
         super().__init__(parent)
 
         cm_init()
+        self.currentUser = None
         self.data = cm_load_data()
 
-        self.createMenus()
         self.initStatusBar()
+        self.createMenus()
 
         self.setGeometry(200, 200, 800, 620)
         self.setWindowTitle("Consmaster")
@@ -41,7 +42,6 @@ class Client(QMainWindow):
         self.setCentralWidget(self.central_widget)
 
         if not self.data:
-            self.currentUser = None
             QMessageBox.information(self, "Info",
                     "Il est préférable de vous enregistrer afin de bénéficier "
                     "des fonctionnalités du suivi de progression.")
@@ -100,7 +100,6 @@ class Client(QMainWindow):
         if checked:
             selected_action = self.groupUser.checkedAction()
             self.currentUser = selected_action.data()
-
         self.updateStatusBar()
 
     def addUser(self):
@@ -142,7 +141,7 @@ class Client(QMainWindow):
     def updateStatusBar(self):
         connected = 0  # For testing
 
-        if self.data:
+        if self.currentUser:
             userLabel = 'Enregistré : {}'.format(self.currentUser.name)
         else:
             userLabel = 'Mode anonyme'

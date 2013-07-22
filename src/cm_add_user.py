@@ -40,24 +40,25 @@ class AddUser(QDialog):
         discardBtn.clicked.connect(self.reject)
 
     def accept(self):
-        regex = QRegExp('[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}', \
-                Qt.CaseInsensitive, QRegExp.RegExp2)
-        validator = QRegExpValidator(regex, self)
-
         errMsg = []
+
         name = self.nameLineEdit.text().strip()
         if not name:
-            fail = True
             errMsg.append('- Vous devez spéfifier un nom valide')
         elif name in {user.name for user in self.data}:
             errMsg.append('- Ce nom existe déjà')
+
         email = self.emailLineEdit.text().strip()
-        if not email:  # TODO: add email validator
+        regex = QRegExp(r'[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}', \
+                Qt.CaseInsensitive, QRegExp.RegExp2)
+        validator = QRegExpValidator(regex, self)
+        if not email:
             errMsg.append('- Vous devez spécifier un email valide')
-        elif validator.validate(email, 0)[0] is not QValidator.Acceptable:
+        elif validator.validate(email, 0)[0] != QValidator.Acceptable:
             errMsg.append('- Cette adresse email est invalide')
         elif email in {user.mail for user in self.data}:
             errMsg.append('- Cet email est déjà utilisé')
+
         if errMsg:
             QMessageBox.warning(self, 'Attention', '\n'.join(errMsg))
             return
