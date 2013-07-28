@@ -3,7 +3,6 @@
 
 
 import os
-from checkbox.properties import Int
 
 try:
     from PySide.QtCore import *
