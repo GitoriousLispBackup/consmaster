@@ -7,11 +7,12 @@ il faut suivre ces étapes :
     - installer PySide et PLY ( sous ubuntu : 'sudo apt-get install python3-ply python3-pyside' )
 
 2. Télécharger le projet depuis le dépot git (il faut avoir l'outil git installé), avec les commandes :
-    cd /home/
+    cd ~
     git clone git://gitorious.org/consmaster2/consmaster.git
     cd consmaster
     git submodule init
     git submodule update
 
-3. Lancer ConsMaster avec la commande :
+3. Se placer dans le répertoire /src, puis lancer ConsMaster :
+    cd src
     ./consmaster.py
