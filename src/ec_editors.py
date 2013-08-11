@@ -8,7 +8,6 @@ import os
 from cm_lisp_graphic import *
 from cm_globals import EXOS_DIR
 from cm_exercice import *
-from pylisp import *
 from cm_interpreter import Interpreter
 
 try:
@@ -130,9 +129,9 @@ class NewNormDotExo(QDialog):
     def verify(self, item):
         """ Check if not empty line """
         # ~ Should check for valid lisp expr
-        if (item.text() == "") and (item.column() == 1):
+        if item.text() == "" and item.column() == 1:
             item.setText("(nil)")
-        elif (item.column() == 1):
+        elif item.column() == 1:
             try:
                 Interpreter.parse(item.text())
             except LispParseError as err:

@@ -7,6 +7,7 @@ import pprint
 
 import pylisp.lisp as lisp
 from lisp import Cons, consp, atom
+from pylisp import lisp_lexer, lisp_parser
 
 
 class GraphExpr:
