@@ -129,6 +129,7 @@ class WorkSpace(QWidget):
         controller.enonceChanged.connect(self.w_enonce.setExpr)
         controller.setCounterText.connect(self.label_counter.setText)
         controller.ok.connect(self.valided)
+        controller.completed.connect(self.closeReq)
         self.getEntry.connect(controller.receive)
         self.goNext()  # ugly
 

@@ -4,7 +4,7 @@
 
 import re
 import random
-
+from collections import defaultdict
 
 try:
     from PySide.QtCore import *
@@ -40,6 +40,9 @@ class CmController(QObject):
 #               controllers for exercices
 
 def valid(entry, expr, fmt='normal', strict=True):
+    """
+    check if an expression follows some defined format (normal or dotted)
+    """
     if not strict:
         entry = re.sub(r' +', ' ', entry)  # clean user entry
     method = {'dotted': 'dotted_repr', 'normal': '__repr__'}[fmt]
@@ -51,6 +54,7 @@ class CmBasicController(QObject):
     enonceChanged = Signal(object)
     setCounterText = Signal(str)
     ok = Signal()
+    completed = Signal()
 
     def __init__(self):
         super().__init__()
@@ -162,19 +166,29 @@ class TrainingMixin:
                 self.enonceIter = level_expr_gen(self.currentLevel)
 
 
-class ExerciceMixin:
-    def __init__(self, src):
+class ExerciceMixin:        
+    def __init__(self, userData, src):
+        self.userData = userData
         self.exoNum = 0
         self.total = len(src)
         self.enonceIter = iter(src)  # TODO : make it work
-        self.results = []
+        self.results = defaultdict(list)
 
     @Slot(object)
     def receive(self, entry):
         interm = self.validate(entry)
-        if interm:  # des parties de la validation sont une grande aide, notament en mode NDN
-            self.results.append(entry)
-            self.ok.emit()  # bloque la touche de validation
+        if not interm:
+            return
+        ok = interm == self.interm_enonce
+        if ok:  # des parties de la validation sont une grande aide, notament en mode NDN
+            
+            self.ok.emit()  # en mode exercice, bloque la touche de validation
+            QMessageBox.information(None, "Bravo !",
+                    "Vous avez répondu correctement à cette question")
+        else:
+            self.help(interm, self.interm_enonce)
+            # TODO: eventuellement empêcher de reccomencer l'exercice
+        self.results[self.exoNum].append(1 if ok else 0)
 
     def next(self):
         self.exoNum += 1
@@ -184,9 +198,13 @@ class ExerciceMixin:
             formatted = self.fmt(self.enonce)  # side effect : set interm_repr
             self.enonceChanged.emit(formatted)
         except StopIteration:
-            # TODO : end of exercice
-            # self.end.emit(results)
             print('end')
+            # TODO: calculer et annoncer la note
+            # l'enregistrer, et eventuellement l'envoyer sur le serveur
+            self.completed.emit()
+            
+
+
 
 #########################################################################
 
@@ -223,7 +241,7 @@ class CmGTNConvTrainingController(CmGraphicToNormalController, TrainingMixin):
 class CmNDConvExerciceController(CmNormalDottedConvController, ExerciceMixin):
     def __init__(self, userData, src):
         CmNormalDottedConvController.__init__(self)
-        ExerciceMixin.__init__(self, src.lst)
+        ExerciceMixin.__init__(self, userData, src.lst)
 
     def fmt(self, enonce):
         self.typ = enonce[0]
@@ -234,7 +252,7 @@ class CmNDConvExerciceController(CmNormalDottedConvController, ExerciceMixin):
 class CmNTGConvExerciceController(CmNormalToGraphicController, ExerciceMixin):
     def __init__(self, userData, src):
         CmNormalToGraphicController.__init__(self)
-        ExerciceMixin.__init__(self, src.lst)
+        ExerciceMixin.__init__(self, userData, src.lst)
 
     def fmt(self, enonce):
         expr = Interpreter.parse(enonce)
@@ -244,7 +262,7 @@ class CmNTGConvExerciceController(CmNormalToGraphicController, ExerciceMixin):
 class CmGTNConvExerciceController(CmGraphicToNormalController, ExerciceMixin):
     def __init__(self, userData, src):
         CmGraphicToNormalController.__init__(self)
-        ExerciceMixin.__init__(self, src.lst)
+        ExerciceMixin.__init__(self, userData, src.lst)
 
     def fmt(self, enonce):
         self.interm_enonce = enonce
