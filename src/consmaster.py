@@ -72,7 +72,7 @@ class Client(QMainWindow):
 
         self.groupUser = QActionGroup(menu)
         for user in self.data:
-            setUsernameAction = menu.addAction(user.name)
+            setUsernameAction = menu.addAction(user.nick)
             setUsernameAction.setCheckable(True)
             setUsernameAction.setData(user)
             setUsernameAction.toggled.connect(self.userChanged)
@@ -142,7 +142,7 @@ class Client(QMainWindow):
         connected = 0  # For testing
 
         if self.currentUser:
-            userLabel = 'Enregistré : {}'.format(self.currentUser.name)
+            userLabel = 'Enregistré : {}'.format(self.currentUser.nick)
         else:
             userLabel = 'Mode anonyme'
 

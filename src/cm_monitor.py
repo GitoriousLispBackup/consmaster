@@ -1,10 +1,14 @@
 from collections import defaultdict, OrderedDict
 from cm_globals import MODES
 
+
 class ExoType:
+    """
+    manage results on some type of exercices
+    """
     def __init__(self):
-        self.training = defaultdict(list)
-        self.exercices = defaultdict(dict)
+        self.training = defaultdict(list)   # key is the level
+        self.exercices = defaultdict(dict)  # idem
 
     def currentLevel(self):
         for lvl in sorted(self.training.keys(), reverse=True):
@@ -16,21 +20,25 @@ class ExoType:
     def addTrainingData(self, lvl, score):
         self.training[lvl].append(score)
 
-    def __repr__(self):
+    def addExerciceData(self, lvl, uid, score):
+        self.exercices[lvl][uid] = score
 
+    def __repr__(self):
         return 'ExoType(training=' + repr(self.training) + ', exercices=' + repr(self.exercices) + ')'
 
+
 class UserData:
-    def __init__(self, name, mail):
-        self.name = name
+    """
+    manage all the user's data
+    """
+    def __init__(self, nick, mail, password):
+        self.nick = nick
         self.mail = mail
-        self.modes = OrderedDict()
-        for mode in MODES:
-            if mode.name != "Mode Libre":
-                self.modes[mode.name] = ExoType()
+        self.pwd = password
+        self.modes = OrderedDict([mode.name, ExoType()] for mode in MODES if mode.name != "Mode Libre")
 
     def get_mode(self, name):
         return self.modes[name]
 
     def __repr__(self):
-        return '<UserData:\n' + self.name + ',\n' + self.mail + ',\n' + '\n'.join(repr(mode) for mode in self.modes.values()) + '\n>'
+        return '<UserData:\n' + '\n,'.join([self.nick, self.mail, self.pwd] + [repr(mode) for mode in self.modes.values()]) + '\n>'

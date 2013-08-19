@@ -20,6 +20,7 @@ class AddUser(QDialog):
 
         self.nameLineEdit = QLineEdit(self)
         self.emailLineEdit = QLineEdit(self)
+        self.pwdLineEdit = QLineEdit(self)
 
         saveBtn = QPushButton("Sauvegarder", self)
         discardBtn = QPushButton("Quitter", self)
@@ -27,6 +28,7 @@ class AddUser(QDialog):
         formLayout = QFormLayout()
         formLayout.addRow("&Nom:", self.nameLineEdit)
         formLayout.addRow("&Email:", self.emailLineEdit)
+        formLayout.addRow("&Password:", self.pwdLineEdit)
 
         buttonLayout = QHBoxLayout()
         buttonLayout.addWidget(saveBtn)
@@ -59,8 +61,12 @@ class AddUser(QDialog):
         elif email in {user.mail for user in self.data}:
             errMsg.append('- Cet email est déjà utilisé')
 
+        pwd = self.pwdLineEdit.text().strip()
+        if not pwd:
+            errMsg.append('- Vous devez spécifier un mot de passe')
+
         if errMsg:
             QMessageBox.warning(self, 'Attention', '\n'.join(errMsg))
             return
-        self.data.append(UserData(name, email))
+        self.data.append(UserData(name, email, pwd))
         return super().accept()

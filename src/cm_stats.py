@@ -34,7 +34,7 @@ class StatsDialog(QDialog):
     def __init__(self, userData):
         super().__init__()
 
-        label = QLabel('<b>User :</b> ' + userData.name + '<br> mail : <i>' + userData.mail + '<i>')
+        label = QLabel('<b>User :</b> ' + userData.nick + '<br> mail : <i>' + userData.mail + '<i>')
 
         tabWidget = QTabWidget()
         for name, mode in userData.modes.items():
