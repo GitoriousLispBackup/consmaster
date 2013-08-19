@@ -504,6 +504,7 @@ class GraphEditor(QDialog):
             self.close()
 
     def closeAndClean(self):
+        # Need to remove the controller every time
         del self.controller
         self.close()
 

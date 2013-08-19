@@ -1,4 +1,4 @@
-Pour installer ConsMaster depuis le dépot git, 
+Pour installer ConsMaster depuis le dépot git,
 il faut suivre ces étapes :
 
 1. Installation des dépendances :
@@ -8,11 +8,8 @@ il faut suivre ces étapes :
 
 2. Télécharger le projet depuis le dépot git (il faut avoir l'outil git installé), avec les commandes :
     cd ~
-    git clone git://gitorious.org/consmaster2/consmaster.git
-    cd consmaster
-    git submodule init
-    git submodule update
+    git clone --recursive git://gitorious.org/consmaster2/consmaster.git
 
 3. Se placer dans le répertoire /src, puis lancer ConsMaster :
-    cd src
+    cd consmaster/src
     ./consmaster.py
