@@ -6,6 +6,8 @@ import re
 import os
 
 from cm_lisp_graphic import *
+from cm_terminal import *
+from cm_controller import *
 from cm_globals import EXOS_DIR
 from cm_exercice import *
 from cm_interpreter import Interpreter
@@ -472,25 +474,41 @@ class GraphEditor(QDialog):
         save_btn = buttons_grp.addButton(QDialogButtonBox.Save)
         abort_btn = buttons_grp.addButton(QDialogButtonBox.Cancel)
         buttons_grp.accepted.connect(self.saveAndQuit)
-        buttons_grp.rejected.connect(self.close)
+        buttons_grp.rejected.connect(self.closeAndClean)
 
-        self.widget = GraphicalLispGroupWidget(self)
+        self.widgetGraphical = GraphicalLispGroupWidget(self)
+        self.widgetTerminal = TermWidget(self)
 
         layout = QGridLayout()
-        layout.addWidget(self.widget, 0, 0)
+        layout.addWidget(self.widgetGraphical, 0, 0)
+        layout.addWidget(self.widgetTerminal, 1, 0)
         layout.addWidget(buttons_grp, 2, 0)
 
         self.setLayout(layout)
+
+        self.controller = CmController(self.widgetTerminal)
+        self.setController(self.controller)
 
         # HACK : force to setting size
         self.show()
 
         if expr:
-            self.widget.setExpr(expr)
+            self.widgetGraphical.setExpr(expr)
 
     def saveAndQuit(self):
         """ Save current graphical editing and go back to list """
-        expr = self.widget.getExpr(True)
+        expr = self.widgetGraphical.getExpr(True)
         if expr:  # Validity Check
             self.parent.edit(expr, self.item)
+            del self.controller
             self.close()
+
+    def closeAndClean(self):
+        # Need to remove the controller every time
+        del self.controller
+        self.close()
+
+    def setController(self, controller):
+        self.controller = controller
+        self.widgetTerminal.read.connect(controller.receive)
+        controller.send.connect(self.widgetGraphical.setExpr)
