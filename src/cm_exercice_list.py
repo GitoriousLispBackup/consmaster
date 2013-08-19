@@ -101,8 +101,8 @@ class ExosList(QWidget):
         self.reset()
 
         level = mode.currentLevel()
-        # pouvoir refaire un exercice déjà fait ?
-        # filtrer d'après le level
+        # TODO: pouvoir refaire un exercice déjà fait ?
+        # TODO: filtrer d'après le level
         for filename in os.listdir(path):
             lvl, _, name = filename.partition('_')
             n = self.lst.rowCount()

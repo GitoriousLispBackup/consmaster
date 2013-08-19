@@ -51,6 +51,10 @@ def valid(entry, expr, fmt='normal', strict=True):
 
 
 class CmBasicController(QObject):
+    """
+    Basic class for controllers
+    """
+    
     enonceChanged = Signal(object)
     setCounterText = Signal(str)
     ok = Signal()
@@ -60,6 +64,9 @@ class CmBasicController(QObject):
         super().__init__()
 
     def help(self, entry, enonce):
+        """
+        give some infos to the user on his error
+        """
         if entry.isomorphic_to(enonce):
             QMessageBox.warning(None, "Erreur",
                     "Expression correctement formée,\
@@ -71,6 +78,10 @@ class CmBasicController(QObject):
 
 
 class CmNormalDottedConvController(CmBasicController):
+    """
+    controller for normal <-> dotted exercice converter
+    """
+    
     inv_methods = {'normal': 'dotted_repr', 'dotted': '__repr__'}
 
     def __init__(self):
@@ -95,6 +106,10 @@ class CmNormalDottedConvController(CmBasicController):
 
 
 class CmNormalToGraphicController(CmBasicController):
+    """
+    controller for normal -> graphic exercice converter
+    """
+
     def __init__(self):
         super().__init__()
 
@@ -104,6 +119,10 @@ class CmNormalToGraphicController(CmBasicController):
 
 
 class CmGraphicToNormalController(CmBasicController):
+    """
+    controller for graphic -> normal exercice converter
+    """
+    
     def __init__(self):
         super().__init__()
 
@@ -123,6 +142,10 @@ class CmGraphicToNormalController(CmBasicController):
 ###############################################################################
 
 class TrainingMixin:
+    """
+    mixin for training gestion
+    """
+    
     def __init__(self, userData):
         self.userData = userData
         self.currentLevel = userData.currentLevel() if userData else 0
@@ -131,6 +154,9 @@ class TrainingMixin:
         self.realised = 0
 
     def next(self):
+        """
+        pass to the next exercice
+        """
         self.enonce = next(self.enonceIter)
         self.interm_enonce = GraphExpr.from_lsp_obj(self.enonce)
         formatted = self.fmt(self.enonce)
@@ -139,6 +165,9 @@ class TrainingMixin:
 
     @Slot(object)
     def receive(self, entry):
+        """
+        receive data from the entry widget
+        """
         interm = self.validate(entry)
         if not interm:
             self.updateData(0)
@@ -167,6 +196,10 @@ class TrainingMixin:
 
 
 class ExerciceMixin:        
+    """
+    mixin for exercice gestion
+    """
+
     def __init__(self, userData, src):
         self.userData = userData
         self.exoNum = 0
@@ -176,12 +209,14 @@ class ExerciceMixin:
 
     @Slot(object)
     def receive(self, entry):
+        """
+        receive data from the entry widget
+        """
         interm = self.validate(entry)
         if not interm:
             return
         ok = interm == self.interm_enonce
         if ok:  # des parties de la validation sont une grande aide, notament en mode NDN
-            
             self.ok.emit()  # en mode exercice, bloque la touche de validation
             QMessageBox.information(None, "Bravo !",
                     "Vous avez répondu correctement à cette question")
@@ -201,8 +236,7 @@ class ExerciceMixin:
             print('end')
             # TODO: calculer et annoncer la note
             # l'enregistrer, et eventuellement l'envoyer sur le serveur
-            self.completed.emit()
-            
+            self.completed.emit()            
 
 
 
@@ -214,6 +248,9 @@ class CmNDConvTrainingController(CmNormalDottedConvController, TrainingMixin):
         TrainingMixin.__init__(self, userData)
 
     def fmt(self, enonce):
+        """
+        pass the enonce to defined usable format
+        """
         self.typ = random.choice(list(self.inv_methods.keys()))
         method_inv = self.inv_methods[self.typ]
         return '<i>[' + self.typ + ']</i><br>' + getattr(self.enonce, method_inv)()
@@ -225,6 +262,9 @@ class CmNTGConvTrainingController(CmNormalToGraphicController, TrainingMixin):
         TrainingMixin.__init__(self, userData)
 
     def fmt(self, enonce):
+        """
+        pass the enonce to defined usable format
+        """
         return repr(enonce)
 
 
@@ -234,6 +274,9 @@ class CmGTNConvTrainingController(CmGraphicToNormalController, TrainingMixin):
         TrainingMixin.__init__(self, userData)
 
     def fmt(self, enonce):
+        """
+        pass the enonce to defined usable format
+        """
         return GraphExpr.from_lsp_obj(enonce)
 
 ###############################################################################
@@ -244,6 +287,9 @@ class CmNDConvExerciceController(CmNormalDottedConvController, ExerciceMixin):
         ExerciceMixin.__init__(self, userData, src.lst)
 
     def fmt(self, enonce):
+        """
+        pass the enonce to defined usable format
+        """
         self.typ = enonce[0]
         expr = Interpreter.parse(enonce[1])
         self.interm_enonce = GraphExpr.from_lsp_obj(expr)
@@ -255,6 +301,9 @@ class CmNTGConvExerciceController(CmNormalToGraphicController, ExerciceMixin):
         ExerciceMixin.__init__(self, userData, src.lst)
 
     def fmt(self, enonce):
+        """
+        pass the enonce to defined usable format
+        """
         expr = Interpreter.parse(enonce)
         self.interm_enonce = GraphExpr.from_lsp_obj(expr)
         return enonce
@@ -265,5 +314,8 @@ class CmGTNConvExerciceController(CmGraphicToNormalController, ExerciceMixin):
         ExerciceMixin.__init__(self, userData, src.lst)
 
     def fmt(self, enonce):
+        """
+        pass the enonce to defined usable format
+        """
         self.interm_enonce = enonce
         return enonce
