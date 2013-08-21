@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
 from pylisp import *
 import pylisp.lisp as lisp
 from lisp import _Fvals as Fvals, nil

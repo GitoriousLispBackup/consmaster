@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
 
 from cm_lisp_obj import *
 from cm_graph import DiGraph, layout

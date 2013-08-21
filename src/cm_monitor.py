@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
 from collections import defaultdict, OrderedDict
 from cm_globals import MODES
 
