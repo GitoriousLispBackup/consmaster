@@ -11,12 +11,12 @@ from lisp import Cons, Symbol
 # max_depth, max_len, proper
 _cm_levels = {
     0: (1, 4, 1.),
-    1: (2, 4, 1.),
-    2: (3, 5, 1.),
-    3: (1, 4, 0.5),
+    1: (2, 5, 1.),
+    2: (3, 4, 1.),
+    3: (1, 5, 0.4),
     4: (2, 4, 0.5),
-    5: (3, 5, 0.5),
-    6: (4, 6, 0.5)
+    5: (3, 4, 0.7),
+    6: (4, 5, 0.65)
 }
 
 
@@ -38,24 +38,27 @@ def gen_without_duplicates(candidates=_default_candidates):
 
 
 # allow lopps ?
-def exp_generator(max_depth=1, max_len=4, proper=1., sym_gen=gen_with_duplicates()):
+def exp_generator(level, sym_gen=gen_with_duplicates()):
     """
     générateur aléatoire d'expressions lisp
-    max_depth:   profondeur de la liste
-    max_len: longueur maximale d'une liste/sous-liste
-    proper:  probabilité d'avoir seulement des listes "propres" (0.5 ou  1.0)
-    sym_gen: générateur de symboles/valeurs atomiques
+    level: niveau requis
+    sym_gen:  générateur de symboles/valeurs atomiques
     """
+    
+    max_depth, max_len, proper = _cm_levels[level]
+    
     def rec_build(_depth, _len):
-        # print('len:', _len, _len / max_len)
-        if _depth < max_depth and random.random() < 0.45:
+        # set car value
+        if _depth < max_depth and random.random() < 0.4:
             car = rec_build(_depth + 1, 0)
         else:
-            car = 'nil' if random.random() < 0.05 else next(sym_gen)
-        if random.random() > (_len + 1) / max_len:
+            car = 'nil' if (level > 2 and random.random() < 0.05) else next(sym_gen)
+        # set cdr value
+        if random.random() < (1 - _len / max_len) ** 2:
             cdr = rec_build(_depth, _len + 1)
         else:
             cdr = 'nil' if random.random() < proper else next(sym_gen)
+
         return car, cdr
 
     def get_lisp_obj(expr):
@@ -63,6 +66,7 @@ def exp_generator(max_depth=1, max_len=4, proper=1., sym_gen=gen_with_duplicates
             return Cons(get_lisp_obj(expr[0]), get_lisp_obj(expr[1]))
         else:
             return Symbol(expr)
+
     return get_lisp_obj(rec_build(1, 0))
 
 
@@ -73,12 +77,13 @@ def level_expr_gen(level=None):
     maxi = max(_cm_levels.keys())
     if level > maxi: level = maxi
     while True:
-        yield exp_generator(*_cm_levels[level])
+        # TODO: add test on expression level
+        yield exp_generator(level)
 
 # testing
 if __name__ == '__main__':
-    for depth, proper in [(1, 1.), (1, 0.5), (2, 1.), (2, 0.5)]:
-        print('get for defaul legth, depth =', depth, 'proper =', proper)
+    for level in range(len(_cm_levels)):
+        print('get for level =', level)
         for i in range(20):
-            expr = exp_generator(depth, proper=proper)
+            expr = exp_generator(level)
             print('\t', expr)
