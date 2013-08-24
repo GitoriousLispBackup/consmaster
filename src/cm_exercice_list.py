@@ -11,6 +11,7 @@ except:
     sys.exit(1)
 
 from cm_exercice import CmExerciceBase, ex_load
+from cm_globals import CM_BDD
 
 
 class ButtonList(QPushButton):
@@ -53,9 +54,9 @@ class ExosList(QWidget):
         """
         Custom QTableWidgetItem for save exercices data.
         """
-        def __init__(self, name, filepath):
+        def __init__(self, name, data):
             super().__init__(name)
-            self.setData(Qt.UserRole, ex_load(filepath))
+            self.setData(Qt.UserRole, data)
 
     class QLabelStar(QLabel):
         """
@@ -93,22 +94,23 @@ class ExosList(QWidget):
         self.lst.clearContents()
         self.lst.setRowCount(0)
 
-    def populate(self, mode, path):
+    def populate(self, mode, exo_typ):
         """
         Populate list from local exercices directory.
         """
         self.reset()
 
-        level = mode.currentLevel()
+        current_level = mode.currentLevel()
         # TODO: pouvoir refaire un exercice déjà fait ?
-        # TODO: filtrer d'après le level
-        for filename in os.listdir(path):
-            lvl, _, name = filename.partition('_')
-            n = self.lst.rowCount()
-            self.lst.setRowCount(n + 1)
-            self.lst.setItem(n, 0, self.QTableWidgetExoItem(name, path + '/' + filename))
-            self.lst.setItem(n, 1, self.QTableWidgetLevelItem(int(lvl)))
-            self.lst.setCellWidget(n, 2, self.QLabelStar(int(lvl)))
+        for uid, exo in CM_BDD.items():
+            name, typ, lvl, exo_lst = exo
+            if typ == exo_typ: # and lvl <= current_level:
+                exercice = CmExerciceBase.factory(typ, level=lvl, lst=exo_lst)
+                n = self.lst.rowCount()
+                self.lst.setRowCount(n + 1)
+                self.lst.setItem(n, 0, self.QTableWidgetExoItem(name, exercice))
+                self.lst.setItem(n, 1, self.QTableWidgetLevelItem(int(lvl)))
+                self.lst.setCellWidget(n, 2, self.QLabelStar(int(lvl)))
         self.lst.sortItems(1)
 
     @Slot(QTableWidgetItem)

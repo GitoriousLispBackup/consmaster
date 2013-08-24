@@ -7,38 +7,37 @@ from collections import namedtuple
 
 from cm_workspace import createTextMode, createNormalToGraphicMode, createGraphicToNormalMode
 from cm_free_mode import createFreeMode
+from persistent_dict import PersistentDict
 
 
-Mode = namedtuple('Mode', ['name', 'src', 'location', 'constructor'])
+Mode = namedtuple('Mode', ['name', 'src', 'type', 'constructor'])
 
 MODES = [
     Mode("Mode Libre", '../data/mode-libre.html', None, createFreeMode),
-    Mode("Standard <-> Dotted", '../data/norm-dot.html', "NormDot", createTextMode),
-    Mode("Expr -> Graphique", '../data/norm-graph.html', "NormGraph", createNormalToGraphicMode),
-    Mode("Graphique -> Expr", '../data/graph-norm.html', "GraphNorm", createGraphicToNormalMode),
+    Mode("Standard <-> Dotted", '../data/norm-dot.html', '__NDN__', createTextMode),
+    Mode("Expr -> Graphique", '../data/norm-graph.html', '__NG__', createNormalToGraphicMode),
+    Mode("Graphique -> Expr", '../data/graph-norm.html', '__GN__', createGraphicToNormalMode),
         ]
 
 
-DATA_PATH = '../data/cm.dat'
-EXOS_DIR = '../save'
+DATA_DIR = '../data/'
+CM_DATA = DATA_DIR + 'cm.dat'
+
 
 def cm_load_data():
-    fp = open(DATA_PATH, 'rb')
+    fp = open(CM_DATA, 'rb')
     data = pickle.load(fp)
     fp.close()
     return data
 
 def cm_save_data(data):
-    fp = open(DATA_PATH, 'wb')
+    fp = open(CM_DATA, 'wb')
     pickle.dump(data, fp)
     fp.close()
 
-def cm_init():
-    if not os.path.exists(DATA_PATH):
-        cm_save_data([])
-    if not os.path.exists(EXOS_DIR):
-        os.mkdir(EXOS_DIR)
-    for subdir in [mode.location for mode in MODES if mode.location is not None]:
-        path = EXOS_DIR + '/' + subdir
-        if not os.path.exists(path):
-            os.mkdir(path)
+if not os.path.exists(DATA_DIR):
+    os.mkdir(DATA_DIR)
+if not os.path.exists(CM_DATA):
+    cm_save_data([])
+
+CM_BDD = PersistentDict(DATA_DIR + 'cm-bdd.dat')

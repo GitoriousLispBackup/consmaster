@@ -26,8 +26,8 @@ class ButtonMenu(QPushButton):
         self.description = open(mode.src, 'r', encoding='utf-8').read() if mode.src else 'information manquante sur ce mode'
         self.constructor = mode.constructor
         self.id = mode.name
-        if mode.location:
-            self.location = EXOS_DIR + '/' + mode.location
+        if mode.type:
+            self.type = mode.type
 
 class MainMenu(QWidget):
     """
@@ -124,7 +124,7 @@ class MainMenu(QWidget):
                 self.level.setValue(mode.currentLevel())
                 self.exosButton.show()
                 self.lstWidget.setVisible(self.exosButton.isChecked())
-                self.lstWidget.populate(mode, btn.location)  # refresh exercices list
+                self.lstWidget.populate(mode, btn.type)  # refresh exercices list
 
     def startSelectedMode(self):
         """

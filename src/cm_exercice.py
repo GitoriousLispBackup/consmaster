@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
 import json
 
 from cm_interm_repr import GraphExpr
@@ -18,20 +21,14 @@ class Encoder(json.JSONEncoder):
             return dct
         # Let the base class default method raise the TypeError
         return json.JSONEncoder.default(self, obj)
+  
 
 def decoder(dct):
     if dct.pop('__GraphExpr__', None):
         return GraphExpr(**dct)
     elif dct.pop('__ExoBase__', None):
         typ = dct.pop('type')
-        if typ == '__NDN__':
-            return CmNDNExercice(**dct)
-        elif typ == '__NG__':
-            return CmNGExercice(**dct)
-        elif typ == '__GN__':
-            return CmGNExercice(**dct)
-        else:
-            raise RuntimeError('unkown type: ' + typ)
+        return CmExerciceBase.factory(typ, **dct)
     return dct
 
 
@@ -41,7 +38,16 @@ class CmExerciceBase:
     base class of exercices with
     JSON serialization support.
     """
-    pass
+    @staticmethod
+    def factory(typ, **kwargs):
+        if typ == '__NDN__':
+            return CmNDNExercice(**kwargs)
+        elif typ == '__NG__':
+            return CmNGExercice(**kwargs)
+        elif typ == '__GN__':
+            return CmGNExercice(**kwargs)
+        else:
+            raise RuntimeError('CmExerciceBase: unkown type: ' + typ)              
 
 
 class CmNDNExercice(CmExerciceBase):

@@ -22,7 +22,6 @@ class Client(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        cm_init()
         self.currentUser = None
         self.data = cm_load_data()
 
