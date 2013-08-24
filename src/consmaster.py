@@ -14,6 +14,7 @@ from cm_globals import *
 from cm_main_menu import MainMenu
 from cm_stats import *
 from cm_add_user import *
+from cm_update import update_bdd
 
 
 class Client(QMainWindow):
@@ -44,6 +45,8 @@ class Client(QMainWindow):
             QMessageBox.information(self, "Info",
                     "Il est préférable de vous enregistrer afin de bénéficier "
                     "des fonctionnalités du suivi de progression.")
+
+        update_bdd()
 
     def createMenus(self):
         self.clientMenu = self.menuBar().addMenu("&Client")

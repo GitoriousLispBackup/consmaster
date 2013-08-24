@@ -47,33 +47,32 @@ class CmExerciceBase:
         elif typ == '__GN__':
             return CmGNExercice(**kwargs)
         else:
-            raise RuntimeError('CmExerciceBase: unkown type: ' + typ)              
+            raise RuntimeError('CmExerciceBase: unkown type: ' + typ)
+
+    def __repr__(self):
+        return '<Exercice: ' + repr(self.__dict__) + '>'
 
 
 class CmNDNExercice(CmExerciceBase):
     """
     """
-    def __init__(self, level, lst):
+    def __init__(self, **kwargs):
         self.type = '__NDN__'
-        self.level = level
-        self.lst = lst
+        self.__dict__.update(kwargs)
 
 class CmNGExercice(CmExerciceBase):
     """
     """
-    def __init__(self, level, lst):
+    def __init__(self, **kwargs):
         self.type = '__NG__'
-        self.level = level
-        self.lst = lst
+        self.__dict__.update(kwargs)
 
 class CmGNExercice(CmExerciceBase):
     """
     """
-    def __init__(self, level, lst):
+    def __init__(self, **kwargs):
         self.type = '__GN__'
-        self.level = level
-        self.lst = lst
-
+        self.__dict__.update(kwargs)
 
 ######################################################
 

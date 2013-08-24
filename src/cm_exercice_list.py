@@ -54,8 +54,8 @@ class ExosList(QWidget):
         """
         Custom QTableWidgetItem for save exercices data.
         """
-        def __init__(self, name, data):
-            super().__init__(name)
+        def __init__(self, data):
+            super().__init__(data.name)
             self.setData(Qt.UserRole, data)
 
     class QLabelStar(QLabel):
@@ -102,13 +102,12 @@ class ExosList(QWidget):
 
         current_level = mode.currentLevel()
         # TODO: pouvoir refaire un exercice déjà fait ?
-        for uid, exo in CM_BDD.items():
-            name, typ, lvl, exo_lst = exo
-            if typ == exo_typ: # and lvl <= current_level:
-                exercice = CmExerciceBase.factory(typ, level=lvl, lst=exo_lst)
+        for uid, exercice in CM_BDD.items():
+            lvl = exercice.level
+            if exercice.type == exo_typ: # and lvl <= current_level:
                 n = self.lst.rowCount()
                 self.lst.setRowCount(n + 1)
-                self.lst.setItem(n, 0, self.QTableWidgetExoItem(name, exercice))
+                self.lst.setItem(n, 0, self.QTableWidgetExoItem(exercice))
                 self.lst.setItem(n, 1, self.QTableWidgetLevelItem(int(lvl)))
                 self.lst.setCellWidget(n, 2, self.QLabelStar(int(lvl)))
         self.lst.sortItems(1)
