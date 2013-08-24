@@ -95,7 +95,7 @@ class GlispWidget(QGraphicsView):
 
         # hack - force to resizeEvent()
         # ~ self.show()
-        self.resize(650, 400)
+        self.setMinimumSize(600, 380)
 
     def getExpr(self, with_layout=False):
         """

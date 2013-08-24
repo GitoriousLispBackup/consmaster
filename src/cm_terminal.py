@@ -18,10 +18,11 @@ class TermWidget(QTextEdit):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setGeometry(0, 0, 100, 200)
+        # self.setGeometry(0, 0, 100, 200)
         self.setWordWrapMode(QTextOption.WrapAnywhere)
         self.read.connect(self.updateHistory)
         self.setColor("black", "lightgray")
+        self.setMinimumHeight(100)
         self.reset()
 
     def reset(self):
