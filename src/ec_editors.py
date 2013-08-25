@@ -479,15 +479,18 @@ class GraphEditor(QDialog):
         self.widgetGraphical = GraphicalLispGroupWidget(self)
         self.widgetTerminal = TermWidget(self)
 
-        layout = QGridLayout()
-        layout.addWidget(self.widgetGraphical, 0, 0)
-        layout.addWidget(self.widgetTerminal, 1, 0)
-        layout.addWidget(buttons_grp, 2, 0)
+        splitter = QSplitter(Qt.Vertical)
+        splitter.addWidget(self.widgetGraphical)
+        splitter.addWidget(self.widgetTerminal)
+        splitter.setCollapsible(0, False)
+        splitter.setCollapsible(1, True)
 
+        layout = QVBoxLayout()
+        layout.addWidget(splitter)
+        layout.addWidget(buttons_grp)
         self.setLayout(layout)
 
-        self.controller = CmController(self.widgetTerminal)
-        self.setController(self.controller)
+        self.setController(CmController(self.widgetTerminal))
 
         # HACK : force to setting size
         self.show()
@@ -500,13 +503,12 @@ class GraphEditor(QDialog):
         expr = self.widgetGraphical.getExpr(True)
         if expr:  # Validity Check
             self.parent.edit(expr, self.item)
-            del self.controller
-            self.close()
+            self.closeAndClean()
 
     def closeAndClean(self):
         # Need to remove the controller every time
-        del self.controller
         self.close()
+        del self.controller
 
     def setController(self, controller):
         self.controller = controller
