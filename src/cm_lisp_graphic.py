@@ -28,8 +28,8 @@ class GraphicalLispGroupWidget(QWidget):
 
         glispAddCons = QPushButton(QIcon("../icons/cons"), "Add Cons")
         glispAddAtom = QPushButton(QIcon("../icons/insert-atom"), "Add Atom")
-        glispRemove = QPushButton("Remove")
-        glispRemUnconnected = QPushButton("Clean")
+        glispRemove = QPushButton(QIcon("../icons/edit-delete"), "Remove")
+        glispRemUnconnected = QPushButton(QIcon("../icons/garbage"), "Garbage collector")
         glispCleanAll = QPushButton(QIcon("../icons/clear"), "Clean All")
         glispAutolayout = QPushButton("Auto-layout")
         # ~ glispCheck = QPushButton("Check")
