@@ -26,12 +26,12 @@ class GraphicalLispGroupWidget(QWidget):
 
         self.glisp_widget = GlispWidget(self)
 
-        glispAddCons = QPushButton(QIcon("../icons/cons"), "Add Cons")
-        glispAddAtom = QPushButton(QIcon("../icons/insert-atom"), "Add Atom")
-        glispRemove = QPushButton(QIcon("../icons/edit-delete"), "Remove")
-        glispRemUnconnected = QPushButton(QIcon("../icons/garbage"), "Garbage collector")
-        glispCleanAll = QPushButton(QIcon("../icons/clear"), "Clean All")
-        glispAutolayout = QPushButton("Auto-layout")
+        glispAddCons = QPushButton(QIcon("../icons/cons"), "Add Cons", toolTip="ajouter un doublet")
+        glispAddAtom = QPushButton(QIcon("../icons/insert-atom"), "Add Atom", toolTip="ajouter un atome")
+        glispRemove = QPushButton(QIcon("../icons/edit-delete"), "Remove", toolTip="supprimer l'élément actuellement sélectionné")
+        glispRemUnconnected = QPushButton(QIcon("../icons/garbage"), "Garbage collector", toolTip="supprimer tous les éléments déconnectés")
+        glispCleanAll = QPushButton(QIcon("../icons/clear"), "Clean All", toolTip="supprimer tous les éléments")
+        glispAutolayout = QPushButton("Auto-layout", toolTip="positionnement automatique des éléments")
         # ~ glispCheck = QPushButton("Check")
 
         self.buttons_layout = QVBoxLayout()
