@@ -5,10 +5,8 @@ import sys
 import os
 import os.path
 
-from ec_editors import NewNormDotExo, NewNormGraphExo, NewGraphNormExo
-from cm_globals import EXOS_DIR
-# from checkbox.properties import Int
-# from ctypes.wintypes import INT
+from ec_editors import NewNormDotExo, NewNormGraphExo, NewGraphNormExo, EXOS_DIR
+
 
 try:
     from PySide.QtCore import *

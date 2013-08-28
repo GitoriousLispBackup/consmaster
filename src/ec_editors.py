@@ -8,7 +8,6 @@ import os
 from cm_lisp_graphic import *
 from cm_terminal import *
 from cm_controller import *
-from cm_globals import EXOS_DIR
 from cm_exercice import *
 from cm_interpreter import Interpreter
 
@@ -18,6 +17,9 @@ try:
 except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
+
+    
+EXOS_DIR = '../save'
 
 class InfoWindows(QMessageBox):
     """ Simple informative modal message """
