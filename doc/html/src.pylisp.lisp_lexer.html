@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module src.pylisp.lisp_lexer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="src.html"><font color="#ffffff">src</font></a>.<a href="src.pylisp.html"><font color="#ffffff">pylisp</font></a>.lisp_lexer</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/yoch/consmaster2/consmaster/src/pylisp/lisp_lexer.py">/home/yoch/consmaster2/consmaster/src/pylisp/lisp_lexer.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="ply.lex.html">ply.lex</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-t_INT"><strong>t_INT</strong></a>(t)</dt><dd><tt>\d+</tt></dd></dl>
+ <dl><dt><a name="-t_STRING"><strong>t_STRING</strong></a>(t)</dt><dd><tt>"[^"]*"</tt></dd></dl>
+ <dl><dt><a name="-t_SYMBOL"><strong>t_SYMBOL</strong></a>(t)</dt><dd><tt>[^0-9&nbsp;",#()\'.;][^&nbsp;:;",()\'\n]*</tt></dd></dl>
+ <dl><dt><a name="-t_error"><strong>t_error</strong></a>(t)</dt><dd><tt>#&nbsp;Error&nbsp;handling&nbsp;rule</tt></dd></dl>
+ <dl><dt><a name="-t_newline"><strong>t_newline</strong></a>(t)</dt><dd><tt>\n</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>lisp_lexer</strong> = &lt;ply.lex.Lexer object&gt;<br>
+<strong>literals</strong> = [',', '#', "'", '(', ')', '.']<br>
+<strong>reserved</strong> = {'nil': 'NIL'}<br>
+<strong>t_ignore_COMMENT</strong> = ';.*'<br>
+<strong>t_ignore_SPACE</strong> = r'\s+'<br>
+<strong>tokens</strong> = ['SYMBOL', 'INT', 'STRING', 'NIL']</td></tr></table>
+</body></html>

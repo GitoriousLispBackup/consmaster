@@ -1,0 +1,454 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module src.cm_lisp_scene</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="src.html"><font color="#ffffff">src</font></a>.cm_lisp_scene</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/yoch/consmaster2/consmaster/src/cm_lisp_scene.py">/home/yoch/consmaster2/consmaster/src/cm_lisp_scene.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="pylisp.lisp.html">pylisp.lisp</a><br>
+</td><td width="25%" valign=top><a href="math.html">math</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="PySide.QtGui.html#QGraphicsScene">PySide.QtGui.QGraphicsScene</a>(<a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="src.cm_lisp_scene.html#LispScene">LispScene</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="LispScene">class <strong>LispScene</strong></a>(<a href="PySide.QtGui.html#QGraphicsScene">PySide.QtGui.QGraphicsScene</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Scene&nbsp;manager.&nbsp;Inherits&nbsp;<a href="PySide.QtGui.html#QGraphicsScene">QGraphicsScene</a>,&nbsp;and&nbsp;use<br>
+a&nbsp;multi-edge&nbsp;directed&nbsp;graph&nbsp;to&nbsp;store&nbsp;the&nbsp;lisp&nbsp;objects,<br>
+in&nbsp;order&nbsp;to&nbsp;add&nbsp;and&nbsp;remove&nbsp;them&nbsp;easily&nbsp;into&nbsp;the&nbsp;scene.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.cm_lisp_scene.html#LispScene">LispScene</a></dd>
+<dd><a href="PySide.QtGui.html#QGraphicsScene">PySide.QtGui.QGraphicsScene</a></dd>
+<dd><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="LispScene-__init__"><strong>__init__</strong></a>(self, parent<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="LispScene-addObj"><strong>addObj</strong></a>(self, obj)</dt><dd><tt>Add&nbsp;lisp&nbsp;object&nbsp;into&nbsp;the&nbsp;scene.</tt></dd></dl>
+
+<dl><dt><a name="LispScene-addPointer"><strong>addPointer</strong></a>(self, pointer)</dt><dd><tt>Add&nbsp;pointer&nbsp;from&nbsp;a&nbsp;lisp&nbsp;object&nbsp;to&nbsp;another<br>
+lisp&nbsp;object,&nbsp;and&nbsp;manage&nbsp;old&nbsp;pointers&nbsp;and<br>
+internal&nbsp;objects&nbsp;references.</tt></dd></dl>
+
+<dl><dt><a name="LispScene-applyLayout"><strong>applyLayout</strong></a>(self, positions)</dt><dd><tt>Apply&nbsp;the&nbsp;argument&nbsp;layout&nbsp;to&nbsp;the&nbsp;scene&nbsp;objects.</tt></dd></dl>
+
+<dl><dt><a name="LispScene-getAutoLayout"><strong>getAutoLayout</strong></a>(self, root)</dt><dd><tt>Call&nbsp;layout()&nbsp;function&nbsp;(in&nbsp;cm_graph)&nbsp;to&nbsp;get<br>
+automatic&nbsp;layout&nbsp;of&nbsp;the&nbsp;graph&nbsp;expression<br>
+connected&nbsp;to&nbsp;the&nbsp;root.</tt></dd></dl>
+
+<dl><dt><a name="LispScene-getCurrentLayout"><strong>getCurrentLayout</strong></a>(self)</dt><dd><tt>Get&nbsp;current&nbsp;scene&nbsp;objects&nbsp;layout,&nbsp;in&nbsp;percents&nbsp;of<br>
+width&nbsp;an&nbsp;height.</tt></dd></dl>
+
+<dl><dt><a name="LispScene-getEdgesFrom"><strong>getEdgesFrom</strong></a>(self, vertex, key<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="LispScene-getIntermRepr"><strong>getIntermRepr</strong></a>(self, root)</dt><dd><tt>Return&nbsp;lisp&nbsp;intermediate&nbsp;representation&nbsp;from&nbsp;the<br>
+connected&nbsp;lisp&nbsp;objects&nbsp;to&nbsp;root.</tt></dd></dl>
+
+<dl><dt><a name="LispScene-get_tree"><strong>get_tree</strong></a>(self, root)</dt><dd><tt>Return&nbsp;objects&nbsp;connected&nbsp;to&nbsp;the&nbsp;root&nbsp;argument<br>
+in&nbsp;adjacent&nbsp;matrix.</tt></dd></dl>
+
+<dl><dt><a name="LispScene-removeObj"><strong>removeObj</strong></a>(self, obj)</dt><dd><tt>Remove&nbsp;a&nbsp;lisp&nbsp;object&nbsp;from&nbsp;scene,&nbsp;and&nbsp;manage<br>
+connected&nbsp;objects.</tt></dd></dl>
+
+<dl><dt><a name="LispScene-removePointer"><strong>removePointer</strong></a>(self, pointer)</dt><dd><tt>Remove&nbsp;a&nbsp;pointer&nbsp;object&nbsp;from&nbsp;scene,&nbsp;and&nbsp;manage<br>
+connected&nbsp;objects.</tt></dd></dl>
+
+<dl><dt><a name="LispScene-reset"><strong>reset</strong></a>(self)</dt><dd><tt>Reset&nbsp;the&nbsp;scene.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = &lt;PySide.QtCore.QMetaObject object&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QGraphicsScene">PySide.QtGui.QGraphicsScene</a>:<br>
+<dl><dt><a name="LispScene-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#LispScene-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="LispScene-activePanel"><strong>activePanel</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-activeWindow"><strong>activeWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-addEllipse"><strong>addEllipse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-addItem"><strong>addItem</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-addLine"><strong>addLine</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-addPath"><strong>addPath</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-addPixmap"><strong>addPixmap</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-addPolygon"><strong>addPolygon</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-addRect"><strong>addRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-addSimpleText"><strong>addSimpleText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-addText"><strong>addText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-addWidget"><strong>addWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-advance"><strong>advance</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-backgroundBrush"><strong>backgroundBrush</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-bspTreeDepth"><strong>bspTreeDepth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-clear"><strong>clear</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-clearFocus"><strong>clearFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-clearSelection"><strong>clearSelection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-collidingItems"><strong>collidingItems</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-contextMenuEvent"><strong>contextMenuEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-createItemGroup"><strong>createItemGroup</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-destroyItemGroup"><strong>destroyItemGroup</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-dragEnterEvent"><strong>dragEnterEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-dragLeaveEvent"><strong>dragLeaveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-dragMoveEvent"><strong>dragMoveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-drawBackground"><strong>drawBackground</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-drawForeground"><strong>drawForeground</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-dropEvent"><strong>dropEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-focusInEvent"><strong>focusInEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-focusItem"><strong>focusItem</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-focusNextPrevChild"><strong>focusNextPrevChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-focusOutEvent"><strong>focusOutEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-font"><strong>font</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-foregroundBrush"><strong>foregroundBrush</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-hasFocus"><strong>hasFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-height"><strong>height</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-helpEvent"><strong>helpEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-inputMethodEvent"><strong>inputMethodEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-inputMethodQuery"><strong>inputMethodQuery</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-invalidate"><strong>invalidate</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-isActive"><strong>isActive</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-isSortCacheEnabled"><strong>isSortCacheEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-itemAt"><strong>itemAt</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-itemIndexMethod"><strong>itemIndexMethod</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-items"><strong>items</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-itemsBoundingRect"><strong>itemsBoundingRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-keyPressEvent"><strong>keyPressEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-keyReleaseEvent"><strong>keyReleaseEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-mouseDoubleClickEvent"><strong>mouseDoubleClickEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-mouseGrabberItem"><strong>mouseGrabberItem</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-mouseMoveEvent"><strong>mouseMoveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-mousePressEvent"><strong>mousePressEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-mouseReleaseEvent"><strong>mouseReleaseEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-palette"><strong>palette</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-removeItem"><strong>removeItem</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-render"><strong>render</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-sceneRect"><strong>sceneRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-selectedItems"><strong>selectedItems</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-selectionArea"><strong>selectionArea</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-sendEvent"><strong>sendEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-setActivePanel"><strong>setActivePanel</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-setActiveWindow"><strong>setActiveWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-setBackgroundBrush"><strong>setBackgroundBrush</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-setBspTreeDepth"><strong>setBspTreeDepth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-setFocus"><strong>setFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-setFocusItem"><strong>setFocusItem</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-setFont"><strong>setFont</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-setForegroundBrush"><strong>setForegroundBrush</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-setItemIndexMethod"><strong>setItemIndexMethod</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-setPalette"><strong>setPalette</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-setSceneRect"><strong>setSceneRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-setSelectionArea"><strong>setSelectionArea</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-setSortCacheEnabled"><strong>setSortCacheEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-setStickyFocus"><strong>setStickyFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-setStyle"><strong>setStyle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-stickyFocus"><strong>stickyFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-style"><strong>style</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-update"><strong>update</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-views"><strong>views</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-wheelEvent"><strong>wheelEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-width"><strong>width</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QGraphicsScene">PySide.QtGui.QGraphicsScene</a>:<br>
+<dl><dt><strong>AllLayers</strong> = PySide.QtGui.QGraphicsScene.SceneLayer.AllLayers</dl>
+
+<dl><dt><strong>BackgroundLayer</strong> = PySide.QtGui.QGraphicsScene.SceneLayer.BackgroundLayer</dl>
+
+<dl><dt><strong>BspTreeIndex</strong> = PySide.QtGui.QGraphicsScene.ItemIndexMethod.BspTreeIndex</dl>
+
+<dl><dt><strong>ForegroundLayer</strong> = PySide.QtGui.QGraphicsScene.SceneLayer.ForegroundLayer</dl>
+
+<dl><dt><strong>ItemIndexMethod</strong> = &lt;class 'PySide.QtGui.QGraphicsScene.ItemIndexMethod'&gt;</dl>
+
+<dl><dt><strong>ItemLayer</strong> = PySide.QtGui.QGraphicsScene.SceneLayer.ItemLayer</dl>
+
+<dl><dt><strong>NoIndex</strong> = PySide.QtGui.QGraphicsScene.ItemIndexMethod.NoIndex</dl>
+
+<dl><dt><strong>SceneLayer</strong> = &lt;class 'PySide.QtGui.QGraphicsScene.SceneLayer'&gt;</dl>
+
+<dl><dt><strong>SceneLayers</strong> = &lt;class 'SceneLayers'&gt;</dl>
+
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of Shiboken.ObjectType object&gt;<dd><tt>T.<a href="#LispScene-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>changed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>sceneRectChanged</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>selectionChanged</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="LispScene-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#LispScene-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="LispScene-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#LispScene-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="LispScene-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#LispScene-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="LispScene-blockSignals"><strong>blockSignals</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-children"><strong>children</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-deleteLater"><strong>deleteLater</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-inherits"><strong>inherits</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-killTimer"><strong>killTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-metaObject"><strong>metaObject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-moveToThread"><strong>moveToThread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-objectName"><strong>objectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-parent"><strong>parent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-property"><strong>property</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-setObjectName"><strong>setObjectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-thread"><strong>thread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-trUtf8"><strong>trUtf8</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="LispScene-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LispScene-registerUserData"><strong>registerUserData</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><strong>destroyed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-QT_TRANSLATE_NOOP"><strong>QT_TRANSLATE_NOOP</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TRANSLATE_NOOP3"><strong>QT_TRANSLATE_NOOP3</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TRANSLATE_NOOP_UTF8"><strong>QT_TRANSLATE_NOOP_UTF8</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TR_NOOP"><strong>QT_TR_NOOP</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TR_NOOP_UTF8"><strong>QT_TR_NOOP_UTF8</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-SIGNAL"><strong>SIGNAL</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-SLOT"><strong>SLOT</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAbs"><strong>qAbs</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAcos"><strong>qAcos</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAddPostRoutine"><strong>qAddPostRoutine</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAlpha"><strong>qAlpha</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAsin"><strong>qAsin</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAtan"><strong>qAtan</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAtan2"><strong>qAtan2</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qBlue"><strong>qBlue</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qChecksum"><strong>qChecksum</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qCritical"><strong>qCritical</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qDebug"><strong>qDebug</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qExp"><strong>qExp</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFabs"><strong>qFabs</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFastCos"><strong>qFastCos</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFastSin"><strong>qFastSin</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFatal"><strong>qFatal</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFuzzyCompare"><strong>qFuzzyCompare</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFuzzyIsNull"><strong>qFuzzyIsNull</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qGray"><strong>qGray</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qGreen"><strong>qGreen</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qInstallMsgHandler"><strong>qInstallMsgHandler</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsFinite"><strong>qIsFinite</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsGray"><strong>qIsGray</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsInf"><strong>qIsInf</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsNaN"><strong>qIsNaN</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsNull"><strong>qIsNull</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRed"><strong>qRed</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRegisterResourceData"><strong>qRegisterResourceData</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRgb"><strong>qRgb</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRgba"><strong>qRgba</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRound"><strong>qRound</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qTan"><strong>qTan</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qUnregisterResourceData"><strong>qUnregisterResourceData</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qVersion"><strong>qVersion</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qWarning"><strong>qWarning</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qrand"><strong>qrand</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qsrand"><strong>qsrand</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qtTrId"><strong>qtTrId</strong></a>(...)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>LicensedDeclarative</strong> = PySide.QtCore.QtValidLicenseForDeclarativeModule.LicensedDeclarative<br>
+<strong>LicensedMultimedia</strong> = PySide.QtCore.QtValidLicenseForMultimediaModule.LicensedMultimedia<br>
+<strong>LicensedOpenVG</strong> = PySide.QtCore.QtValidLicenseForOpenVGModule.LicensedOpenVG<br>
+<strong>QtCriticalMsg</strong> = PySide.QtCore.QtMsgType.QtCriticalMsg<br>
+<strong>QtDebugMsg</strong> = PySide.QtCore.QtMsgType.QtDebugMsg<br>
+<strong>QtFatalMsg</strong> = PySide.QtCore.QtMsgType.QtFatalMsg<br>
+<strong>QtSystemMsg</strong> = PySide.QtCore.QtMsgType.QtSystemMsg<br>
+<strong>QtWarningMsg</strong> = PySide.QtCore.QtMsgType.QtWarningMsg<br>
+<strong>qApp</strong> = None</td></tr></table>
+</body></html>

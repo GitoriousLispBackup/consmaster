@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module src.pylisp.test</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="src.html"><font color="#ffffff">src</font></a>.<a href="src.pylisp.html"><font color="#ffffff">pylisp</font></a>.test</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/yoch/consmaster2/consmaster/src/pylisp/test.py">/home/yoch/consmaster2/consmaster/src/pylisp/test.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>lisp_lexer</strong> = &lt;ply.lex.Lexer object&gt;<br>
+<strong>lisp_parser</strong> = &lt;ply.yacc.LRParser object&gt;<br>
+<strong>nil</strong> = nil<br>
+<strong>progs</strong> = ['<font color="#c040c0">\n</font>()<font color="#c040c0">\n</font>', '<font color="#c040c0">\n</font>(a b c)<font color="#c040c0">\n</font>', '<font color="#c040c0">\n</font>"a b"<font color="#c040c0">\n</font>', '<font color="#c040c0">\n</font>12<font color="#c040c0">\n</font>', '<font color="#c040c0">\n</font>(a b . c)<font color="#c040c0">\n</font>', '<font color="#c040c0">\n</font>(a b . (c))<font color="#c040c0">\n</font>', '<font color="#c040c0">\n</font>(a b (c) d)<font color="#c040c0">\n</font>', '<font color="#c040c0">\n</font>(a b . nil)<font color="#c040c0">\n</font>', '<font color="#c040c0">\n</font>(nil)<font color="#c040c0">\n</font>', "<font color="#c040c0">\n</font>'a<font color="#c040c0">\n</font>", "<font color="#c040c0">\n</font>'1<font color="#c040c0">\n</font>", "<font color="#c040c0">\n</font>'(a b)<font color="#c040c0">\n</font>", '<font color="#c040c0">\n</font>(+ 1 2)<font color="#c040c0">\n</font>', '<font color="#c040c0">\n</font>(/ 5 0)<font color="#c040c0">\n</font>', '<font color="#c040c0">\n</font>(defun fibo (n)<font color="#c040c0">\n</font>  (if (or (= n 0) (= n 1))<font color="#c040c0">\n</font>    ...0)<font color="#c040c0">\n</font>(fibo 1)<font color="#c040c0">\n</font>(fibo 5)<font color="#c040c0">\n</font>(fibo 10)<font color="#c040c0">\n</font>(fibo)<font color="#c040c0">\n</font>(fibo 1 2)<font color="#c040c0">\n</font>', "<font color="#c040c0">\n</font>(defun append (l1 l2)<font color="#c040c0">\n</font>  (if (not l1)<font color="#c040c0">\n</font>    l2<font color="#c040c0">\n</font>   ...2))<font color="#c040c0">\n</font>(setq a '(8 9))<font color="#c040c0">\n</font>(setq b '(a b))<font color="#c040c0">\n</font>(append b a)<font color="#c040c0">\n</font>", "<font color="#c040c0">\n</font>((lambda (x) ((lambda (y) (cons x y)) 'y)) 'x) ...) (list a b))) 1) 2)  ;; ok<font color="#c040c0">\n</font>(lambda (x) (+ 1 x))<font color="#c040c0">\n</font>", "<font color="#c040c0">\n</font>(setq lst '((A (D) B) (E (H G) . I) E F))<font color="#c040c0">\n</font>(rpla...car (cdr (car (cdr lst))))) (car (cdr lst)))<font color="#c040c0">\n</font>lst<font color="#c040c0">\n</font>", "<font color="#c040c0">\n</font>(setq lst '(((G E (F) A I B D)) (E . H)))<font color="#c040c0">\n</font>(rplacd (cdr lst) (cdr (cdr (car (car lst)))))<font color="#c040c0">\n</font>lst<font color="#c040c0">\n</font>", "<font color="#c040c0">\n</font>(setq lst '(E ((A B F D) . D) (H G) (I)))<font color="#c040c0">\n</font>(rplacd (cdr (cdr (cdr lst))) (cdr lst))<font color="#c040c0">\n</font>lst<font color="#c040c0">\n</font>", ...]</td></tr></table>
+</body></html>

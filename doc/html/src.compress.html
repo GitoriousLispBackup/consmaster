@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module src.compress</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="src.html"><font color="#ffffff">src</font></a>.compress</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/yoch/consmaster2/consmaster/src/compress.py">/home/yoch/consmaster2/consmaster/src/compress.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="ast.html">ast</a><br>
+</td><td width="25%" valign=top><a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="src.compress.html#compression">compression</a>
+</font></dt><dt><font face="helvetica, arial"><a href="src.compress.html#decompression">decompression</a>
+</font></dt><dt><font face="helvetica, arial"><a href="src.compress.html#homeCompress">homeCompress</a>
+</font></dt><dt><font face="helvetica, arial"><a href="src.compress.html#huffman">huffman</a>
+</font></dt><dt><font face="helvetica, arial"><a href="src.compress.html#lz">lz</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="compression">class <strong>compression</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>#&nbsp;Compression<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="compression-__init__"><strong>__init__</strong></a>(self, text)</dt></dl>
+
+<dl><dt><a name="compression-dataCompression"><strong>dataCompression</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="decompression">class <strong>decompression</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>#&nbsp;<a href="#decompression">decompression</a><br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="decompression-__init__"><strong>__init__</strong></a>(self, text)</dt></dl>
+
+<dl><dt><a name="decompression-dataDecompression"><strong>dataDecompression</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="homeCompress">class <strong>homeCompress</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="homeCompress-__init__"><strong>__init__</strong></a>(self, text)</dt></dl>
+
+<dl><dt><a name="homeCompress-compress"><strong>compress</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="homeCompress-decompress"><strong>decompress</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="homeCompress-replace_all"><strong>replace_all</strong></a>(self, dic)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="huffman">class <strong>huffman</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="huffman-__init__"><strong>__init__</strong></a>(self, text)</dt></dl>
+
+<dl><dt><a name="huffman-huffCode"><strong>huffCode</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="huffman-huffDecode"><strong>huffDecode</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="huffman-huffEncode"><strong>huffEncode</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="huffman-make_codes"><strong>make_codes</strong></a>(self, node, code<font color="#909090">=''</font>)</dt></dl>
+
+<dl><dt><a name="huffman-occurrences"><strong>occurrences</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="lz">class <strong>lz</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="lz-__init__"><strong>__init__</strong></a>(self, text)</dt></dl>
+
+<dl><dt><a name="lz-squeeze"><strong>squeeze</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="lz-unsqueeze"><strong>unsqueeze</strong></a>(self)</dt><dd><tt>#&nbsp;LZ&nbsp;deCompression</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>COMP</strong> = 'Off'<br>
+<strong>E_AEC</strong> = 'Erreur: creatExo'<br>
+<strong>E_AED</strong> = 'Erreur: delExo'<br>
+<strong>E_AEL</strong> = 'Erreur: loadExo'<br>
+<strong>E_AGA</strong> = 'Erreur: pas de fonction de ce nom'<br>
+<strong>E_AJS</strong> = 'Erreur: JSON format'<br>
+<strong>E_AUC</strong> = 'Erreur: creatUser'<br>
+<strong>E_AUD</strong> = 'Erreur: delUser'<br>
+<strong>E_AUI</strong> = 'Erreur: identUser'<br>
+<strong>E_AUL</strong> = 'Erreur: listtUser'<br>
+<strong>E_AUM</strong> = "Erreur: Cet utilisateur n'existe pas"<br>
+<strong>E_AUO</strong> = 'Erreur: vous ne disposez pas des autorisations necessaires'<br>
+<strong>E_CCO</strong> = 'Erreur: connection'<br>
+<strong>E_CHO</strong> = "Erreur: Nom d'hôte"<br>
+<strong>E_CJS</strong> = 'Erreur: jsonCheck'<br>
+<strong>E_CSE</strong> = 'Erreur: sendMessage'<br>
+<strong>E_CSO</strong> = 'Erreur: socketCreate'<br>
+<strong>E_SRL</strong> = 'Erreur: pas de variable action'<br>
+<strong>HOST</strong> = 'localhost'<br>
+<strong>PORT</strong> = 9993<br>
+<strong>S_AEC</strong> = 'creatExo'<br>
+<strong>S_AED</strong> = 'delExo'<br>
+<strong>S_AEL</strong> = 'loadExo'<br>
+<strong>S_AUC</strong> = 'creatUser'<br>
+<strong>S_AUD</strong> = 'delUser'<br>
+<strong>S_AUI</strong> = 'identUser'<br>
+<strong>S_AUL</strong> = 'listtUser'<br>
+<strong>S_AUM</strong> = 'delMyUser'<br>
+<strong>dicompress</strong> = {'"#atom"': '"at"', '"#cons"': '"cn"', '"__GN__"': '"gn"', '"__GraphExpr__"': '"ge"', '"__NDN__"': '"ndn"', '"__NG__"': '"ng"', '"action":': 'ac:', '"code":': 'co:', '"data":': 'da:', '"description":': 'de:', ...}</td></tr></table>
+</body></html>

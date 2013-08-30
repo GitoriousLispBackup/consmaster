@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module src.connexion</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="src.html"><font color="#ffffff">src</font></a>.connexion</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/yoch/consmaster2/consmaster/src/connexion.py">/home/yoch/consmaster2/consmaster/src/connexion.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="ast.html">ast</a><br>
+<a href="json.html">json</a><br>
+</td><td width="25%" valign=top><a href="re.html">re</a><br>
+<a href="socket.html">socket</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+<a href="time.html">time</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="src.connexion.html#Connexion">Connexion</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Connexion">class <strong>Connexion</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Connexion-__init__"><strong>__init__</strong></a>(self, mess<font color="#909090">=''</font>, comp<font color="#909090">='Off'</font>, port<font color="#909090">=9993</font>, host<font color="#909090">='localhost'</font>)</dt></dl>
+
+<dl><dt><a name="Connexion-connection"><strong>connection</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Connexion-jsonCheck"><strong>jsonCheck</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Connexion-sendMessage"><strong>sendMessage</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Connexion-socketCreate"><strong>socketCreate</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>COMP</strong> = 'Off'<br>
+<strong>E_AEC</strong> = 'Erreur: creatExo'<br>
+<strong>E_AED</strong> = 'Erreur: delExo'<br>
+<strong>E_AEL</strong> = 'Erreur: loadExo'<br>
+<strong>E_AGA</strong> = 'Erreur: pas de fonction de ce nom'<br>
+<strong>E_AJS</strong> = 'Erreur: JSON format'<br>
+<strong>E_AUC</strong> = 'Erreur: creatUser'<br>
+<strong>E_AUD</strong> = 'Erreur: delUser'<br>
+<strong>E_AUI</strong> = 'Erreur: identUser'<br>
+<strong>E_AUL</strong> = 'Erreur: listtUser'<br>
+<strong>E_AUM</strong> = "Erreur: Cet utilisateur n'existe pas"<br>
+<strong>E_AUO</strong> = 'Erreur: vous ne disposez pas des autorisations necessaires'<br>
+<strong>E_CCO</strong> = 'Erreur: connection'<br>
+<strong>E_CHO</strong> = "Erreur: Nom d'hôte"<br>
+<strong>E_CJS</strong> = 'Erreur: jsonCheck'<br>
+<strong>E_CSE</strong> = 'Erreur: sendMessage'<br>
+<strong>E_CSO</strong> = 'Erreur: socketCreate'<br>
+<strong>E_SRL</strong> = 'Erreur: pas de variable action'<br>
+<strong>HOST</strong> = 'localhost'<br>
+<strong>PORT</strong> = 9993<br>
+<strong>S_AEC</strong> = 'creatExo'<br>
+<strong>S_AED</strong> = 'delExo'<br>
+<strong>S_AEL</strong> = 'loadExo'<br>
+<strong>S_AUC</strong> = 'creatUser'<br>
+<strong>S_AUD</strong> = 'delUser'<br>
+<strong>S_AUI</strong> = 'identUser'<br>
+<strong>S_AUL</strong> = 'listtUser'<br>
+<strong>S_AUM</strong> = 'delMyUser'<br>
+<strong>dicompress</strong> = {'"#atom"': '"at"', '"#cons"': '"cn"', '"__GN__"': '"gn"', '"__GraphExpr__"': '"ge"', '"__NDN__"': '"ndn"', '"__NG__"': '"ng"', '"action":': 'ac:', '"code":': 'co:', '"data":': 'da:', '"description":': 'de:', ...}</td></tr></table>
+</body></html>

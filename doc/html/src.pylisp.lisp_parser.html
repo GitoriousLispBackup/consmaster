@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module src.pylisp.lisp_parser</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="src.html"><font color="#ffffff">src</font></a>.<a href="src.pylisp.html"><font color="#ffffff">pylisp</font></a>.lisp_parser</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/yoch/consmaster2/consmaster/src/pylisp/lisp_parser.py">/home/yoch/consmaster2/consmaster/src/pylisp/lisp_parser.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="operator.html">operator</a><br>
+</td><td width="25%" valign=top><a href="ply.yacc.html">ply.yacc</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-p_array"><strong>p_array</strong></a>(p)</dt><dd><tt>array&nbsp;:&nbsp;'#'&nbsp;'('&nbsp;')'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;'#'&nbsp;'('&nbsp;seq&nbsp;')'</tt></dd></dl>
+ <dl><dt><a name="-p_atom"><strong>p_atom</strong></a>(p)</dt><dd><tt>atom&nbsp;:&nbsp;nil<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;symbol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;integer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;array</tt></dd></dl>
+ <dl><dt><a name="-p_empty"><strong>p_empty</strong></a>(p)</dt><dd><tt>empty&nbsp;:</tt></dd></dl>
+ <dl><dt><a name="-p_error"><strong>p_error</strong></a>(p)</dt><dd><tt>#&nbsp;Error&nbsp;rule&nbsp;for&nbsp;syntax&nbsp;errors</tt></dd></dl>
+ <dl><dt><a name="-p_expr"><strong>p_expr</strong></a>(p)</dt><dd><tt>expr&nbsp;:&nbsp;atom<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;quote</tt></dd></dl>
+ <dl><dt><a name="-p_list"><strong>p_list</strong></a>(p)</dt><dd><tt>list&nbsp;:&nbsp;'('&nbsp;seq&nbsp;')'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;'('&nbsp;seq&nbsp;'.'&nbsp;expr&nbsp;')'</tt></dd></dl>
+ <dl><dt><a name="-p_lsource"><strong>p_lsource</strong></a>(p)</dt><dd><tt>lsource&nbsp;:&nbsp;expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;lsource&nbsp;expr</tt></dd></dl>
+ <dl><dt><a name="-p_nil"><strong>p_nil</strong></a>(p)</dt><dd><tt>nil&nbsp;:&nbsp;NIL<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;'('&nbsp;')'</tt></dd></dl>
+ <dl><dt><a name="-p_number"><strong>p_number</strong></a>(p)</dt><dd><tt>integer&nbsp;:&nbsp;INT</tt></dd></dl>
+ <dl><dt><a name="-p_quote"><strong>p_quote</strong></a>(p)</dt><dd><tt>quote&nbsp;:&nbsp;"'"&nbsp;expr</tt></dd></dl>
+ <dl><dt><a name="-p_seq"><strong>p_seq</strong></a>(p)</dt><dd><tt>seq&nbsp;:&nbsp;expr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;seq&nbsp;expr</tt></dd></dl>
+ <dl><dt><a name="-p_source"><strong>p_source</strong></a>(p)</dt><dd><tt>source&nbsp;:&nbsp;empty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;lsource</tt></dd></dl>
+ <dl><dt><a name="-p_string"><strong>p_string</strong></a>(p)</dt><dd><tt>string&nbsp;:&nbsp;STRING</tt></dd></dl>
+ <dl><dt><a name="-p_symbol"><strong>p_symbol</strong></a>(p)</dt><dd><tt>symbol&nbsp;:&nbsp;SYMBOL</tt></dd></dl>
+ <dl><dt><a name="-reduce"><strong>reduce</strong></a>(...)</dt><dd><tt><a href="#-reduce">reduce</a>(function,&nbsp;sequence[,&nbsp;initial])&nbsp;-&gt;&nbsp;value<br>
+&nbsp;<br>
+Apply&nbsp;a&nbsp;function&nbsp;of&nbsp;two&nbsp;arguments&nbsp;cumulatively&nbsp;to&nbsp;the&nbsp;items&nbsp;of&nbsp;a&nbsp;sequence,<br>
+from&nbsp;left&nbsp;to&nbsp;right,&nbsp;so&nbsp;as&nbsp;to&nbsp;reduce&nbsp;the&nbsp;sequence&nbsp;to&nbsp;a&nbsp;single&nbsp;value.<br>
+For&nbsp;example,&nbsp;<a href="#-reduce">reduce</a>(lambda&nbsp;x,&nbsp;y:&nbsp;x+y,&nbsp;[1,&nbsp;2,&nbsp;3,&nbsp;4,&nbsp;5])&nbsp;calculates<br>
+((((1+2)+3)+4)+5).&nbsp;&nbsp;If&nbsp;initial&nbsp;is&nbsp;present,&nbsp;it&nbsp;is&nbsp;placed&nbsp;before&nbsp;the&nbsp;items<br>
+of&nbsp;the&nbsp;sequence&nbsp;in&nbsp;the&nbsp;calculation,&nbsp;and&nbsp;serves&nbsp;as&nbsp;a&nbsp;default&nbsp;when&nbsp;the<br>
+sequence&nbsp;is&nbsp;empty.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>builtins</strong> = {'*': &lt;function func_eval.&lt;locals&gt;._eval&gt;, '+': &lt;function func_eval.&lt;locals&gt;._eval&gt;, '-': &lt;function func_eval.&lt;locals&gt;._eval&gt;, '/': &lt;function func_eval.&lt;locals&gt;._eval&gt;, '/=': &lt;function func_eval.&lt;locals&gt;._eval&gt;, '&lt;': &lt;function func_eval.&lt;locals&gt;._eval&gt;, '&lt;=': &lt;function func_eval.&lt;locals&gt;._eval&gt;, '=': &lt;function func_eval.&lt;locals&gt;._eval&gt;, '&gt;': &lt;function func_eval.&lt;locals&gt;._eval&gt;, '&gt;=': &lt;function func_eval.&lt;locals&gt;._eval&gt;, ...}<br>
+<strong>lisp_parser</strong> = &lt;ply.yacc.LRParser object&gt;<br>
+<strong>nil</strong> = nil<br>
+<strong>t</strong> = t<br>
+<strong>tokens</strong> = ['SYMBOL', 'INT', 'STRING', 'NIL']</td></tr></table>
+</body></html>

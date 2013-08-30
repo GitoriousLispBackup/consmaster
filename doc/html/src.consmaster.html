@@ -1,0 +1,934 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module src.consmaster</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="src.html"><font color="#ffffff">src</font></a>.consmaster</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/yoch/consmaster2/consmaster/src/consmaster.py">/home/yoch/consmaster2/consmaster/src/consmaster.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="pickle.html">pickle</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="PySide.QtGui.html#QMainWindow">PySide.QtGui.QMainWindow</a>(<a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="src.consmaster.html#Client">Client</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Client">class <strong>Client</strong></a>(<a href="PySide.QtGui.html#QMainWindow">PySide.QtGui.QMainWindow</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Create&nbsp;client&nbsp;windows<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.consmaster.html#Client">Client</a></dd>
+<dd><a href="PySide.QtGui.html#QMainWindow">PySide.QtGui.QMainWindow</a></dd>
+<dd><a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a></dd>
+<dd><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a></dd>
+<dd><a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Client-__init__"><strong>__init__</strong></a>(self, parent<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="Client-about"><strong>about</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Client-addUser"><strong>addUser</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Client-closeEvent"><strong>closeEvent</strong></a>(self, event)</dt></dl>
+
+<dl><dt><a name="Client-createMenus"><strong>createMenus</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Client-getStats"><strong>getStats</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Client-initStatusBar"><strong>initStatusBar</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Client-setBasicMenu"><strong>setBasicMenu</strong></a>(self, menu)</dt></dl>
+
+<dl><dt><a name="Client-setHelpMenu"><strong>setHelpMenu</strong></a>(self, menu)</dt></dl>
+
+<dl><dt><a name="Client-setUserMenu"><strong>setUserMenu</strong></a>(self, menu)</dt></dl>
+
+<dl><dt><a name="Client-showOrHideUserMenu"><strong>showOrHideUserMenu</strong></a>(self, index)</dt><dd><tt>Do&nbsp;not&nbsp;show&nbsp;if&nbsp;playing</tt></dd></dl>
+
+<dl><dt><a name="Client-updateStatusBar"><strong>updateStatusBar</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Client-userChanged"><strong>userChanged</strong></a>(self, checked)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = &lt;PySide.QtCore.QMetaObject object&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QMainWindow">PySide.QtGui.QMainWindow</a>:<br>
+<dl><dt><a name="Client-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#Client-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="Client-addDockWidget"><strong>addDockWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-addToolBar"><strong>addToolBar</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-addToolBarBreak"><strong>addToolBarBreak</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-centralWidget"><strong>centralWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-contextMenuEvent"><strong>contextMenuEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-corner"><strong>corner</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-createPopupMenu"><strong>createPopupMenu</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-dockOptions"><strong>dockOptions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-dockWidgetArea"><strong>dockWidgetArea</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-documentMode"><strong>documentMode</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-iconSize"><strong>iconSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-insertToolBar"><strong>insertToolBar</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-insertToolBarBreak"><strong>insertToolBarBreak</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-isAnimated"><strong>isAnimated</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-isDockNestingEnabled"><strong>isDockNestingEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-isSeparator"><strong>isSeparator</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-menuBar"><strong>menuBar</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-menuWidget"><strong>menuWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-removeDockWidget"><strong>removeDockWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-removeToolBar"><strong>removeToolBar</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-removeToolBarBreak"><strong>removeToolBarBreak</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-restoreDockWidget"><strong>restoreDockWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-restoreState"><strong>restoreState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-saveState"><strong>saveState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setAnimated"><strong>setAnimated</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setCentralWidget"><strong>setCentralWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setCorner"><strong>setCorner</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setDockNestingEnabled"><strong>setDockNestingEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setDockOptions"><strong>setDockOptions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setDocumentMode"><strong>setDocumentMode</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setIconSize"><strong>setIconSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setMenuBar"><strong>setMenuBar</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setMenuWidget"><strong>setMenuWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setStatusBar"><strong>setStatusBar</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setTabPosition"><strong>setTabPosition</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setTabShape"><strong>setTabShape</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setToolButtonStyle"><strong>setToolButtonStyle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setUnifiedTitleAndToolBarOnMac"><strong>setUnifiedTitleAndToolBarOnMac</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-splitDockWidget"><strong>splitDockWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-statusBar"><strong>statusBar</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-tabPosition"><strong>tabPosition</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-tabShape"><strong>tabShape</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-tabifiedDockWidgets"><strong>tabifiedDockWidgets</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-tabifyDockWidget"><strong>tabifyDockWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-toolBarArea"><strong>toolBarArea</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-toolBarBreak"><strong>toolBarBreak</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-toolButtonStyle"><strong>toolButtonStyle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-unifiedTitleAndToolBarOnMac"><strong>unifiedTitleAndToolBarOnMac</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QMainWindow">PySide.QtGui.QMainWindow</a>:<br>
+<dl><dt><strong>AllowNestedDocks</strong> = PySide.QtGui.QMainWindow.DockOption.AllowNestedDocks</dl>
+
+<dl><dt><strong>AllowTabbedDocks</strong> = PySide.QtGui.QMainWindow.DockOption.AllowTabbedDocks</dl>
+
+<dl><dt><strong>AnimatedDocks</strong> = PySide.QtGui.QMainWindow.DockOption.AnimatedDocks</dl>
+
+<dl><dt><strong>DockOption</strong> = &lt;class 'PySide.QtGui.QMainWindow.DockOption'&gt;</dl>
+
+<dl><dt><strong>DockOptions</strong> = &lt;class 'DockOptions'&gt;</dl>
+
+<dl><dt><strong>ForceTabbedDocks</strong> = PySide.QtGui.QMainWindow.DockOption.ForceTabbedDocks</dl>
+
+<dl><dt><strong>VerticalTabs</strong> = PySide.QtGui.QMainWindow.DockOption.VerticalTabs</dl>
+
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of Shiboken.ObjectType object&gt;<dd><tt>T.<a href="#Client-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>iconSizeChanged</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>toolButtonStyleChanged</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><a name="Client-acceptDrops"><strong>acceptDrops</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-accessibleDescription"><strong>accessibleDescription</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-accessibleName"><strong>accessibleName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-actionEvent"><strong>actionEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-actions"><strong>actions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-activateWindow"><strong>activateWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-addAction"><strong>addAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-addActions"><strong>addActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-adjustSize"><strong>adjustSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-autoFillBackground"><strong>autoFillBackground</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-backgroundRole"><strong>backgroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-baseSize"><strong>baseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-changeEvent"><strong>changeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-childAt"><strong>childAt</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-childrenRect"><strong>childrenRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-childrenRegion"><strong>childrenRegion</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-clearFocus"><strong>clearFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-clearMask"><strong>clearMask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-close"><strong>close</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-contentsMargins"><strong>contentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-contentsRect"><strong>contentsRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-contextMenuPolicy"><strong>contextMenuPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-createWinId"><strong>createWinId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-cursor"><strong>cursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-destroy"><strong>destroy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-devType"><strong>devType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-dragEnterEvent"><strong>dragEnterEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-dragLeaveEvent"><strong>dragLeaveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-dragMoveEvent"><strong>dragMoveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-dropEvent"><strong>dropEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-effectiveWinId"><strong>effectiveWinId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-ensurePolished"><strong>ensurePolished</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-enterEvent"><strong>enterEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-focusInEvent"><strong>focusInEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-focusNextChild"><strong>focusNextChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-focusNextPrevChild"><strong>focusNextPrevChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-focusOutEvent"><strong>focusOutEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-focusPolicy"><strong>focusPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-focusPreviousChild"><strong>focusPreviousChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-focusProxy"><strong>focusProxy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-focusWidget"><strong>focusWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-font"><strong>font</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-fontInfo"><strong>fontInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-fontMetrics"><strong>fontMetrics</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-foregroundRole"><strong>foregroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-frameGeometry"><strong>frameGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-frameSize"><strong>frameSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-geometry"><strong>geometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-getContentsMargins"><strong>getContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-grabGesture"><strong>grabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-grabKeyboard"><strong>grabKeyboard</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-grabMouse"><strong>grabMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-grabShortcut"><strong>grabShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-graphicsEffect"><strong>graphicsEffect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-graphicsProxyWidget"><strong>graphicsProxyWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-hasFocus"><strong>hasFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-hasMouseTracking"><strong>hasMouseTracking</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-height"><strong>height</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-heightForWidth"><strong>heightForWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-hide"><strong>hide</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-hideEvent"><strong>hideEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-inputContext"><strong>inputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-inputMethodEvent"><strong>inputMethodEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-inputMethodHints"><strong>inputMethodHints</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-inputMethodQuery"><strong>inputMethodQuery</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-insertAction"><strong>insertAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-insertActions"><strong>insertActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-isActiveWindow"><strong>isActiveWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-isAncestorOf"><strong>isAncestorOf</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-isEnabled"><strong>isEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-isEnabledTo"><strong>isEnabledTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-isFullScreen"><strong>isFullScreen</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-isHidden"><strong>isHidden</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-isLeftToRight"><strong>isLeftToRight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-isMaximized"><strong>isMaximized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-isMinimized"><strong>isMinimized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-isModal"><strong>isModal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-isRightToLeft"><strong>isRightToLeft</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-isVisible"><strong>isVisible</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-isVisibleTo"><strong>isVisibleTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-isWindow"><strong>isWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-isWindowModified"><strong>isWindowModified</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-keyPressEvent"><strong>keyPressEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-keyReleaseEvent"><strong>keyReleaseEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-languageChange"><strong>languageChange</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-layout"><strong>layout</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-layoutDirection"><strong>layoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-leaveEvent"><strong>leaveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-locale"><strong>locale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-lower"><strong>lower</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-mapFrom"><strong>mapFrom</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-mapFromGlobal"><strong>mapFromGlobal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-mapFromParent"><strong>mapFromParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-mapTo"><strong>mapTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-mapToGlobal"><strong>mapToGlobal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-mapToParent"><strong>mapToParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-mask"><strong>mask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-maximumHeight"><strong>maximumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-maximumSize"><strong>maximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-maximumWidth"><strong>maximumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-metric"><strong>metric</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-minimumHeight"><strong>minimumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-minimumSize"><strong>minimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-minimumSizeHint"><strong>minimumSizeHint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-minimumWidth"><strong>minimumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-mouseDoubleClickEvent"><strong>mouseDoubleClickEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-mouseMoveEvent"><strong>mouseMoveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-mousePressEvent"><strong>mousePressEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-mouseReleaseEvent"><strong>mouseReleaseEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-move"><strong>move</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-moveEvent"><strong>moveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-nativeParentWidget"><strong>nativeParentWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-nextInFocusChain"><strong>nextInFocusChain</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-normalGeometry"><strong>normalGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-overrideWindowFlags"><strong>overrideWindowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-overrideWindowState"><strong>overrideWindowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-paintEngine"><strong>paintEngine</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-paintEvent"><strong>paintEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-palette"><strong>palette</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-parentWidget"><strong>parentWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-pos"><strong>pos</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-previousInFocusChain"><strong>previousInFocusChain</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-raise_"><strong>raise_</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-rect"><strong>rect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-releaseKeyboard"><strong>releaseKeyboard</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-releaseMouse"><strong>releaseMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-releaseShortcut"><strong>releaseShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-removeAction"><strong>removeAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-render"><strong>render</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-repaint"><strong>repaint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-resetInputContext"><strong>resetInputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-resize"><strong>resize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-resizeEvent"><strong>resizeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-restoreGeometry"><strong>restoreGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-saveGeometry"><strong>saveGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-scroll"><strong>scroll</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setAcceptDrops"><strong>setAcceptDrops</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setAccessibleDescription"><strong>setAccessibleDescription</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setAccessibleName"><strong>setAccessibleName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setAttribute"><strong>setAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setAutoFillBackground"><strong>setAutoFillBackground</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setBackgroundRole"><strong>setBackgroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setBaseSize"><strong>setBaseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setContentsMargins"><strong>setContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setContextMenuPolicy"><strong>setContextMenuPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setCursor"><strong>setCursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setDisabled"><strong>setDisabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setEnabled"><strong>setEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setFixedHeight"><strong>setFixedHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setFixedSize"><strong>setFixedSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setFixedWidth"><strong>setFixedWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setFocus"><strong>setFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setFocusPolicy"><strong>setFocusPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setFocusProxy"><strong>setFocusProxy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setFont"><strong>setFont</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setForegroundRole"><strong>setForegroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setGeometry"><strong>setGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setGraphicsEffect"><strong>setGraphicsEffect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setHidden"><strong>setHidden</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setInputContext"><strong>setInputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setInputMethodHints"><strong>setInputMethodHints</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setLayout"><strong>setLayout</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setLayoutDirection"><strong>setLayoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setLocale"><strong>setLocale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setMask"><strong>setMask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setMaximumHeight"><strong>setMaximumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setMaximumSize"><strong>setMaximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setMaximumWidth"><strong>setMaximumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setMinimumHeight"><strong>setMinimumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setMinimumSize"><strong>setMinimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setMinimumWidth"><strong>setMinimumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setMouseTracking"><strong>setMouseTracking</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setPalette"><strong>setPalette</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setShortcutAutoRepeat"><strong>setShortcutAutoRepeat</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setShortcutEnabled"><strong>setShortcutEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setSizeIncrement"><strong>setSizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setSizePolicy"><strong>setSizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setStatusTip"><strong>setStatusTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setStyle"><strong>setStyle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setStyleSheet"><strong>setStyleSheet</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setToolTip"><strong>setToolTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setUpdatesEnabled"><strong>setUpdatesEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setVisible"><strong>setVisible</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setWhatsThis"><strong>setWhatsThis</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setWindowFilePath"><strong>setWindowFilePath</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setWindowFlags"><strong>setWindowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setWindowIcon"><strong>setWindowIcon</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setWindowIconText"><strong>setWindowIconText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setWindowModality"><strong>setWindowModality</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setWindowModified"><strong>setWindowModified</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setWindowOpacity"><strong>setWindowOpacity</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setWindowRole"><strong>setWindowRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setWindowState"><strong>setWindowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setWindowTitle"><strong>setWindowTitle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-show"><strong>show</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-showEvent"><strong>showEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-showFullScreen"><strong>showFullScreen</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-showMaximized"><strong>showMaximized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-showMinimized"><strong>showMinimized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-showNormal"><strong>showNormal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-size"><strong>size</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-sizeHint"><strong>sizeHint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-sizeIncrement"><strong>sizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-sizePolicy"><strong>sizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-stackUnder"><strong>stackUnder</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-statusTip"><strong>statusTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-style"><strong>style</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-styleSheet"><strong>styleSheet</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-tabletEvent"><strong>tabletEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-testAttribute"><strong>testAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-toolTip"><strong>toolTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-underMouse"><strong>underMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-ungrabGesture"><strong>ungrabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-unsetCursor"><strong>unsetCursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-unsetLayoutDirection"><strong>unsetLayoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-unsetLocale"><strong>unsetLocale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-update"><strong>update</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-updateGeometry"><strong>updateGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-updateMicroFocus"><strong>updateMicroFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-updatesEnabled"><strong>updatesEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-visibleRegion"><strong>visibleRegion</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-whatsThis"><strong>whatsThis</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-wheelEvent"><strong>wheelEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-width"><strong>width</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-winId"><strong>winId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-window"><strong>window</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-windowFilePath"><strong>windowFilePath</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-windowFlags"><strong>windowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-windowIcon"><strong>windowIcon</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-windowIconText"><strong>windowIconText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-windowModality"><strong>windowModality</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-windowOpacity"><strong>windowOpacity</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-windowRole"><strong>windowRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-windowState"><strong>windowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-windowTitle"><strong>windowTitle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-windowType"><strong>windowType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-x"><strong>x</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-x11Info"><strong>x11Info</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-x11PictureHandle"><strong>x11PictureHandle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-y"><strong>y</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><a name="Client-keyboardGrabber"><strong>keyboardGrabber</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-mouseGrabber"><strong>mouseGrabber</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setTabOrder"><strong>setTabOrder</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><strong>DrawChildren</strong> = PySide.QtGui.QWidget.RenderFlag.DrawChildren</dl>
+
+<dl><dt><strong>DrawWindowBackground</strong> = PySide.QtGui.QWidget.RenderFlag.DrawWindowBackground</dl>
+
+<dl><dt><strong>IgnoreMask</strong> = PySide.QtGui.QWidget.RenderFlag.IgnoreMask</dl>
+
+<dl><dt><strong>RenderFlag</strong> = &lt;class 'PySide.QtGui.QWidget.RenderFlag'&gt;</dl>
+
+<dl><dt><strong>RenderFlags</strong> = &lt;class 'RenderFlags'&gt;</dl>
+
+<dl><dt><strong>customContextMenuRequested</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="Client-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Client-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Client-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#Client-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Client-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Client-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="Client-blockSignals"><strong>blockSignals</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-children"><strong>children</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-deleteLater"><strong>deleteLater</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-inherits"><strong>inherits</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-killTimer"><strong>killTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-metaObject"><strong>metaObject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-moveToThread"><strong>moveToThread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-objectName"><strong>objectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-parent"><strong>parent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-property"><strong>property</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setObjectName"><strong>setObjectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-thread"><strong>thread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-trUtf8"><strong>trUtf8</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="Client-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-registerUserData"><strong>registerUserData</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><strong>destroyed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="Client-colorCount"><strong>colorCount</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-depth"><strong>depth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-heightMM"><strong>heightMM</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-logicalDpiX"><strong>logicalDpiX</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-logicalDpiY"><strong>logicalDpiY</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-numColors"><strong>numColors</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-paintingActive"><strong>paintingActive</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-physicalDpiX"><strong>physicalDpiX</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-physicalDpiY"><strong>physicalDpiY</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Client-widthMM"><strong>widthMM</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>painters</strong></dt>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>PaintDeviceMetric</strong> = &lt;class 'PySide.QtGui.QPaintDevice.PaintDeviceMetric'&gt;</dl>
+
+<dl><dt><strong>PdmDepth</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDepth</dl>
+
+<dl><dt><strong>PdmDpiX</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDpiX</dl>
+
+<dl><dt><strong>PdmDpiY</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDpiY</dl>
+
+<dl><dt><strong>PdmHeight</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmHeight</dl>
+
+<dl><dt><strong>PdmHeightMM</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmHeightMM</dl>
+
+<dl><dt><strong>PdmNumColors</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmNumColors</dl>
+
+<dl><dt><strong>PdmPhysicalDpiX</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmPhysicalDpiX</dl>
+
+<dl><dt><strong>PdmPhysicalDpiY</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmPhysicalDpiY</dl>
+
+<dl><dt><strong>PdmWidth</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmWidth</dl>
+
+<dl><dt><strong>PdmWidthMM</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmWidthMM</dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-QT_TRANSLATE_NOOP"><strong>QT_TRANSLATE_NOOP</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TRANSLATE_NOOP3"><strong>QT_TRANSLATE_NOOP3</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TRANSLATE_NOOP_UTF8"><strong>QT_TRANSLATE_NOOP_UTF8</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TR_NOOP"><strong>QT_TR_NOOP</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TR_NOOP_UTF8"><strong>QT_TR_NOOP_UTF8</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-SIGNAL"><strong>SIGNAL</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-SLOT"><strong>SLOT</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAbs"><strong>qAbs</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAcos"><strong>qAcos</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAddPostRoutine"><strong>qAddPostRoutine</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAlpha"><strong>qAlpha</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAsin"><strong>qAsin</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAtan"><strong>qAtan</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAtan2"><strong>qAtan2</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qBlue"><strong>qBlue</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qChecksum"><strong>qChecksum</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qCritical"><strong>qCritical</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qDebug"><strong>qDebug</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qExp"><strong>qExp</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFabs"><strong>qFabs</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFastCos"><strong>qFastCos</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFastSin"><strong>qFastSin</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFatal"><strong>qFatal</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFuzzyCompare"><strong>qFuzzyCompare</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFuzzyIsNull"><strong>qFuzzyIsNull</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qGray"><strong>qGray</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qGreen"><strong>qGreen</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qInstallMsgHandler"><strong>qInstallMsgHandler</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsFinite"><strong>qIsFinite</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsGray"><strong>qIsGray</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsInf"><strong>qIsInf</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsNaN"><strong>qIsNaN</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsNull"><strong>qIsNull</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRed"><strong>qRed</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRegisterResourceData"><strong>qRegisterResourceData</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRgb"><strong>qRgb</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRgba"><strong>qRgba</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRound"><strong>qRound</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qTan"><strong>qTan</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qUnregisterResourceData"><strong>qUnregisterResourceData</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qVersion"><strong>qVersion</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qWarning"><strong>qWarning</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qrand"><strong>qrand</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qsrand"><strong>qsrand</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qtTrId"><strong>qtTrId</strong></a>(...)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>CM_BDD</strong> = {}<br>
+<strong>CM_DATA</strong> = '../data/cm.dat'<br>
+<strong>DATA_DIR</strong> = '../data/'<br>
+<strong>LicensedDeclarative</strong> = PySide.QtCore.QtValidLicenseForDeclarativeModule.LicensedDeclarative<br>
+<strong>LicensedMultimedia</strong> = PySide.QtCore.QtValidLicenseForMultimediaModule.LicensedMultimedia<br>
+<strong>LicensedOpenVG</strong> = PySide.QtCore.QtValidLicenseForOpenVGModule.LicensedOpenVG<br>
+<strong>MODES</strong> = [Mode(name='Mode Libre', src='../data/mode-libre....ctor=&lt;function createFreeMode at 0x7f07cd0b70e0&gt;), Mode(name='Standard &lt;-&gt; Dotted', src='../data/no...ctor=&lt;function createTextMode at 0x7f07cd0b73b0&gt;), Mode(name='Expr -&gt; Graphique', src='../data/norm...ion createNormalToGraphicMode at 0x7f07ccfc6950&gt;), Mode(name='Graphique -&gt; Expr', src='../data/grap...ion createGraphicToNormalMode at 0x7f07ccfc8170&gt;)]<br>
+<strong>QtCriticalMsg</strong> = PySide.QtCore.QtMsgType.QtCriticalMsg<br>
+<strong>QtDebugMsg</strong> = PySide.QtCore.QtMsgType.QtDebugMsg<br>
+<strong>QtFatalMsg</strong> = PySide.QtCore.QtMsgType.QtFatalMsg<br>
+<strong>QtSystemMsg</strong> = PySide.QtCore.QtMsgType.QtSystemMsg<br>
+<strong>QtWarningMsg</strong> = PySide.QtCore.QtMsgType.QtWarningMsg<br>
+<strong>qApp</strong> = None</td></tr></table>
+</body></html>

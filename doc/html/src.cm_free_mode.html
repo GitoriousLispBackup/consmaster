@@ -1,0 +1,805 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module src.cm_free_mode</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="src.html"><font color="#ffffff">src</font></a>.cm_free_mode</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/yoch/consmaster2/consmaster/src/cm_free_mode.py">/home/yoch/consmaster2/consmaster/src/cm_free_mode.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="pylisp.lisp.html">pylisp.lisp</a><br>
+<a href="math.html">math</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="random.html">random</a><br>
+</td><td width="25%" valign=top><a href="re.html">re</a><br>
+<a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>(<a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>, <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="src.cm_free_mode.html#FreeMode">FreeMode</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="FreeMode">class <strong>FreeMode</strong></a>(<a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Workspace&nbsp;widget&nbsp;for&nbsp;free-mode&nbsp;prototype.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.cm_free_mode.html#FreeMode">FreeMode</a></dd>
+<dd><a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a></dd>
+<dd><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a></dd>
+<dd><a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="FreeMode-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FreeMode-closeReq"><strong>closeReq</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FreeMode-setController"><strong>setController</strong></a>(self, controller)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>closeRequested</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>staticMetaObject</strong> = &lt;PySide.QtCore.QMetaObject object&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><a name="FreeMode-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#FreeMode-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="FreeMode-acceptDrops"><strong>acceptDrops</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-accessibleDescription"><strong>accessibleDescription</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-accessibleName"><strong>accessibleName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-actionEvent"><strong>actionEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-actions"><strong>actions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-activateWindow"><strong>activateWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-addAction"><strong>addAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-addActions"><strong>addActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-adjustSize"><strong>adjustSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-autoFillBackground"><strong>autoFillBackground</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-backgroundRole"><strong>backgroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-baseSize"><strong>baseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-changeEvent"><strong>changeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-childAt"><strong>childAt</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-childrenRect"><strong>childrenRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-childrenRegion"><strong>childrenRegion</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-clearFocus"><strong>clearFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-clearMask"><strong>clearMask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-close"><strong>close</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-closeEvent"><strong>closeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-contentsMargins"><strong>contentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-contentsRect"><strong>contentsRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-contextMenuEvent"><strong>contextMenuEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-contextMenuPolicy"><strong>contextMenuPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-createWinId"><strong>createWinId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-cursor"><strong>cursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-destroy"><strong>destroy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-devType"><strong>devType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-dragEnterEvent"><strong>dragEnterEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-dragLeaveEvent"><strong>dragLeaveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-dragMoveEvent"><strong>dragMoveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-dropEvent"><strong>dropEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-effectiveWinId"><strong>effectiveWinId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-ensurePolished"><strong>ensurePolished</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-enterEvent"><strong>enterEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-focusInEvent"><strong>focusInEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-focusNextChild"><strong>focusNextChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-focusNextPrevChild"><strong>focusNextPrevChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-focusOutEvent"><strong>focusOutEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-focusPolicy"><strong>focusPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-focusPreviousChild"><strong>focusPreviousChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-focusProxy"><strong>focusProxy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-focusWidget"><strong>focusWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-font"><strong>font</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-fontInfo"><strong>fontInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-fontMetrics"><strong>fontMetrics</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-foregroundRole"><strong>foregroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-frameGeometry"><strong>frameGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-frameSize"><strong>frameSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-geometry"><strong>geometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-getContentsMargins"><strong>getContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-grabGesture"><strong>grabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-grabKeyboard"><strong>grabKeyboard</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-grabMouse"><strong>grabMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-grabShortcut"><strong>grabShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-graphicsEffect"><strong>graphicsEffect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-graphicsProxyWidget"><strong>graphicsProxyWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-hasFocus"><strong>hasFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-hasMouseTracking"><strong>hasMouseTracking</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-height"><strong>height</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-heightForWidth"><strong>heightForWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-hide"><strong>hide</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-hideEvent"><strong>hideEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-inputContext"><strong>inputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-inputMethodEvent"><strong>inputMethodEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-inputMethodHints"><strong>inputMethodHints</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-inputMethodQuery"><strong>inputMethodQuery</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-insertAction"><strong>insertAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-insertActions"><strong>insertActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-isActiveWindow"><strong>isActiveWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-isAncestorOf"><strong>isAncestorOf</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-isEnabled"><strong>isEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-isEnabledTo"><strong>isEnabledTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-isFullScreen"><strong>isFullScreen</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-isHidden"><strong>isHidden</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-isLeftToRight"><strong>isLeftToRight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-isMaximized"><strong>isMaximized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-isMinimized"><strong>isMinimized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-isModal"><strong>isModal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-isRightToLeft"><strong>isRightToLeft</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-isVisible"><strong>isVisible</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-isVisibleTo"><strong>isVisibleTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-isWindow"><strong>isWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-isWindowModified"><strong>isWindowModified</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-keyPressEvent"><strong>keyPressEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-keyReleaseEvent"><strong>keyReleaseEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-languageChange"><strong>languageChange</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-layout"><strong>layout</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-layoutDirection"><strong>layoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-leaveEvent"><strong>leaveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-locale"><strong>locale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-lower"><strong>lower</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-mapFrom"><strong>mapFrom</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-mapFromGlobal"><strong>mapFromGlobal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-mapFromParent"><strong>mapFromParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-mapTo"><strong>mapTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-mapToGlobal"><strong>mapToGlobal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-mapToParent"><strong>mapToParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-mask"><strong>mask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-maximumHeight"><strong>maximumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-maximumSize"><strong>maximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-maximumWidth"><strong>maximumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-metric"><strong>metric</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-minimumHeight"><strong>minimumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-minimumSize"><strong>minimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-minimumSizeHint"><strong>minimumSizeHint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-minimumWidth"><strong>minimumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-mouseDoubleClickEvent"><strong>mouseDoubleClickEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-mouseMoveEvent"><strong>mouseMoveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-mousePressEvent"><strong>mousePressEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-mouseReleaseEvent"><strong>mouseReleaseEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-move"><strong>move</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-moveEvent"><strong>moveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-nativeParentWidget"><strong>nativeParentWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-nextInFocusChain"><strong>nextInFocusChain</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-normalGeometry"><strong>normalGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-overrideWindowFlags"><strong>overrideWindowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-overrideWindowState"><strong>overrideWindowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-paintEngine"><strong>paintEngine</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-paintEvent"><strong>paintEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-palette"><strong>palette</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-parentWidget"><strong>parentWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-pos"><strong>pos</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-previousInFocusChain"><strong>previousInFocusChain</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-raise_"><strong>raise_</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-rect"><strong>rect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-releaseKeyboard"><strong>releaseKeyboard</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-releaseMouse"><strong>releaseMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-releaseShortcut"><strong>releaseShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-removeAction"><strong>removeAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-render"><strong>render</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-repaint"><strong>repaint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-resetInputContext"><strong>resetInputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-resize"><strong>resize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-resizeEvent"><strong>resizeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-restoreGeometry"><strong>restoreGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-saveGeometry"><strong>saveGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-scroll"><strong>scroll</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setAcceptDrops"><strong>setAcceptDrops</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setAccessibleDescription"><strong>setAccessibleDescription</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setAccessibleName"><strong>setAccessibleName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setAttribute"><strong>setAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setAutoFillBackground"><strong>setAutoFillBackground</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setBackgroundRole"><strong>setBackgroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setBaseSize"><strong>setBaseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setContentsMargins"><strong>setContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setContextMenuPolicy"><strong>setContextMenuPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setCursor"><strong>setCursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setDisabled"><strong>setDisabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setEnabled"><strong>setEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setFixedHeight"><strong>setFixedHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setFixedSize"><strong>setFixedSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setFixedWidth"><strong>setFixedWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setFocus"><strong>setFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setFocusPolicy"><strong>setFocusPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setFocusProxy"><strong>setFocusProxy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setFont"><strong>setFont</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setForegroundRole"><strong>setForegroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setGeometry"><strong>setGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setGraphicsEffect"><strong>setGraphicsEffect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setHidden"><strong>setHidden</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setInputContext"><strong>setInputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setInputMethodHints"><strong>setInputMethodHints</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setLayout"><strong>setLayout</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setLayoutDirection"><strong>setLayoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setLocale"><strong>setLocale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setMask"><strong>setMask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setMaximumHeight"><strong>setMaximumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setMaximumSize"><strong>setMaximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setMaximumWidth"><strong>setMaximumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setMinimumHeight"><strong>setMinimumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setMinimumSize"><strong>setMinimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setMinimumWidth"><strong>setMinimumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setMouseTracking"><strong>setMouseTracking</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setPalette"><strong>setPalette</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setShortcutAutoRepeat"><strong>setShortcutAutoRepeat</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setShortcutEnabled"><strong>setShortcutEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setSizeIncrement"><strong>setSizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setSizePolicy"><strong>setSizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setStatusTip"><strong>setStatusTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setStyle"><strong>setStyle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setStyleSheet"><strong>setStyleSheet</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setToolTip"><strong>setToolTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setUpdatesEnabled"><strong>setUpdatesEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setVisible"><strong>setVisible</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setWhatsThis"><strong>setWhatsThis</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setWindowFilePath"><strong>setWindowFilePath</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setWindowFlags"><strong>setWindowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setWindowIcon"><strong>setWindowIcon</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setWindowIconText"><strong>setWindowIconText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setWindowModality"><strong>setWindowModality</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setWindowModified"><strong>setWindowModified</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setWindowOpacity"><strong>setWindowOpacity</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setWindowRole"><strong>setWindowRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setWindowState"><strong>setWindowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setWindowTitle"><strong>setWindowTitle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-show"><strong>show</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-showEvent"><strong>showEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-showFullScreen"><strong>showFullScreen</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-showMaximized"><strong>showMaximized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-showMinimized"><strong>showMinimized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-showNormal"><strong>showNormal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-size"><strong>size</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-sizeHint"><strong>sizeHint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-sizeIncrement"><strong>sizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-sizePolicy"><strong>sizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-stackUnder"><strong>stackUnder</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-statusTip"><strong>statusTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-style"><strong>style</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-styleSheet"><strong>styleSheet</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-tabletEvent"><strong>tabletEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-testAttribute"><strong>testAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-toolTip"><strong>toolTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-underMouse"><strong>underMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-ungrabGesture"><strong>ungrabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-unsetCursor"><strong>unsetCursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-unsetLayoutDirection"><strong>unsetLayoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-unsetLocale"><strong>unsetLocale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-update"><strong>update</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-updateGeometry"><strong>updateGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-updateMicroFocus"><strong>updateMicroFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-updatesEnabled"><strong>updatesEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-visibleRegion"><strong>visibleRegion</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-whatsThis"><strong>whatsThis</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-wheelEvent"><strong>wheelEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-width"><strong>width</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-winId"><strong>winId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-window"><strong>window</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-windowFilePath"><strong>windowFilePath</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-windowFlags"><strong>windowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-windowIcon"><strong>windowIcon</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-windowIconText"><strong>windowIconText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-windowModality"><strong>windowModality</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-windowOpacity"><strong>windowOpacity</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-windowRole"><strong>windowRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-windowState"><strong>windowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-windowTitle"><strong>windowTitle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-windowType"><strong>windowType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-x"><strong>x</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-x11Info"><strong>x11Info</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-x11PictureHandle"><strong>x11PictureHandle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-y"><strong>y</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><a name="FreeMode-keyboardGrabber"><strong>keyboardGrabber</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-mouseGrabber"><strong>mouseGrabber</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setTabOrder"><strong>setTabOrder</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><strong>DrawChildren</strong> = PySide.QtGui.QWidget.RenderFlag.DrawChildren</dl>
+
+<dl><dt><strong>DrawWindowBackground</strong> = PySide.QtGui.QWidget.RenderFlag.DrawWindowBackground</dl>
+
+<dl><dt><strong>IgnoreMask</strong> = PySide.QtGui.QWidget.RenderFlag.IgnoreMask</dl>
+
+<dl><dt><strong>RenderFlag</strong> = &lt;class 'PySide.QtGui.QWidget.RenderFlag'&gt;</dl>
+
+<dl><dt><strong>RenderFlags</strong> = &lt;class 'RenderFlags'&gt;</dl>
+
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of Shiboken.ObjectType object&gt;<dd><tt>T.<a href="#FreeMode-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>customContextMenuRequested</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="FreeMode-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#FreeMode-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="FreeMode-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#FreeMode-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="FreeMode-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#FreeMode-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="FreeMode-blockSignals"><strong>blockSignals</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-children"><strong>children</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-deleteLater"><strong>deleteLater</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-inherits"><strong>inherits</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-killTimer"><strong>killTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-metaObject"><strong>metaObject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-moveToThread"><strong>moveToThread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-objectName"><strong>objectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-parent"><strong>parent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-property"><strong>property</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setObjectName"><strong>setObjectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-thread"><strong>thread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-trUtf8"><strong>trUtf8</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="FreeMode-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-registerUserData"><strong>registerUserData</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><strong>destroyed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="FreeMode-colorCount"><strong>colorCount</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-depth"><strong>depth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-heightMM"><strong>heightMM</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-logicalDpiX"><strong>logicalDpiX</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-logicalDpiY"><strong>logicalDpiY</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-numColors"><strong>numColors</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-paintingActive"><strong>paintingActive</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-physicalDpiX"><strong>physicalDpiX</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-physicalDpiY"><strong>physicalDpiY</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeMode-widthMM"><strong>widthMM</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>painters</strong></dt>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>PaintDeviceMetric</strong> = &lt;class 'PySide.QtGui.QPaintDevice.PaintDeviceMetric'&gt;</dl>
+
+<dl><dt><strong>PdmDepth</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDepth</dl>
+
+<dl><dt><strong>PdmDpiX</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDpiX</dl>
+
+<dl><dt><strong>PdmDpiY</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDpiY</dl>
+
+<dl><dt><strong>PdmHeight</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmHeight</dl>
+
+<dl><dt><strong>PdmHeightMM</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmHeightMM</dl>
+
+<dl><dt><strong>PdmNumColors</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmNumColors</dl>
+
+<dl><dt><strong>PdmPhysicalDpiX</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmPhysicalDpiX</dl>
+
+<dl><dt><strong>PdmPhysicalDpiY</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmPhysicalDpiY</dl>
+
+<dl><dt><strong>PdmWidth</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmWidth</dl>
+
+<dl><dt><strong>PdmWidthMM</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmWidthMM</dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-QT_TRANSLATE_NOOP"><strong>QT_TRANSLATE_NOOP</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TRANSLATE_NOOP3"><strong>QT_TRANSLATE_NOOP3</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TRANSLATE_NOOP_UTF8"><strong>QT_TRANSLATE_NOOP_UTF8</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TR_NOOP"><strong>QT_TR_NOOP</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TR_NOOP_UTF8"><strong>QT_TR_NOOP_UTF8</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-SIGNAL"><strong>SIGNAL</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-SLOT"><strong>SLOT</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-createFreeMode"><strong>createFreeMode</strong></a>(userData)</dt></dl>
+ <dl><dt><a name="-qAbs"><strong>qAbs</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAcos"><strong>qAcos</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAddPostRoutine"><strong>qAddPostRoutine</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAlpha"><strong>qAlpha</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAsin"><strong>qAsin</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAtan"><strong>qAtan</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAtan2"><strong>qAtan2</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qBlue"><strong>qBlue</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qChecksum"><strong>qChecksum</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qCritical"><strong>qCritical</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qDebug"><strong>qDebug</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qExp"><strong>qExp</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFabs"><strong>qFabs</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFastCos"><strong>qFastCos</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFastSin"><strong>qFastSin</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFatal"><strong>qFatal</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFuzzyCompare"><strong>qFuzzyCompare</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFuzzyIsNull"><strong>qFuzzyIsNull</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qGray"><strong>qGray</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qGreen"><strong>qGreen</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qInstallMsgHandler"><strong>qInstallMsgHandler</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsFinite"><strong>qIsFinite</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsGray"><strong>qIsGray</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsInf"><strong>qIsInf</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsNaN"><strong>qIsNaN</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsNull"><strong>qIsNull</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRed"><strong>qRed</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRegisterResourceData"><strong>qRegisterResourceData</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRgb"><strong>qRgb</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRgba"><strong>qRgba</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRound"><strong>qRound</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qTan"><strong>qTan</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qUnregisterResourceData"><strong>qUnregisterResourceData</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qVersion"><strong>qVersion</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qWarning"><strong>qWarning</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qrand"><strong>qrand</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qsrand"><strong>qsrand</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qtTrId"><strong>qtTrId</strong></a>(...)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>Fvals</strong> = {}<br>
+<strong>LicensedDeclarative</strong> = PySide.QtCore.QtValidLicenseForDeclarativeModule.LicensedDeclarative<br>
+<strong>LicensedMultimedia</strong> = PySide.QtCore.QtValidLicenseForMultimediaModule.LicensedMultimedia<br>
+<strong>LicensedOpenVG</strong> = PySide.QtCore.QtValidLicenseForOpenVGModule.LicensedOpenVG<br>
+<strong>QtCriticalMsg</strong> = PySide.QtCore.QtMsgType.QtCriticalMsg<br>
+<strong>QtDebugMsg</strong> = PySide.QtCore.QtMsgType.QtDebugMsg<br>
+<strong>QtFatalMsg</strong> = PySide.QtCore.QtMsgType.QtFatalMsg<br>
+<strong>QtSystemMsg</strong> = PySide.QtCore.QtMsgType.QtSystemMsg<br>
+<strong>QtWarningMsg</strong> = PySide.QtCore.QtMsgType.QtWarningMsg<br>
+<strong>lisp_lexer</strong> = &lt;ply.lex.Lexer object&gt;<br>
+<strong>lisp_parser</strong> = &lt;ply.yacc.LRParser object&gt;<br>
+<strong>nil</strong> = nil<br>
+<strong>qApp</strong> = None</td></tr></table>
+</body></html>

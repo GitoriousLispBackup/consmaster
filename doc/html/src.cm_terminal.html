@@ -1,0 +1,1126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module src.cm_terminal</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="src.html"><font color="#ffffff">src</font></a>.cm_terminal</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/yoch/consmaster2/consmaster/src/cm_terminal.py">/home/yoch/consmaster2/consmaster/src/cm_terminal.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="PySide.QtGui.html#QTextEdit">PySide.QtGui.QTextEdit</a>(<a href="PySide.QtGui.html#QAbstractScrollArea">PySide.QtGui.QAbstractScrollArea</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="src.cm_terminal.html#TermWidget">TermWidget</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="TermWidget">class <strong>TermWidget</strong></a>(<a href="PySide.QtGui.html#QTextEdit">PySide.QtGui.QTextEdit</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;terminal-like&nbsp;Widget<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.cm_terminal.html#TermWidget">TermWidget</a></dd>
+<dd><a href="PySide.QtGui.html#QTextEdit">PySide.QtGui.QTextEdit</a></dd>
+<dd><a href="PySide.QtGui.html#QAbstractScrollArea">PySide.QtGui.QAbstractScrollArea</a></dd>
+<dd><a href="PySide.QtGui.html#QFrame">PySide.QtGui.QFrame</a></dd>
+<dd><a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a></dd>
+<dd><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a></dd>
+<dd><a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="TermWidget-__init__"><strong>__init__</strong></a>(self, parent<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="TermWidget-displayPrompt"><strong>displayPrompt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TermWidget-eraseLine"><strong>eraseLine</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TermWidget-freezeAtCurrentPos"><strong>freezeAtCurrentPos</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TermWidget-histNext"><strong>histNext</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TermWidget-histPrev"><strong>histPrev</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TermWidget-keyPressEvent"><strong>keyPressEvent</strong></a>(self, event)</dt></dl>
+
+<dl><dt><a name="TermWidget-out"><strong>out</strong></a>(self, s)</dt></dl>
+
+<dl><dt><a name="TermWidget-reset"><strong>reset</strong></a>(self)</dt><dd><tt>Clean&nbsp;all&nbsp;text</tt></dd></dl>
+
+<dl><dt><a name="TermWidget-setColor"><strong>setColor</strong></a>(self, textColor, baseColor)</dt></dl>
+
+<dl><dt><a name="TermWidget-updateHistory"><strong>updateHistory</strong></a>(self, line)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>read</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>staticMetaObject</strong> = &lt;PySide.QtCore.QMetaObject object&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QTextEdit">PySide.QtGui.QTextEdit</a>:<br>
+<dl><dt><a name="TermWidget-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#TermWidget-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="TermWidget-acceptRichText"><strong>acceptRichText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-alignment"><strong>alignment</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-anchorAt"><strong>anchorAt</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-append"><strong>append</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-autoFormatting"><strong>autoFormatting</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-canInsertFromMimeData"><strong>canInsertFromMimeData</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-canPaste"><strong>canPaste</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-changeEvent"><strong>changeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-clear"><strong>clear</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-contextMenuEvent"><strong>contextMenuEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-copy"><strong>copy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-createMimeDataFromSelection"><strong>createMimeDataFromSelection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-createStandardContextMenu"><strong>createStandardContextMenu</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-currentCharFormat"><strong>currentCharFormat</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-currentFont"><strong>currentFont</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-cursorForPosition"><strong>cursorForPosition</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-cursorRect"><strong>cursorRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-cursorWidth"><strong>cursorWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-cut"><strong>cut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-document"><strong>document</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-documentTitle"><strong>documentTitle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-dragEnterEvent"><strong>dragEnterEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-dragLeaveEvent"><strong>dragLeaveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-dragMoveEvent"><strong>dragMoveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-dropEvent"><strong>dropEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-ensureCursorVisible"><strong>ensureCursorVisible</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-extraSelections"><strong>extraSelections</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-find"><strong>find</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-focusInEvent"><strong>focusInEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-focusNextPrevChild"><strong>focusNextPrevChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-focusOutEvent"><strong>focusOutEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-fontFamily"><strong>fontFamily</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-fontItalic"><strong>fontItalic</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-fontPointSize"><strong>fontPointSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-fontUnderline"><strong>fontUnderline</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-fontWeight"><strong>fontWeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-inputMethodEvent"><strong>inputMethodEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-inputMethodQuery"><strong>inputMethodQuery</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-insertFromMimeData"><strong>insertFromMimeData</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-insertHtml"><strong>insertHtml</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-insertPlainText"><strong>insertPlainText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-isReadOnly"><strong>isReadOnly</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-isUndoRedoEnabled"><strong>isUndoRedoEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-keyReleaseEvent"><strong>keyReleaseEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-lineWrapColumnOrWidth"><strong>lineWrapColumnOrWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-lineWrapMode"><strong>lineWrapMode</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-loadResource"><strong>loadResource</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-mergeCurrentCharFormat"><strong>mergeCurrentCharFormat</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-mouseDoubleClickEvent"><strong>mouseDoubleClickEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-mouseMoveEvent"><strong>mouseMoveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-mousePressEvent"><strong>mousePressEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-mouseReleaseEvent"><strong>mouseReleaseEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-moveCursor"><strong>moveCursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-overwriteMode"><strong>overwriteMode</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-paintEvent"><strong>paintEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-paste"><strong>paste</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-print_"><strong>print_</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-redo"><strong>redo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-resizeEvent"><strong>resizeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-scrollContentsBy"><strong>scrollContentsBy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-scrollToAnchor"><strong>scrollToAnchor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-selectAll"><strong>selectAll</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setAcceptRichText"><strong>setAcceptRichText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setAlignment"><strong>setAlignment</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setAutoFormatting"><strong>setAutoFormatting</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setCurrentCharFormat"><strong>setCurrentCharFormat</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setCurrentFont"><strong>setCurrentFont</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setCursorWidth"><strong>setCursorWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setDocument"><strong>setDocument</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setDocumentTitle"><strong>setDocumentTitle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setExtraSelections"><strong>setExtraSelections</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setFontFamily"><strong>setFontFamily</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setFontItalic"><strong>setFontItalic</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setFontPointSize"><strong>setFontPointSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setFontUnderline"><strong>setFontUnderline</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setFontWeight"><strong>setFontWeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setHtml"><strong>setHtml</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setLineWrapColumnOrWidth"><strong>setLineWrapColumnOrWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setLineWrapMode"><strong>setLineWrapMode</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setOverwriteMode"><strong>setOverwriteMode</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setPlainText"><strong>setPlainText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setReadOnly"><strong>setReadOnly</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setTabChangesFocus"><strong>setTabChangesFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setTabStopWidth"><strong>setTabStopWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setText"><strong>setText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setTextBackgroundColor"><strong>setTextBackgroundColor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setTextColor"><strong>setTextColor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setTextCursor"><strong>setTextCursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setTextInteractionFlags"><strong>setTextInteractionFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setUndoRedoEnabled"><strong>setUndoRedoEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setWordWrapMode"><strong>setWordWrapMode</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-showEvent"><strong>showEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-tabChangesFocus"><strong>tabChangesFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-tabStopWidth"><strong>tabStopWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-textBackgroundColor"><strong>textBackgroundColor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-textColor"><strong>textColor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-textCursor"><strong>textCursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-textInteractionFlags"><strong>textInteractionFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-toHtml"><strong>toHtml</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-toPlainText"><strong>toPlainText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-undo"><strong>undo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-wheelEvent"><strong>wheelEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-wordWrapMode"><strong>wordWrapMode</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-zoomIn"><strong>zoomIn</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-zoomOut"><strong>zoomOut</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QTextEdit">PySide.QtGui.QTextEdit</a>:<br>
+<dl><dt><strong>AutoAll</strong> = PySide.QtGui.QTextEdit.AutoFormattingFlag.AutoAll</dl>
+
+<dl><dt><strong>AutoBulletList</strong> = PySide.QtGui.QTextEdit.AutoFormattingFlag.AutoBulletList</dl>
+
+<dl><dt><strong>AutoFormatting</strong> = &lt;class 'AutoFormatting'&gt;</dl>
+
+<dl><dt><strong>AutoFormattingFlag</strong> = &lt;class 'PySide.QtGui.QTextEdit.AutoFormattingFlag'&gt;</dl>
+
+<dl><dt><strong>AutoNone</strong> = PySide.QtGui.QTextEdit.AutoFormattingFlag.AutoNone</dl>
+
+<dl><dt><strong>ExtraSelection</strong> = &lt;class 'PySide.QtGui.QTextEdit.ExtraSelection'&gt;</dl>
+
+<dl><dt><strong>FixedColumnWidth</strong> = PySide.QtGui.QTextEdit.LineWrapMode.FixedColumnWidth</dl>
+
+<dl><dt><strong>FixedPixelWidth</strong> = PySide.QtGui.QTextEdit.LineWrapMode.FixedPixelWidth</dl>
+
+<dl><dt><strong>LineWrapMode</strong> = &lt;class 'PySide.QtGui.QTextEdit.LineWrapMode'&gt;</dl>
+
+<dl><dt><strong>NoWrap</strong> = PySide.QtGui.QTextEdit.LineWrapMode.NoWrap</dl>
+
+<dl><dt><strong>WidgetWidth</strong> = PySide.QtGui.QTextEdit.LineWrapMode.WidgetWidth</dl>
+
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of Shiboken.ObjectType object&gt;<dd><tt>T.<a href="#TermWidget-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>copyAvailable</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>currentCharFormatChanged</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>currentColorChanged</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>currentFontChanged</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>cursorPositionChanged</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>redoAvailable</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>selectionChanged</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>textChanged</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>undoAvailable</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QAbstractScrollArea">PySide.QtGui.QAbstractScrollArea</a>:<br>
+<dl><dt><a name="TermWidget-addScrollBarWidget"><strong>addScrollBarWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-cornerWidget"><strong>cornerWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-horizontalScrollBar"><strong>horizontalScrollBar</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-horizontalScrollBarPolicy"><strong>horizontalScrollBarPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-maximumViewportSize"><strong>maximumViewportSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-minimumSizeHint"><strong>minimumSizeHint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-scrollBarWidgets"><strong>scrollBarWidgets</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setCornerWidget"><strong>setCornerWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setHorizontalScrollBar"><strong>setHorizontalScrollBar</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setHorizontalScrollBarPolicy"><strong>setHorizontalScrollBarPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setVerticalScrollBar"><strong>setVerticalScrollBar</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setVerticalScrollBarPolicy"><strong>setVerticalScrollBarPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setViewport"><strong>setViewport</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setViewportMargins"><strong>setViewportMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setupViewport"><strong>setupViewport</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-sizeHint"><strong>sizeHint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-verticalScrollBar"><strong>verticalScrollBar</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-verticalScrollBarPolicy"><strong>verticalScrollBarPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-viewport"><strong>viewport</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-viewportEvent"><strong>viewportEvent</strong></a>(...)</dt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QFrame">PySide.QtGui.QFrame</a>:<br>
+<dl><dt><a name="TermWidget-drawFrame"><strong>drawFrame</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-frameRect"><strong>frameRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-frameShadow"><strong>frameShadow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-frameShape"><strong>frameShape</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-frameStyle"><strong>frameStyle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-frameWidth"><strong>frameWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-lineWidth"><strong>lineWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-midLineWidth"><strong>midLineWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setFrameRect"><strong>setFrameRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setFrameShadow"><strong>setFrameShadow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setFrameShape"><strong>setFrameShape</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setFrameStyle"><strong>setFrameStyle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setLineWidth"><strong>setLineWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setMidLineWidth"><strong>setMidLineWidth</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QFrame">PySide.QtGui.QFrame</a>:<br>
+<dl><dt><strong>Box</strong> = PySide.QtGui.QFrame.Shape.Box</dl>
+
+<dl><dt><strong>HLine</strong> = PySide.QtGui.QFrame.Shape.HLine</dl>
+
+<dl><dt><strong>NoFrame</strong> = PySide.QtGui.QFrame.Shape.NoFrame</dl>
+
+<dl><dt><strong>Panel</strong> = PySide.QtGui.QFrame.Shape.Panel</dl>
+
+<dl><dt><strong>Plain</strong> = PySide.QtGui.QFrame.Shadow.Plain</dl>
+
+<dl><dt><strong>Raised</strong> = PySide.QtGui.QFrame.Shadow.Raised</dl>
+
+<dl><dt><strong>Shadow</strong> = &lt;class 'PySide.QtGui.QFrame.Shadow'&gt;</dl>
+
+<dl><dt><strong>Shadow_Mask</strong> = PySide.QtGui.QFrame.StyleMask.Shadow_Mask</dl>
+
+<dl><dt><strong>Shape</strong> = &lt;class 'PySide.QtGui.QFrame.Shape'&gt;</dl>
+
+<dl><dt><strong>Shape_Mask</strong> = PySide.QtGui.QFrame.StyleMask.Shape_Mask</dl>
+
+<dl><dt><strong>StyleMask</strong> = &lt;class 'PySide.QtGui.QFrame.StyleMask'&gt;</dl>
+
+<dl><dt><strong>StyledPanel</strong> = PySide.QtGui.QFrame.Shape.StyledPanel</dl>
+
+<dl><dt><strong>Sunken</strong> = PySide.QtGui.QFrame.Shadow.Sunken</dl>
+
+<dl><dt><strong>VLine</strong> = PySide.QtGui.QFrame.Shape.VLine</dl>
+
+<dl><dt><strong>WinPanel</strong> = PySide.QtGui.QFrame.Shape.WinPanel</dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><a name="TermWidget-acceptDrops"><strong>acceptDrops</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-accessibleDescription"><strong>accessibleDescription</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-accessibleName"><strong>accessibleName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-actionEvent"><strong>actionEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-actions"><strong>actions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-activateWindow"><strong>activateWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-addAction"><strong>addAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-addActions"><strong>addActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-adjustSize"><strong>adjustSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-autoFillBackground"><strong>autoFillBackground</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-backgroundRole"><strong>backgroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-baseSize"><strong>baseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-childAt"><strong>childAt</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-childrenRect"><strong>childrenRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-childrenRegion"><strong>childrenRegion</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-clearFocus"><strong>clearFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-clearMask"><strong>clearMask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-close"><strong>close</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-closeEvent"><strong>closeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-contentsMargins"><strong>contentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-contentsRect"><strong>contentsRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-contextMenuPolicy"><strong>contextMenuPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-createWinId"><strong>createWinId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-cursor"><strong>cursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-destroy"><strong>destroy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-devType"><strong>devType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-effectiveWinId"><strong>effectiveWinId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-ensurePolished"><strong>ensurePolished</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-enterEvent"><strong>enterEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-focusNextChild"><strong>focusNextChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-focusPolicy"><strong>focusPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-focusPreviousChild"><strong>focusPreviousChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-focusProxy"><strong>focusProxy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-focusWidget"><strong>focusWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-font"><strong>font</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-fontInfo"><strong>fontInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-fontMetrics"><strong>fontMetrics</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-foregroundRole"><strong>foregroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-frameGeometry"><strong>frameGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-frameSize"><strong>frameSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-geometry"><strong>geometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-getContentsMargins"><strong>getContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-grabGesture"><strong>grabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-grabKeyboard"><strong>grabKeyboard</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-grabMouse"><strong>grabMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-grabShortcut"><strong>grabShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-graphicsEffect"><strong>graphicsEffect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-graphicsProxyWidget"><strong>graphicsProxyWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-hasFocus"><strong>hasFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-hasMouseTracking"><strong>hasMouseTracking</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-height"><strong>height</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-heightForWidth"><strong>heightForWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-hide"><strong>hide</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-hideEvent"><strong>hideEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-inputContext"><strong>inputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-inputMethodHints"><strong>inputMethodHints</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-insertAction"><strong>insertAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-insertActions"><strong>insertActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-isActiveWindow"><strong>isActiveWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-isAncestorOf"><strong>isAncestorOf</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-isEnabled"><strong>isEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-isEnabledTo"><strong>isEnabledTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-isFullScreen"><strong>isFullScreen</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-isHidden"><strong>isHidden</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-isLeftToRight"><strong>isLeftToRight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-isMaximized"><strong>isMaximized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-isMinimized"><strong>isMinimized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-isModal"><strong>isModal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-isRightToLeft"><strong>isRightToLeft</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-isVisible"><strong>isVisible</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-isVisibleTo"><strong>isVisibleTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-isWindow"><strong>isWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-isWindowModified"><strong>isWindowModified</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-languageChange"><strong>languageChange</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-layout"><strong>layout</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-layoutDirection"><strong>layoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-leaveEvent"><strong>leaveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-locale"><strong>locale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-lower"><strong>lower</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-mapFrom"><strong>mapFrom</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-mapFromGlobal"><strong>mapFromGlobal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-mapFromParent"><strong>mapFromParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-mapTo"><strong>mapTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-mapToGlobal"><strong>mapToGlobal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-mapToParent"><strong>mapToParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-mask"><strong>mask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-maximumHeight"><strong>maximumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-maximumSize"><strong>maximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-maximumWidth"><strong>maximumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-metric"><strong>metric</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-minimumHeight"><strong>minimumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-minimumSize"><strong>minimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-minimumWidth"><strong>minimumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-move"><strong>move</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-moveEvent"><strong>moveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-nativeParentWidget"><strong>nativeParentWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-nextInFocusChain"><strong>nextInFocusChain</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-normalGeometry"><strong>normalGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-overrideWindowFlags"><strong>overrideWindowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-overrideWindowState"><strong>overrideWindowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-paintEngine"><strong>paintEngine</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-palette"><strong>palette</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-parentWidget"><strong>parentWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-pos"><strong>pos</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-previousInFocusChain"><strong>previousInFocusChain</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-raise_"><strong>raise_</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-rect"><strong>rect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-releaseKeyboard"><strong>releaseKeyboard</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-releaseMouse"><strong>releaseMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-releaseShortcut"><strong>releaseShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-removeAction"><strong>removeAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-render"><strong>render</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-repaint"><strong>repaint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-resetInputContext"><strong>resetInputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-resize"><strong>resize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-restoreGeometry"><strong>restoreGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-saveGeometry"><strong>saveGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-scroll"><strong>scroll</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setAcceptDrops"><strong>setAcceptDrops</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setAccessibleDescription"><strong>setAccessibleDescription</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setAccessibleName"><strong>setAccessibleName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setAttribute"><strong>setAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setAutoFillBackground"><strong>setAutoFillBackground</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setBackgroundRole"><strong>setBackgroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setBaseSize"><strong>setBaseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setContentsMargins"><strong>setContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setContextMenuPolicy"><strong>setContextMenuPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setCursor"><strong>setCursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setDisabled"><strong>setDisabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setEnabled"><strong>setEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setFixedHeight"><strong>setFixedHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setFixedSize"><strong>setFixedSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setFixedWidth"><strong>setFixedWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setFocus"><strong>setFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setFocusPolicy"><strong>setFocusPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setFocusProxy"><strong>setFocusProxy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setFont"><strong>setFont</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setForegroundRole"><strong>setForegroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setGeometry"><strong>setGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setGraphicsEffect"><strong>setGraphicsEffect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setHidden"><strong>setHidden</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setInputContext"><strong>setInputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setInputMethodHints"><strong>setInputMethodHints</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setLayout"><strong>setLayout</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setLayoutDirection"><strong>setLayoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setLocale"><strong>setLocale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setMask"><strong>setMask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setMaximumHeight"><strong>setMaximumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setMaximumSize"><strong>setMaximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setMaximumWidth"><strong>setMaximumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setMinimumHeight"><strong>setMinimumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setMinimumSize"><strong>setMinimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setMinimumWidth"><strong>setMinimumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setMouseTracking"><strong>setMouseTracking</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setPalette"><strong>setPalette</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setShortcutAutoRepeat"><strong>setShortcutAutoRepeat</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setShortcutEnabled"><strong>setShortcutEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setSizeIncrement"><strong>setSizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setSizePolicy"><strong>setSizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setStatusTip"><strong>setStatusTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setStyle"><strong>setStyle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setStyleSheet"><strong>setStyleSheet</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setToolTip"><strong>setToolTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setUpdatesEnabled"><strong>setUpdatesEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setVisible"><strong>setVisible</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setWhatsThis"><strong>setWhatsThis</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setWindowFilePath"><strong>setWindowFilePath</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setWindowFlags"><strong>setWindowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setWindowIcon"><strong>setWindowIcon</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setWindowIconText"><strong>setWindowIconText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setWindowModality"><strong>setWindowModality</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setWindowModified"><strong>setWindowModified</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setWindowOpacity"><strong>setWindowOpacity</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setWindowRole"><strong>setWindowRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setWindowState"><strong>setWindowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setWindowTitle"><strong>setWindowTitle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-show"><strong>show</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-showFullScreen"><strong>showFullScreen</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-showMaximized"><strong>showMaximized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-showMinimized"><strong>showMinimized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-showNormal"><strong>showNormal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-size"><strong>size</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-sizeIncrement"><strong>sizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-sizePolicy"><strong>sizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-stackUnder"><strong>stackUnder</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-statusTip"><strong>statusTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-style"><strong>style</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-styleSheet"><strong>styleSheet</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-tabletEvent"><strong>tabletEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-testAttribute"><strong>testAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-toolTip"><strong>toolTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-underMouse"><strong>underMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-ungrabGesture"><strong>ungrabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-unsetCursor"><strong>unsetCursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-unsetLayoutDirection"><strong>unsetLayoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-unsetLocale"><strong>unsetLocale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-update"><strong>update</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-updateGeometry"><strong>updateGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-updateMicroFocus"><strong>updateMicroFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-updatesEnabled"><strong>updatesEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-visibleRegion"><strong>visibleRegion</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-whatsThis"><strong>whatsThis</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-width"><strong>width</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-winId"><strong>winId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-window"><strong>window</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-windowFilePath"><strong>windowFilePath</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-windowFlags"><strong>windowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-windowIcon"><strong>windowIcon</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-windowIconText"><strong>windowIconText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-windowModality"><strong>windowModality</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-windowOpacity"><strong>windowOpacity</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-windowRole"><strong>windowRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-windowState"><strong>windowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-windowTitle"><strong>windowTitle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-windowType"><strong>windowType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-x"><strong>x</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-x11Info"><strong>x11Info</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-x11PictureHandle"><strong>x11PictureHandle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-y"><strong>y</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><a name="TermWidget-keyboardGrabber"><strong>keyboardGrabber</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-mouseGrabber"><strong>mouseGrabber</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setTabOrder"><strong>setTabOrder</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><strong>DrawChildren</strong> = PySide.QtGui.QWidget.RenderFlag.DrawChildren</dl>
+
+<dl><dt><strong>DrawWindowBackground</strong> = PySide.QtGui.QWidget.RenderFlag.DrawWindowBackground</dl>
+
+<dl><dt><strong>IgnoreMask</strong> = PySide.QtGui.QWidget.RenderFlag.IgnoreMask</dl>
+
+<dl><dt><strong>RenderFlag</strong> = &lt;class 'PySide.QtGui.QWidget.RenderFlag'&gt;</dl>
+
+<dl><dt><strong>RenderFlags</strong> = &lt;class 'RenderFlags'&gt;</dl>
+
+<dl><dt><strong>customContextMenuRequested</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="TermWidget-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#TermWidget-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="TermWidget-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#TermWidget-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="TermWidget-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#TermWidget-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="TermWidget-blockSignals"><strong>blockSignals</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-children"><strong>children</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-deleteLater"><strong>deleteLater</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-inherits"><strong>inherits</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-killTimer"><strong>killTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-metaObject"><strong>metaObject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-moveToThread"><strong>moveToThread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-objectName"><strong>objectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-parent"><strong>parent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-property"><strong>property</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setObjectName"><strong>setObjectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-thread"><strong>thread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-trUtf8"><strong>trUtf8</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="TermWidget-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-registerUserData"><strong>registerUserData</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><strong>destroyed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="TermWidget-colorCount"><strong>colorCount</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-depth"><strong>depth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-heightMM"><strong>heightMM</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-logicalDpiX"><strong>logicalDpiX</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-logicalDpiY"><strong>logicalDpiY</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-numColors"><strong>numColors</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-paintingActive"><strong>paintingActive</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-physicalDpiX"><strong>physicalDpiX</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-physicalDpiY"><strong>physicalDpiY</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TermWidget-widthMM"><strong>widthMM</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>painters</strong></dt>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>PaintDeviceMetric</strong> = &lt;class 'PySide.QtGui.QPaintDevice.PaintDeviceMetric'&gt;</dl>
+
+<dl><dt><strong>PdmDepth</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDepth</dl>
+
+<dl><dt><strong>PdmDpiX</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDpiX</dl>
+
+<dl><dt><strong>PdmDpiY</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDpiY</dl>
+
+<dl><dt><strong>PdmHeight</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmHeight</dl>
+
+<dl><dt><strong>PdmHeightMM</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmHeightMM</dl>
+
+<dl><dt><strong>PdmNumColors</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmNumColors</dl>
+
+<dl><dt><strong>PdmPhysicalDpiX</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmPhysicalDpiX</dl>
+
+<dl><dt><strong>PdmPhysicalDpiY</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmPhysicalDpiY</dl>
+
+<dl><dt><strong>PdmWidth</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmWidth</dl>
+
+<dl><dt><strong>PdmWidthMM</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmWidthMM</dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-QT_TRANSLATE_NOOP"><strong>QT_TRANSLATE_NOOP</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TRANSLATE_NOOP3"><strong>QT_TRANSLATE_NOOP3</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TRANSLATE_NOOP_UTF8"><strong>QT_TRANSLATE_NOOP_UTF8</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TR_NOOP"><strong>QT_TR_NOOP</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TR_NOOP_UTF8"><strong>QT_TR_NOOP_UTF8</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-SIGNAL"><strong>SIGNAL</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-SLOT"><strong>SLOT</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAbs"><strong>qAbs</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAcos"><strong>qAcos</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAddPostRoutine"><strong>qAddPostRoutine</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAlpha"><strong>qAlpha</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAsin"><strong>qAsin</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAtan"><strong>qAtan</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAtan2"><strong>qAtan2</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qBlue"><strong>qBlue</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qChecksum"><strong>qChecksum</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qCritical"><strong>qCritical</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qDebug"><strong>qDebug</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qExp"><strong>qExp</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFabs"><strong>qFabs</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFastCos"><strong>qFastCos</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFastSin"><strong>qFastSin</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFatal"><strong>qFatal</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFuzzyCompare"><strong>qFuzzyCompare</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFuzzyIsNull"><strong>qFuzzyIsNull</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qGray"><strong>qGray</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qGreen"><strong>qGreen</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qInstallMsgHandler"><strong>qInstallMsgHandler</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsFinite"><strong>qIsFinite</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsGray"><strong>qIsGray</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsInf"><strong>qIsInf</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsNaN"><strong>qIsNaN</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsNull"><strong>qIsNull</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRed"><strong>qRed</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRegisterResourceData"><strong>qRegisterResourceData</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRgb"><strong>qRgb</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRgba"><strong>qRgba</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRound"><strong>qRound</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qTan"><strong>qTan</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qUnregisterResourceData"><strong>qUnregisterResourceData</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qVersion"><strong>qVersion</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qWarning"><strong>qWarning</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qrand"><strong>qrand</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qsrand"><strong>qsrand</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qtTrId"><strong>qtTrId</strong></a>(...)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>LicensedDeclarative</strong> = PySide.QtCore.QtValidLicenseForDeclarativeModule.LicensedDeclarative<br>
+<strong>LicensedMultimedia</strong> = PySide.QtCore.QtValidLicenseForMultimediaModule.LicensedMultimedia<br>
+<strong>LicensedOpenVG</strong> = PySide.QtCore.QtValidLicenseForOpenVGModule.LicensedOpenVG<br>
+<strong>QtCriticalMsg</strong> = PySide.QtCore.QtMsgType.QtCriticalMsg<br>
+<strong>QtDebugMsg</strong> = PySide.QtCore.QtMsgType.QtDebugMsg<br>
+<strong>QtFatalMsg</strong> = PySide.QtCore.QtMsgType.QtFatalMsg<br>
+<strong>QtSystemMsg</strong> = PySide.QtCore.QtMsgType.QtSystemMsg<br>
+<strong>QtWarningMsg</strong> = PySide.QtCore.QtMsgType.QtWarningMsg<br>
+<strong>qApp</strong> = None</td></tr></table>
+</body></html>

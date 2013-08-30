@@ -1,0 +1,3964 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module src.ec_editors</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="src.html"><font color="#ffffff">src</font></a>.ec_editors</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/yoch/consmaster2/consmaster/src/ec_editors.py">/home/yoch/consmaster2/consmaster/src/ec_editors.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="json.html">json</a><br>
+<a href="pylisp.lisp.html">pylisp.lisp</a><br>
+</td><td width="25%" valign=top><a href="math.html">math</a><br>
+<a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="random.html">random</a><br>
+<a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a>(<a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="src.ec_editors.html#GraphEditor">GraphEditor</a>
+</font></dt><dt><font face="helvetica, arial"><a href="src.ec_editors.html#NewGraphNormExo">NewGraphNormExo</a>
+</font></dt><dt><font face="helvetica, arial"><a href="src.ec_editors.html#NewNormDotExo">NewNormDotExo</a>
+</font></dt><dt><font face="helvetica, arial"><a href="src.ec_editors.html#NewNormGraphExo">NewNormGraphExo</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="PySide.QtGui.html#QMessageBox">PySide.QtGui.QMessageBox</a>(<a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="src.ec_editors.html#InfoWindows">InfoWindows</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="GraphEditor">class <strong>GraphEditor</strong></a>(<a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;modal&nbsp;graphic&nbsp;widget&nbsp;dialog&nbsp;to&nbsp;create&nbsp;a&nbsp;graphic&nbsp;representation<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.ec_editors.html#GraphEditor">GraphEditor</a></dd>
+<dd><a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a></dd>
+<dd><a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a></dd>
+<dd><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a></dd>
+<dd><a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="GraphEditor-__init__"><strong>__init__</strong></a>(self, parent, item)</dt></dl>
+
+<dl><dt><a name="GraphEditor-closeAndClean"><strong>closeAndClean</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="GraphEditor-saveAndQuit"><strong>saveAndQuit</strong></a>(self)</dt><dd><tt>Save&nbsp;current&nbsp;graphical&nbsp;editing&nbsp;and&nbsp;go&nbsp;back&nbsp;to&nbsp;list</tt></dd></dl>
+
+<dl><dt><a name="GraphEditor-setController"><strong>setController</strong></a>(self, controller)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = &lt;PySide.QtCore.QMetaObject object&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a>:<br>
+<dl><dt><a name="GraphEditor-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#GraphEditor-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="GraphEditor-accept"><strong>accept</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-adjustPosition"><strong>adjustPosition</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-closeEvent"><strong>closeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-contextMenuEvent"><strong>contextMenuEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-done"><strong>done</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-exec_"><strong>exec_</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-isSizeGripEnabled"><strong>isSizeGripEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-keyPressEvent"><strong>keyPressEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-minimumSizeHint"><strong>minimumSizeHint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-open"><strong>open</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-reject"><strong>reject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-resizeEvent"><strong>resizeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-result"><strong>result</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setModal"><strong>setModal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setResult"><strong>setResult</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setSizeGripEnabled"><strong>setSizeGripEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setVisible"><strong>setVisible</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-showEvent"><strong>showEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-sizeHint"><strong>sizeHint</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a>:<br>
+<dl><dt><strong>Accepted</strong> = PySide.QtGui.QDialog.DialogCode.Accepted</dl>
+
+<dl><dt><strong>DialogCode</strong> = &lt;class 'PySide.QtGui.QDialog.DialogCode'&gt;</dl>
+
+<dl><dt><strong>Rejected</strong> = PySide.QtGui.QDialog.DialogCode.Rejected</dl>
+
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of Shiboken.ObjectType object&gt;<dd><tt>T.<a href="#GraphEditor-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>accepted</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>finished</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>rejected</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><a name="GraphEditor-acceptDrops"><strong>acceptDrops</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-accessibleDescription"><strong>accessibleDescription</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-accessibleName"><strong>accessibleName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-actionEvent"><strong>actionEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-actions"><strong>actions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-activateWindow"><strong>activateWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-addAction"><strong>addAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-addActions"><strong>addActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-adjustSize"><strong>adjustSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-autoFillBackground"><strong>autoFillBackground</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-backgroundRole"><strong>backgroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-baseSize"><strong>baseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-changeEvent"><strong>changeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-childAt"><strong>childAt</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-childrenRect"><strong>childrenRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-childrenRegion"><strong>childrenRegion</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-clearFocus"><strong>clearFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-clearMask"><strong>clearMask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-close"><strong>close</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-contentsMargins"><strong>contentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-contentsRect"><strong>contentsRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-contextMenuPolicy"><strong>contextMenuPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-createWinId"><strong>createWinId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-cursor"><strong>cursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-destroy"><strong>destroy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-devType"><strong>devType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-dragEnterEvent"><strong>dragEnterEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-dragLeaveEvent"><strong>dragLeaveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-dragMoveEvent"><strong>dragMoveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-dropEvent"><strong>dropEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-effectiveWinId"><strong>effectiveWinId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-ensurePolished"><strong>ensurePolished</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-enterEvent"><strong>enterEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-focusInEvent"><strong>focusInEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-focusNextChild"><strong>focusNextChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-focusNextPrevChild"><strong>focusNextPrevChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-focusOutEvent"><strong>focusOutEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-focusPolicy"><strong>focusPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-focusPreviousChild"><strong>focusPreviousChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-focusProxy"><strong>focusProxy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-focusWidget"><strong>focusWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-font"><strong>font</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-fontInfo"><strong>fontInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-fontMetrics"><strong>fontMetrics</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-foregroundRole"><strong>foregroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-frameGeometry"><strong>frameGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-frameSize"><strong>frameSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-geometry"><strong>geometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-getContentsMargins"><strong>getContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-grabGesture"><strong>grabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-grabKeyboard"><strong>grabKeyboard</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-grabMouse"><strong>grabMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-grabShortcut"><strong>grabShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-graphicsEffect"><strong>graphicsEffect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-graphicsProxyWidget"><strong>graphicsProxyWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-hasFocus"><strong>hasFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-hasMouseTracking"><strong>hasMouseTracking</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-height"><strong>height</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-heightForWidth"><strong>heightForWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-hide"><strong>hide</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-hideEvent"><strong>hideEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-inputContext"><strong>inputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-inputMethodEvent"><strong>inputMethodEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-inputMethodHints"><strong>inputMethodHints</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-inputMethodQuery"><strong>inputMethodQuery</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-insertAction"><strong>insertAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-insertActions"><strong>insertActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-isActiveWindow"><strong>isActiveWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-isAncestorOf"><strong>isAncestorOf</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-isEnabled"><strong>isEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-isEnabledTo"><strong>isEnabledTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-isFullScreen"><strong>isFullScreen</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-isHidden"><strong>isHidden</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-isLeftToRight"><strong>isLeftToRight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-isMaximized"><strong>isMaximized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-isMinimized"><strong>isMinimized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-isModal"><strong>isModal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-isRightToLeft"><strong>isRightToLeft</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-isVisible"><strong>isVisible</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-isVisibleTo"><strong>isVisibleTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-isWindow"><strong>isWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-isWindowModified"><strong>isWindowModified</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-keyReleaseEvent"><strong>keyReleaseEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-languageChange"><strong>languageChange</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-layout"><strong>layout</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-layoutDirection"><strong>layoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-leaveEvent"><strong>leaveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-locale"><strong>locale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-lower"><strong>lower</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-mapFrom"><strong>mapFrom</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-mapFromGlobal"><strong>mapFromGlobal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-mapFromParent"><strong>mapFromParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-mapTo"><strong>mapTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-mapToGlobal"><strong>mapToGlobal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-mapToParent"><strong>mapToParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-mask"><strong>mask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-maximumHeight"><strong>maximumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-maximumSize"><strong>maximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-maximumWidth"><strong>maximumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-metric"><strong>metric</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-minimumHeight"><strong>minimumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-minimumSize"><strong>minimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-minimumWidth"><strong>minimumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-mouseDoubleClickEvent"><strong>mouseDoubleClickEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-mouseMoveEvent"><strong>mouseMoveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-mousePressEvent"><strong>mousePressEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-mouseReleaseEvent"><strong>mouseReleaseEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-move"><strong>move</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-moveEvent"><strong>moveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-nativeParentWidget"><strong>nativeParentWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-nextInFocusChain"><strong>nextInFocusChain</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-normalGeometry"><strong>normalGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-overrideWindowFlags"><strong>overrideWindowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-overrideWindowState"><strong>overrideWindowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-paintEngine"><strong>paintEngine</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-paintEvent"><strong>paintEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-palette"><strong>palette</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-parentWidget"><strong>parentWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-pos"><strong>pos</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-previousInFocusChain"><strong>previousInFocusChain</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-raise_"><strong>raise_</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-rect"><strong>rect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-releaseKeyboard"><strong>releaseKeyboard</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-releaseMouse"><strong>releaseMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-releaseShortcut"><strong>releaseShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-removeAction"><strong>removeAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-render"><strong>render</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-repaint"><strong>repaint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-resetInputContext"><strong>resetInputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-resize"><strong>resize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-restoreGeometry"><strong>restoreGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-saveGeometry"><strong>saveGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-scroll"><strong>scroll</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setAcceptDrops"><strong>setAcceptDrops</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setAccessibleDescription"><strong>setAccessibleDescription</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setAccessibleName"><strong>setAccessibleName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setAttribute"><strong>setAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setAutoFillBackground"><strong>setAutoFillBackground</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setBackgroundRole"><strong>setBackgroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setBaseSize"><strong>setBaseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setContentsMargins"><strong>setContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setContextMenuPolicy"><strong>setContextMenuPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setCursor"><strong>setCursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setDisabled"><strong>setDisabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setEnabled"><strong>setEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setFixedHeight"><strong>setFixedHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setFixedSize"><strong>setFixedSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setFixedWidth"><strong>setFixedWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setFocus"><strong>setFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setFocusPolicy"><strong>setFocusPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setFocusProxy"><strong>setFocusProxy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setFont"><strong>setFont</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setForegroundRole"><strong>setForegroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setGeometry"><strong>setGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setGraphicsEffect"><strong>setGraphicsEffect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setHidden"><strong>setHidden</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setInputContext"><strong>setInputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setInputMethodHints"><strong>setInputMethodHints</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setLayout"><strong>setLayout</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setLayoutDirection"><strong>setLayoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setLocale"><strong>setLocale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setMask"><strong>setMask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setMaximumHeight"><strong>setMaximumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setMaximumSize"><strong>setMaximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setMaximumWidth"><strong>setMaximumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setMinimumHeight"><strong>setMinimumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setMinimumSize"><strong>setMinimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setMinimumWidth"><strong>setMinimumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setMouseTracking"><strong>setMouseTracking</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setPalette"><strong>setPalette</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setShortcutAutoRepeat"><strong>setShortcutAutoRepeat</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setShortcutEnabled"><strong>setShortcutEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setSizeIncrement"><strong>setSizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setSizePolicy"><strong>setSizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setStatusTip"><strong>setStatusTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setStyle"><strong>setStyle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setStyleSheet"><strong>setStyleSheet</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setToolTip"><strong>setToolTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setUpdatesEnabled"><strong>setUpdatesEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setWhatsThis"><strong>setWhatsThis</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setWindowFilePath"><strong>setWindowFilePath</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setWindowFlags"><strong>setWindowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setWindowIcon"><strong>setWindowIcon</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setWindowIconText"><strong>setWindowIconText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setWindowModality"><strong>setWindowModality</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setWindowModified"><strong>setWindowModified</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setWindowOpacity"><strong>setWindowOpacity</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setWindowRole"><strong>setWindowRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setWindowState"><strong>setWindowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setWindowTitle"><strong>setWindowTitle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-show"><strong>show</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-showFullScreen"><strong>showFullScreen</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-showMaximized"><strong>showMaximized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-showMinimized"><strong>showMinimized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-showNormal"><strong>showNormal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-size"><strong>size</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-sizeIncrement"><strong>sizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-sizePolicy"><strong>sizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-stackUnder"><strong>stackUnder</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-statusTip"><strong>statusTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-style"><strong>style</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-styleSheet"><strong>styleSheet</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-tabletEvent"><strong>tabletEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-testAttribute"><strong>testAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-toolTip"><strong>toolTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-underMouse"><strong>underMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-ungrabGesture"><strong>ungrabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-unsetCursor"><strong>unsetCursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-unsetLayoutDirection"><strong>unsetLayoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-unsetLocale"><strong>unsetLocale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-update"><strong>update</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-updateGeometry"><strong>updateGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-updateMicroFocus"><strong>updateMicroFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-updatesEnabled"><strong>updatesEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-visibleRegion"><strong>visibleRegion</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-whatsThis"><strong>whatsThis</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-wheelEvent"><strong>wheelEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-width"><strong>width</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-winId"><strong>winId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-window"><strong>window</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-windowFilePath"><strong>windowFilePath</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-windowFlags"><strong>windowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-windowIcon"><strong>windowIcon</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-windowIconText"><strong>windowIconText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-windowModality"><strong>windowModality</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-windowOpacity"><strong>windowOpacity</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-windowRole"><strong>windowRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-windowState"><strong>windowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-windowTitle"><strong>windowTitle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-windowType"><strong>windowType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-x"><strong>x</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-x11Info"><strong>x11Info</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-x11PictureHandle"><strong>x11PictureHandle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-y"><strong>y</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><a name="GraphEditor-keyboardGrabber"><strong>keyboardGrabber</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-mouseGrabber"><strong>mouseGrabber</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setTabOrder"><strong>setTabOrder</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><strong>DrawChildren</strong> = PySide.QtGui.QWidget.RenderFlag.DrawChildren</dl>
+
+<dl><dt><strong>DrawWindowBackground</strong> = PySide.QtGui.QWidget.RenderFlag.DrawWindowBackground</dl>
+
+<dl><dt><strong>IgnoreMask</strong> = PySide.QtGui.QWidget.RenderFlag.IgnoreMask</dl>
+
+<dl><dt><strong>RenderFlag</strong> = &lt;class 'PySide.QtGui.QWidget.RenderFlag'&gt;</dl>
+
+<dl><dt><strong>RenderFlags</strong> = &lt;class 'RenderFlags'&gt;</dl>
+
+<dl><dt><strong>customContextMenuRequested</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="GraphEditor-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#GraphEditor-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="GraphEditor-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#GraphEditor-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="GraphEditor-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#GraphEditor-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="GraphEditor-blockSignals"><strong>blockSignals</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-children"><strong>children</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-deleteLater"><strong>deleteLater</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-inherits"><strong>inherits</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-killTimer"><strong>killTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-metaObject"><strong>metaObject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-moveToThread"><strong>moveToThread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-objectName"><strong>objectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-parent"><strong>parent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-property"><strong>property</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setObjectName"><strong>setObjectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-thread"><strong>thread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-trUtf8"><strong>trUtf8</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="GraphEditor-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-registerUserData"><strong>registerUserData</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><strong>destroyed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="GraphEditor-colorCount"><strong>colorCount</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-depth"><strong>depth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-heightMM"><strong>heightMM</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-logicalDpiX"><strong>logicalDpiX</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-logicalDpiY"><strong>logicalDpiY</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-numColors"><strong>numColors</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-paintingActive"><strong>paintingActive</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-physicalDpiX"><strong>physicalDpiX</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-physicalDpiY"><strong>physicalDpiY</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="GraphEditor-widthMM"><strong>widthMM</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>painters</strong></dt>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>PaintDeviceMetric</strong> = &lt;class 'PySide.QtGui.QPaintDevice.PaintDeviceMetric'&gt;</dl>
+
+<dl><dt><strong>PdmDepth</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDepth</dl>
+
+<dl><dt><strong>PdmDpiX</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDpiX</dl>
+
+<dl><dt><strong>PdmDpiY</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDpiY</dl>
+
+<dl><dt><strong>PdmHeight</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmHeight</dl>
+
+<dl><dt><strong>PdmHeightMM</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmHeightMM</dl>
+
+<dl><dt><strong>PdmNumColors</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmNumColors</dl>
+
+<dl><dt><strong>PdmPhysicalDpiX</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmPhysicalDpiX</dl>
+
+<dl><dt><strong>PdmPhysicalDpiY</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmPhysicalDpiY</dl>
+
+<dl><dt><strong>PdmWidth</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmWidth</dl>
+
+<dl><dt><strong>PdmWidthMM</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmWidthMM</dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="InfoWindows">class <strong>InfoWindows</strong></a>(<a href="PySide.QtGui.html#QMessageBox">PySide.QtGui.QMessageBox</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Simple&nbsp;informative&nbsp;modal&nbsp;message<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.ec_editors.html#InfoWindows">InfoWindows</a></dd>
+<dd><a href="PySide.QtGui.html#QMessageBox">PySide.QtGui.QMessageBox</a></dd>
+<dd><a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a></dd>
+<dd><a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a></dd>
+<dd><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a></dd>
+<dd><a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="InfoWindows-__init__"><strong>__init__</strong></a>(self, text)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = &lt;PySide.QtCore.QMetaObject object&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QMessageBox">PySide.QtGui.QMessageBox</a>:<br>
+<dl><dt><a name="InfoWindows-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#InfoWindows-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="InfoWindows-addButton"><strong>addButton</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-button"><strong>button</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-buttonRole"><strong>buttonRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-buttons"><strong>buttons</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-changeEvent"><strong>changeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-clickedButton"><strong>clickedButton</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-closeEvent"><strong>closeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-defaultButton"><strong>defaultButton</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-detailedText"><strong>detailedText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-escapeButton"><strong>escapeButton</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-exec_"><strong>exec_</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-icon"><strong>icon</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-iconPixmap"><strong>iconPixmap</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-informativeText"><strong>informativeText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-keyPressEvent"><strong>keyPressEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-open"><strong>open</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-removeButton"><strong>removeButton</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-resizeEvent"><strong>resizeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setDefaultButton"><strong>setDefaultButton</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setDetailedText"><strong>setDetailedText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setEscapeButton"><strong>setEscapeButton</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setIcon"><strong>setIcon</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setIconPixmap"><strong>setIconPixmap</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setInformativeText"><strong>setInformativeText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setStandardButtons"><strong>setStandardButtons</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setText"><strong>setText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setTextFormat"><strong>setTextFormat</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setWindowModality"><strong>setWindowModality</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setWindowTitle"><strong>setWindowTitle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-showEvent"><strong>showEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-sizeHint"><strong>sizeHint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-standardButton"><strong>standardButton</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-standardButtons"><strong>standardButtons</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-text"><strong>text</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-textFormat"><strong>textFormat</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtGui.html#QMessageBox">PySide.QtGui.QMessageBox</a>:<br>
+<dl><dt><a name="InfoWindows-about"><strong>about</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-aboutQt"><strong>aboutQt</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-critical"><strong>critical</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-information"><strong>information</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-question"><strong>question</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-warning"><strong>warning</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QMessageBox">PySide.QtGui.QMessageBox</a>:<br>
+<dl><dt><strong>Abort</strong> = PySide.QtGui.QMessageBox.StandardButton.Abort</dl>
+
+<dl><dt><strong>AcceptRole</strong> = PySide.QtGui.QMessageBox.ButtonRole.AcceptRole</dl>
+
+<dl><dt><strong>ActionRole</strong> = PySide.QtGui.QMessageBox.ButtonRole.ActionRole</dl>
+
+<dl><dt><strong>Apply</strong> = PySide.QtGui.QMessageBox.StandardButton.Apply</dl>
+
+<dl><dt><strong>ApplyRole</strong> = PySide.QtGui.QMessageBox.ButtonRole.ApplyRole</dl>
+
+<dl><dt><strong>ButtonMask</strong> = PySide.QtGui.QMessageBox.StandardButton.ButtonMask</dl>
+
+<dl><dt><strong>ButtonRole</strong> = &lt;class 'PySide.QtGui.QMessageBox.ButtonRole'&gt;</dl>
+
+<dl><dt><strong>Cancel</strong> = PySide.QtGui.QMessageBox.StandardButton.Cancel</dl>
+
+<dl><dt><strong>Close</strong> = PySide.QtGui.QMessageBox.StandardButton.Close</dl>
+
+<dl><dt><strong>Critical</strong> = PySide.QtGui.QMessageBox.Icon.Critical</dl>
+
+<dl><dt><strong>Default</strong> = PySide.QtGui.QMessageBox.StandardButton.Default</dl>
+
+<dl><dt><strong>DestructiveRole</strong> = PySide.QtGui.QMessageBox.ButtonRole.DestructiveRole</dl>
+
+<dl><dt><strong>Discard</strong> = PySide.QtGui.QMessageBox.StandardButton.Discard</dl>
+
+<dl><dt><strong>Escape</strong> = PySide.QtGui.QMessageBox.StandardButton.Escape</dl>
+
+<dl><dt><strong>FirstButton</strong> = PySide.QtGui.QMessageBox.StandardButton.FirstButton</dl>
+
+<dl><dt><strong>FlagMask</strong> = PySide.QtGui.QMessageBox.StandardButton.FlagMask</dl>
+
+<dl><dt><strong>Help</strong> = PySide.QtGui.QMessageBox.StandardButton.Help</dl>
+
+<dl><dt><strong>HelpRole</strong> = PySide.QtGui.QMessageBox.ButtonRole.HelpRole</dl>
+
+<dl><dt><strong>Icon</strong> = &lt;class 'PySide.QtGui.QMessageBox.Icon'&gt;</dl>
+
+<dl><dt><strong>Ignore</strong> = PySide.QtGui.QMessageBox.StandardButton.Ignore</dl>
+
+<dl><dt><strong>Information</strong> = PySide.QtGui.QMessageBox.Icon.Information</dl>
+
+<dl><dt><strong>InvalidRole</strong> = PySide.QtGui.QMessageBox.ButtonRole.InvalidRole</dl>
+
+<dl><dt><strong>LastButton</strong> = PySide.QtGui.QMessageBox.StandardButton.LastButton</dl>
+
+<dl><dt><strong>NRoles</strong> = PySide.QtGui.QMessageBox.ButtonRole.NRoles</dl>
+
+<dl><dt><strong>No</strong> = PySide.QtGui.QMessageBox.StandardButton.No</dl>
+
+<dl><dt><strong>NoAll</strong> = PySide.QtGui.QMessageBox.StandardButton.NoAll</dl>
+
+<dl><dt><strong>NoButton</strong> = PySide.QtGui.QMessageBox.StandardButton.NoButton</dl>
+
+<dl><dt><strong>NoIcon</strong> = PySide.QtGui.QMessageBox.Icon.NoIcon</dl>
+
+<dl><dt><strong>NoRole</strong> = PySide.QtGui.QMessageBox.ButtonRole.NoRole</dl>
+
+<dl><dt><strong>NoToAll</strong> = PySide.QtGui.QMessageBox.StandardButton.NoToAll</dl>
+
+<dl><dt><strong>Ok</strong> = PySide.QtGui.QMessageBox.StandardButton.Ok</dl>
+
+<dl><dt><strong>Open</strong> = PySide.QtGui.QMessageBox.StandardButton.Open</dl>
+
+<dl><dt><strong>Question</strong> = PySide.QtGui.QMessageBox.Icon.Question</dl>
+
+<dl><dt><strong>RejectRole</strong> = PySide.QtGui.QMessageBox.ButtonRole.RejectRole</dl>
+
+<dl><dt><strong>Reset</strong> = PySide.QtGui.QMessageBox.StandardButton.Reset</dl>
+
+<dl><dt><strong>ResetRole</strong> = PySide.QtGui.QMessageBox.ButtonRole.ResetRole</dl>
+
+<dl><dt><strong>RestoreDefaults</strong> = PySide.QtGui.QMessageBox.StandardButton.RestoreDefaults</dl>
+
+<dl><dt><strong>Retry</strong> = PySide.QtGui.QMessageBox.StandardButton.Retry</dl>
+
+<dl><dt><strong>Save</strong> = PySide.QtGui.QMessageBox.StandardButton.Save</dl>
+
+<dl><dt><strong>SaveAll</strong> = PySide.QtGui.QMessageBox.StandardButton.SaveAll</dl>
+
+<dl><dt><strong>StandardButton</strong> = &lt;class 'PySide.QtGui.QMessageBox.StandardButton'&gt;</dl>
+
+<dl><dt><strong>StandardButtons</strong> = &lt;class 'StandardButtons'&gt;</dl>
+
+<dl><dt><strong>Warning</strong> = PySide.QtGui.QMessageBox.Icon.Warning</dl>
+
+<dl><dt><strong>Yes</strong> = PySide.QtGui.QMessageBox.StandardButton.Yes</dl>
+
+<dl><dt><strong>YesAll</strong> = PySide.QtGui.QMessageBox.StandardButton.YesAll</dl>
+
+<dl><dt><strong>YesRole</strong> = PySide.QtGui.QMessageBox.ButtonRole.YesRole</dl>
+
+<dl><dt><strong>YesToAll</strong> = PySide.QtGui.QMessageBox.StandardButton.YesToAll</dl>
+
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of Shiboken.ObjectType object&gt;<dd><tt>T.<a href="#InfoWindows-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>buttonClicked</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a>:<br>
+<dl><dt><a name="InfoWindows-accept"><strong>accept</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-adjustPosition"><strong>adjustPosition</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-contextMenuEvent"><strong>contextMenuEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-done"><strong>done</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-isSizeGripEnabled"><strong>isSizeGripEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-minimumSizeHint"><strong>minimumSizeHint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-reject"><strong>reject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-result"><strong>result</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setModal"><strong>setModal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setResult"><strong>setResult</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setSizeGripEnabled"><strong>setSizeGripEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setVisible"><strong>setVisible</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a>:<br>
+<dl><dt><strong>Accepted</strong> = PySide.QtGui.QDialog.DialogCode.Accepted</dl>
+
+<dl><dt><strong>DialogCode</strong> = &lt;class 'PySide.QtGui.QDialog.DialogCode'&gt;</dl>
+
+<dl><dt><strong>Rejected</strong> = PySide.QtGui.QDialog.DialogCode.Rejected</dl>
+
+<dl><dt><strong>accepted</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>finished</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>rejected</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><a name="InfoWindows-acceptDrops"><strong>acceptDrops</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-accessibleDescription"><strong>accessibleDescription</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-accessibleName"><strong>accessibleName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-actionEvent"><strong>actionEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-actions"><strong>actions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-activateWindow"><strong>activateWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-addAction"><strong>addAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-addActions"><strong>addActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-adjustSize"><strong>adjustSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-autoFillBackground"><strong>autoFillBackground</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-backgroundRole"><strong>backgroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-baseSize"><strong>baseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-childAt"><strong>childAt</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-childrenRect"><strong>childrenRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-childrenRegion"><strong>childrenRegion</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-clearFocus"><strong>clearFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-clearMask"><strong>clearMask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-close"><strong>close</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-contentsMargins"><strong>contentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-contentsRect"><strong>contentsRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-contextMenuPolicy"><strong>contextMenuPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-createWinId"><strong>createWinId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-cursor"><strong>cursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-destroy"><strong>destroy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-devType"><strong>devType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-dragEnterEvent"><strong>dragEnterEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-dragLeaveEvent"><strong>dragLeaveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-dragMoveEvent"><strong>dragMoveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-dropEvent"><strong>dropEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-effectiveWinId"><strong>effectiveWinId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-ensurePolished"><strong>ensurePolished</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-enterEvent"><strong>enterEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-focusInEvent"><strong>focusInEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-focusNextChild"><strong>focusNextChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-focusNextPrevChild"><strong>focusNextPrevChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-focusOutEvent"><strong>focusOutEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-focusPolicy"><strong>focusPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-focusPreviousChild"><strong>focusPreviousChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-focusProxy"><strong>focusProxy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-focusWidget"><strong>focusWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-font"><strong>font</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-fontInfo"><strong>fontInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-fontMetrics"><strong>fontMetrics</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-foregroundRole"><strong>foregroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-frameGeometry"><strong>frameGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-frameSize"><strong>frameSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-geometry"><strong>geometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-getContentsMargins"><strong>getContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-grabGesture"><strong>grabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-grabKeyboard"><strong>grabKeyboard</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-grabMouse"><strong>grabMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-grabShortcut"><strong>grabShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-graphicsEffect"><strong>graphicsEffect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-graphicsProxyWidget"><strong>graphicsProxyWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-hasFocus"><strong>hasFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-hasMouseTracking"><strong>hasMouseTracking</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-height"><strong>height</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-heightForWidth"><strong>heightForWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-hide"><strong>hide</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-hideEvent"><strong>hideEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-inputContext"><strong>inputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-inputMethodEvent"><strong>inputMethodEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-inputMethodHints"><strong>inputMethodHints</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-inputMethodQuery"><strong>inputMethodQuery</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-insertAction"><strong>insertAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-insertActions"><strong>insertActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-isActiveWindow"><strong>isActiveWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-isAncestorOf"><strong>isAncestorOf</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-isEnabled"><strong>isEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-isEnabledTo"><strong>isEnabledTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-isFullScreen"><strong>isFullScreen</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-isHidden"><strong>isHidden</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-isLeftToRight"><strong>isLeftToRight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-isMaximized"><strong>isMaximized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-isMinimized"><strong>isMinimized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-isModal"><strong>isModal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-isRightToLeft"><strong>isRightToLeft</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-isVisible"><strong>isVisible</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-isVisibleTo"><strong>isVisibleTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-isWindow"><strong>isWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-isWindowModified"><strong>isWindowModified</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-keyReleaseEvent"><strong>keyReleaseEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-languageChange"><strong>languageChange</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-layout"><strong>layout</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-layoutDirection"><strong>layoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-leaveEvent"><strong>leaveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-locale"><strong>locale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-lower"><strong>lower</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-mapFrom"><strong>mapFrom</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-mapFromGlobal"><strong>mapFromGlobal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-mapFromParent"><strong>mapFromParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-mapTo"><strong>mapTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-mapToGlobal"><strong>mapToGlobal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-mapToParent"><strong>mapToParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-mask"><strong>mask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-maximumHeight"><strong>maximumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-maximumSize"><strong>maximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-maximumWidth"><strong>maximumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-metric"><strong>metric</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-minimumHeight"><strong>minimumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-minimumSize"><strong>minimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-minimumWidth"><strong>minimumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-mouseDoubleClickEvent"><strong>mouseDoubleClickEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-mouseMoveEvent"><strong>mouseMoveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-mousePressEvent"><strong>mousePressEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-mouseReleaseEvent"><strong>mouseReleaseEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-move"><strong>move</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-moveEvent"><strong>moveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-nativeParentWidget"><strong>nativeParentWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-nextInFocusChain"><strong>nextInFocusChain</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-normalGeometry"><strong>normalGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-overrideWindowFlags"><strong>overrideWindowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-overrideWindowState"><strong>overrideWindowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-paintEngine"><strong>paintEngine</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-paintEvent"><strong>paintEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-palette"><strong>palette</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-parentWidget"><strong>parentWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-pos"><strong>pos</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-previousInFocusChain"><strong>previousInFocusChain</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-raise_"><strong>raise_</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-rect"><strong>rect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-releaseKeyboard"><strong>releaseKeyboard</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-releaseMouse"><strong>releaseMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-releaseShortcut"><strong>releaseShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-removeAction"><strong>removeAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-render"><strong>render</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-repaint"><strong>repaint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-resetInputContext"><strong>resetInputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-resize"><strong>resize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-restoreGeometry"><strong>restoreGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-saveGeometry"><strong>saveGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-scroll"><strong>scroll</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setAcceptDrops"><strong>setAcceptDrops</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setAccessibleDescription"><strong>setAccessibleDescription</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setAccessibleName"><strong>setAccessibleName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setAttribute"><strong>setAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setAutoFillBackground"><strong>setAutoFillBackground</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setBackgroundRole"><strong>setBackgroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setBaseSize"><strong>setBaseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setContentsMargins"><strong>setContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setContextMenuPolicy"><strong>setContextMenuPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setCursor"><strong>setCursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setDisabled"><strong>setDisabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setEnabled"><strong>setEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setFixedHeight"><strong>setFixedHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setFixedSize"><strong>setFixedSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setFixedWidth"><strong>setFixedWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setFocus"><strong>setFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setFocusPolicy"><strong>setFocusPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setFocusProxy"><strong>setFocusProxy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setFont"><strong>setFont</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setForegroundRole"><strong>setForegroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setGeometry"><strong>setGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setGraphicsEffect"><strong>setGraphicsEffect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setHidden"><strong>setHidden</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setInputContext"><strong>setInputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setInputMethodHints"><strong>setInputMethodHints</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setLayout"><strong>setLayout</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setLayoutDirection"><strong>setLayoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setLocale"><strong>setLocale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setMask"><strong>setMask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setMaximumHeight"><strong>setMaximumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setMaximumSize"><strong>setMaximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setMaximumWidth"><strong>setMaximumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setMinimumHeight"><strong>setMinimumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setMinimumSize"><strong>setMinimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setMinimumWidth"><strong>setMinimumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setMouseTracking"><strong>setMouseTracking</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setPalette"><strong>setPalette</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setShortcutAutoRepeat"><strong>setShortcutAutoRepeat</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setShortcutEnabled"><strong>setShortcutEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setSizeIncrement"><strong>setSizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setSizePolicy"><strong>setSizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setStatusTip"><strong>setStatusTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setStyle"><strong>setStyle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setStyleSheet"><strong>setStyleSheet</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setToolTip"><strong>setToolTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setUpdatesEnabled"><strong>setUpdatesEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setWhatsThis"><strong>setWhatsThis</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setWindowFilePath"><strong>setWindowFilePath</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setWindowFlags"><strong>setWindowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setWindowIcon"><strong>setWindowIcon</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setWindowIconText"><strong>setWindowIconText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setWindowModified"><strong>setWindowModified</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setWindowOpacity"><strong>setWindowOpacity</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setWindowRole"><strong>setWindowRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setWindowState"><strong>setWindowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-show"><strong>show</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-showFullScreen"><strong>showFullScreen</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-showMaximized"><strong>showMaximized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-showMinimized"><strong>showMinimized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-showNormal"><strong>showNormal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-size"><strong>size</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-sizeIncrement"><strong>sizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-sizePolicy"><strong>sizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-stackUnder"><strong>stackUnder</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-statusTip"><strong>statusTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-style"><strong>style</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-styleSheet"><strong>styleSheet</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-tabletEvent"><strong>tabletEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-testAttribute"><strong>testAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-toolTip"><strong>toolTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-underMouse"><strong>underMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-ungrabGesture"><strong>ungrabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-unsetCursor"><strong>unsetCursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-unsetLayoutDirection"><strong>unsetLayoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-unsetLocale"><strong>unsetLocale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-update"><strong>update</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-updateGeometry"><strong>updateGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-updateMicroFocus"><strong>updateMicroFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-updatesEnabled"><strong>updatesEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-visibleRegion"><strong>visibleRegion</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-whatsThis"><strong>whatsThis</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-wheelEvent"><strong>wheelEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-width"><strong>width</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-winId"><strong>winId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-window"><strong>window</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-windowFilePath"><strong>windowFilePath</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-windowFlags"><strong>windowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-windowIcon"><strong>windowIcon</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-windowIconText"><strong>windowIconText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-windowModality"><strong>windowModality</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-windowOpacity"><strong>windowOpacity</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-windowRole"><strong>windowRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-windowState"><strong>windowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-windowTitle"><strong>windowTitle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-windowType"><strong>windowType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-x"><strong>x</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-x11Info"><strong>x11Info</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-x11PictureHandle"><strong>x11PictureHandle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-y"><strong>y</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><a name="InfoWindows-keyboardGrabber"><strong>keyboardGrabber</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-mouseGrabber"><strong>mouseGrabber</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setTabOrder"><strong>setTabOrder</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><strong>DrawChildren</strong> = PySide.QtGui.QWidget.RenderFlag.DrawChildren</dl>
+
+<dl><dt><strong>DrawWindowBackground</strong> = PySide.QtGui.QWidget.RenderFlag.DrawWindowBackground</dl>
+
+<dl><dt><strong>IgnoreMask</strong> = PySide.QtGui.QWidget.RenderFlag.IgnoreMask</dl>
+
+<dl><dt><strong>RenderFlag</strong> = &lt;class 'PySide.QtGui.QWidget.RenderFlag'&gt;</dl>
+
+<dl><dt><strong>RenderFlags</strong> = &lt;class 'RenderFlags'&gt;</dl>
+
+<dl><dt><strong>customContextMenuRequested</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="InfoWindows-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#InfoWindows-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="InfoWindows-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#InfoWindows-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="InfoWindows-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#InfoWindows-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="InfoWindows-blockSignals"><strong>blockSignals</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-children"><strong>children</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-deleteLater"><strong>deleteLater</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-inherits"><strong>inherits</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-killTimer"><strong>killTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-metaObject"><strong>metaObject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-moveToThread"><strong>moveToThread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-objectName"><strong>objectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-parent"><strong>parent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-property"><strong>property</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setObjectName"><strong>setObjectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-thread"><strong>thread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-trUtf8"><strong>trUtf8</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="InfoWindows-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-registerUserData"><strong>registerUserData</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><strong>destroyed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="InfoWindows-colorCount"><strong>colorCount</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-depth"><strong>depth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-heightMM"><strong>heightMM</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-logicalDpiX"><strong>logicalDpiX</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-logicalDpiY"><strong>logicalDpiY</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-numColors"><strong>numColors</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-paintingActive"><strong>paintingActive</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-physicalDpiX"><strong>physicalDpiX</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-physicalDpiY"><strong>physicalDpiY</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InfoWindows-widthMM"><strong>widthMM</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>painters</strong></dt>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>PaintDeviceMetric</strong> = &lt;class 'PySide.QtGui.QPaintDevice.PaintDeviceMetric'&gt;</dl>
+
+<dl><dt><strong>PdmDepth</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDepth</dl>
+
+<dl><dt><strong>PdmDpiX</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDpiX</dl>
+
+<dl><dt><strong>PdmDpiY</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDpiY</dl>
+
+<dl><dt><strong>PdmHeight</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmHeight</dl>
+
+<dl><dt><strong>PdmHeightMM</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmHeightMM</dl>
+
+<dl><dt><strong>PdmNumColors</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmNumColors</dl>
+
+<dl><dt><strong>PdmPhysicalDpiX</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmPhysicalDpiX</dl>
+
+<dl><dt><strong>PdmPhysicalDpiY</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmPhysicalDpiY</dl>
+
+<dl><dt><strong>PdmWidth</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmWidth</dl>
+
+<dl><dt><strong>PdmWidthMM</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmWidthMM</dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NewGraphNormExo">class <strong>NewGraphNormExo</strong></a>(<a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Modal&nbsp;widget&nbsp;to&nbsp;create&nbsp;and&nbsp;edit&nbsp;Graph-&gt;Norm&nbsp;exercices<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.ec_editors.html#NewGraphNormExo">NewGraphNormExo</a></dd>
+<dd><a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a></dd>
+<dd><a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a></dd>
+<dd><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a></dd>
+<dd><a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="NewGraphNormExo-__init__"><strong>__init__</strong></a>(self, parent, item<font color="#909090">=''</font>, diff<font color="#909090">=1</font>)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-add"><strong>add</strong></a>(self, interm_expr<font color="#909090">=None</font>)</dt><dd><tt>Create&nbsp;an&nbsp;entry&nbsp;with&nbsp;nedeed&nbsp;flags</tt></dd></dl>
+
+<dl><dt><a name="NewGraphNormExo-delete"><strong>delete</strong></a>(self)</dt><dd><tt>Remove&nbsp;an&nbsp;item</tt></dd></dl>
+
+<dl><dt><a name="NewGraphNormExo-edit"><strong>edit</strong></a>(self, expr, item)</dt><dd><tt>Edit&nbsp;an&nbsp;item</tt></dd></dl>
+
+<dl><dt><a name="NewGraphNormExo-iterAllItems"><strong>iterAllItems</strong></a>(self)</dt><dd><tt>Create&nbsp;an&nbsp;iterator&nbsp;for&nbsp;lists'&nbsp;items</tt></dd></dl>
+
+<dl><dt><a name="NewGraphNormExo-listExo"><strong>listExo</strong></a>(self)</dt><dd><tt>Create&nbsp;the&nbsp;table&nbsp;for&nbsp;listing</tt></dd></dl>
+
+<dl><dt><a name="NewGraphNormExo-load"><strong>load</strong></a>(self, exo)</dt><dd><tt>Load&nbsp;a&nbsp;saved&nbsp;file</tt></dd></dl>
+
+<dl><dt><a name="NewGraphNormExo-openEditGraph"><strong>openEditGraph</strong></a>(self, item)</dt><dd><tt>Open&nbsp;a&nbsp;modal&nbsp;graphic&nbsp;editor&nbsp;window</tt></dd></dl>
+
+<dl><dt><a name="NewGraphNormExo-save"><strong>save</strong></a>(self)</dt><dd><tt>Save&nbsp;file&nbsp;on&nbsp;disk</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = &lt;PySide.QtCore.QMetaObject object&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a>:<br>
+<dl><dt><a name="NewGraphNormExo-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#NewGraphNormExo-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="NewGraphNormExo-accept"><strong>accept</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-adjustPosition"><strong>adjustPosition</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-closeEvent"><strong>closeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-contextMenuEvent"><strong>contextMenuEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-done"><strong>done</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-exec_"><strong>exec_</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-isSizeGripEnabled"><strong>isSizeGripEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-keyPressEvent"><strong>keyPressEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-minimumSizeHint"><strong>minimumSizeHint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-open"><strong>open</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-reject"><strong>reject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-resizeEvent"><strong>resizeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-result"><strong>result</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setModal"><strong>setModal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setResult"><strong>setResult</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setSizeGripEnabled"><strong>setSizeGripEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setVisible"><strong>setVisible</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-showEvent"><strong>showEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-sizeHint"><strong>sizeHint</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a>:<br>
+<dl><dt><strong>Accepted</strong> = PySide.QtGui.QDialog.DialogCode.Accepted</dl>
+
+<dl><dt><strong>DialogCode</strong> = &lt;class 'PySide.QtGui.QDialog.DialogCode'&gt;</dl>
+
+<dl><dt><strong>Rejected</strong> = PySide.QtGui.QDialog.DialogCode.Rejected</dl>
+
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of Shiboken.ObjectType object&gt;<dd><tt>T.<a href="#NewGraphNormExo-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>accepted</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>finished</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>rejected</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><a name="NewGraphNormExo-acceptDrops"><strong>acceptDrops</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-accessibleDescription"><strong>accessibleDescription</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-accessibleName"><strong>accessibleName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-actionEvent"><strong>actionEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-actions"><strong>actions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-activateWindow"><strong>activateWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-addAction"><strong>addAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-addActions"><strong>addActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-adjustSize"><strong>adjustSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-autoFillBackground"><strong>autoFillBackground</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-backgroundRole"><strong>backgroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-baseSize"><strong>baseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-changeEvent"><strong>changeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-childAt"><strong>childAt</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-childrenRect"><strong>childrenRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-childrenRegion"><strong>childrenRegion</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-clearFocus"><strong>clearFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-clearMask"><strong>clearMask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-close"><strong>close</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-contentsMargins"><strong>contentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-contentsRect"><strong>contentsRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-contextMenuPolicy"><strong>contextMenuPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-createWinId"><strong>createWinId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-cursor"><strong>cursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-destroy"><strong>destroy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-devType"><strong>devType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-dragEnterEvent"><strong>dragEnterEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-dragLeaveEvent"><strong>dragLeaveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-dragMoveEvent"><strong>dragMoveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-dropEvent"><strong>dropEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-effectiveWinId"><strong>effectiveWinId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-ensurePolished"><strong>ensurePolished</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-enterEvent"><strong>enterEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-focusInEvent"><strong>focusInEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-focusNextChild"><strong>focusNextChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-focusNextPrevChild"><strong>focusNextPrevChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-focusOutEvent"><strong>focusOutEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-focusPolicy"><strong>focusPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-focusPreviousChild"><strong>focusPreviousChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-focusProxy"><strong>focusProxy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-focusWidget"><strong>focusWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-font"><strong>font</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-fontInfo"><strong>fontInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-fontMetrics"><strong>fontMetrics</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-foregroundRole"><strong>foregroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-frameGeometry"><strong>frameGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-frameSize"><strong>frameSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-geometry"><strong>geometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-getContentsMargins"><strong>getContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-grabGesture"><strong>grabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-grabKeyboard"><strong>grabKeyboard</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-grabMouse"><strong>grabMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-grabShortcut"><strong>grabShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-graphicsEffect"><strong>graphicsEffect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-graphicsProxyWidget"><strong>graphicsProxyWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-hasFocus"><strong>hasFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-hasMouseTracking"><strong>hasMouseTracking</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-height"><strong>height</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-heightForWidth"><strong>heightForWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-hide"><strong>hide</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-hideEvent"><strong>hideEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-inputContext"><strong>inputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-inputMethodEvent"><strong>inputMethodEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-inputMethodHints"><strong>inputMethodHints</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-inputMethodQuery"><strong>inputMethodQuery</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-insertAction"><strong>insertAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-insertActions"><strong>insertActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-isActiveWindow"><strong>isActiveWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-isAncestorOf"><strong>isAncestorOf</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-isEnabled"><strong>isEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-isEnabledTo"><strong>isEnabledTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-isFullScreen"><strong>isFullScreen</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-isHidden"><strong>isHidden</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-isLeftToRight"><strong>isLeftToRight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-isMaximized"><strong>isMaximized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-isMinimized"><strong>isMinimized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-isModal"><strong>isModal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-isRightToLeft"><strong>isRightToLeft</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-isVisible"><strong>isVisible</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-isVisibleTo"><strong>isVisibleTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-isWindow"><strong>isWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-isWindowModified"><strong>isWindowModified</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-keyReleaseEvent"><strong>keyReleaseEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-languageChange"><strong>languageChange</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-layout"><strong>layout</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-layoutDirection"><strong>layoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-leaveEvent"><strong>leaveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-locale"><strong>locale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-lower"><strong>lower</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-mapFrom"><strong>mapFrom</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-mapFromGlobal"><strong>mapFromGlobal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-mapFromParent"><strong>mapFromParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-mapTo"><strong>mapTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-mapToGlobal"><strong>mapToGlobal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-mapToParent"><strong>mapToParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-mask"><strong>mask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-maximumHeight"><strong>maximumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-maximumSize"><strong>maximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-maximumWidth"><strong>maximumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-metric"><strong>metric</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-minimumHeight"><strong>minimumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-minimumSize"><strong>minimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-minimumWidth"><strong>minimumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-mouseDoubleClickEvent"><strong>mouseDoubleClickEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-mouseMoveEvent"><strong>mouseMoveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-mousePressEvent"><strong>mousePressEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-mouseReleaseEvent"><strong>mouseReleaseEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-move"><strong>move</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-moveEvent"><strong>moveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-nativeParentWidget"><strong>nativeParentWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-nextInFocusChain"><strong>nextInFocusChain</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-normalGeometry"><strong>normalGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-overrideWindowFlags"><strong>overrideWindowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-overrideWindowState"><strong>overrideWindowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-paintEngine"><strong>paintEngine</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-paintEvent"><strong>paintEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-palette"><strong>palette</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-parentWidget"><strong>parentWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-pos"><strong>pos</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-previousInFocusChain"><strong>previousInFocusChain</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-raise_"><strong>raise_</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-rect"><strong>rect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-releaseKeyboard"><strong>releaseKeyboard</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-releaseMouse"><strong>releaseMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-releaseShortcut"><strong>releaseShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-removeAction"><strong>removeAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-render"><strong>render</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-repaint"><strong>repaint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-resetInputContext"><strong>resetInputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-resize"><strong>resize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-restoreGeometry"><strong>restoreGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-saveGeometry"><strong>saveGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-scroll"><strong>scroll</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setAcceptDrops"><strong>setAcceptDrops</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setAccessibleDescription"><strong>setAccessibleDescription</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setAccessibleName"><strong>setAccessibleName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setAttribute"><strong>setAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setAutoFillBackground"><strong>setAutoFillBackground</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setBackgroundRole"><strong>setBackgroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setBaseSize"><strong>setBaseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setContentsMargins"><strong>setContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setContextMenuPolicy"><strong>setContextMenuPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setCursor"><strong>setCursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setDisabled"><strong>setDisabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setEnabled"><strong>setEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setFixedHeight"><strong>setFixedHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setFixedSize"><strong>setFixedSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setFixedWidth"><strong>setFixedWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setFocus"><strong>setFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setFocusPolicy"><strong>setFocusPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setFocusProxy"><strong>setFocusProxy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setFont"><strong>setFont</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setForegroundRole"><strong>setForegroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setGeometry"><strong>setGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setGraphicsEffect"><strong>setGraphicsEffect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setHidden"><strong>setHidden</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setInputContext"><strong>setInputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setInputMethodHints"><strong>setInputMethodHints</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setLayout"><strong>setLayout</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setLayoutDirection"><strong>setLayoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setLocale"><strong>setLocale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setMask"><strong>setMask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setMaximumHeight"><strong>setMaximumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setMaximumSize"><strong>setMaximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setMaximumWidth"><strong>setMaximumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setMinimumHeight"><strong>setMinimumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setMinimumSize"><strong>setMinimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setMinimumWidth"><strong>setMinimumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setMouseTracking"><strong>setMouseTracking</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setPalette"><strong>setPalette</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setShortcutAutoRepeat"><strong>setShortcutAutoRepeat</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setShortcutEnabled"><strong>setShortcutEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setSizeIncrement"><strong>setSizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setSizePolicy"><strong>setSizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setStatusTip"><strong>setStatusTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setStyle"><strong>setStyle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setStyleSheet"><strong>setStyleSheet</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setToolTip"><strong>setToolTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setUpdatesEnabled"><strong>setUpdatesEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setWhatsThis"><strong>setWhatsThis</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setWindowFilePath"><strong>setWindowFilePath</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setWindowFlags"><strong>setWindowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setWindowIcon"><strong>setWindowIcon</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setWindowIconText"><strong>setWindowIconText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setWindowModality"><strong>setWindowModality</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setWindowModified"><strong>setWindowModified</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setWindowOpacity"><strong>setWindowOpacity</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setWindowRole"><strong>setWindowRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setWindowState"><strong>setWindowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setWindowTitle"><strong>setWindowTitle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-show"><strong>show</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-showFullScreen"><strong>showFullScreen</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-showMaximized"><strong>showMaximized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-showMinimized"><strong>showMinimized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-showNormal"><strong>showNormal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-size"><strong>size</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-sizeIncrement"><strong>sizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-sizePolicy"><strong>sizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-stackUnder"><strong>stackUnder</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-statusTip"><strong>statusTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-style"><strong>style</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-styleSheet"><strong>styleSheet</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-tabletEvent"><strong>tabletEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-testAttribute"><strong>testAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-toolTip"><strong>toolTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-underMouse"><strong>underMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-ungrabGesture"><strong>ungrabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-unsetCursor"><strong>unsetCursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-unsetLayoutDirection"><strong>unsetLayoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-unsetLocale"><strong>unsetLocale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-update"><strong>update</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-updateGeometry"><strong>updateGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-updateMicroFocus"><strong>updateMicroFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-updatesEnabled"><strong>updatesEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-visibleRegion"><strong>visibleRegion</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-whatsThis"><strong>whatsThis</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-wheelEvent"><strong>wheelEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-width"><strong>width</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-winId"><strong>winId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-window"><strong>window</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-windowFilePath"><strong>windowFilePath</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-windowFlags"><strong>windowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-windowIcon"><strong>windowIcon</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-windowIconText"><strong>windowIconText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-windowModality"><strong>windowModality</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-windowOpacity"><strong>windowOpacity</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-windowRole"><strong>windowRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-windowState"><strong>windowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-windowTitle"><strong>windowTitle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-windowType"><strong>windowType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-x"><strong>x</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-x11Info"><strong>x11Info</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-x11PictureHandle"><strong>x11PictureHandle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-y"><strong>y</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><a name="NewGraphNormExo-keyboardGrabber"><strong>keyboardGrabber</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-mouseGrabber"><strong>mouseGrabber</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setTabOrder"><strong>setTabOrder</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><strong>DrawChildren</strong> = PySide.QtGui.QWidget.RenderFlag.DrawChildren</dl>
+
+<dl><dt><strong>DrawWindowBackground</strong> = PySide.QtGui.QWidget.RenderFlag.DrawWindowBackground</dl>
+
+<dl><dt><strong>IgnoreMask</strong> = PySide.QtGui.QWidget.RenderFlag.IgnoreMask</dl>
+
+<dl><dt><strong>RenderFlag</strong> = &lt;class 'PySide.QtGui.QWidget.RenderFlag'&gt;</dl>
+
+<dl><dt><strong>RenderFlags</strong> = &lt;class 'RenderFlags'&gt;</dl>
+
+<dl><dt><strong>customContextMenuRequested</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="NewGraphNormExo-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#NewGraphNormExo-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NewGraphNormExo-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#NewGraphNormExo-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NewGraphNormExo-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#NewGraphNormExo-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="NewGraphNormExo-blockSignals"><strong>blockSignals</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-children"><strong>children</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-deleteLater"><strong>deleteLater</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-inherits"><strong>inherits</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-killTimer"><strong>killTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-metaObject"><strong>metaObject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-moveToThread"><strong>moveToThread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-objectName"><strong>objectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-parent"><strong>parent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-property"><strong>property</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setObjectName"><strong>setObjectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-thread"><strong>thread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-trUtf8"><strong>trUtf8</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="NewGraphNormExo-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-registerUserData"><strong>registerUserData</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><strong>destroyed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="NewGraphNormExo-colorCount"><strong>colorCount</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-depth"><strong>depth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-heightMM"><strong>heightMM</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-logicalDpiX"><strong>logicalDpiX</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-logicalDpiY"><strong>logicalDpiY</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-numColors"><strong>numColors</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-paintingActive"><strong>paintingActive</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-physicalDpiX"><strong>physicalDpiX</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-physicalDpiY"><strong>physicalDpiY</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewGraphNormExo-widthMM"><strong>widthMM</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>painters</strong></dt>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>PaintDeviceMetric</strong> = &lt;class 'PySide.QtGui.QPaintDevice.PaintDeviceMetric'&gt;</dl>
+
+<dl><dt><strong>PdmDepth</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDepth</dl>
+
+<dl><dt><strong>PdmDpiX</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDpiX</dl>
+
+<dl><dt><strong>PdmDpiY</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDpiY</dl>
+
+<dl><dt><strong>PdmHeight</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmHeight</dl>
+
+<dl><dt><strong>PdmHeightMM</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmHeightMM</dl>
+
+<dl><dt><strong>PdmNumColors</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmNumColors</dl>
+
+<dl><dt><strong>PdmPhysicalDpiX</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmPhysicalDpiX</dl>
+
+<dl><dt><strong>PdmPhysicalDpiY</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmPhysicalDpiY</dl>
+
+<dl><dt><strong>PdmWidth</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmWidth</dl>
+
+<dl><dt><strong>PdmWidthMM</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmWidthMM</dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NewNormDotExo">class <strong>NewNormDotExo</strong></a>(<a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Modal&nbsp;widget&nbsp;to&nbsp;create&nbsp;and&nbsp;edit&nbsp;Normal&lt;-&gt;Dotted&nbsp;exercices<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.ec_editors.html#NewNormDotExo">NewNormDotExo</a></dd>
+<dd><a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a></dd>
+<dd><a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a></dd>
+<dd><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a></dd>
+<dd><a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="NewNormDotExo-__init__"><strong>__init__</strong></a>(self, parent, item<font color="#909090">=''</font>, diff<font color="#909090">=1</font>)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-add"><strong>add</strong></a>(self, value<font color="#909090">='(nil)'</font>, checked<font color="#909090">=False</font>)</dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;entry&nbsp;with&nbsp;nedeed&nbsp;flags<br>
+checked:&nbsp;False=Unchecked,&nbsp;True=Checked</tt></dd></dl>
+
+<dl><dt><a name="NewNormDotExo-delete"><strong>delete</strong></a>(self)</dt><dd><tt>Delete&nbsp;the&nbsp;current&nbsp;item</tt></dd></dl>
+
+<dl><dt><a name="NewNormDotExo-iterAllItems"><strong>iterAllItems</strong></a>(self)</dt><dd><tt>Create&nbsp;an&nbsp;iterator&nbsp;for&nbsp;lists'&nbsp;items</tt></dd></dl>
+
+<dl><dt><a name="NewNormDotExo-keep"><strong>keep</strong></a>(self, item)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-listExo"><strong>listExo</strong></a>(self)</dt><dd><tt>Create&nbsp;the&nbsp;table&nbsp;for&nbsp;listing</tt></dd></dl>
+
+<dl><dt><a name="NewNormDotExo-load"><strong>load</strong></a>(self, exo)</dt><dd><tt>Load&nbsp;a&nbsp;saved&nbsp;file</tt></dd></dl>
+
+<dl><dt><a name="NewNormDotExo-save"><strong>save</strong></a>(self)</dt><dd><tt>Save&nbsp;file&nbsp;on&nbsp;disk</tt></dd></dl>
+
+<dl><dt><a name="NewNormDotExo-verify"><strong>verify</strong></a>(self, item)</dt><dd><tt>Check&nbsp;if&nbsp;not&nbsp;empty&nbsp;line</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = &lt;PySide.QtCore.QMetaObject object&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a>:<br>
+<dl><dt><a name="NewNormDotExo-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#NewNormDotExo-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="NewNormDotExo-accept"><strong>accept</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-adjustPosition"><strong>adjustPosition</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-closeEvent"><strong>closeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-contextMenuEvent"><strong>contextMenuEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-done"><strong>done</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-exec_"><strong>exec_</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-isSizeGripEnabled"><strong>isSizeGripEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-keyPressEvent"><strong>keyPressEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-minimumSizeHint"><strong>minimumSizeHint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-open"><strong>open</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-reject"><strong>reject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-resizeEvent"><strong>resizeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-result"><strong>result</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setModal"><strong>setModal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setResult"><strong>setResult</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setSizeGripEnabled"><strong>setSizeGripEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setVisible"><strong>setVisible</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-showEvent"><strong>showEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-sizeHint"><strong>sizeHint</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a>:<br>
+<dl><dt><strong>Accepted</strong> = PySide.QtGui.QDialog.DialogCode.Accepted</dl>
+
+<dl><dt><strong>DialogCode</strong> = &lt;class 'PySide.QtGui.QDialog.DialogCode'&gt;</dl>
+
+<dl><dt><strong>Rejected</strong> = PySide.QtGui.QDialog.DialogCode.Rejected</dl>
+
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of Shiboken.ObjectType object&gt;<dd><tt>T.<a href="#NewNormDotExo-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>accepted</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>finished</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>rejected</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><a name="NewNormDotExo-acceptDrops"><strong>acceptDrops</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-accessibleDescription"><strong>accessibleDescription</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-accessibleName"><strong>accessibleName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-actionEvent"><strong>actionEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-actions"><strong>actions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-activateWindow"><strong>activateWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-addAction"><strong>addAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-addActions"><strong>addActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-adjustSize"><strong>adjustSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-autoFillBackground"><strong>autoFillBackground</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-backgroundRole"><strong>backgroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-baseSize"><strong>baseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-changeEvent"><strong>changeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-childAt"><strong>childAt</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-childrenRect"><strong>childrenRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-childrenRegion"><strong>childrenRegion</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-clearFocus"><strong>clearFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-clearMask"><strong>clearMask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-close"><strong>close</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-contentsMargins"><strong>contentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-contentsRect"><strong>contentsRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-contextMenuPolicy"><strong>contextMenuPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-createWinId"><strong>createWinId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-cursor"><strong>cursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-destroy"><strong>destroy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-devType"><strong>devType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-dragEnterEvent"><strong>dragEnterEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-dragLeaveEvent"><strong>dragLeaveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-dragMoveEvent"><strong>dragMoveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-dropEvent"><strong>dropEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-effectiveWinId"><strong>effectiveWinId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-ensurePolished"><strong>ensurePolished</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-enterEvent"><strong>enterEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-focusInEvent"><strong>focusInEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-focusNextChild"><strong>focusNextChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-focusNextPrevChild"><strong>focusNextPrevChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-focusOutEvent"><strong>focusOutEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-focusPolicy"><strong>focusPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-focusPreviousChild"><strong>focusPreviousChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-focusProxy"><strong>focusProxy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-focusWidget"><strong>focusWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-font"><strong>font</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-fontInfo"><strong>fontInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-fontMetrics"><strong>fontMetrics</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-foregroundRole"><strong>foregroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-frameGeometry"><strong>frameGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-frameSize"><strong>frameSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-geometry"><strong>geometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-getContentsMargins"><strong>getContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-grabGesture"><strong>grabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-grabKeyboard"><strong>grabKeyboard</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-grabMouse"><strong>grabMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-grabShortcut"><strong>grabShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-graphicsEffect"><strong>graphicsEffect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-graphicsProxyWidget"><strong>graphicsProxyWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-hasFocus"><strong>hasFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-hasMouseTracking"><strong>hasMouseTracking</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-height"><strong>height</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-heightForWidth"><strong>heightForWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-hide"><strong>hide</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-hideEvent"><strong>hideEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-inputContext"><strong>inputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-inputMethodEvent"><strong>inputMethodEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-inputMethodHints"><strong>inputMethodHints</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-inputMethodQuery"><strong>inputMethodQuery</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-insertAction"><strong>insertAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-insertActions"><strong>insertActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-isActiveWindow"><strong>isActiveWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-isAncestorOf"><strong>isAncestorOf</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-isEnabled"><strong>isEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-isEnabledTo"><strong>isEnabledTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-isFullScreen"><strong>isFullScreen</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-isHidden"><strong>isHidden</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-isLeftToRight"><strong>isLeftToRight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-isMaximized"><strong>isMaximized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-isMinimized"><strong>isMinimized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-isModal"><strong>isModal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-isRightToLeft"><strong>isRightToLeft</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-isVisible"><strong>isVisible</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-isVisibleTo"><strong>isVisibleTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-isWindow"><strong>isWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-isWindowModified"><strong>isWindowModified</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-keyReleaseEvent"><strong>keyReleaseEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-languageChange"><strong>languageChange</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-layout"><strong>layout</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-layoutDirection"><strong>layoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-leaveEvent"><strong>leaveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-locale"><strong>locale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-lower"><strong>lower</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-mapFrom"><strong>mapFrom</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-mapFromGlobal"><strong>mapFromGlobal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-mapFromParent"><strong>mapFromParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-mapTo"><strong>mapTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-mapToGlobal"><strong>mapToGlobal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-mapToParent"><strong>mapToParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-mask"><strong>mask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-maximumHeight"><strong>maximumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-maximumSize"><strong>maximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-maximumWidth"><strong>maximumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-metric"><strong>metric</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-minimumHeight"><strong>minimumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-minimumSize"><strong>minimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-minimumWidth"><strong>minimumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-mouseDoubleClickEvent"><strong>mouseDoubleClickEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-mouseMoveEvent"><strong>mouseMoveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-mousePressEvent"><strong>mousePressEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-mouseReleaseEvent"><strong>mouseReleaseEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-move"><strong>move</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-moveEvent"><strong>moveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-nativeParentWidget"><strong>nativeParentWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-nextInFocusChain"><strong>nextInFocusChain</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-normalGeometry"><strong>normalGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-overrideWindowFlags"><strong>overrideWindowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-overrideWindowState"><strong>overrideWindowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-paintEngine"><strong>paintEngine</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-paintEvent"><strong>paintEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-palette"><strong>palette</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-parentWidget"><strong>parentWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-pos"><strong>pos</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-previousInFocusChain"><strong>previousInFocusChain</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-raise_"><strong>raise_</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-rect"><strong>rect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-releaseKeyboard"><strong>releaseKeyboard</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-releaseMouse"><strong>releaseMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-releaseShortcut"><strong>releaseShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-removeAction"><strong>removeAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-render"><strong>render</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-repaint"><strong>repaint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-resetInputContext"><strong>resetInputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-resize"><strong>resize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-restoreGeometry"><strong>restoreGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-saveGeometry"><strong>saveGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-scroll"><strong>scroll</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setAcceptDrops"><strong>setAcceptDrops</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setAccessibleDescription"><strong>setAccessibleDescription</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setAccessibleName"><strong>setAccessibleName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setAttribute"><strong>setAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setAutoFillBackground"><strong>setAutoFillBackground</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setBackgroundRole"><strong>setBackgroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setBaseSize"><strong>setBaseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setContentsMargins"><strong>setContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setContextMenuPolicy"><strong>setContextMenuPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setCursor"><strong>setCursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setDisabled"><strong>setDisabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setEnabled"><strong>setEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setFixedHeight"><strong>setFixedHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setFixedSize"><strong>setFixedSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setFixedWidth"><strong>setFixedWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setFocus"><strong>setFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setFocusPolicy"><strong>setFocusPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setFocusProxy"><strong>setFocusProxy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setFont"><strong>setFont</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setForegroundRole"><strong>setForegroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setGeometry"><strong>setGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setGraphicsEffect"><strong>setGraphicsEffect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setHidden"><strong>setHidden</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setInputContext"><strong>setInputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setInputMethodHints"><strong>setInputMethodHints</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setLayout"><strong>setLayout</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setLayoutDirection"><strong>setLayoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setLocale"><strong>setLocale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setMask"><strong>setMask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setMaximumHeight"><strong>setMaximumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setMaximumSize"><strong>setMaximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setMaximumWidth"><strong>setMaximumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setMinimumHeight"><strong>setMinimumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setMinimumSize"><strong>setMinimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setMinimumWidth"><strong>setMinimumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setMouseTracking"><strong>setMouseTracking</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setPalette"><strong>setPalette</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setShortcutAutoRepeat"><strong>setShortcutAutoRepeat</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setShortcutEnabled"><strong>setShortcutEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setSizeIncrement"><strong>setSizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setSizePolicy"><strong>setSizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setStatusTip"><strong>setStatusTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setStyle"><strong>setStyle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setStyleSheet"><strong>setStyleSheet</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setToolTip"><strong>setToolTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setUpdatesEnabled"><strong>setUpdatesEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setWhatsThis"><strong>setWhatsThis</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setWindowFilePath"><strong>setWindowFilePath</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setWindowFlags"><strong>setWindowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setWindowIcon"><strong>setWindowIcon</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setWindowIconText"><strong>setWindowIconText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setWindowModality"><strong>setWindowModality</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setWindowModified"><strong>setWindowModified</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setWindowOpacity"><strong>setWindowOpacity</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setWindowRole"><strong>setWindowRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setWindowState"><strong>setWindowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setWindowTitle"><strong>setWindowTitle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-show"><strong>show</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-showFullScreen"><strong>showFullScreen</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-showMaximized"><strong>showMaximized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-showMinimized"><strong>showMinimized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-showNormal"><strong>showNormal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-size"><strong>size</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-sizeIncrement"><strong>sizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-sizePolicy"><strong>sizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-stackUnder"><strong>stackUnder</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-statusTip"><strong>statusTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-style"><strong>style</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-styleSheet"><strong>styleSheet</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-tabletEvent"><strong>tabletEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-testAttribute"><strong>testAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-toolTip"><strong>toolTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-underMouse"><strong>underMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-ungrabGesture"><strong>ungrabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-unsetCursor"><strong>unsetCursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-unsetLayoutDirection"><strong>unsetLayoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-unsetLocale"><strong>unsetLocale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-update"><strong>update</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-updateGeometry"><strong>updateGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-updateMicroFocus"><strong>updateMicroFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-updatesEnabled"><strong>updatesEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-visibleRegion"><strong>visibleRegion</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-whatsThis"><strong>whatsThis</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-wheelEvent"><strong>wheelEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-width"><strong>width</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-winId"><strong>winId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-window"><strong>window</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-windowFilePath"><strong>windowFilePath</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-windowFlags"><strong>windowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-windowIcon"><strong>windowIcon</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-windowIconText"><strong>windowIconText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-windowModality"><strong>windowModality</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-windowOpacity"><strong>windowOpacity</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-windowRole"><strong>windowRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-windowState"><strong>windowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-windowTitle"><strong>windowTitle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-windowType"><strong>windowType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-x"><strong>x</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-x11Info"><strong>x11Info</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-x11PictureHandle"><strong>x11PictureHandle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-y"><strong>y</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><a name="NewNormDotExo-keyboardGrabber"><strong>keyboardGrabber</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-mouseGrabber"><strong>mouseGrabber</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setTabOrder"><strong>setTabOrder</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><strong>DrawChildren</strong> = PySide.QtGui.QWidget.RenderFlag.DrawChildren</dl>
+
+<dl><dt><strong>DrawWindowBackground</strong> = PySide.QtGui.QWidget.RenderFlag.DrawWindowBackground</dl>
+
+<dl><dt><strong>IgnoreMask</strong> = PySide.QtGui.QWidget.RenderFlag.IgnoreMask</dl>
+
+<dl><dt><strong>RenderFlag</strong> = &lt;class 'PySide.QtGui.QWidget.RenderFlag'&gt;</dl>
+
+<dl><dt><strong>RenderFlags</strong> = &lt;class 'RenderFlags'&gt;</dl>
+
+<dl><dt><strong>customContextMenuRequested</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="NewNormDotExo-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#NewNormDotExo-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NewNormDotExo-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#NewNormDotExo-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NewNormDotExo-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#NewNormDotExo-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="NewNormDotExo-blockSignals"><strong>blockSignals</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-children"><strong>children</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-deleteLater"><strong>deleteLater</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-inherits"><strong>inherits</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-killTimer"><strong>killTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-metaObject"><strong>metaObject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-moveToThread"><strong>moveToThread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-objectName"><strong>objectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-parent"><strong>parent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-property"><strong>property</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setObjectName"><strong>setObjectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-thread"><strong>thread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-trUtf8"><strong>trUtf8</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="NewNormDotExo-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-registerUserData"><strong>registerUserData</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><strong>destroyed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="NewNormDotExo-colorCount"><strong>colorCount</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-depth"><strong>depth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-heightMM"><strong>heightMM</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-logicalDpiX"><strong>logicalDpiX</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-logicalDpiY"><strong>logicalDpiY</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-numColors"><strong>numColors</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-paintingActive"><strong>paintingActive</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-physicalDpiX"><strong>physicalDpiX</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-physicalDpiY"><strong>physicalDpiY</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormDotExo-widthMM"><strong>widthMM</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>painters</strong></dt>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>PaintDeviceMetric</strong> = &lt;class 'PySide.QtGui.QPaintDevice.PaintDeviceMetric'&gt;</dl>
+
+<dl><dt><strong>PdmDepth</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDepth</dl>
+
+<dl><dt><strong>PdmDpiX</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDpiX</dl>
+
+<dl><dt><strong>PdmDpiY</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDpiY</dl>
+
+<dl><dt><strong>PdmHeight</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmHeight</dl>
+
+<dl><dt><strong>PdmHeightMM</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmHeightMM</dl>
+
+<dl><dt><strong>PdmNumColors</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmNumColors</dl>
+
+<dl><dt><strong>PdmPhysicalDpiX</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmPhysicalDpiX</dl>
+
+<dl><dt><strong>PdmPhysicalDpiY</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmPhysicalDpiY</dl>
+
+<dl><dt><strong>PdmWidth</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmWidth</dl>
+
+<dl><dt><strong>PdmWidthMM</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmWidthMM</dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NewNormGraphExo">class <strong>NewNormGraphExo</strong></a>(<a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Modal&nbsp;widget&nbsp;to&nbsp;create&nbsp;and&nbsp;edit&nbsp;Normal-&gt;Graph&nbsp;exercices<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.ec_editors.html#NewNormGraphExo">NewNormGraphExo</a></dd>
+<dd><a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a></dd>
+<dd><a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a></dd>
+<dd><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a></dd>
+<dd><a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="NewNormGraphExo-__init__"><strong>__init__</strong></a>(self, parent, item<font color="#909090">=''</font>, diff<font color="#909090">=1</font>)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-add"><strong>add</strong></a>(self, value<font color="#909090">='nil'</font>)</dt><dd><tt>Create&nbsp;an&nbsp;entry&nbsp;with&nbsp;nedeed&nbsp;flags</tt></dd></dl>
+
+<dl><dt><a name="NewNormGraphExo-delete"><strong>delete</strong></a>(self)</dt><dd><tt>Delete&nbsp;the&nbsp;current&nbsp;item</tt></dd></dl>
+
+<dl><dt><a name="NewNormGraphExo-iterAllItems"><strong>iterAllItems</strong></a>(self)</dt><dd><tt>Create&nbsp;an&nbsp;iterator&nbsp;for&nbsp;lists'&nbsp;items</tt></dd></dl>
+
+<dl><dt><a name="NewNormGraphExo-keep"><strong>keep</strong></a>(self, item)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-listExo"><strong>listExo</strong></a>(self)</dt><dd><tt>Create&nbsp;the&nbsp;table&nbsp;for&nbsp;listing</tt></dd></dl>
+
+<dl><dt><a name="NewNormGraphExo-load"><strong>load</strong></a>(self, exo)</dt><dd><tt>Load&nbsp;a&nbsp;saved&nbsp;file</tt></dd></dl>
+
+<dl><dt><a name="NewNormGraphExo-save"><strong>save</strong></a>(self)</dt><dd><tt>Save&nbsp;file&nbsp;on&nbsp;disk</tt></dd></dl>
+
+<dl><dt><a name="NewNormGraphExo-verify"><strong>verify</strong></a>(self, item)</dt><dd><tt>Check&nbsp;if&nbsp;not&nbsp;empty&nbsp;line</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = &lt;PySide.QtCore.QMetaObject object&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a>:<br>
+<dl><dt><a name="NewNormGraphExo-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#NewNormGraphExo-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="NewNormGraphExo-accept"><strong>accept</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-adjustPosition"><strong>adjustPosition</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-closeEvent"><strong>closeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-contextMenuEvent"><strong>contextMenuEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-done"><strong>done</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-exec_"><strong>exec_</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-isSizeGripEnabled"><strong>isSizeGripEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-keyPressEvent"><strong>keyPressEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-minimumSizeHint"><strong>minimumSizeHint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-open"><strong>open</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-reject"><strong>reject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-resizeEvent"><strong>resizeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-result"><strong>result</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setModal"><strong>setModal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setResult"><strong>setResult</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setSizeGripEnabled"><strong>setSizeGripEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setVisible"><strong>setVisible</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-showEvent"><strong>showEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-sizeHint"><strong>sizeHint</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QDialog">PySide.QtGui.QDialog</a>:<br>
+<dl><dt><strong>Accepted</strong> = PySide.QtGui.QDialog.DialogCode.Accepted</dl>
+
+<dl><dt><strong>DialogCode</strong> = &lt;class 'PySide.QtGui.QDialog.DialogCode'&gt;</dl>
+
+<dl><dt><strong>Rejected</strong> = PySide.QtGui.QDialog.DialogCode.Rejected</dl>
+
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of Shiboken.ObjectType object&gt;<dd><tt>T.<a href="#NewNormGraphExo-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>accepted</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>finished</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>rejected</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><a name="NewNormGraphExo-acceptDrops"><strong>acceptDrops</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-accessibleDescription"><strong>accessibleDescription</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-accessibleName"><strong>accessibleName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-actionEvent"><strong>actionEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-actions"><strong>actions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-activateWindow"><strong>activateWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-addAction"><strong>addAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-addActions"><strong>addActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-adjustSize"><strong>adjustSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-autoFillBackground"><strong>autoFillBackground</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-backgroundRole"><strong>backgroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-baseSize"><strong>baseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-changeEvent"><strong>changeEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-childAt"><strong>childAt</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-childrenRect"><strong>childrenRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-childrenRegion"><strong>childrenRegion</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-clearFocus"><strong>clearFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-clearMask"><strong>clearMask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-close"><strong>close</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-contentsMargins"><strong>contentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-contentsRect"><strong>contentsRect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-contextMenuPolicy"><strong>contextMenuPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-createWinId"><strong>createWinId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-cursor"><strong>cursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-destroy"><strong>destroy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-devType"><strong>devType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-dragEnterEvent"><strong>dragEnterEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-dragLeaveEvent"><strong>dragLeaveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-dragMoveEvent"><strong>dragMoveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-dropEvent"><strong>dropEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-effectiveWinId"><strong>effectiveWinId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-ensurePolished"><strong>ensurePolished</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-enterEvent"><strong>enterEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-focusInEvent"><strong>focusInEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-focusNextChild"><strong>focusNextChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-focusNextPrevChild"><strong>focusNextPrevChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-focusOutEvent"><strong>focusOutEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-focusPolicy"><strong>focusPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-focusPreviousChild"><strong>focusPreviousChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-focusProxy"><strong>focusProxy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-focusWidget"><strong>focusWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-font"><strong>font</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-fontInfo"><strong>fontInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-fontMetrics"><strong>fontMetrics</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-foregroundRole"><strong>foregroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-frameGeometry"><strong>frameGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-frameSize"><strong>frameSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-geometry"><strong>geometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-getContentsMargins"><strong>getContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-grabGesture"><strong>grabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-grabKeyboard"><strong>grabKeyboard</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-grabMouse"><strong>grabMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-grabShortcut"><strong>grabShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-graphicsEffect"><strong>graphicsEffect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-graphicsProxyWidget"><strong>graphicsProxyWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-hasFocus"><strong>hasFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-hasMouseTracking"><strong>hasMouseTracking</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-height"><strong>height</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-heightForWidth"><strong>heightForWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-hide"><strong>hide</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-hideEvent"><strong>hideEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-inputContext"><strong>inputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-inputMethodEvent"><strong>inputMethodEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-inputMethodHints"><strong>inputMethodHints</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-inputMethodQuery"><strong>inputMethodQuery</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-insertAction"><strong>insertAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-insertActions"><strong>insertActions</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-isActiveWindow"><strong>isActiveWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-isAncestorOf"><strong>isAncestorOf</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-isEnabled"><strong>isEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-isEnabledTo"><strong>isEnabledTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-isFullScreen"><strong>isFullScreen</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-isHidden"><strong>isHidden</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-isLeftToRight"><strong>isLeftToRight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-isMaximized"><strong>isMaximized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-isMinimized"><strong>isMinimized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-isModal"><strong>isModal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-isRightToLeft"><strong>isRightToLeft</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-isVisible"><strong>isVisible</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-isVisibleTo"><strong>isVisibleTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-isWindow"><strong>isWindow</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-isWindowModified"><strong>isWindowModified</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-keyReleaseEvent"><strong>keyReleaseEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-languageChange"><strong>languageChange</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-layout"><strong>layout</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-layoutDirection"><strong>layoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-leaveEvent"><strong>leaveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-locale"><strong>locale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-lower"><strong>lower</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-mapFrom"><strong>mapFrom</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-mapFromGlobal"><strong>mapFromGlobal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-mapFromParent"><strong>mapFromParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-mapTo"><strong>mapTo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-mapToGlobal"><strong>mapToGlobal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-mapToParent"><strong>mapToParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-mask"><strong>mask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-maximumHeight"><strong>maximumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-maximumSize"><strong>maximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-maximumWidth"><strong>maximumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-metric"><strong>metric</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-minimumHeight"><strong>minimumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-minimumSize"><strong>minimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-minimumWidth"><strong>minimumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-mouseDoubleClickEvent"><strong>mouseDoubleClickEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-mouseMoveEvent"><strong>mouseMoveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-mousePressEvent"><strong>mousePressEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-mouseReleaseEvent"><strong>mouseReleaseEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-move"><strong>move</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-moveEvent"><strong>moveEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-nativeParentWidget"><strong>nativeParentWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-nextInFocusChain"><strong>nextInFocusChain</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-normalGeometry"><strong>normalGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-overrideWindowFlags"><strong>overrideWindowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-overrideWindowState"><strong>overrideWindowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-paintEngine"><strong>paintEngine</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-paintEvent"><strong>paintEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-palette"><strong>palette</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-parentWidget"><strong>parentWidget</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-pos"><strong>pos</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-previousInFocusChain"><strong>previousInFocusChain</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-raise_"><strong>raise_</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-rect"><strong>rect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-releaseKeyboard"><strong>releaseKeyboard</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-releaseMouse"><strong>releaseMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-releaseShortcut"><strong>releaseShortcut</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-removeAction"><strong>removeAction</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-render"><strong>render</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-repaint"><strong>repaint</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-resetInputContext"><strong>resetInputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-resize"><strong>resize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-restoreGeometry"><strong>restoreGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-saveGeometry"><strong>saveGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-scroll"><strong>scroll</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setAcceptDrops"><strong>setAcceptDrops</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setAccessibleDescription"><strong>setAccessibleDescription</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setAccessibleName"><strong>setAccessibleName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setAttribute"><strong>setAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setAutoFillBackground"><strong>setAutoFillBackground</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setBackgroundRole"><strong>setBackgroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setBaseSize"><strong>setBaseSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setContentsMargins"><strong>setContentsMargins</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setContextMenuPolicy"><strong>setContextMenuPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setCursor"><strong>setCursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setDisabled"><strong>setDisabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setEnabled"><strong>setEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setFixedHeight"><strong>setFixedHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setFixedSize"><strong>setFixedSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setFixedWidth"><strong>setFixedWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setFocus"><strong>setFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setFocusPolicy"><strong>setFocusPolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setFocusProxy"><strong>setFocusProxy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setFont"><strong>setFont</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setForegroundRole"><strong>setForegroundRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setGeometry"><strong>setGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setGraphicsEffect"><strong>setGraphicsEffect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setHidden"><strong>setHidden</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setInputContext"><strong>setInputContext</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setInputMethodHints"><strong>setInputMethodHints</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setLayout"><strong>setLayout</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setLayoutDirection"><strong>setLayoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setLocale"><strong>setLocale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setMask"><strong>setMask</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setMaximumHeight"><strong>setMaximumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setMaximumSize"><strong>setMaximumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setMaximumWidth"><strong>setMaximumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setMinimumHeight"><strong>setMinimumHeight</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setMinimumSize"><strong>setMinimumSize</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setMinimumWidth"><strong>setMinimumWidth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setMouseTracking"><strong>setMouseTracking</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setPalette"><strong>setPalette</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setShortcutAutoRepeat"><strong>setShortcutAutoRepeat</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setShortcutEnabled"><strong>setShortcutEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setSizeIncrement"><strong>setSizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setSizePolicy"><strong>setSizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setStatusTip"><strong>setStatusTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setStyle"><strong>setStyle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setStyleSheet"><strong>setStyleSheet</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setToolTip"><strong>setToolTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setUpdatesEnabled"><strong>setUpdatesEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setWhatsThis"><strong>setWhatsThis</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setWindowFilePath"><strong>setWindowFilePath</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setWindowFlags"><strong>setWindowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setWindowIcon"><strong>setWindowIcon</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setWindowIconText"><strong>setWindowIconText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setWindowModality"><strong>setWindowModality</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setWindowModified"><strong>setWindowModified</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setWindowOpacity"><strong>setWindowOpacity</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setWindowRole"><strong>setWindowRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setWindowState"><strong>setWindowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setWindowTitle"><strong>setWindowTitle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-show"><strong>show</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-showFullScreen"><strong>showFullScreen</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-showMaximized"><strong>showMaximized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-showMinimized"><strong>showMinimized</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-showNormal"><strong>showNormal</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-size"><strong>size</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-sizeIncrement"><strong>sizeIncrement</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-sizePolicy"><strong>sizePolicy</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-stackUnder"><strong>stackUnder</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-statusTip"><strong>statusTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-style"><strong>style</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-styleSheet"><strong>styleSheet</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-tabletEvent"><strong>tabletEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-testAttribute"><strong>testAttribute</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-toolTip"><strong>toolTip</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-underMouse"><strong>underMouse</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-ungrabGesture"><strong>ungrabGesture</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-unsetCursor"><strong>unsetCursor</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-unsetLayoutDirection"><strong>unsetLayoutDirection</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-unsetLocale"><strong>unsetLocale</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-update"><strong>update</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-updateGeometry"><strong>updateGeometry</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-updateMicroFocus"><strong>updateMicroFocus</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-updatesEnabled"><strong>updatesEnabled</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-visibleRegion"><strong>visibleRegion</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-whatsThis"><strong>whatsThis</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-wheelEvent"><strong>wheelEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-width"><strong>width</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-winId"><strong>winId</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-window"><strong>window</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-windowFilePath"><strong>windowFilePath</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-windowFlags"><strong>windowFlags</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-windowIcon"><strong>windowIcon</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-windowIconText"><strong>windowIconText</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-windowModality"><strong>windowModality</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-windowOpacity"><strong>windowOpacity</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-windowRole"><strong>windowRole</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-windowState"><strong>windowState</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-windowTitle"><strong>windowTitle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-windowType"><strong>windowType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-x"><strong>x</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-x11Info"><strong>x11Info</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-x11PictureHandle"><strong>x11PictureHandle</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-y"><strong>y</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><a name="NewNormGraphExo-keyboardGrabber"><strong>keyboardGrabber</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-mouseGrabber"><strong>mouseGrabber</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setTabOrder"><strong>setTabOrder</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QWidget">PySide.QtGui.QWidget</a>:<br>
+<dl><dt><strong>DrawChildren</strong> = PySide.QtGui.QWidget.RenderFlag.DrawChildren</dl>
+
+<dl><dt><strong>DrawWindowBackground</strong> = PySide.QtGui.QWidget.RenderFlag.DrawWindowBackground</dl>
+
+<dl><dt><strong>IgnoreMask</strong> = PySide.QtGui.QWidget.RenderFlag.IgnoreMask</dl>
+
+<dl><dt><strong>RenderFlag</strong> = &lt;class 'PySide.QtGui.QWidget.RenderFlag'&gt;</dl>
+
+<dl><dt><strong>RenderFlags</strong> = &lt;class 'RenderFlags'&gt;</dl>
+
+<dl><dt><strong>customContextMenuRequested</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="NewNormGraphExo-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#NewNormGraphExo-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NewNormGraphExo-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#NewNormGraphExo-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NewNormGraphExo-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#NewNormGraphExo-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="NewNormGraphExo-blockSignals"><strong>blockSignals</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-children"><strong>children</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-deleteLater"><strong>deleteLater</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-inherits"><strong>inherits</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-killTimer"><strong>killTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-metaObject"><strong>metaObject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-moveToThread"><strong>moveToThread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-objectName"><strong>objectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-parent"><strong>parent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-property"><strong>property</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setObjectName"><strong>setObjectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-thread"><strong>thread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-trUtf8"><strong>trUtf8</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="NewNormGraphExo-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-registerUserData"><strong>registerUserData</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><strong>destroyed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><a name="NewNormGraphExo-colorCount"><strong>colorCount</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-depth"><strong>depth</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-heightMM"><strong>heightMM</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-logicalDpiX"><strong>logicalDpiX</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-logicalDpiY"><strong>logicalDpiY</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-numColors"><strong>numColors</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-paintingActive"><strong>paintingActive</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-physicalDpiX"><strong>physicalDpiX</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-physicalDpiY"><strong>physicalDpiY</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NewNormGraphExo-widthMM"><strong>widthMM</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>painters</strong></dt>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="PySide.QtGui.html#QPaintDevice">PySide.QtGui.QPaintDevice</a>:<br>
+<dl><dt><strong>PaintDeviceMetric</strong> = &lt;class 'PySide.QtGui.QPaintDevice.PaintDeviceMetric'&gt;</dl>
+
+<dl><dt><strong>PdmDepth</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDepth</dl>
+
+<dl><dt><strong>PdmDpiX</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDpiX</dl>
+
+<dl><dt><strong>PdmDpiY</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmDpiY</dl>
+
+<dl><dt><strong>PdmHeight</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmHeight</dl>
+
+<dl><dt><strong>PdmHeightMM</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmHeightMM</dl>
+
+<dl><dt><strong>PdmNumColors</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmNumColors</dl>
+
+<dl><dt><strong>PdmPhysicalDpiX</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmPhysicalDpiX</dl>
+
+<dl><dt><strong>PdmPhysicalDpiY</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmPhysicalDpiY</dl>
+
+<dl><dt><strong>PdmWidth</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmWidth</dl>
+
+<dl><dt><strong>PdmWidthMM</strong> = PySide.QtGui.QPaintDevice.PaintDeviceMetric.PdmWidthMM</dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-QT_TRANSLATE_NOOP"><strong>QT_TRANSLATE_NOOP</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TRANSLATE_NOOP3"><strong>QT_TRANSLATE_NOOP3</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TRANSLATE_NOOP_UTF8"><strong>QT_TRANSLATE_NOOP_UTF8</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TR_NOOP"><strong>QT_TR_NOOP</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TR_NOOP_UTF8"><strong>QT_TR_NOOP_UTF8</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-SIGNAL"><strong>SIGNAL</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-SLOT"><strong>SLOT</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAbs"><strong>qAbs</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAcos"><strong>qAcos</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAddPostRoutine"><strong>qAddPostRoutine</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAlpha"><strong>qAlpha</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAsin"><strong>qAsin</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAtan"><strong>qAtan</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAtan2"><strong>qAtan2</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qBlue"><strong>qBlue</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qChecksum"><strong>qChecksum</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qCritical"><strong>qCritical</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qDebug"><strong>qDebug</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qExp"><strong>qExp</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFabs"><strong>qFabs</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFastCos"><strong>qFastCos</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFastSin"><strong>qFastSin</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFatal"><strong>qFatal</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFuzzyCompare"><strong>qFuzzyCompare</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFuzzyIsNull"><strong>qFuzzyIsNull</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qGray"><strong>qGray</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qGreen"><strong>qGreen</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qInstallMsgHandler"><strong>qInstallMsgHandler</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsFinite"><strong>qIsFinite</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsGray"><strong>qIsGray</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsInf"><strong>qIsInf</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsNaN"><strong>qIsNaN</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsNull"><strong>qIsNull</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRed"><strong>qRed</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRegisterResourceData"><strong>qRegisterResourceData</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRgb"><strong>qRgb</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRgba"><strong>qRgba</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRound"><strong>qRound</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qTan"><strong>qTan</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qUnregisterResourceData"><strong>qUnregisterResourceData</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qVersion"><strong>qVersion</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qWarning"><strong>qWarning</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qrand"><strong>qrand</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qsrand"><strong>qsrand</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qtTrId"><strong>qtTrId</strong></a>(...)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>EXOS_DIR</strong> = '../save'<br>
+<strong>Fvals</strong> = {}<br>
+<strong>LicensedDeclarative</strong> = PySide.QtCore.QtValidLicenseForDeclarativeModule.LicensedDeclarative<br>
+<strong>LicensedMultimedia</strong> = PySide.QtCore.QtValidLicenseForMultimediaModule.LicensedMultimedia<br>
+<strong>LicensedOpenVG</strong> = PySide.QtCore.QtValidLicenseForOpenVGModule.LicensedOpenVG<br>
+<strong>QtCriticalMsg</strong> = PySide.QtCore.QtMsgType.QtCriticalMsg<br>
+<strong>QtDebugMsg</strong> = PySide.QtCore.QtMsgType.QtDebugMsg<br>
+<strong>QtFatalMsg</strong> = PySide.QtCore.QtMsgType.QtFatalMsg<br>
+<strong>QtSystemMsg</strong> = PySide.QtCore.QtMsgType.QtSystemMsg<br>
+<strong>QtWarningMsg</strong> = PySide.QtCore.QtMsgType.QtWarningMsg<br>
+<strong>lisp_lexer</strong> = &lt;ply.lex.Lexer object&gt;<br>
+<strong>lisp_parser</strong> = &lt;ply.yacc.LRParser object&gt;<br>
+<strong>nil</strong> = nil<br>
+<strong>qApp</strong> = None</td></tr></table>
+</body></html>

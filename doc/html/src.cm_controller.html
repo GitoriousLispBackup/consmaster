@@ -1,0 +1,1843 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module src.cm_controller</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="src.html"><font color="#ffffff">src</font></a>.cm_controller</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/yoch/consmaster2/consmaster/src/cm_controller.py">/home/yoch/consmaster2/consmaster/src/cm_controller.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="pylisp.lisp.html">pylisp.lisp</a><br>
+<a href="math.html">math</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="random.html">random</a><br>
+</td><td width="25%" valign=top><a href="re.html">re</a><br>
+<a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>(Shiboken.Object)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="src.cm_controller.html#CmBasicController">CmBasicController</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="src.cm_controller.html#CmGraphicToNormalController">CmGraphicToNormalController</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="src.cm_controller.html#CmGTNConvExerciceController">CmGTNConvExerciceController</a>(<a href="src.cm_controller.html#CmGraphicToNormalController">CmGraphicToNormalController</a>, <a href="src.cm_controller.html#ExerciceMixin">ExerciceMixin</a>)
+</font></dt><dt><font face="helvetica, arial"><a href="src.cm_controller.html#CmGTNConvTrainingController">CmGTNConvTrainingController</a>(<a href="src.cm_controller.html#CmGraphicToNormalController">CmGraphicToNormalController</a>, <a href="src.cm_controller.html#TrainingMixin">TrainingMixin</a>)
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="src.cm_controller.html#CmNormalDottedConvController">CmNormalDottedConvController</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="src.cm_controller.html#CmNDConvExerciceController">CmNDConvExerciceController</a>(<a href="src.cm_controller.html#CmNormalDottedConvController">CmNormalDottedConvController</a>, <a href="src.cm_controller.html#ExerciceMixin">ExerciceMixin</a>)
+</font></dt><dt><font face="helvetica, arial"><a href="src.cm_controller.html#CmNDConvTrainingController">CmNDConvTrainingController</a>(<a href="src.cm_controller.html#CmNormalDottedConvController">CmNormalDottedConvController</a>, <a href="src.cm_controller.html#TrainingMixin">TrainingMixin</a>)
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="src.cm_controller.html#CmNormalToGraphicController">CmNormalToGraphicController</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="src.cm_controller.html#CmNTGConvExerciceController">CmNTGConvExerciceController</a>(<a href="src.cm_controller.html#CmNormalToGraphicController">CmNormalToGraphicController</a>, <a href="src.cm_controller.html#ExerciceMixin">ExerciceMixin</a>)
+</font></dt><dt><font face="helvetica, arial"><a href="src.cm_controller.html#CmNTGConvTrainingController">CmNTGConvTrainingController</a>(<a href="src.cm_controller.html#CmNormalToGraphicController">CmNormalToGraphicController</a>, <a href="src.cm_controller.html#TrainingMixin">TrainingMixin</a>)
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="src.cm_controller.html#CmController">CmController</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="src.cm_controller.html#ExerciceMixin">ExerciceMixin</a>
+</font></dt><dt><font face="helvetica, arial"><a href="src.cm_controller.html#TrainingMixin">TrainingMixin</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CmBasicController">class <strong>CmBasicController</strong></a>(<a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Basic&nbsp;class&nbsp;for&nbsp;controllers<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.cm_controller.html#CmBasicController">CmBasicController</a></dd>
+<dd><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CmBasicController-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CmBasicController-help"><strong>help</strong></a>(self, entry, enonce)</dt><dd><tt>give&nbsp;some&nbsp;infos&nbsp;to&nbsp;the&nbsp;user&nbsp;on&nbsp;his&nbsp;error</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>completed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>enonceChanged</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>ok</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>setCounterText</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>staticMetaObject</strong> = &lt;PySide.QtCore.QMetaObject object&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmBasicController-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmBasicController-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmBasicController-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#CmBasicController-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmBasicController-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#CmBasicController-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="CmBasicController-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmBasicController-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="CmBasicController-blockSignals"><strong>blockSignals</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-children"><strong>children</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-deleteLater"><strong>deleteLater</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-inherits"><strong>inherits</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-killTimer"><strong>killTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-metaObject"><strong>metaObject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-moveToThread"><strong>moveToThread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-objectName"><strong>objectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-parent"><strong>parent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-property"><strong>property</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-setObjectName"><strong>setObjectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-thread"><strong>thread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-trUtf8"><strong>trUtf8</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmBasicController-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmBasicController-registerUserData"><strong>registerUserData</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of Shiboken.ObjectType object&gt;<dd><tt>T.<a href="#CmBasicController-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>destroyed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CmController">class <strong>CmController</strong></a>(<a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.cm_controller.html#CmController">CmController</a></dd>
+<dd><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CmController-__init__"><strong>__init__</strong></a>(self, term)</dt></dl>
+
+<dl><dt><a name="CmController-receive"><strong>receive</strong></a>(self, entry)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>send</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>staticMetaObject</strong> = &lt;PySide.QtCore.QMetaObject object&gt;</dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmController-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmController-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmController-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#CmController-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmController-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#CmController-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="CmController-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmController-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="CmController-blockSignals"><strong>blockSignals</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-children"><strong>children</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-deleteLater"><strong>deleteLater</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-inherits"><strong>inherits</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-killTimer"><strong>killTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-metaObject"><strong>metaObject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-moveToThread"><strong>moveToThread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-objectName"><strong>objectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-parent"><strong>parent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-property"><strong>property</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-setObjectName"><strong>setObjectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-thread"><strong>thread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-trUtf8"><strong>trUtf8</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmController-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmController-registerUserData"><strong>registerUserData</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of Shiboken.ObjectType object&gt;<dd><tt>T.<a href="#CmController-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>destroyed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CmGTNConvExerciceController">class <strong>CmGTNConvExerciceController</strong></a>(<a href="src.cm_controller.html#CmGraphicToNormalController">CmGraphicToNormalController</a>, <a href="src.cm_controller.html#ExerciceMixin">ExerciceMixin</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.cm_controller.html#CmGTNConvExerciceController">CmGTNConvExerciceController</a></dd>
+<dd><a href="src.cm_controller.html#CmGraphicToNormalController">CmGraphicToNormalController</a></dd>
+<dd><a href="src.cm_controller.html#CmBasicController">CmBasicController</a></dd>
+<dd><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="src.cm_controller.html#ExerciceMixin">ExerciceMixin</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CmGTNConvExerciceController-__init__"><strong>__init__</strong></a>(self, userData, src)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-fmt"><strong>fmt</strong></a>(self, enonce)</dt><dd><tt>pass&nbsp;the&nbsp;enonce&nbsp;to&nbsp;defined&nbsp;usable&nbsp;format</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = &lt;PySide.QtCore.QMetaObject object&gt;</dl>
+
+<hr>
+Methods inherited from <a href="src.cm_controller.html#CmGraphicToNormalController">CmGraphicToNormalController</a>:<br>
+<dl><dt><a name="CmGTNConvExerciceController-validate"><strong>validate</strong></a>(self, entry)</dt></dl>
+
+<hr>
+Methods inherited from <a href="src.cm_controller.html#CmBasicController">CmBasicController</a>:<br>
+<dl><dt><a name="CmGTNConvExerciceController-help"><strong>help</strong></a>(self, entry, enonce)</dt><dd><tt>give&nbsp;some&nbsp;infos&nbsp;to&nbsp;the&nbsp;user&nbsp;on&nbsp;his&nbsp;error</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="src.cm_controller.html#CmBasicController">CmBasicController</a>:<br>
+<dl><dt><strong>completed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>enonceChanged</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>ok</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>setCounterText</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmGTNConvExerciceController-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmGTNConvExerciceController-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#CmGTNConvExerciceController-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#CmGTNConvExerciceController-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmGTNConvExerciceController-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-blockSignals"><strong>blockSignals</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-children"><strong>children</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-deleteLater"><strong>deleteLater</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-inherits"><strong>inherits</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-killTimer"><strong>killTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-metaObject"><strong>metaObject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-moveToThread"><strong>moveToThread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-objectName"><strong>objectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-parent"><strong>parent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-property"><strong>property</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-setObjectName"><strong>setObjectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-thread"><strong>thread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-trUtf8"><strong>trUtf8</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmGTNConvExerciceController-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-registerUserData"><strong>registerUserData</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of Shiboken.ObjectType object&gt;<dd><tt>T.<a href="#CmGTNConvExerciceController-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>destroyed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<hr>
+Methods inherited from <a href="src.cm_controller.html#ExerciceMixin">ExerciceMixin</a>:<br>
+<dl><dt><a name="CmGTNConvExerciceController-next"><strong>next</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CmGTNConvExerciceController-receive"><strong>receive</strong></a>(self, entry)</dt><dd><tt>receive&nbsp;data&nbsp;from&nbsp;the&nbsp;entry&nbsp;widget</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="src.cm_controller.html#ExerciceMixin">ExerciceMixin</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CmGTNConvTrainingController">class <strong>CmGTNConvTrainingController</strong></a>(<a href="src.cm_controller.html#CmGraphicToNormalController">CmGraphicToNormalController</a>, <a href="src.cm_controller.html#TrainingMixin">TrainingMixin</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.cm_controller.html#CmGTNConvTrainingController">CmGTNConvTrainingController</a></dd>
+<dd><a href="src.cm_controller.html#CmGraphicToNormalController">CmGraphicToNormalController</a></dd>
+<dd><a href="src.cm_controller.html#CmBasicController">CmBasicController</a></dd>
+<dd><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="src.cm_controller.html#TrainingMixin">TrainingMixin</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CmGTNConvTrainingController-__init__"><strong>__init__</strong></a>(self, userData)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-fmt"><strong>fmt</strong></a>(self, enonce)</dt><dd><tt>pass&nbsp;the&nbsp;enonce&nbsp;to&nbsp;defined&nbsp;usable&nbsp;format</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = &lt;PySide.QtCore.QMetaObject object&gt;</dl>
+
+<hr>
+Methods inherited from <a href="src.cm_controller.html#CmGraphicToNormalController">CmGraphicToNormalController</a>:<br>
+<dl><dt><a name="CmGTNConvTrainingController-validate"><strong>validate</strong></a>(self, entry)</dt></dl>
+
+<hr>
+Methods inherited from <a href="src.cm_controller.html#CmBasicController">CmBasicController</a>:<br>
+<dl><dt><a name="CmGTNConvTrainingController-help"><strong>help</strong></a>(self, entry, enonce)</dt><dd><tt>give&nbsp;some&nbsp;infos&nbsp;to&nbsp;the&nbsp;user&nbsp;on&nbsp;his&nbsp;error</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="src.cm_controller.html#CmBasicController">CmBasicController</a>:<br>
+<dl><dt><strong>completed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>enonceChanged</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>ok</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>setCounterText</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmGTNConvTrainingController-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmGTNConvTrainingController-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#CmGTNConvTrainingController-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#CmGTNConvTrainingController-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmGTNConvTrainingController-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-blockSignals"><strong>blockSignals</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-children"><strong>children</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-deleteLater"><strong>deleteLater</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-inherits"><strong>inherits</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-killTimer"><strong>killTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-metaObject"><strong>metaObject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-moveToThread"><strong>moveToThread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-objectName"><strong>objectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-parent"><strong>parent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-property"><strong>property</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-setObjectName"><strong>setObjectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-thread"><strong>thread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-trUtf8"><strong>trUtf8</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmGTNConvTrainingController-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-registerUserData"><strong>registerUserData</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of Shiboken.ObjectType object&gt;<dd><tt>T.<a href="#CmGTNConvTrainingController-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>destroyed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<hr>
+Methods inherited from <a href="src.cm_controller.html#TrainingMixin">TrainingMixin</a>:<br>
+<dl><dt><a name="CmGTNConvTrainingController-next"><strong>next</strong></a>(self)</dt><dd><tt>pass&nbsp;to&nbsp;the&nbsp;next&nbsp;exercice</tt></dd></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-receive"><strong>receive</strong></a>(self, entry)</dt><dd><tt>receive&nbsp;data&nbsp;from&nbsp;the&nbsp;entry&nbsp;widget</tt></dd></dl>
+
+<dl><dt><a name="CmGTNConvTrainingController-updateData"><strong>updateData</strong></a>(self, score)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="src.cm_controller.html#TrainingMixin">TrainingMixin</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CmGraphicToNormalController">class <strong>CmGraphicToNormalController</strong></a>(<a href="src.cm_controller.html#CmBasicController">CmBasicController</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>controller&nbsp;for&nbsp;graphic&nbsp;-&gt;&nbsp;normal&nbsp;exercice&nbsp;converter<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.cm_controller.html#CmGraphicToNormalController">CmGraphicToNormalController</a></dd>
+<dd><a href="src.cm_controller.html#CmBasicController">CmBasicController</a></dd>
+<dd><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CmGraphicToNormalController-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-validate"><strong>validate</strong></a>(self, entry)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = &lt;PySide.QtCore.QMetaObject object&gt;</dl>
+
+<hr>
+Methods inherited from <a href="src.cm_controller.html#CmBasicController">CmBasicController</a>:<br>
+<dl><dt><a name="CmGraphicToNormalController-help"><strong>help</strong></a>(self, entry, enonce)</dt><dd><tt>give&nbsp;some&nbsp;infos&nbsp;to&nbsp;the&nbsp;user&nbsp;on&nbsp;his&nbsp;error</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="src.cm_controller.html#CmBasicController">CmBasicController</a>:<br>
+<dl><dt><strong>completed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>enonceChanged</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>ok</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>setCounterText</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmGraphicToNormalController-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmGraphicToNormalController-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#CmGraphicToNormalController-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#CmGraphicToNormalController-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmGraphicToNormalController-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-blockSignals"><strong>blockSignals</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-children"><strong>children</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-deleteLater"><strong>deleteLater</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-inherits"><strong>inherits</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-killTimer"><strong>killTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-metaObject"><strong>metaObject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-moveToThread"><strong>moveToThread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-objectName"><strong>objectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-parent"><strong>parent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-property"><strong>property</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-setObjectName"><strong>setObjectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-thread"><strong>thread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-trUtf8"><strong>trUtf8</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmGraphicToNormalController-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmGraphicToNormalController-registerUserData"><strong>registerUserData</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of Shiboken.ObjectType object&gt;<dd><tt>T.<a href="#CmGraphicToNormalController-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>destroyed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CmNDConvExerciceController">class <strong>CmNDConvExerciceController</strong></a>(<a href="src.cm_controller.html#CmNormalDottedConvController">CmNormalDottedConvController</a>, <a href="src.cm_controller.html#ExerciceMixin">ExerciceMixin</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.cm_controller.html#CmNDConvExerciceController">CmNDConvExerciceController</a></dd>
+<dd><a href="src.cm_controller.html#CmNormalDottedConvController">CmNormalDottedConvController</a></dd>
+<dd><a href="src.cm_controller.html#CmBasicController">CmBasicController</a></dd>
+<dd><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="src.cm_controller.html#ExerciceMixin">ExerciceMixin</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CmNDConvExerciceController-__init__"><strong>__init__</strong></a>(self, userData, src)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-fmt"><strong>fmt</strong></a>(self, enonce)</dt><dd><tt>pass&nbsp;the&nbsp;enonce&nbsp;to&nbsp;defined&nbsp;usable&nbsp;format</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = &lt;PySide.QtCore.QMetaObject object&gt;</dl>
+
+<hr>
+Methods inherited from <a href="src.cm_controller.html#CmNormalDottedConvController">CmNormalDottedConvController</a>:<br>
+<dl><dt><a name="CmNDConvExerciceController-validate"><strong>validate</strong></a>(self, entry)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="src.cm_controller.html#CmNormalDottedConvController">CmNormalDottedConvController</a>:<br>
+<dl><dt><strong>inv_methods</strong> = {'dotted': '__repr__', 'normal': 'dotted_repr'}</dl>
+
+<hr>
+Methods inherited from <a href="src.cm_controller.html#CmBasicController">CmBasicController</a>:<br>
+<dl><dt><a name="CmNDConvExerciceController-help"><strong>help</strong></a>(self, entry, enonce)</dt><dd><tt>give&nbsp;some&nbsp;infos&nbsp;to&nbsp;the&nbsp;user&nbsp;on&nbsp;his&nbsp;error</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="src.cm_controller.html#CmBasicController">CmBasicController</a>:<br>
+<dl><dt><strong>completed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>enonceChanged</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>ok</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>setCounterText</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmNDConvExerciceController-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNDConvExerciceController-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNDConvExerciceController-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNDConvExerciceController-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNDConvExerciceController-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-blockSignals"><strong>blockSignals</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-children"><strong>children</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-deleteLater"><strong>deleteLater</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-inherits"><strong>inherits</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-killTimer"><strong>killTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-metaObject"><strong>metaObject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-moveToThread"><strong>moveToThread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-objectName"><strong>objectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-parent"><strong>parent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-property"><strong>property</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-setObjectName"><strong>setObjectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-thread"><strong>thread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-trUtf8"><strong>trUtf8</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmNDConvExerciceController-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-registerUserData"><strong>registerUserData</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of Shiboken.ObjectType object&gt;<dd><tt>T.<a href="#CmNDConvExerciceController-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>destroyed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<hr>
+Methods inherited from <a href="src.cm_controller.html#ExerciceMixin">ExerciceMixin</a>:<br>
+<dl><dt><a name="CmNDConvExerciceController-next"><strong>next</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CmNDConvExerciceController-receive"><strong>receive</strong></a>(self, entry)</dt><dd><tt>receive&nbsp;data&nbsp;from&nbsp;the&nbsp;entry&nbsp;widget</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="src.cm_controller.html#ExerciceMixin">ExerciceMixin</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CmNDConvTrainingController">class <strong>CmNDConvTrainingController</strong></a>(<a href="src.cm_controller.html#CmNormalDottedConvController">CmNormalDottedConvController</a>, <a href="src.cm_controller.html#TrainingMixin">TrainingMixin</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.cm_controller.html#CmNDConvTrainingController">CmNDConvTrainingController</a></dd>
+<dd><a href="src.cm_controller.html#CmNormalDottedConvController">CmNormalDottedConvController</a></dd>
+<dd><a href="src.cm_controller.html#CmBasicController">CmBasicController</a></dd>
+<dd><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="src.cm_controller.html#TrainingMixin">TrainingMixin</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CmNDConvTrainingController-__init__"><strong>__init__</strong></a>(self, userData)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-fmt"><strong>fmt</strong></a>(self, enonce)</dt><dd><tt>pass&nbsp;the&nbsp;enonce&nbsp;to&nbsp;defined&nbsp;usable&nbsp;format</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = &lt;PySide.QtCore.QMetaObject object&gt;</dl>
+
+<hr>
+Methods inherited from <a href="src.cm_controller.html#CmNormalDottedConvController">CmNormalDottedConvController</a>:<br>
+<dl><dt><a name="CmNDConvTrainingController-validate"><strong>validate</strong></a>(self, entry)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="src.cm_controller.html#CmNormalDottedConvController">CmNormalDottedConvController</a>:<br>
+<dl><dt><strong>inv_methods</strong> = {'dotted': '__repr__', 'normal': 'dotted_repr'}</dl>
+
+<hr>
+Methods inherited from <a href="src.cm_controller.html#CmBasicController">CmBasicController</a>:<br>
+<dl><dt><a name="CmNDConvTrainingController-help"><strong>help</strong></a>(self, entry, enonce)</dt><dd><tt>give&nbsp;some&nbsp;infos&nbsp;to&nbsp;the&nbsp;user&nbsp;on&nbsp;his&nbsp;error</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="src.cm_controller.html#CmBasicController">CmBasicController</a>:<br>
+<dl><dt><strong>completed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>enonceChanged</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>ok</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>setCounterText</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmNDConvTrainingController-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNDConvTrainingController-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNDConvTrainingController-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNDConvTrainingController-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNDConvTrainingController-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-blockSignals"><strong>blockSignals</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-children"><strong>children</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-deleteLater"><strong>deleteLater</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-inherits"><strong>inherits</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-killTimer"><strong>killTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-metaObject"><strong>metaObject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-moveToThread"><strong>moveToThread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-objectName"><strong>objectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-parent"><strong>parent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-property"><strong>property</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-setObjectName"><strong>setObjectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-thread"><strong>thread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-trUtf8"><strong>trUtf8</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmNDConvTrainingController-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-registerUserData"><strong>registerUserData</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of Shiboken.ObjectType object&gt;<dd><tt>T.<a href="#CmNDConvTrainingController-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>destroyed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<hr>
+Methods inherited from <a href="src.cm_controller.html#TrainingMixin">TrainingMixin</a>:<br>
+<dl><dt><a name="CmNDConvTrainingController-next"><strong>next</strong></a>(self)</dt><dd><tt>pass&nbsp;to&nbsp;the&nbsp;next&nbsp;exercice</tt></dd></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-receive"><strong>receive</strong></a>(self, entry)</dt><dd><tt>receive&nbsp;data&nbsp;from&nbsp;the&nbsp;entry&nbsp;widget</tt></dd></dl>
+
+<dl><dt><a name="CmNDConvTrainingController-updateData"><strong>updateData</strong></a>(self, score)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="src.cm_controller.html#TrainingMixin">TrainingMixin</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CmNTGConvExerciceController">class <strong>CmNTGConvExerciceController</strong></a>(<a href="src.cm_controller.html#CmNormalToGraphicController">CmNormalToGraphicController</a>, <a href="src.cm_controller.html#ExerciceMixin">ExerciceMixin</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.cm_controller.html#CmNTGConvExerciceController">CmNTGConvExerciceController</a></dd>
+<dd><a href="src.cm_controller.html#CmNormalToGraphicController">CmNormalToGraphicController</a></dd>
+<dd><a href="src.cm_controller.html#CmBasicController">CmBasicController</a></dd>
+<dd><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="src.cm_controller.html#ExerciceMixin">ExerciceMixin</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CmNTGConvExerciceController-__init__"><strong>__init__</strong></a>(self, userData, src)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-fmt"><strong>fmt</strong></a>(self, enonce)</dt><dd><tt>pass&nbsp;the&nbsp;enonce&nbsp;to&nbsp;defined&nbsp;usable&nbsp;format</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = &lt;PySide.QtCore.QMetaObject object&gt;</dl>
+
+<hr>
+Methods inherited from <a href="src.cm_controller.html#CmNormalToGraphicController">CmNormalToGraphicController</a>:<br>
+<dl><dt><a name="CmNTGConvExerciceController-validate"><strong>validate</strong></a>(self, entry)</dt></dl>
+
+<hr>
+Methods inherited from <a href="src.cm_controller.html#CmBasicController">CmBasicController</a>:<br>
+<dl><dt><a name="CmNTGConvExerciceController-help"><strong>help</strong></a>(self, entry, enonce)</dt><dd><tt>give&nbsp;some&nbsp;infos&nbsp;to&nbsp;the&nbsp;user&nbsp;on&nbsp;his&nbsp;error</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="src.cm_controller.html#CmBasicController">CmBasicController</a>:<br>
+<dl><dt><strong>completed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>enonceChanged</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>ok</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>setCounterText</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmNTGConvExerciceController-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNTGConvExerciceController-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNTGConvExerciceController-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNTGConvExerciceController-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNTGConvExerciceController-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-blockSignals"><strong>blockSignals</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-children"><strong>children</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-deleteLater"><strong>deleteLater</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-inherits"><strong>inherits</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-killTimer"><strong>killTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-metaObject"><strong>metaObject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-moveToThread"><strong>moveToThread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-objectName"><strong>objectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-parent"><strong>parent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-property"><strong>property</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-setObjectName"><strong>setObjectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-thread"><strong>thread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-trUtf8"><strong>trUtf8</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmNTGConvExerciceController-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-registerUserData"><strong>registerUserData</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of Shiboken.ObjectType object&gt;<dd><tt>T.<a href="#CmNTGConvExerciceController-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>destroyed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<hr>
+Methods inherited from <a href="src.cm_controller.html#ExerciceMixin">ExerciceMixin</a>:<br>
+<dl><dt><a name="CmNTGConvExerciceController-next"><strong>next</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CmNTGConvExerciceController-receive"><strong>receive</strong></a>(self, entry)</dt><dd><tt>receive&nbsp;data&nbsp;from&nbsp;the&nbsp;entry&nbsp;widget</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="src.cm_controller.html#ExerciceMixin">ExerciceMixin</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CmNTGConvTrainingController">class <strong>CmNTGConvTrainingController</strong></a>(<a href="src.cm_controller.html#CmNormalToGraphicController">CmNormalToGraphicController</a>, <a href="src.cm_controller.html#TrainingMixin">TrainingMixin</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.cm_controller.html#CmNTGConvTrainingController">CmNTGConvTrainingController</a></dd>
+<dd><a href="src.cm_controller.html#CmNormalToGraphicController">CmNormalToGraphicController</a></dd>
+<dd><a href="src.cm_controller.html#CmBasicController">CmBasicController</a></dd>
+<dd><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="src.cm_controller.html#TrainingMixin">TrainingMixin</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CmNTGConvTrainingController-__init__"><strong>__init__</strong></a>(self, userData)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-fmt"><strong>fmt</strong></a>(self, enonce)</dt><dd><tt>pass&nbsp;the&nbsp;enonce&nbsp;to&nbsp;defined&nbsp;usable&nbsp;format</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = &lt;PySide.QtCore.QMetaObject object&gt;</dl>
+
+<hr>
+Methods inherited from <a href="src.cm_controller.html#CmNormalToGraphicController">CmNormalToGraphicController</a>:<br>
+<dl><dt><a name="CmNTGConvTrainingController-validate"><strong>validate</strong></a>(self, entry)</dt></dl>
+
+<hr>
+Methods inherited from <a href="src.cm_controller.html#CmBasicController">CmBasicController</a>:<br>
+<dl><dt><a name="CmNTGConvTrainingController-help"><strong>help</strong></a>(self, entry, enonce)</dt><dd><tt>give&nbsp;some&nbsp;infos&nbsp;to&nbsp;the&nbsp;user&nbsp;on&nbsp;his&nbsp;error</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="src.cm_controller.html#CmBasicController">CmBasicController</a>:<br>
+<dl><dt><strong>completed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>enonceChanged</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>ok</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>setCounterText</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmNTGConvTrainingController-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNTGConvTrainingController-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNTGConvTrainingController-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNTGConvTrainingController-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNTGConvTrainingController-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-blockSignals"><strong>blockSignals</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-children"><strong>children</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-deleteLater"><strong>deleteLater</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-inherits"><strong>inherits</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-killTimer"><strong>killTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-metaObject"><strong>metaObject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-moveToThread"><strong>moveToThread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-objectName"><strong>objectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-parent"><strong>parent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-property"><strong>property</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-setObjectName"><strong>setObjectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-thread"><strong>thread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-trUtf8"><strong>trUtf8</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmNTGConvTrainingController-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-registerUserData"><strong>registerUserData</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of Shiboken.ObjectType object&gt;<dd><tt>T.<a href="#CmNTGConvTrainingController-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>destroyed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<hr>
+Methods inherited from <a href="src.cm_controller.html#TrainingMixin">TrainingMixin</a>:<br>
+<dl><dt><a name="CmNTGConvTrainingController-next"><strong>next</strong></a>(self)</dt><dd><tt>pass&nbsp;to&nbsp;the&nbsp;next&nbsp;exercice</tt></dd></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-receive"><strong>receive</strong></a>(self, entry)</dt><dd><tt>receive&nbsp;data&nbsp;from&nbsp;the&nbsp;entry&nbsp;widget</tt></dd></dl>
+
+<dl><dt><a name="CmNTGConvTrainingController-updateData"><strong>updateData</strong></a>(self, score)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="src.cm_controller.html#TrainingMixin">TrainingMixin</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CmNormalDottedConvController">class <strong>CmNormalDottedConvController</strong></a>(<a href="src.cm_controller.html#CmBasicController">CmBasicController</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>controller&nbsp;for&nbsp;normal&nbsp;&lt;-&gt;&nbsp;dotted&nbsp;exercice&nbsp;converter<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.cm_controller.html#CmNormalDottedConvController">CmNormalDottedConvController</a></dd>
+<dd><a href="src.cm_controller.html#CmBasicController">CmBasicController</a></dd>
+<dd><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CmNormalDottedConvController-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-validate"><strong>validate</strong></a>(self, entry)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>inv_methods</strong> = {'dotted': '__repr__', 'normal': 'dotted_repr'}</dl>
+
+<dl><dt><strong>staticMetaObject</strong> = &lt;PySide.QtCore.QMetaObject object&gt;</dl>
+
+<hr>
+Methods inherited from <a href="src.cm_controller.html#CmBasicController">CmBasicController</a>:<br>
+<dl><dt><a name="CmNormalDottedConvController-help"><strong>help</strong></a>(self, entry, enonce)</dt><dd><tt>give&nbsp;some&nbsp;infos&nbsp;to&nbsp;the&nbsp;user&nbsp;on&nbsp;his&nbsp;error</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="src.cm_controller.html#CmBasicController">CmBasicController</a>:<br>
+<dl><dt><strong>completed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>enonceChanged</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>ok</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>setCounterText</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmNormalDottedConvController-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNormalDottedConvController-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNormalDottedConvController-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNormalDottedConvController-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNormalDottedConvController-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-blockSignals"><strong>blockSignals</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-children"><strong>children</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-deleteLater"><strong>deleteLater</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-inherits"><strong>inherits</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-killTimer"><strong>killTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-metaObject"><strong>metaObject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-moveToThread"><strong>moveToThread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-objectName"><strong>objectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-parent"><strong>parent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-property"><strong>property</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-setObjectName"><strong>setObjectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-thread"><strong>thread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-trUtf8"><strong>trUtf8</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmNormalDottedConvController-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalDottedConvController-registerUserData"><strong>registerUserData</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of Shiboken.ObjectType object&gt;<dd><tt>T.<a href="#CmNormalDottedConvController-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>destroyed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CmNormalToGraphicController">class <strong>CmNormalToGraphicController</strong></a>(<a href="src.cm_controller.html#CmBasicController">CmBasicController</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>controller&nbsp;for&nbsp;normal&nbsp;-&gt;&nbsp;graphic&nbsp;exercice&nbsp;converter<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="src.cm_controller.html#CmNormalToGraphicController">CmNormalToGraphicController</a></dd>
+<dd><a href="src.cm_controller.html#CmBasicController">CmBasicController</a></dd>
+<dd><a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a></dd>
+<dd>Shiboken.Object</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CmNormalToGraphicController-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-validate"><strong>validate</strong></a>(self, entry)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>staticMetaObject</strong> = &lt;PySide.QtCore.QMetaObject object&gt;</dl>
+
+<hr>
+Methods inherited from <a href="src.cm_controller.html#CmBasicController">CmBasicController</a>:<br>
+<dl><dt><a name="CmNormalToGraphicController-help"><strong>help</strong></a>(self, entry, enonce)</dt><dd><tt>give&nbsp;some&nbsp;infos&nbsp;to&nbsp;the&nbsp;user&nbsp;on&nbsp;his&nbsp;error</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="src.cm_controller.html#CmBasicController">CmBasicController</a>:<br>
+<dl><dt><strong>completed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>enonceChanged</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>ok</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<dl><dt><strong>setCounterText</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmNormalToGraphicController-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNormalToGraphicController-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNormalToGraphicController-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNormalToGraphicController-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CmNormalToGraphicController-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-blockSignals"><strong>blockSignals</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-childEvent"><strong>childEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-children"><strong>children</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-connectNotify"><strong>connectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-customEvent"><strong>customEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-deleteLater"><strong>deleteLater</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-disconnectNotify"><strong>disconnectNotify</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-dumpObjectInfo"><strong>dumpObjectInfo</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-dumpObjectTree"><strong>dumpObjectTree</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-dynamicPropertyNames"><strong>dynamicPropertyNames</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-emit"><strong>emit</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-event"><strong>event</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-eventFilter"><strong>eventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-findChild"><strong>findChild</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-findChildren"><strong>findChildren</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-inherits"><strong>inherits</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-installEventFilter"><strong>installEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-isWidgetType"><strong>isWidgetType</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-killTimer"><strong>killTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-metaObject"><strong>metaObject</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-moveToThread"><strong>moveToThread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-objectName"><strong>objectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-parent"><strong>parent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-property"><strong>property</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-receivers"><strong>receivers</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-removeEventFilter"><strong>removeEventFilter</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-sender"><strong>sender</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-senderSignalIndex"><strong>senderSignalIndex</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-setObjectName"><strong>setObjectName</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-setParent"><strong>setParent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-setProperty"><strong>setProperty</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-signalsBlocked"><strong>signalsBlocked</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-startTimer"><strong>startTimer</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-thread"><strong>thread</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-timerEvent"><strong>timerEvent</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-tr"><strong>tr</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-trUtf8"><strong>trUtf8</strong></a>(...)</dt></dl>
+
+<hr>
+Static methods inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><a name="CmNormalToGraphicController-connect"><strong>connect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-disconnect"><strong>disconnect</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CmNormalToGraphicController-registerUserData"><strong>registerUserData</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="PySide.QtCore.html#QObject">PySide.QtCore.QObject</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of Shiboken.ObjectType object&gt;<dd><tt>T.<a href="#CmNormalToGraphicController-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>destroyed</strong> = &lt;PySide.QtCore.Signal object&gt;<dd><tt>Signal</tt></dl>
+
+<hr>
+Data descriptors inherited from Shiboken.Object:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ExerciceMixin">class <strong>ExerciceMixin</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>mixin&nbsp;for&nbsp;exercice&nbsp;gestion<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ExerciceMixin-__init__"><strong>__init__</strong></a>(self, userData, src)</dt></dl>
+
+<dl><dt><a name="ExerciceMixin-next"><strong>next</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ExerciceMixin-receive"><strong>receive</strong></a>(self, entry)</dt><dd><tt>receive&nbsp;data&nbsp;from&nbsp;the&nbsp;entry&nbsp;widget</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="TrainingMixin">class <strong>TrainingMixin</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>mixin&nbsp;for&nbsp;training&nbsp;gestion<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="TrainingMixin-__init__"><strong>__init__</strong></a>(self, userData)</dt></dl>
+
+<dl><dt><a name="TrainingMixin-next"><strong>next</strong></a>(self)</dt><dd><tt>pass&nbsp;to&nbsp;the&nbsp;next&nbsp;exercice</tt></dd></dl>
+
+<dl><dt><a name="TrainingMixin-receive"><strong>receive</strong></a>(self, entry)</dt><dd><tt>receive&nbsp;data&nbsp;from&nbsp;the&nbsp;entry&nbsp;widget</tt></dd></dl>
+
+<dl><dt><a name="TrainingMixin-updateData"><strong>updateData</strong></a>(self, score)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-QT_TRANSLATE_NOOP"><strong>QT_TRANSLATE_NOOP</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TRANSLATE_NOOP3"><strong>QT_TRANSLATE_NOOP3</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TRANSLATE_NOOP_UTF8"><strong>QT_TRANSLATE_NOOP_UTF8</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TR_NOOP"><strong>QT_TR_NOOP</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-QT_TR_NOOP_UTF8"><strong>QT_TR_NOOP_UTF8</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-SIGNAL"><strong>SIGNAL</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-SLOT"><strong>SLOT</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAbs"><strong>qAbs</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAcos"><strong>qAcos</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAddPostRoutine"><strong>qAddPostRoutine</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAlpha"><strong>qAlpha</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAsin"><strong>qAsin</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAtan"><strong>qAtan</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qAtan2"><strong>qAtan2</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qBlue"><strong>qBlue</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qChecksum"><strong>qChecksum</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qCritical"><strong>qCritical</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qDebug"><strong>qDebug</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qExp"><strong>qExp</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFabs"><strong>qFabs</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFastCos"><strong>qFastCos</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFastSin"><strong>qFastSin</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFatal"><strong>qFatal</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFuzzyCompare"><strong>qFuzzyCompare</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qFuzzyIsNull"><strong>qFuzzyIsNull</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qGray"><strong>qGray</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qGreen"><strong>qGreen</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qInstallMsgHandler"><strong>qInstallMsgHandler</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsFinite"><strong>qIsFinite</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsGray"><strong>qIsGray</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsInf"><strong>qIsInf</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsNaN"><strong>qIsNaN</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qIsNull"><strong>qIsNull</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRed"><strong>qRed</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRegisterResourceData"><strong>qRegisterResourceData</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRgb"><strong>qRgb</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRgba"><strong>qRgba</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qRound"><strong>qRound</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qTan"><strong>qTan</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qUnregisterResourceData"><strong>qUnregisterResourceData</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qVersion"><strong>qVersion</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qWarning"><strong>qWarning</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qrand"><strong>qrand</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qsrand"><strong>qsrand</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-qtTrId"><strong>qtTrId</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-valid"><strong>valid</strong></a>(entry, expr, fmt<font color="#909090">='normal'</font>, strict<font color="#909090">=True</font>)</dt><dd><tt>check&nbsp;if&nbsp;an&nbsp;expression&nbsp;follows&nbsp;some&nbsp;defined&nbsp;format&nbsp;(normal&nbsp;or&nbsp;dotted)</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>Fvals</strong> = {}<br>
+<strong>LicensedDeclarative</strong> = PySide.QtCore.QtValidLicenseForDeclarativeModule.LicensedDeclarative<br>
+<strong>LicensedMultimedia</strong> = PySide.QtCore.QtValidLicenseForMultimediaModule.LicensedMultimedia<br>
+<strong>LicensedOpenVG</strong> = PySide.QtCore.QtValidLicenseForOpenVGModule.LicensedOpenVG<br>
+<strong>QtCriticalMsg</strong> = PySide.QtCore.QtMsgType.QtCriticalMsg<br>
+<strong>QtDebugMsg</strong> = PySide.QtCore.QtMsgType.QtDebugMsg<br>
+<strong>QtFatalMsg</strong> = PySide.QtCore.QtMsgType.QtFatalMsg<br>
+<strong>QtSystemMsg</strong> = PySide.QtCore.QtMsgType.QtSystemMsg<br>
+<strong>QtWarningMsg</strong> = PySide.QtCore.QtMsgType.QtWarningMsg<br>
+<strong>lisp_lexer</strong> = &lt;ply.lex.Lexer object&gt;<br>
+<strong>lisp_parser</strong> = &lt;ply.yacc.LRParser object&gt;<br>
+<strong>nil</strong> = nil<br>
+<strong>qApp</strong> = None</td></tr></table>
+</body></html>
