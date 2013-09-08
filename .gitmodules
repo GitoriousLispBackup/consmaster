@@ -3,4 +3,4 @@
 	url = git://gitorious.org/pylisp/pylisp.git
 [submodule "src/server"]
 	path = src/server
-	url = git@gitorious.org:consmaster2/consmaster2-server.git
+	url = git://gitorious.org/consmaster2/consmaster2-server.git
