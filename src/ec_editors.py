@@ -307,8 +307,9 @@ class NewNormGraphExo(QDialog):
         elif self.list_widget.rowCount() == 0:
             InfoWindows("Entrez au moins un exercice")
         else:
+            name = self.name_field.text()
             level = self.difficulty_value.value()
-            filepath = '{}/NormGraph/{}_{}'.format(EXOS_DIR, level, self.name_field.text())
+            filepath = '{}/NormGraph/{}_{}'.format(EXOS_DIR, level, name)
             lst = list(self.iterAllItems())
             ex_save(CmNGExercice(name=name, level=level, lst=lst), filepath)
             if self.prev_file and self.prev_file != filepath:
@@ -438,7 +439,8 @@ class NewGraphNormExo(QDialog):
             InfoWindows("Entrez au moins un exercice")
         else:
             level = self.difficulty_value.value()
-            filepath = '{}/GraphNorm/{}_{}'.format(EXOS_DIR, level, self.name_field.text())
+            name = self.name_field.text()
+            filepath = '{}/GraphNorm/{}_{}'.format(EXOS_DIR, level, name)
             lst = list(self.iterAllItems())
             ex_save(CmGNExercice(name=name, level=level, lst=lst), filepath)
             if self.prev_file and self.prev_file != filepath:

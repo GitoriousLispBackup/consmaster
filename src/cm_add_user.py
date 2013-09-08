@@ -70,7 +70,7 @@ class AddUser(QDialog):
             return
         
         userDat = UserData(name, email, pwd)
-        userDat.setRegistered()
+        userDat.register()
         self.data.append(userDat)
         
         return super().accept()

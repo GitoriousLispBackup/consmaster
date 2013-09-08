@@ -47,7 +47,7 @@ class UserData:
     def __repr__(self):
         return '<UserData:\n' + '\n,'.join([self.nick, self.mail, self.pwd] + [repr(mode) for mode in self.modes.values()]) + '\n>'
 
-    def setRegistered(self):
+    def register(self):
         if self._registered:
             return
         elif user_is_registered(self.nick, self.pwd):
@@ -60,4 +60,4 @@ class UserData:
     def getRegistered(self):
         return self._registered
 
-    registered = property(fget=getRegistered, fset=setRegistered)
+    registered = property(fget=getRegistered)

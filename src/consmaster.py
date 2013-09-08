@@ -102,7 +102,7 @@ class Client(QMainWindow):
         if checked:
             selected_action = self.groupUser.checkedAction()
             self.currentUser = selected_action.data()
-            self.currentUser.setRegistered()
+            self.currentUser.register()
         self.updateStatusBar()
 
     def addUser(self):
