@@ -7,7 +7,7 @@ import os.path
 import json
 
 from ec_editors import NewNormDotExo, NewNormGraphExo, NewGraphNormExo, EXOS_DIR
-
+from cm_exercice import ex_load
 
 
 from server import *

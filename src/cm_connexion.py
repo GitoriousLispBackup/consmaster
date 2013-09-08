@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import json
-from connexion import Connexion
+from server.connexion import Connexion
 
 
 def ensure_user_is_registered(user, pwd):
