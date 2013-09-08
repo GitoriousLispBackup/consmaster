@@ -102,9 +102,10 @@ class NewNormDotExo(QDialog):
     def listExo(self):
         """ Create the table for listing """
         list_wid = QTableWidget()
-        list_wid.setColumnCount(2)
-        list_wid.setHorizontalHeaderLabels(["Dot", "Expression"])
+        list_wid.setColumnCount(3)
+        list_wid.setHorizontalHeaderLabels(["Once", "Dot", "Expression"])
         list_wid.setColumnWidth(0, 40)
+        list_wid.setColumnWidth(1, 40)
         list_wid.horizontalHeader().setStretchLastSection(True)
         list_wid.setSortingEnabled(False)
         list_wid.setSelectionMode(QAbstractItemView.SingleSelection)
@@ -112,7 +113,7 @@ class NewNormDotExo(QDialog):
 
         return list_wid
 
-    def add(self, value="(nil)", checked=False):
+    def add(self, value="(nil)", checked=False, once=False):
         """ Create a new entry with nedeed flags
         checked: False=Unchecked, True=Checked
         once = User have only one try or not [True/False]
@@ -124,11 +125,16 @@ class NewNormDotExo(QDialog):
         qdot.setFlags(Qt.ItemIsUserCheckable | Qt.ItemIsEnabled)
         qdot.setCheckState(Qt.Checked if checked else Qt.Unchecked)
 
+        qonce = QTableWidgetItem()
+        qonce.setFlags(Qt.ItemIsUserCheckable | Qt.ItemIsEnabled)
+        qonce.setCheckState(Qt.Checked if once else Qt.Unchecked)
+
         # ~ On ajoute une ligne
         # ~ Les rowCount ont un décalage de 1 O_o"
         self.list_widget.setRowCount(self.list_widget.rowCount() + 1)
-        self.list_widget.setItem(self.list_widget.rowCount() - 1, 0, qdot)
-        self.list_widget.setItem(self.list_widget.rowCount() - 1, 1, qi)
+        self.list_widget.setItem(self.list_widget.rowCount() - 1, 0, qonce)
+        self.list_widget.setItem(self.list_widget.rowCount() - 1, 1, qdot)
+        self.list_widget.setItem(self.list_widget.rowCount() - 1, 2, qi)
 
     def delete(self):
         """ Delete the current item """
@@ -156,9 +162,10 @@ class NewNormDotExo(QDialog):
     def iterAllItems(self):
         """ Create an iterator for lists' items """
         for i in range(self.list_widget.rowCount()):
-            checkbox = self.list_widget.item(i, 0)
-            textbox = self.list_widget.item(i, 1)
-            yield ('dotted' if checkbox.checkState() == Qt.Checked else 'normal'), textbox.text()
+            once = self.list_widget.item(i, 0)
+            checkbox = self.list_widget.item(i, 1)
+            textbox = self.list_widget.item(i, 2)
+            yield (True if once.checkState() == Qt.Checked else False), ('dotted' if checkbox.checkState() == Qt.Checked else 'normal'), textbox.text()
 
     def save(self):
         """Save file on disk """
@@ -185,9 +192,10 @@ class NewNormDotExo(QDialog):
         self.name_field.setText(exo)
         try:
             exo = ex_load(filepath)
-            for mode, expr in exo.lst:
+            for once, mode, expr in exo.lst:
+                print('load' , exo.lst)
                 checked = mode == 'dotted'
-                self.add(expr, checked)
+                self.add(expr, checked, once)
         except IOError as e:
             print(e)
             self.done(0)
@@ -263,8 +271,9 @@ class NewNormGraphExo(QDialog):
     def listExo(self):
         """ Create the table for listing """
         list_wid = QTableWidget()
-        list_wid.setColumnCount(1)
-        list_wid.setHorizontalHeaderLabels(["Expression"])
+        list_wid.setColumnCount(2)
+        list_wid.setHorizontalHeaderLabels(["Once", "Expression"])
+        list_wid.setColumnWidth(0, 40)
         list_wid.horizontalHeader().setStretchLastSection(True)
         list_wid.setSortingEnabled(False)
 
@@ -286,7 +295,8 @@ class NewNormGraphExo(QDialog):
         qonce.setCheckState(Qt.Checked if once else Qt.Unchecked)
 
         self.list_widget.setRowCount(self.list_widget.rowCount() + 1)
-        self.list_widget.setItem(self.list_widget.rowCount() - 1, 0, qi)
+        self.list_widget.setItem(self.list_widget.rowCount() - 1, 0, qonce)
+        self.list_widget.setItem(self.list_widget.rowCount() - 1, 1, qi)
 
     def delete(self):
         """ Delete the current item """
@@ -315,7 +325,8 @@ class NewNormGraphExo(QDialog):
     def iterAllItems(self):
         """ Create an iterator for lists' items """
         for i in range(self.list_widget.rowCount()):
-            yield self.list_widget.item(i, 0).text()
+            once = self.list_widget.item(i, 0)
+            yield (True if once.checkState() == Qt.Checked else False), self.list_widget.item(i, 1).text()
 
     # ~ Save to file, need to be serialized
     def save(self):
@@ -342,8 +353,8 @@ class NewNormGraphExo(QDialog):
         self.name_field.setText(exo)
         try:
             exo = ex_load(filepath)
-            for expr in exo.lst:
-                self.add(expr)
+            for once, expr in exo.lst:
+                self.add(expr, once)
         except IOError as e:
             print(e)
             self.done(0)
@@ -415,8 +426,9 @@ class NewGraphNormExo(QDialog):
     def listExo(self):
         """ Create the table for listing """
         list_wid = QTableWidget()
-        list_wid.setColumnCount(1)
-        list_wid.setHorizontalHeaderLabels(["Expression"])
+        list_wid.setColumnCount(2)
+        list_wid.setHorizontalHeaderLabels(["Once", "Expression"])
+        list_wid.setColumnWidth(0, 40)
         list_wid.horizontalHeader().setStretchLastSection(True)
         list_wid.setSortingEnabled(False)
         list_wid.setSelectionMode(QAbstractItemView.SingleSelection)
@@ -442,7 +454,8 @@ class NewGraphNormExo(QDialog):
         qonce.setCheckState(Qt.Checked if once else Qt.Unchecked)
 
         self.list_widget.setRowCount(self.list_widget.rowCount() + 1)
-        self.list_widget.setItem(self.list_widget.rowCount() - 1, 0, qi)
+        self.list_widget.setItem(self.list_widget.rowCount() - 1, 0, qonce)
+        self.list_widget.setItem(self.list_widget.rowCount() - 1, 1, qi)
 
     def edit(self, expr, item):
         """ Edit an item """
@@ -457,7 +470,8 @@ class NewGraphNormExo(QDialog):
     def iterAllItems(self):
         """ Create an iterator for lists' items """
         for i in range(self.list_widget.rowCount()):
-            yield self.list_widget.item(i, 0).data(Qt.UserRole)
+            once = self.list_widget.item(i, 0)
+            yield (True if once.checkState() == Qt.Checked else False), self.list_widget.item(i, 1).data(Qt.UserRole)
 
     def save(self):
         """Save file on disk """
@@ -483,8 +497,8 @@ class NewGraphNormExo(QDialog):
         self.name_field.setText(exo)
         try:
             exo = ex_load(filepath)
-            for expr in exo.lst:
-                self.add(expr)
+            for once, expr in exo.lst:
+                self.add(expr, once)
         except IOError as e:
             print(e)
             self.done(0)
