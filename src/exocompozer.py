@@ -4,9 +4,14 @@
 import sys
 import os
 import os.path
+import json
 
 from ec_editors import NewNormDotExo, NewNormGraphExo, NewGraphNormExo, EXOS_DIR
 
+
+
+from server import *
+from server.connexion import Connexion
 
 try:
     from PySide.QtCore import *
@@ -41,6 +46,7 @@ class Compozer(QMainWindow):
 
         self.setCentralWidget(self.central_widget)
 
+        #self.upload()
         self.populate()
 
         self.show()
@@ -70,6 +76,8 @@ class Compozer(QMainWindow):
                                       triggered=self.deleteAllExo)
         self.refresh = QAction("Refresh", self, \
                                               triggered=self.populate)
+        self.uploadAction = QAction("Upload", self, \
+                                              triggered=self.upload)
 
     def createMenus(self):
         menu = self.menuBar().addMenu("Menu")
@@ -85,10 +93,12 @@ class Compozer(QMainWindow):
         menu.addAction(self.refresh)
         menu.addSeparator()
         menu.addAction(self.quitAction)
+        menu = self.menuBar().addMenu("Serveur")
+        menu.addAction(self.uploadAction)
 
     def createWidget(self):
-        """ 
-        Create main tab widget 
+        """
+        Create main tab widget
         Table have 3 cols: name, diff(int), diff(img)
         The 1st diff isn't display in list mode
         """
@@ -250,6 +260,49 @@ class Compozer(QMainWindow):
     def newFreeExo(self):
         pass
 
+    """
+        Networking
+    """
+
+    def upload(self):
+        """ Upload all exercises to server's database """
+        
+        r = Login()
+        retval = r.exec_()
+        if retval != QDialog.Accepted:
+            return
+        
+        data = {}
+        
+        data['action'] = 'creatExo'
+        data['nickname'] = r.nick
+        data['password'] = r.password
+
+        for dirname in os.listdir(EXOS_DIR):
+            for filename in os.listdir(EXOS_DIR + '/' + dirname):
+                lvl, _, nm = filename.partition('_')
+                pathname = EXOS_DIR + '/' + dirname + '/' + filename
+                exo = ex_load(pathname)
+                #print (exo)
+                data['data'] = {'name': nm, 'type': exo.type, 'level': exo.level, 'raw': open(pathname, 'r').read()}
+
+                # if dirname == "NormDot":
+                #     data['data'] = {"level": lvl, "type": "__ND__", "raw": "'" + content + "'"}
+                # elif dirname == "NormGraph":
+                #     data['data'] = {"level": lvl, "type": "__NG__", "raw": "'" + content + "'"}
+                # elif dirname == "GraphNorm":
+                #     data['data'] = {"level": lvl, "type": "__GN__", "raw": "'" + content + "'"}
+                # else:
+                #     print("Upload: Dossiers inconnus rencontrés")
+
+                #data['data'] : {"level": 3, "type": "__NG__", "raw": ''}}
+                #print("data 1 :", data)
+                entry = json.dumps(data)
+                #print("data 2 :", entry)
+                c = Connexion(entry)
+                print (c.result)
+
+
 
 class IntQTableWidgetItem(QTableWidgetItem):
     """ Custom QTableWidget for sorting
@@ -261,6 +314,47 @@ class IntQTableWidgetItem(QTableWidgetItem):
 
     def __lt__(self, other):
         return (self.data(Qt.UserRole) < other.data(Qt.UserRole))
+
+
+class Login(QDialog):
+    """Simple login dialog"""
+    def __init__(self):
+        super().__init__()
+
+        self.loginInput = QLineEdit(self)
+        self.passwordInput = QLineEdit(self)
+
+        layout = QVBoxLayout()
+
+        okBtn = QPushButton("Valider", self)
+        cancelBtn = QPushButton("Quitter", self)
+
+        formLayout = QFormLayout()
+        formLayout.addRow("&Nom d'utilisateur:", self.loginInput)
+        formLayout.addRow("&Password:", self.passwordInput)
+
+        buttonLayout = QHBoxLayout()
+        buttonLayout.addWidget(okBtn)
+        buttonLayout.addWidget(cancelBtn)
+
+        layout.addLayout(formLayout)
+        layout.addLayout(buttonLayout)
+        self.setLayout(layout)
+
+        okBtn.clicked.connect(self.accept)
+        cancelBtn.clicked.connect(self.reject)
+
+        #self.exec_()
+
+    def accept(self):
+        self.nick = self.loginInput.text()
+        self.password = self.passwordInput.text()
+        
+        if not self.nick or not self.password:
+            QMessageBox.warning(self, 'Attention', 'Données invalides')
+            return
+        return super().accept()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
