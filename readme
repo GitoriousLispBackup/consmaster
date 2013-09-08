@@ -4,7 +4,7 @@ il faut suivre ces étapes :
 1. Installation des dépendances :
     - avoir qt4 installé
     - avoir python3 installé
-    - installer PySide et PLY ( sous ubuntu : 'sudo apt-get install python3-ply python3-pyside' )
+    - installer PySide, PLY et sqlalchemy ( sous ubuntu : 'sudo apt-get install python3-ply python3-pyside python3-sqlalchemy' )
 
 2. Télécharger le projet depuis le dépot git (il faut avoir l'outil git installé), avec les commandes :
     cd ~
