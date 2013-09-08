@@ -7,7 +7,7 @@ import os.path
 import json
 
 from ec_editors import NewNormDotExo, NewNormGraphExo, NewGraphNormExo, EXOS_DIR
-from cm_exercice import ex_load
+from cm_exercice import decoder
 
 
 from server import *
@@ -282,26 +282,14 @@ class Compozer(QMainWindow):
             for filename in os.listdir(EXOS_DIR + '/' + dirname):
                 lvl, _, nm = filename.partition('_')
                 pathname = EXOS_DIR + '/' + dirname + '/' + filename
-                exo = ex_load(pathname)
-                #print (exo)
-                data['data'] = {'name': nm, 'type': exo.type, 'level': exo.level, 'raw': open(pathname, 'r').read()}
+                serialized = open(pathname, 'r').read()
+                exo = json.loads(serialized, object_hook=decoder)
 
-                # if dirname == "NormDot":
-                #     data['data'] = {"level": lvl, "type": "__ND__", "raw": "'" + content + "'"}
-                # elif dirname == "NormGraph":
-                #     data['data'] = {"level": lvl, "type": "__NG__", "raw": "'" + content + "'"}
-                # elif dirname == "GraphNorm":
-                #     data['data'] = {"level": lvl, "type": "__GN__", "raw": "'" + content + "'"}
-                # else:
-                #     print("Upload: Dossiers inconnus rencontrés")
-
-                #data['data'] : {"level": 3, "type": "__NG__", "raw": ''}}
-                #print("data 1 :", data)
+                data['data'] = {'name': exo.name, 'type': exo.type, 'level': exo.level, 'raw': serialized}
                 entry = json.dumps(data)
-                #print("data 2 :", entry)
+                
                 c = Connexion(entry)
                 print (c.result)
-
 
 
 class IntQTableWidgetItem(QTableWidgetItem):
