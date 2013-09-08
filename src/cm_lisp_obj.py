@@ -55,8 +55,9 @@ class LispInputDialog(QDialog):
 class GCons(QGraphicsItem):
     """ A graphical cons base class """
 
-    def __init__(self, car=None, cdr=None, iden=None, parent=None, scene=None):
+    def __init__(self, car=None, cdr=None, parent=None, scene=None):
         super().__init__(parent, scene)
+        
         self.setFlags(QGraphicsItem.ItemIsMovable | QGraphicsItem.ItemIsSelectable | QGraphicsItem.ItemSendsGeometryChanges)
 
         self.car = car

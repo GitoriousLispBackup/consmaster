@@ -47,7 +47,7 @@ class AddUser(QDialog):
         name = self.nameLineEdit.text().strip()
         if not name:
             errMsg.append('- Vous devez spéfifier un nom valide')
-        elif name in {user.name for user in self.data}:
+        elif name in {user.nick for user in self.data}:
             errMsg.append('- Ce nom existe déjà')
 
         email = self.emailLineEdit.text().strip()
@@ -68,5 +68,9 @@ class AddUser(QDialog):
         if errMsg:
             QMessageBox.warning(self, 'Attention', '\n'.join(errMsg))
             return
-        self.data.append(UserData(name, email, pwd))
+        
+        userDat = UserData(name, email, pwd)
+        userDat.setRegistered()
+        self.data.append(userDat)
+        
         return super().accept()

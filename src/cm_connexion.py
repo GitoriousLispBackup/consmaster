@@ -5,14 +5,16 @@ import json
 from server.connexion import Connexion
 
 
-def ensure_user_is_registered(user, pwd):
+#TODO : ajouter des messages d'erreur
+
+def user_is_registered(user, pwd):
     dct = {'action': 'identUser', 'data': {'nickname': user, 'password': pwd}}
     data = json.dumps(dct)
     try:
         request = Connexion(data)
         response = json.loads(request.result)
         print(response)
-        return response['status'] == 'success' and response['code'] == 'S_AUI' and response['data']
+        return response['status'] == 'success' and response['code'] == 'S_AUI'
     except:
         print('exception occured')
         return False
@@ -60,4 +62,3 @@ def get_exercice_by_uid(uid):
     except:
         print('exception occured')
         return None
-
