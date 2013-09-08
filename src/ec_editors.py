@@ -18,7 +18,7 @@ except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
-    
+
 EXOS_DIR = '../save'
 
 class InfoWindows(QMessageBox):
@@ -59,6 +59,10 @@ class NewNormDotExo(QDialog):
         self.difficulty_value.setMaximum(10)
         self.difficulty_value.setValue(self.diff)
 
+        # Mode réponse unique
+        onceLabel = QLabel("Réponses uniques")
+        self.onceMode = QCheckBox()
+
         list_add_btn = QPushButton("Ajouter")
         list_rm_btn = QPushButton("Supprimer")
 
@@ -79,6 +83,8 @@ class NewNormDotExo(QDialog):
         layout.addWidget(self.name_field, 0, 1)
         layout.addWidget(difficulty_label, 1, 0)
         layout.addWidget(self.difficulty_value, 1, 1)
+        layout.addWidget(onceLabel, 2, 0)
+        layout.addWidget(self.onceMode, 2, 1)
         layout.addWidget(self.list_widget, 5, 0, 1, 2)
         layout.addWidget(list_add_btn, 6, 0)
         layout.addWidget(list_rm_btn, 6, 1)
@@ -109,6 +115,7 @@ class NewNormDotExo(QDialog):
     def add(self, value="(nil)", checked=False):
         """ Create a new entry with nedeed flags
         checked: False=Unchecked, True=Checked
+        once = User have only one try or not [True/False]
         """
         qi = QTableWidgetItem(value)
         qi.setFlags(Qt.ItemIsEditable | Qt.ItemIsSelectable | Qt.ItemIsEnabled)
@@ -164,6 +171,7 @@ class NewNormDotExo(QDialog):
             name = self.name_field.text()
             filepath = '{}/NormDot/{}_{}'.format(EXOS_DIR, level, name)
             lst = list(self.iterAllItems())
+            print(lst)
             ex_save(CmNDNExercice(name=name, level=level, lst=lst), filepath)
             if self.prev_file and self.prev_file != filepath:
                 os.remove(self.prev_file)
@@ -213,6 +221,10 @@ class NewNormGraphExo(QDialog):
         self.difficulty_value.setMaximum(10)
         self.difficulty_value.setValue(self.diff)
 
+         # Mode réponse unique
+        onceLabel = QLabel("Réponses uniques")
+        self.onceMode = QCheckBox()
+
         list_add_btn = QPushButton("Ajouter")
         list_rm_btn = QPushButton("Supprimer")
         list_add_btn.clicked.connect(self.add)
@@ -232,6 +244,8 @@ class NewNormGraphExo(QDialog):
         layout.addWidget(self.name_field, 0, 1)
         layout.addWidget(difficulty_label, 1, 0)
         layout.addWidget(self.difficulty_value, 1, 1)
+        layout.addWidget(onceLabel, 2, 0)
+        layout.addWidget(self.onceMode, 2, 1)
         layout.addWidget(self.list_widget, 5, 0, 1, 2)
         layout.addWidget(list_add_btn, 6, 0)
         layout.addWidget(list_rm_btn, 6, 1)
@@ -261,11 +275,15 @@ class NewNormGraphExo(QDialog):
 
         return list_wid
 
-    def add(self, value="nil"):
+    def add(self, value="nil", once=False):
         """ Create an entry with nedeed flags """
 
         qi = QTableWidgetItem(value)
         qi.setFlags(Qt.ItemIsEditable | Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+
+        qonce = QTableWidgetItem()
+        qonce.setFlags(Qt.ItemIsUserCheckable | Qt.ItemIsEnabled)
+        qonce.setCheckState(Qt.Checked if once else Qt.Unchecked)
 
         self.list_widget.setRowCount(self.list_widget.rowCount() + 1)
         self.list_widget.setItem(self.list_widget.rowCount() - 1, 0, qi)
@@ -357,6 +375,10 @@ class NewGraphNormExo(QDialog):
         self.difficulty_value.setMaximum(10)
         self.difficulty_value.setValue(self.diff)
 
+         # Mode réponse unique
+        onceLabel = QLabel("Réponses uniques")
+        self.onceMode = QCheckBox()
+
         list_add_btn = QPushButton("Ajouter")
         list_rm_btn = QPushButton("Supprimer")
         list_add_btn.clicked.connect(self.add)
@@ -374,6 +396,8 @@ class NewGraphNormExo(QDialog):
         layout.addWidget(self.name_field, 0, 1)
         layout.addWidget(difficulty_label, 1, 0)
         layout.addWidget(self.difficulty_value, 1, 1)
+        layout.addWidget(onceLabel, 2, 0)
+        layout.addWidget(self.onceMode, 2, 1)
         layout.addWidget(self.list_widget, 5, 0, 1, 2)
         layout.addWidget(list_add_btn, 6, 0)
         layout.addWidget(list_rm_btn, 6, 1)
@@ -405,13 +429,17 @@ class NewGraphNormExo(QDialog):
         editor = GraphEditor(self, item)
         editor.exec_()
 
-    def add(self, interm_expr=None):
+    def add(self, interm_expr=None, once=False):
         """ Create an entry with nedeed flags """
 
         value = 'nil' if interm_expr is None else str(interm_expr)
         qi = QTableWidgetItem(value)
         qi.setData(Qt.UserRole, interm_expr)
         qi.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+
+        qonce = QTableWidgetItem()
+        qonce.setFlags(Qt.ItemIsUserCheckable | Qt.ItemIsEnabled)
+        qonce.setCheckState(Qt.Checked if once else Qt.Unchecked)
 
         self.list_widget.setRowCount(self.list_widget.rowCount() + 1)
         self.list_widget.setItem(self.list_widget.rowCount() - 1, 0, qi)
