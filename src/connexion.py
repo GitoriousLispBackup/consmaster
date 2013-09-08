@@ -17,7 +17,7 @@ import json
 import sys
 
 from codes import *
-#from compress import *
+from compress import *
 
 
 
