@@ -55,7 +55,7 @@ class UserData:
             print('user already registered')
         else:
             print('register', self.nick)
-            self._registered = create_user(self.nick, self.mail, self.pwd)
+            self._registered = create_user(self.nick, self.pwd, self.mail)
 
     def getRegistered(self):
         return self._registered
