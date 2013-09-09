@@ -266,14 +266,14 @@ class Compozer(QMainWindow):
 
     def upload(self):
         """ Upload all exercises to server's database """
-        
+
         r = Login()
         retval = r.exec_()
         if retval != QDialog.Accepted:
             return
-        
+
         data = {}
-        
+
         data['action'] = 'creatExo'
         data['nickname'] = r.nick
         data['password'] = r.password
@@ -287,7 +287,7 @@ class Compozer(QMainWindow):
 
                 data['data'] = {'name': exo.name, 'type': exo.type, 'level': exo.level, 'raw': serialized}
                 entry = json.dumps(data)
-                
+
                 c = Connexion(entry)
                 print (c.result)
 
@@ -337,12 +337,11 @@ class Login(QDialog):
     def accept(self):
         self.nick = self.loginInput.text()
         self.password = self.passwordInput.text()
-        
+
         if not self.nick or not self.password:
             QMessageBox.warning(self, 'Attention', 'Données invalides')
             return
         return super().accept()
-
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
