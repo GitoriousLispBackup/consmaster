@@ -161,7 +161,7 @@ class NewNormDotExo(QDialog):
         for i in range(self.list_widget.rowCount()):
             checkbox = self.list_widget.item(i, 0)
             textbox = self.list_widget.item(i, 1)
-            yield ('dotted' if checkbox.isChecked() else 'normal'), textbox.text()
+            yield ('dotted' if checkbox.checkState() == Qt.Checked else 'normal'), textbox.text()
 
     def save(self):
         """Save file on disk """
@@ -281,10 +281,6 @@ class NewNormGraphExo(QDialog):
 
         qi = QTableWidgetItem(value)
         qi.setFlags(Qt.ItemIsEditable | Qt.ItemIsSelectable | Qt.ItemIsEnabled)
-
-        qonce = QTableWidgetItem()
-        qonce.setFlags(Qt.ItemIsUserCheckable | Qt.ItemIsEnabled)
-        qonce.setCheckState(Qt.Checked if once else Qt.Unchecked)
 
         self.list_widget.setRowCount(self.list_widget.rowCount() + 1)
         self.list_widget.setItem(self.list_widget.rowCount() - 1, 0, qi)
@@ -416,7 +412,7 @@ class NewGraphNormExo(QDialog):
         """ Create the table for listing """
         list_wid = QTableWidget()
         list_wid.setColumnCount(1)
-        list_wid.setHorizontalHeaderLabels(["Once", "Expression"])
+        list_wid.setHorizontalHeaderLabels(["Expression"])
         list_wid.horizontalHeader().setStretchLastSection(True)
         list_wid.setSortingEnabled(False)
         list_wid.setSelectionMode(QAbstractItemView.SingleSelection)
