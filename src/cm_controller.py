@@ -19,6 +19,8 @@ from cm_lisp_graphic import *
 from cm_terminal import *
 from cm_interpreter import Interpreter, GraphExpr
 from cm_expr_generator import level_expr_gen
+from cm_globals import *
+
 
 
 class CmController(QObject):
@@ -200,11 +202,14 @@ class ExerciceMixin:
     mixin for exercice gestion
     """
 
-    def __init__(self, userData, src):
+    def __init__(self, userData, uid):
+        exo = CM_BDD[uid]
+        self.uid = uid
         self.userData = userData
         self.exoNum = 0
-        self.total = len(src)
-        self.enonceIter = iter(src)  # TODO : make it work
+        self.total = len(exo.lst)
+        self.enonceIter = iter(exo.lst)
+        self.once = exo.once
         self.results = defaultdict(list)
 
     @Slot(object)
@@ -223,7 +228,9 @@ class ExerciceMixin:
         else:
             self.help(interm, self.interm_enonce)
             # TODO: eventuellement empêcher de reccomencer l'exercice
-        self.results[self.exoNum].append(1 if ok else 0)
+            if self.once:
+                pass
+        self.results[self.exoNum].append(entry)
 
     def next(self):
         self.exoNum += 1
@@ -233,10 +240,12 @@ class ExerciceMixin:
             formatted = self.fmt(self.enonce)  # side effect : set interm_repr
             self.enonceChanged.emit(formatted)
         except StopIteration:
-            print('end')
-            # TODO: calculer et annoncer la note
-            # l'enregistrer, et eventuellement l'envoyer sur le serveur
-            self.completed.emit()            
+            self.completed.emit()
+        
+    def storeResults(self):
+        # enregistrer les résultats en attendant l'envoi sur le serveur
+        self.userData.addExerciceData(self.uid, self.results)
+        # TODO: calculer et annoncer la note
 
 
 
@@ -282,9 +291,9 @@ class CmGTNConvTrainingController(CmGraphicToNormalController, TrainingMixin):
 ###############################################################################
 
 class CmNDConvExerciceController(CmNormalDottedConvController, ExerciceMixin):
-    def __init__(self, userData, src):
+    def __init__(self, userData, uid):
         CmNormalDottedConvController.__init__(self)
-        ExerciceMixin.__init__(self, userData, src.lst)
+        ExerciceMixin.__init__(self, userData, uid)
 
     def fmt(self, enonce):
         """
@@ -296,9 +305,9 @@ class CmNDConvExerciceController(CmNormalDottedConvController, ExerciceMixin):
         return '<i>[' + self.typ + ']</i><br>' + enonce[1]
 
 class CmNTGConvExerciceController(CmNormalToGraphicController, ExerciceMixin):
-    def __init__(self, userData, src):
+    def __init__(self, userData, uid):
         CmNormalToGraphicController.__init__(self)
-        ExerciceMixin.__init__(self, userData, src.lst)
+        ExerciceMixin.__init__(self, userData, uid)
 
     def fmt(self, enonce):
         """
@@ -309,9 +318,9 @@ class CmNTGConvExerciceController(CmNormalToGraphicController, ExerciceMixin):
         return enonce
 
 class CmGTNConvExerciceController(CmGraphicToNormalController, ExerciceMixin):
-    def __init__(self, userData, src):
+    def __init__(self, userData, uid):
         CmGraphicToNormalController.__init__(self)
-        ExerciceMixin.__init__(self, userData, src.lst)
+        ExerciceMixin.__init__(self, userData, uid)
 
     def fmt(self, enonce):
         """

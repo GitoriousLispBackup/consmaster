@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from collections import defaultdict, OrderedDict
+
 from cm_globals import MODES
 from cm_connexion import user_is_registered, create_user
 
@@ -11,7 +12,7 @@ class ExoType:
     """
     def __init__(self):
         self.training = defaultdict(list)   # key is the level
-        self.exercices = defaultdict(dict)  # idem
+        self.exercices = dict()             # key is the server exercice uid
 
     def currentLevel(self):
         for lvl in sorted(self.training.keys(), reverse=True):
@@ -23,8 +24,12 @@ class ExoType:
     def addTrainingData(self, lvl, score):
         self.training[lvl].append(score)
 
-    def addExerciceData(self, lvl, uid, score):
-        self.exercices[lvl][uid] = score
+    def addExerciceData(self, uid, data):
+        """
+        stocke les soumissions en cas de réseau indisponible,
+        sinon, stocke les uis déjà réalisées.
+        """
+        self.exercices[uid] = data
 
     def __repr__(self):
         return 'ExoType(training=' + repr(self.training) + ', exercices=' + repr(self.exercices) + ')'

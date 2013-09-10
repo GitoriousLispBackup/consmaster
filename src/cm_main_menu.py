@@ -20,11 +20,13 @@ except:
     sys.exit(1)
 
 
+_constructors = {'__NDN__': createTextMode, '__NG__': createNormalToGraphicMode, '__GN__': createGraphicToNormalMode}
+
 class ButtonMenu(QPushButton):
     def __init__(self, mode):
         super().__init__('\n'.join(textwrap.wrap(mode.name, 10)))
         self.description = open(mode.src, 'r', encoding='utf-8').read() if mode.src else 'information manquante sur ce mode'
-        self.constructor = mode.constructor
+        self.constructor = _constructors[mode.type]
         self.id = mode.name
         if mode.type:
             self.type = mode.type
@@ -149,14 +151,14 @@ class MainMenu(QWidget):
         self.mainwindow.central_widget.addWidget(widget)
         self.mainwindow.central_widget.setCurrentWidget(widget)
 
-    @Slot(CmExerciceBase)
-    def startExercice(self, exo):
+    @Slot(int)
+    def startExercice(self, uid):
         """
         Start selected exercice.
         """
         selectedBtn = self.buttons_group.checkedButton()
         user = self.mainwindow.currentUser
-        widget = selectedBtn.constructor(user.get_mode(selectedBtn.id), exo)
+        widget = selectedBtn.constructor(user.get_mode(selectedBtn.id), uid)
 
         widget.closeRequested.connect(self.closeWidget)
 

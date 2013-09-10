@@ -149,6 +149,9 @@ class WorkSpace(QWidget):
         self.validate_btn.setDisabled(True)
 
     def closeReq(self):
+        #TODO: demander si l'utilisateur veut vraiment arréter 
+        #(s'il n'a pas fini seulement)
+        self.controller.storeResults()
         self.closeRequested.emit(self)
 
 
@@ -171,32 +174,32 @@ class ExerciceWorkSpace(WorkSpace):
 ######################################################
 #                   constructors
 
-def createTextMode(userData, src=None):
-    if not src:
+def createTextMode(userData, uid=None):
+    if not uid:
         widget = TrainingWorkSpace(EnonceTexte(), SimpleLineEdit())
         controller = CmNDConvTrainingController(userData)
     else:
         widget = ExerciceWorkSpace(EnonceTexte(), SimpleLineEdit())
-        controller = CmNDConvExerciceController(userData, src)
+        controller = CmNDConvExerciceController(userData, uid)
     widget.setController(controller)
     return widget
 
-def createNormalToGraphicMode(userData, src=None):
-    if not src:
+def createNormalToGraphicMode(userData, uid=None):
+    if not uid:
         widget = TrainingWorkSpace(EnonceTexte(), GraphicalLispGroupWidget())
         controller = CmNTGConvTrainingController(userData)
     else:
         widget = ExerciceWorkSpace(EnonceTexte(), GraphicalLispGroupWidget())
-        controller = CmNTGConvExerciceController(userData, src)
+        controller = CmNTGConvExerciceController(userData, uid)
     widget.setController(controller)
     return widget
 
-def createGraphicToNormalMode(userData, src=None):
-    if not src:
+def createGraphicToNormalMode(userData, uid=None):
+    if not uid:
         widget = TrainingWorkSpace(EnonceGraphique(), SimpleLineEdit())
         controller = CmGTNConvTrainingController(userData)
     else:
         widget = ExerciceWorkSpace(EnonceGraphique(False), SimpleLineEdit())
-        controller = CmGTNConvExerciceController(userData, src)
+        controller = CmGTNConvExerciceController(userData, uid)
     widget.setController(controller)
     return widget

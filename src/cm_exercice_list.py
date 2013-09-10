@@ -37,7 +37,7 @@ class ExosList(QWidget):
     """
     Widget for displaying and manage exercices list.
     """
-    openExerciceRequested = Signal(CmExerciceBase)
+    openExerciceRequested = Signal(int)
 
     class QTableWidgetLevelItem(QTableWidgetItem):
         """
@@ -54,9 +54,9 @@ class ExosList(QWidget):
         """
         Custom QTableWidgetItem for save exercices data.
         """
-        def __init__(self, data):
-            super().__init__(data.name)
-            self.setData(Qt.UserRole, data)
+        def __init__(self, name, uid):
+            super().__init__(name)
+            self.setData(Qt.UserRole, uid)
 
     class QLabelStar(QLabel):
         """
@@ -70,6 +70,7 @@ class ExosList(QWidget):
 
     def __init__(self):
         super().__init__()
+        
         label = QLabel("<b>Liste d'exercices</b>")
         self.lst = QTableWidget()
         self.lst.setColumnCount(3)
@@ -107,9 +108,9 @@ class ExosList(QWidget):
             if exercice.type == exo_typ: # and lvl <= current_level:
                 n = self.lst.rowCount()
                 self.lst.setRowCount(n + 1)
-                self.lst.setItem(n, 0, self.QTableWidgetExoItem(exercice))
-                self.lst.setItem(n, 1, self.QTableWidgetLevelItem(int(lvl)))
-                self.lst.setCellWidget(n, 2, self.QLabelStar(int(lvl)))
+                self.lst.setItem(n, 0, self.QTableWidgetExoItem(exercice.name, uid))
+                self.lst.setItem(n, 1, self.QTableWidgetLevelItem(lvl))
+                self.lst.setCellWidget(n, 2, self.QLabelStar(lvl))
         self.lst.sortItems(1)
 
     @Slot(QTableWidgetItem)
