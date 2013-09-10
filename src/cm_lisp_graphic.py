@@ -93,9 +93,8 @@ class GlispWidget(QGraphicsView):
         self.rootArrow = RootArrow()
         scene.addItem(self.rootArrow)
 
-        # hack - force to resizeEvent()
-        # ~ self.show()
         self.setMinimumSize(600, 380)
+        self.show()  # hack - force to resizeEvent()
 
     def getExpr(self, with_layout=False):
         """
