@@ -6,8 +6,9 @@ import os
 import os.path
 import json
 
-from ec_editors import NewNormDotExo, NewNormGraphExo, NewGraphNormExo, EXOS_DIR
+from ec_editors import NewNormDotExo, NewNormGraphExo, NewGraphNormExo, EXOS_DIR, EC_BDD
 from cm_exercice import decoder
+from cm_globals import MODES
 
 
 from server import *
@@ -20,9 +21,6 @@ except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
 
-eq = {"Normal - Dotted": "NormDot",
-        "Normal - Graph": "NormGraph",
-        "Graph - Normal": "GraphNorm"}
 
 
 class Compozer(QMainWindow):
@@ -55,10 +53,6 @@ class Compozer(QMainWindow):
         """ Checks if valid path, create if not """
         if not os.path.exists(EXOS_DIR):
             os.mkdir(EXOS_DIR)
-        for subdir in eq.values():
-            path = EXOS_DIR + '/' + subdir
-            if not os.path.exists(path):
-                os.mkdir(path)
 
     def createActions(self):
         self.quitAction = QAction("Quitter", self, triggered=self.close)
@@ -68,8 +62,7 @@ class Compozer(QMainWindow):
                                            triggered=self.newNormGraphExo)
         self.createGraphNormExo = QAction("New Graph->Norm", self, \
                                            triggered=self.newGraphNormExo)
-        self.createFreeExo = QAction("New Free", self, \
-                                      triggered=self.newFreeExo)
+
         self.removeExo = QAction("Remove Entry", self, \
                                       triggered=self.deleteExo)
         self.removeAllExo = QAction("Remove _All_ Entry", self, \
@@ -84,7 +77,6 @@ class Compozer(QMainWindow):
         menu.addAction(self.createDotNormExo)
         menu.addAction(self.createNormGraphExo)
         menu.addAction(self.createGraphNormExo)
-        menu.addAction(self.createFreeExo)
         menu.addSeparator()
         menu.addAction(self.removeExo)
         menu.addSeparator()
@@ -162,33 +154,32 @@ class Compozer(QMainWindow):
     def populate(self):
         """ Populate tab widgets w/ files names """
         self.clearAll()
-        for dirname in os.listdir(EXOS_DIR):
-            for filename in os.listdir(EXOS_DIR + '/' + dirname):
-                lvl, _, nm = filename.partition('_')
+        for nm, storage in EC_BDD.items():
+            lvl = storage.level
+            name = QTableWidgetItem(nm)
+            
+            # ~ Custom class for sorting
+            diff = IntQTableWidgetItem(lvl)
+            diff.setFlags(Qt.ItemIsSelectable)
+            graphDiff = QLabel(self.graphicalDiff(lvl))
 
-                name = QTableWidgetItem(nm)
-                # ~ Custom class for sorting
-                diff = IntQTableWidgetItem(lvl)
-                diff.setFlags(Qt.ItemIsSelectable)
-                graphDiff = QLabel(self.graphicalDiff(lvl))
-
-                if dirname == "NormDot":
-                    self.tabND.setRowCount(self.tabND.rowCount() + 1)
-                    self.tabND.setItem(self.tabND.rowCount() - 1, 0, name)
-                    self.tabND.setCellWidget(self.tabND.rowCount() - 1, 2, graphDiff)
-                    self.tabND.setItem(self.tabND.rowCount() - 1, 1, diff)
-                elif dirname == "NormGraph":
-                    self.tabNG.setRowCount(self.tabNG.rowCount() + 1)
-                    self.tabNG.setItem(self.tabNG.rowCount() - 1, 0, name)
-                    self.tabNG.setCellWidget(self.tabNG.rowCount() - 1, 2, graphDiff)
-                    self.tabNG.setItem(self.tabNG.rowCount() - 1, 1, diff)
-                elif dirname == "GraphNorm":
-                    self.tabGN.setRowCount(self.tabGN.rowCount() + 1)
-                    self.tabGN.setItem(self.tabGN.rowCount() - 1, 0, name)
-                    self.tabGN.setCellWidget(self.tabGN.rowCount() - 1, 2, graphDiff)
-                    self.tabGN.setItem(self.tabGN.rowCount() - 1, 1, diff)
-                else:
-                    print("Dossiers inconnus rencontrés")
+            if storage.type == "__NDN__":
+                self.tabND.setRowCount(self.tabND.rowCount() + 1)
+                self.tabND.setItem(self.tabND.rowCount() - 1, 0, name)
+                self.tabND.setCellWidget(self.tabND.rowCount() - 1, 2, graphDiff)
+                self.tabND.setItem(self.tabND.rowCount() - 1, 1, diff)
+            elif storage.type == "__NG__":
+                self.tabNG.setRowCount(self.tabNG.rowCount() + 1)
+                self.tabNG.setItem(self.tabNG.rowCount() - 1, 0, name)
+                self.tabNG.setCellWidget(self.tabNG.rowCount() - 1, 2, graphDiff)
+                self.tabNG.setItem(self.tabNG.rowCount() - 1, 1, diff)
+            elif storage.type == "__GN__":
+                self.tabGN.setRowCount(self.tabGN.rowCount() + 1)
+                self.tabGN.setItem(self.tabGN.rowCount() - 1, 0, name)
+                self.tabGN.setCellWidget(self.tabGN.rowCount() - 1, 2, graphDiff)
+                self.tabGN.setItem(self.tabGN.rowCount() - 1, 1, diff)
+            else:
+                print("Elements inconnus rencontrés")
 
         self.tabND.sortItems(1)
         self.tabNG.sortItems(1)
@@ -208,15 +199,13 @@ class Compozer(QMainWindow):
         return stars
 
     def deleteExo(self):
-        """ Remoce an exo from list and from disk """
-        # ~ Get file type
-        exo_type = eq[self.tabWidget.tabText(self.tabWidget.currentWidget())]
+        """ Remove an exo from list and from disk """
         # ~ Get file name
         exo_name = self.tabWidget.currentWidget().item(self.tabWidget.currentWidget().currentRow(), 0).text()
-        # ~ Get diff
-        exo_diff = self.tabWidget.currentWidget().item(self.tabWidget.currentWidget().currentRow(), 1).text()
-        # ~ Remove file
-        os.remove("{}/{}/{}_{}".format(EXOS_DIR, exo_type, exo_diff, exo_name))
+        #TODO: delete it from server
+        del EC_BDD[exo_name]
+        
+        EC_BDD.sync()
 
         self.tabWidget.currentWidget().removeRow(self.tabWidget.currentWidget().currentRow())
 
@@ -232,18 +221,18 @@ class Compozer(QMainWindow):
             for row in range(0, tab.rowCount()):
                 # ~ Get file name
                 exo_name = tab.item(row, 0).text()
-                # ~ Get diff
-                exo_diff = tab.item(row, 1).text()
                 # ~ Remove file
-                os.remove("{}/{}/{}_{}".format(EXOS_DIR, exo_type, exo_diff, exo_name))
+                del EC_BDD[exo_name]
 
                 tab.removeRow(row)
+        
+        EC_BDD.sync()
 
     def editExo(self, item):
         """ Launch the correct widget to edit the exo """
         editor = self.tabWidget.currentWidget().editor
-        level = int(self.tabWidget.currentWidget().item(item.row(), 1).text())
-        editor(self, item.text(), level)
+        level = self.tabWidget.currentWidget().item(item.row(), 1).value
+        editor(self, item.text(), diff=level, overwrite=True)
 
     def newNormDotExo(self):
         """ New Norm <-> Dot exo """
@@ -257,8 +246,6 @@ class Compozer(QMainWindow):
         """ New Graph -> Norm exo """
         NewGraphNormExo(self)
 
-    def newFreeExo(self):
-        pass
 
     """
         Networking
@@ -278,18 +265,12 @@ class Compozer(QMainWindow):
         data['nickname'] = r.nick
         data['password'] = r.password
 
-        for dirname in os.listdir(EXOS_DIR):
-            for filename in os.listdir(EXOS_DIR + '/' + dirname):
-                lvl, _, nm = filename.partition('_')
-                pathname = EXOS_DIR + '/' + dirname + '/' + filename
-                serialized = open(pathname, 'r').read()
-                exo = json.loads(serialized, object_hook=decoder)
+        for nm, storage in EC_BDD.items():
+            data['data'] = {'name': nm, 'type': storage.type, 'level': storage.level, 'raw': storage.serialized}
+            entry = json.dumps(data)
 
-                data['data'] = {'name': exo.name, 'type': exo.type, 'level': exo.level, 'raw': serialized}
-                entry = json.dumps(data)
-
-                c = Connexion(entry)
-                print (c.result)
+            c = Connexion(entry)
+            print (c.result)
 
 
 class IntQTableWidgetItem(QTableWidgetItem):
@@ -298,10 +279,10 @@ class IntQTableWidgetItem(QTableWidgetItem):
 
     def __init__(self, txt):
         super().__init__(txt)
-        self.setData(Qt.UserRole, int(txt))
+        self.value = int(txt)
 
     def __lt__(self, other):
-        return (self.data(Qt.UserRole) < other.data(Qt.UserRole))
+        return (self.value < other.value)
 
 
 class Login(QDialog):

@@ -11,6 +11,8 @@ from cm_controller import *
 from cm_exercice import *
 from cm_interpreter import Interpreter
 
+from ec_sync import *
+
 try:
     from PySide.QtCore import *
     from PySide.QtGui import *
@@ -20,6 +22,10 @@ except:
 
 
 EXOS_DIR = '../save'
+EC_BDD = PersistentDict(EXOS_DIR + 'ec-bdd.dat')
+
+print(EC_BDD)
+
 
 class InfoWindows(QMessageBox):
     """ Simple informative modal message """
@@ -35,15 +41,12 @@ class InfoWindows(QMessageBox):
 class NewNormDotExo(QDialog):
     """ Modal widget to create and edit Normal<->Dotted exercices """
 
-    def __init__(self, parent, item="", diff=1):
+    def __init__(self, parent, item="", diff=1, overwrite=False):
         super().__init__(parent)
 
         self.diff = diff
-        self.previousText = '(nil)'  # Used by verify system
-
-        # ~ Used to remove the prev file when changing name/diff
-        # ~ of a loaded file
-        self.prev_file = ""
+        self.previousText = 'nil'  # Used by verify system
+        self.overwrite = overwrite
 
         self.setResult(0)
         self.finished.connect(parent.populate)
@@ -158,7 +161,7 @@ class NewNormDotExo(QDialog):
         for i in range(self.list_widget.rowCount()):
             checkbox = self.list_widget.item(i, 0)
             textbox = self.list_widget.item(i, 1)
-            yield ('dotted' if checkbox.checkState() == Qt.Checked else 'normal'), textbox.text()
+            yield ('dotted' if checkbox.isChecked() else 'normal'), textbox.text()
 
     def save(self):
         """Save file on disk """
@@ -169,25 +172,26 @@ class NewNormDotExo(QDialog):
         else:
             level = self.difficulty_value.value()
             name = self.name_field.text()
-            filepath = '{}/NormDot/{}_{}'.format(EXOS_DIR, level, name)
-            lst = list(self.iterAllItems())
-            print(lst)
-            ex_save(CmNDNExercice(name=name, level=level, lst=lst), filepath)
-            if self.prev_file and self.prev_file != filepath:
-                os.remove(self.prev_file)
-            self.prev_file = filepath  # need this ?
+            
+            if name in EC_BDD and not self.overwrite:
+                QMessageBox.warning(None, "Attention", 'un exercice portant le même nom existe déjà')
+                return
+            
+            once = self.onceMode.isChecked()
+            raw = ex_dumps(CmNDNExercice(name=name, level=level, once=once, lst=list(self.iterAllItems())))
+            
+            EC_BDD[name] = ExoStorage(id=None, type='__NDN__', level=level, serialized=raw)
+            EC_BDD.sync()
+
             self.done(1)
 
-    def load(self, exo):
+    def load(self, exo_name):
         """ Load a saved file """
-        filepath = '{}/NormDot/{}_{}'.format(EXOS_DIR, self.diff, exo)
-        self.prev_file = filepath
-        self.name_field.setText(exo)
+        self.name_field.setText(exo_name)
         try:
-            exo = ex_load(filepath)
+            exo = ex_loads(EC_BDD[exo_name].serialized)
             for mode, expr in exo.lst:
-                checked = mode == 'dotted'
-                self.add(expr, checked)
+                self.add(expr, mode == 'dotted')
         except IOError as e:
             print(e)
             self.done(0)
@@ -197,15 +201,12 @@ class NewNormDotExo(QDialog):
 class NewNormGraphExo(QDialog):
     """ Modal widget to create and edit Normal->Graph exercices """
 
-    def __init__(self, parent, item="", diff=1):
+    def __init__(self, parent, item="", diff=1, overwrite=False):
         super().__init__(parent)
 
         self.diff = diff
-        self.previousText = '(nil)'  # Used by verify system
-
-        # ~ To remove the prev file when changing name/diff
-        # ~ of a loaded file
-        self.prev_file = ""
+        self.previousText = 'nil'  # Used by verify system
+        self.overwrite = overwrite
 
         self.setResult(0)
         self.finished.connect(parent.populate)
@@ -297,8 +298,7 @@ class NewNormGraphExo(QDialog):
 
     def verify(self, item):
         """ Check if not empty line """
-        # ~ Should check for valid lisp expr
-        if (item.text() == ""):
+        if item.text() == "":
             item.setText("nil")
         else:
             try:
@@ -315,8 +315,7 @@ class NewNormGraphExo(QDialog):
     def iterAllItems(self):
         """ Create an iterator for lists' items """
         for i in range(self.list_widget.rowCount()):
-            once = self.list_widget.item(i, 0)
-            yield self.list_widget.item(i, 1).text()
+            yield self.list_widget.item(i, 0).text()
 
     # ~ Save to file, need to be serialized
     def save(self):
@@ -328,21 +327,24 @@ class NewNormGraphExo(QDialog):
         else:
             name = self.name_field.text()
             level = self.difficulty_value.value()
-            filepath = '{}/NormGraph/{}_{}'.format(EXOS_DIR, level, name)
-            lst = list(self.iterAllItems())
-            ex_save(CmNGExercice(name=name, level=level, lst=lst), filepath)
-            if self.prev_file and self.prev_file != filepath:
-                os.remove(self.prev_file)
-            self.prev_file = filepath  # need this ?
+            
+            if name in EC_BDD and not self.overwrite:
+                QMessageBox.warning(None, "Attention", 'un exercice portant le même nom existe déjà')
+                return
+            
+            once = self.onceMode.isChecked()
+            raw = ex_dumps(CmNGExercice(name=name, level=level, once=once, lst=list(self.iterAllItems())))
+            
+            EC_BDD[name] = ExoStorage(id=None, type='__NG__', level=level, serialized=raw)
+            EC_BDD.sync()
+
             self.done(1)
 
-    def load(self, exo):
+    def load(self, exo_name):
         """ Load a saved file """
-        filepath = '{}/NormGraph/{}_{}'.format(EXOS_DIR, self.diff, exo)
-        self.prev_file = filepath
-        self.name_field.setText(exo)
+        self.name_field.setText(exo_name)
         try:
-            exo = ex_load(filepath)
+            exo = ex_loads(EC_BDD[exo_name].serialized)
             for expr in exo.lst:
                 self.add(expr)
         except IOError as e:
@@ -353,14 +355,11 @@ class NewNormGraphExo(QDialog):
 class NewGraphNormExo(QDialog):
     """ Modal widget to create and edit Graph->Norm exercices """
 
-    def __init__(self, parent, item="", diff=1):
+    def __init__(self, parent, item="", diff=1, overwrite=False):
         super().__init__(parent)
 
         self.diff = diff
-
-        # ~ To remove the prev file when changing name/diff
-        # ~ of a loaded file
-        self.prev_file = ""
+        self.overwrite = overwrite
 
         self.setResult(0)
         self.finished.connect(parent.populate)
@@ -454,8 +453,7 @@ class NewGraphNormExo(QDialog):
     def iterAllItems(self):
         """ Create an iterator for lists' items """
         for i in range(self.list_widget.rowCount()):
-            once = self.list_widget.item(i, 0)
-            yield self.list_widget.item(i, 1).data(Qt.UserRole)
+            yield self.list_widget.item(i, 0).data(Qt.UserRole)
 
     def save(self):
         """Save file on disk """
@@ -466,22 +464,26 @@ class NewGraphNormExo(QDialog):
         else:
             level = self.difficulty_value.value()
             name = self.name_field.text()
-            filepath = '{}/GraphNorm/{}_{}'.format(EXOS_DIR, level, name)
-            lst = list(self.iterAllItems())
-            ex_save(CmGNExercice(name=name, level=level, lst=lst), filepath)
-            if self.prev_file and self.prev_file != filepath:
-                os.remove(self.prev_file)
-            self.prev_file = filepath  # need this ?
+            
+            if name in EC_BDD and not self.overwrite:
+                QMessageBox.warning(None, "Attention", 'un exercice portant le même nom existe déjà')
+                return
+            
+            once = self.onceMode.isChecked()
+            raw = ex_dumps(CmGNExercice(name=name, level=level, once=once, lst=list(self.iterAllItems())))
+            
+            EC_BDD[name] = ExoStorage(id=None, type='__GN__', level=level, serialized=raw)
+            EC_BDD.sync()
+
             self.done(1)
 
-    def load(self, exo):
+    def load(self, exo_name):
         """ Load a saved file """
-        filepath = '{}/GraphNorm/{}_{}'.format(EXOS_DIR, self.diff, exo)
-        self.prev_file = filepath
-        self.name_field.setText(exo)
+
+        self.name_field.setText(exo_name)
         try:
-            exo = ex_load(filepath)
-            for once, expr in exo.lst:
+            exo = ex_loads(EC_BDD[exo_name].serialized)
+            for expr in exo.lst:
                 self.add(expr)
         except IOError as e:
             print(e)
