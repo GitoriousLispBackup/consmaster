@@ -16,8 +16,11 @@ from cm_exercice import ex_loads
 
 
 def update_bdd():
-    raw_exos = get_exercices(); print(raw_exos)
-    # TODO: prevent if unable to connect to network
+    raw_exos = get_exercices(); # print(raw_exos)
+    
+    if raw_exos is None: # TODO: prevent if unable to connect to network
+        return
+    
     if raw_exos.keys().isdisjoint(CM_BDD.keys()):
         QMessageBox.information(None, "Info", "De nouveaux exercices sont disponibles.")
         dct = {uid: ex_loads(serialized) for uid, serialized in raw_exos.items() if uid not in CM_BDD}
