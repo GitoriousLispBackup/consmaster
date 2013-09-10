@@ -9,7 +9,7 @@ except:
     sys.exit(1)
 
 from cm_monitor import UserData
-
+from cm_globals import CM_DATA
 
 class AddUser(QDialog):
     def __init__(self, data, parent=None):
@@ -72,5 +72,7 @@ class AddUser(QDialog):
         userDat = UserData(name, email, pwd)
         userDat.register()
         self.data.append(userDat)
+        
+        CM_DATA.sync()
         
         return super().accept()

@@ -24,7 +24,7 @@ class Client(QMainWindow):
         super().__init__(parent)
 
         self.currentUser = None
-        self.data = cm_load_data()
+        self.data = CM_DATA['userlist']
 
         self.initStatusBar()
         self.createMenus()
@@ -128,10 +128,6 @@ class Client(QMainWindow):
     def getStats(self):
         # TODO: activer seulement si un user existe
         StatsDialog(self.currentUser).exec_()
-
-    def closeEvent(self, event):
-        cm_save_data(self.data)
-        super().closeEvent(event)
 
     def initStatusBar(self):
         self.userWid = QLabel()
