@@ -233,6 +233,9 @@ class Compozer(QMainWindow):
         editor = self.tabWidget.currentWidget().editor
         level = self.tabWidget.currentWidget().item(item.row(), 1).value
         editor(self, item.text(), diff=level, overwrite=True)
+        
+        #TODO: empecher l'edition d'exercices deja uploade (id exists)
+        #TODO: la protection contre l'overwrite ne fonctionne pas si l'user change le nom en mode edition...
 
     def newNormDotExo(self):
         """ New Norm <-> Dot exo """
@@ -266,11 +269,23 @@ class Compozer(QMainWindow):
         data['password'] = r.password
 
         for nm, storage in EC_BDD.items():
+            if storage.id is not None:
+                continue
+            
             data['data'] = {'name': nm, 'type': storage.type, 'level': storage.level, 'raw': storage.serialized}
             entry = json.dumps(data)
 
             c = Connexion(entry)
-            print (c.result)
+            
+            result = json.loads(c.result)
+            # print(result)
+            
+            if result['status'] == 'success' and result['code'] == 'S_AEC':
+                # retrieve server id and store it
+                uid = result['data']['id']
+                EC_BDD[nm] = storage._replace(id=uid)
+        
+        EC_BDD.sync()
 
 
 class IntQTableWidgetItem(QTableWidgetItem):
