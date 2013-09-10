@@ -83,3 +83,9 @@ def ex_load(filename):
 def ex_save(obj, filename):
     with open(filename, 'w', encoding='utf-8') as fp:
         json.dump(obj, fp, cls=Encoder)
+
+def ex_dumps(obj):
+    return json.dumps(obj, cls=Encoder)
+
+def ex_loads(s):
+    return json.loads(s, object_hook=decoder)
