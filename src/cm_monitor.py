@@ -4,7 +4,7 @@
 from collections import defaultdict, OrderedDict
 
 from cm_globals import MODES
-from cm_connexion import user_is_registered, create_user
+
 
 class ExoType:
     """
@@ -53,6 +53,7 @@ class UserData:
         return '<UserData:\n' + '\n,'.join([self.nick, self.mail, self.pwd] + [repr(mode) for mode in self.modes.values()]) + '\n>'
 
     def register(self):
+        from cm_connexion import user_is_registered, create_user
         if self._registered:
             return
         elif user_is_registered(self.nick, self.pwd):
