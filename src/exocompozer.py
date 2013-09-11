@@ -279,15 +279,15 @@ class Compozer(QMainWindow):
             data['data'] = {'name': nm, 'type': storage.type, 'level': storage.level, 'raw': storage.serialized}
             entry = json.dumps(data)
 
-            c = Connexion(entry)
+            c = Connexion(entry, host=r.host, port=r.port)
 
             result = json.loads(c.result)
-            # print(result)
-
             if result['status'] == 'success' and result['code'] == 'S_AEC':
                 # retrieve server id and store it
                 uid = result['data']['id']
                 EC_BDD[nm] = storage._replace(id=uid)
+            else:
+                print(result)
 
         EC_BDD.sync()
 
@@ -309,8 +309,15 @@ class Login(QDialog):
     def __init__(self):
         super().__init__()
 
+        self.hostInput = QLineEdit(self)
+        self.portInput = QLineEdit(self)
         self.loginInput = QLineEdit(self)
         self.passwordInput = QLineEdit(self)
+
+        v = QIntValidator()
+        self.portInput.setValidator(v)
+
+        self.passwordInput.setEchoMode(QLineEdit.Password)
 
         layout = QVBoxLayout()
 
@@ -318,6 +325,8 @@ class Login(QDialog):
         cancelBtn = QPushButton("Quitter", self)
 
         formLayout = QFormLayout()
+        formLayout.addRow("&Host:", self.hostInput)
+        formLayout.addRow("&Port:", self.portInput)
         formLayout.addRow("&Nom d'utilisateur:", self.loginInput)
         formLayout.addRow("&Password:", self.passwordInput)
 
@@ -337,10 +346,13 @@ class Login(QDialog):
     def accept(self):
         self.nick = self.loginInput.text()
         self.password = self.passwordInput.text()
+        self.host = self.hostInput.text()
 
-        if not self.nick or not self.password:
+        if not self.nick or not self.password or not self.host or not self.portInput.text():
             QMessageBox.warning(self, 'Attention', 'Données invalides')
             return
+
+        self.port = int(self.portInput.text())
         return super().accept()
 
 if __name__ == '__main__':
