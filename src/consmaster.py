@@ -16,6 +16,7 @@ from cm_stats import *
 from cm_add_user import *
 from cm_update import update_bdd
 from cm_connexion import send_exercices
+from cm_config import *
 
 
 VERSION = '0.5'
@@ -66,10 +67,17 @@ class Client(QMainWindow):
         self.setHelpMenu(self.aboutMenu)
 
     def setBasicMenu(self, menu):
+        updateAction = QAction(QIcon("../icons/download"),
+                "&Update", self, triggered=self.updateExosBdd)
+        configAction = QAction(QIcon("../icons/configure"),
+                "&Paramètres", self, shortcut="Ctrl+Shift+P",
+                statusTip="Paramètres", triggered=self.networkConfig)
         quitAction = QAction(QIcon("../icons/application-exit"),
                 "&Quitter", self, shortcut="Ctrl+Shift+Q",
                 statusTip="Quitter l'application", triggered=self.close)
-        # self.connectAction = self.clientMenu.addAction("Se connecter")
+        
+        menu.addAction(updateAction)
+        menu.addAction(configAction)
         menu.addAction(quitAction)
 
     def setUserMenu(self, menu):
@@ -166,6 +174,17 @@ class Client(QMainWindow):
 
         self.userWid.setText(userLabel)
         self.servWid.setText(servLabel)
+
+    def networkConfig(self):
+        form = Config(**CM_DATA['connexion_params'])
+        ret = form.exec_()
+        if ret == QDialog.Accepted:
+            CM_DATA['connexion_params'] = {'host': form.hostname, 'port': form.port}
+            CM_DATA.sync()
+
+    def updateExosBdd(self):
+        update_bdd()
+
 
 ###############################################################################
 
