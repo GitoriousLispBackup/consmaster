@@ -18,7 +18,7 @@ def user_is_registered(user, pwd):
         return response['status'] == 'success' and response['code'] == 'S_AUI'
     except:
         print('exception occured')
-        return False
+        return None
 
 def create_user(user, pwd, email):
     dct = {'action': 'creatUser', 'data': {'nickname': user, 'password': pwd, 'email': email}}
@@ -30,7 +30,7 @@ def create_user(user, pwd, email):
         return response['status'] == 'success' and response['code'] == 'S_AUC'
     except:
         print('exception occured')
-        return False
+        return None
 
 def get_exercices():
     dct = {'action': 'loadExo', 'data': {}}
@@ -49,6 +49,16 @@ def get_exercices():
         return None
 
 def send_exercices(user_data):
+    test = user_is_registered(user_data.nick, user_data.pwd)
+    if test is None:
+        print('unable to connect to network')
+        return
+    elif test is False:
+        ok = create_user(user_data.nick, user_data.pwd, user_data.mail)
+        if not ok:
+            print('problem with user registration')
+            return
+            
     dct = {'action': 'creatSubm', 'nickname': user_data.nick, 'password': user_data.pwd}
     for exotype in user_data.modes.values():
         for uid, submission in exotype.exercices.items():
