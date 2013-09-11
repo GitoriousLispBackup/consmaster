@@ -24,7 +24,7 @@ except:
 EXOS_DIR = '../save'
 EC_BDD = PersistentDict(EXOS_DIR + 'ec-bdd.dat')
 
-print(EC_BDD)
+# print(EC_BDD)
 
 
 class InfoWindows(QMessageBox):

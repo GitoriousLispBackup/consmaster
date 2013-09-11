@@ -71,8 +71,6 @@ class Compozer(QMainWindow):
                                               triggered=self.populate)
         self.uploadAction = QAction("Upload", self, \
                                               triggered=self.upload)
-        self.updateAction = QAction("Update", self, \
-                                              triggered=self.update)
 
     def createMenus(self):
         menu = self.menuBar().addMenu("Menu")
@@ -89,7 +87,6 @@ class Compozer(QMainWindow):
         menu.addAction(self.quitAction)
         menu = self.menuBar().addMenu("Serveur")
         menu.addAction(self.uploadAction)
-        menu.addAction(self.updateAction)
 
     def createWidget(self):
         """
@@ -158,12 +155,11 @@ class Compozer(QMainWindow):
         """ Populate tab widgets w/ files names """
         self.clearAll()
         for nm, storage in EC_BDD.items():
-            # For testing
-            uploaded = 1
 
             lvl = storage.level
             name = QTableWidgetItem(nm)
-            if uploaded:
+            
+            if storage.id != None:
                 name.setFlags(Qt.ItemIsSelectable)
 
             # ~ Custom class for sorting
