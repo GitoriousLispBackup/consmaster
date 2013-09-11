@@ -2,11 +2,9 @@
 # -*- coding: utf-8 -*-
 
 import json
-from server.connexion import Connexion
 
-#TODO: utiliser des paramètres
-HOST, PORT = 'eliacheff.dyndns.org', 9993
-# HOST, PORT = 'localhost', 9993
+from server.connexion import Connexion
+from cm_globals import CM_BDD, CM_DATA
 
 #TODO : ajouter des messages d'erreur
 
@@ -14,7 +12,7 @@ def user_is_registered(user, pwd):
     dct = {'action': 'identUser', 'data': {'nickname': user, 'password': pwd}}
     data = json.dumps(dct)
     try:
-        request = Connexion(data, host=HOST, port=PORT)
+        request = Connexion(data, **CM_DATA['connexion_params'])
         response = json.loads(request.result)
         print(response)
         return response['status'] == 'success' and response['code'] == 'S_AUI'
@@ -26,7 +24,7 @@ def create_user(user, pwd, email):
     dct = {'action': 'creatUser', 'data': {'nickname': user, 'password': pwd, 'email': email}}
     data = json.dumps(dct)
     try:
-        request = Connexion(data, host=HOST, port=PORT)
+        request = Connexion(data, **CM_DATA['connexion_params'])
         response = json.loads(request.result)
         print(response)
         return response['status'] == 'success' and response['code'] == 'S_AUC'
@@ -38,7 +36,7 @@ def get_exercices():
     dct = {'action': 'loadExo', 'data': {}}
     data = json.dumps(dct)
     try:
-        request = Connexion(data, host=HOST, port=PORT)
+        request = Connexion(data, **CM_DATA['connexion_params'])
         response = json.loads(request.result)
         #print(response)
         if response['status'] == 'success' and response['code'] == 'S_AEL':
@@ -50,14 +48,37 @@ def get_exercices():
         print('exception occured', repr(err))
         return None
 
-def send_exercices(userData):
-    nick, password = userData.nick, userData.pwd
-    
+def send_exercices(user_data):
+    dct = {'action': 'creatSubm', 'nickname': user_data.nick, 'password': user_data.pwd}
+    for exotype in user_data.modes.values():
+        for uid, submission in exotype.exercices.items():
+            if submission is None: continue
+            dct['data'] = {"exo_id": uid, "soumission": submission}
+            data = json.dumps(dct)
+            try:
+                request = Connexion(data, **CM_DATA['connexion_params'])
+                response = json.loads(request.result)
+                print(response)
+                if response['status'] == 'success' and response['code'] == 'S_ASC':
+                    print('\tOK')
+                    exotype.exercices[uid] = None
+                    #if CM_BDD[uid].once:
+                        #exotype.exercices[uid] = None
+                    #else:
+                    #    del exotype.exercices[uid]
+                else:
+                    print(response['status'], response['code'])
+            except:
+                print('exception occured')
+    # after all, resync user data
+    CM_DATA.sync()
+            
+
 #def get_exercices_uid(uid):
     #dct = {'action': 'listExoId'}
     #data = json.dumps(dct)
     #try:
-        #request = Connexion(data, host=HOST, port=PORT)
+        #request = Connexion(data, **CM_DATA['connexion_params'])
         #response = json.loads(request.result)
         ##print(response)
         #if response['status'] == 'success' and response['code'] == 'S_AEL':
