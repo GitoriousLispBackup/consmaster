@@ -18,6 +18,14 @@ from cm_update import update_bdd
 from cm_connexion import send_exercices
 
 
+VERSION = '0.5'
+AUTHORS = [
+    'Josue Melka',
+    'Calev Eliacheff',
+    'David Calmeille'
+]
+
+
 class Client(QMainWindow):
     """ Create client windows """
 
@@ -125,8 +133,11 @@ class Client(QMainWindow):
 
     def about(self):
         QMessageBox.about(self, "A propos ConsMaster",
-                "Maîtrisez les représentations de listes, en notations parenthésées, "
-                "à point et en doublets graphiques.")
+                "<h1>ConsMaster</h1> <h4>v " + VERSION + "</h4>" +
+                "<p>Maîtrisez les représentations de listes, en notations parenthésées, "
+                "à point et en doublets graphiques.</p>" +
+                "<h4>Auteurs :</h4>" + 
+                "<li><ul>" + '</ul><ul>'.join(AUTHORS) + '</ul></li>' )
 
     def getStats(self):
         # TODO: activer seulement si un user existe
