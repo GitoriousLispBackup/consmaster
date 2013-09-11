@@ -20,7 +20,7 @@ from cm_connexion import send_exercices
 
 VERSION = '0.5'
 AUTHORS = [
-    'Josue Melka',
+    'Josué Melka',
     'Calev Eliacheff',
     'David Calmeille'
 ]
