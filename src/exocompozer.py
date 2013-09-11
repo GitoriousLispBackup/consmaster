@@ -71,6 +71,8 @@ class Compozer(QMainWindow):
                                               triggered=self.populate)
         self.uploadAction = QAction("Upload", self, \
                                               triggered=self.upload)
+        self.updateAction = QAction("Update", self, \
+                                              triggered=self.update)
 
     def createMenus(self):
         menu = self.menuBar().addMenu("Menu")
@@ -87,6 +89,7 @@ class Compozer(QMainWindow):
         menu.addAction(self.quitAction)
         menu = self.menuBar().addMenu("Serveur")
         menu.addAction(self.uploadAction)
+        menu.addAction(self.updateAction)
 
     def createWidget(self):
         """
@@ -155,9 +158,14 @@ class Compozer(QMainWindow):
         """ Populate tab widgets w/ files names """
         self.clearAll()
         for nm, storage in EC_BDD.items():
+            # For testing
+            uploaded = 1
+
             lvl = storage.level
             name = QTableWidgetItem(nm)
-            
+            if uploaded:
+                name.setFlags(Qt.ItemIsSelectable)
+
             # ~ Custom class for sorting
             diff = IntQTableWidgetItem(lvl)
             diff.setFlags(Qt.ItemIsSelectable)
@@ -204,7 +212,7 @@ class Compozer(QMainWindow):
         exo_name = self.tabWidget.currentWidget().item(self.tabWidget.currentWidget().currentRow(), 0).text()
         #TODO: delete it from server
         del EC_BDD[exo_name]
-        
+
         EC_BDD.sync()
 
         self.tabWidget.currentWidget().removeRow(self.tabWidget.currentWidget().currentRow())
@@ -225,7 +233,7 @@ class Compozer(QMainWindow):
                 del EC_BDD[exo_name]
 
                 tab.removeRow(row)
-        
+
         EC_BDD.sync()
 
     def editExo(self, item):
@@ -233,7 +241,7 @@ class Compozer(QMainWindow):
         editor = self.tabWidget.currentWidget().editor
         level = self.tabWidget.currentWidget().item(item.row(), 1).value
         editor(self, item.text(), diff=level, overwrite=True)
-        
+
         #TODO: empecher l'edition d'exercices deja uploade (id exists)
         #TODO: la protection contre l'overwrite ne fonctionne pas si l'user change le nom en mode edition...
 
@@ -271,20 +279,20 @@ class Compozer(QMainWindow):
         for nm, storage in EC_BDD.items():
             if storage.id is not None:
                 continue
-            
+
             data['data'] = {'name': nm, 'type': storage.type, 'level': storage.level, 'raw': storage.serialized}
             entry = json.dumps(data)
 
             c = Connexion(entry)
-            
+
             result = json.loads(c.result)
             # print(result)
-            
+
             if result['status'] == 'success' and result['code'] == 'S_AEC':
                 # retrieve server id and store it
                 uid = result['data']['id']
                 EC_BDD[nm] = storage._replace(id=uid)
-        
+
         EC_BDD.sync()
 
 
