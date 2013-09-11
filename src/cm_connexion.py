@@ -60,7 +60,6 @@ def send_exercices(user_data):
                 response = json.loads(request.result)
                 print(response)
                 if response['status'] == 'success' and response['code'] == 'S_ASC':
-                    print('\tOK')
                     exotype.exercices[uid] = None
                     #if CM_BDD[uid].once:
                         #exotype.exercices[uid] = None

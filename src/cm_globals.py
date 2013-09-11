@@ -32,4 +32,4 @@ CM_BDD  = PersistentDict(DATA_DIR + 'cm-bdd.dat')
 CM_DATA.setdefault('userlist', [])
 CM_DATA['connexion_params'] = {'host': HOST, 'port': PORT}
 
-print(CM_DATA)
+# print(CM_DATA)

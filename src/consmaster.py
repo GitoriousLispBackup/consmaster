@@ -15,6 +15,7 @@ from cm_main_menu import MainMenu
 from cm_stats import *
 from cm_add_user import *
 from cm_update import update_bdd
+from cm_connexion import send_exercices
 
 
 class Client(QMainWindow):
@@ -79,6 +80,8 @@ class Client(QMainWindow):
             setUsernameAction.setData(user)
             setUsernameAction.toggled.connect(self.userChanged)
             self.groupUser.addAction(setUsernameAction)
+            #TODO: est ce une façon correcte de faire ?
+            send_exercices(user)
 
         # select some user
         users = self.groupUser.actions()
