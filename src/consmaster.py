@@ -48,8 +48,6 @@ class Client(QMainWindow):
                     "Il est préférable de vous enregistrer afin de bénéficier "
                     "des fonctionnalités du suivi de progression.")
 
-        #self.networkConfig()
-
         update_bdd()
 
     def createMenus(self):
@@ -61,13 +59,16 @@ class Client(QMainWindow):
         self.setHelpMenu(self.aboutMenu)
 
     def setBasicMenu(self, menu):
+        updateAction = QAction(QIcon("../icons/application-exit"),
+                "&Update", self, triggered=self.updateExosBdd)
         configAction = QAction(QIcon("../icons/application-exit"),
                 "&Paramètres", self, shortcut="Ctrl+Shift+P",
                 statusTip="Paramètres", triggered=self.networkConfig)
         quitAction = QAction(QIcon("../icons/application-exit"),
                 "&Quitter", self, shortcut="Ctrl+Shift+Q",
                 statusTip="Quitter l'application", triggered=self.close)
-        # self.connectAction = self.clientMenu.addAction("Se connecter")
+        
+        menu.addAction(updateAction)
         menu.addAction(configAction)
         menu.addAction(quitAction)
 
@@ -170,7 +171,8 @@ class Client(QMainWindow):
             CM_DATA['connexion_params'] = {'host': form.hostname, 'port': form.port}
             CM_DATA.sync()
 
-
+    def updateExosBdd(self):
+        update_bdd()
 
 
 ###############################################################################
