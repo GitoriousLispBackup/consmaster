@@ -59,9 +59,9 @@ class Client(QMainWindow):
         self.setHelpMenu(self.aboutMenu)
 
     def setBasicMenu(self, menu):
-        updateAction = QAction(QIcon("../icons/application-exit"),
+        updateAction = QAction(QIcon("../icons/download"),
                 "&Update", self, triggered=self.updateExosBdd)
-        configAction = QAction(QIcon("../icons/application-exit"),
+        configAction = QAction(QIcon("../icons/configure"),
                 "&Paramètres", self, shortcut="Ctrl+Shift+P",
                 statusTip="Paramètres", triggered=self.networkConfig)
         quitAction = QAction(QIcon("../icons/application-exit"),
