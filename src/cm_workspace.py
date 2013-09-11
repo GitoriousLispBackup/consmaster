@@ -110,6 +110,7 @@ class WorkSpace(QWidget):
         self.validate_btn.clicked.connect(self.validateRequested)
         self.next_btn.clicked.connect(self.goNext)
         self.close_btn.clicked.connect(self.closeReq)
+        #TODO: ajouter une connexion en cas de fermeture externe ?
 
     def validateRequested(self):
         """
@@ -129,6 +130,7 @@ class WorkSpace(QWidget):
         controller.enonceChanged.connect(self.w_enonce.setExpr)
         controller.setCounterText.connect(self.label_counter.setText)
         controller.ok.connect(self.valided)
+        controller.fail.connect(self.valided)
         controller.completed.connect(self.closeReq)
         self.getEntry.connect(controller.receive)
         self.goNext()  # ugly
@@ -149,9 +151,6 @@ class WorkSpace(QWidget):
         self.validate_btn.setDisabled(True)
 
     def closeReq(self):
-        #TODO: demander si l'utilisateur veut vraiment arréter 
-        #(s'il n'a pas fini seulement)
-        self.controller.storeResults()
         self.closeRequested.emit(self)
 
 
@@ -162,13 +161,12 @@ class TrainingWorkSpace(WorkSpace):
 # TODO: ajouter un compteur faits/total
 class ExerciceWorkSpace(WorkSpace):
     """ Class specialisation for exercices workspace """
-    def goNext(self):
-        self.next_btn.setDisabled(True)
-        super().goNext()
-
-    def valided(self):
-        self.next_btn.setDisabled(False)
-        super().valided()
+    
+    def closeReq(self):
+        #TODO: demander si l'utilisateur veut vraiment arréter 
+        #(s'il n'a pas fini seulement)
+        self.controller.storeResults()
+        super().closeReq()
 
 
 ######################################################

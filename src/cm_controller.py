@@ -4,6 +4,7 @@
 
 import re
 import random
+import json
 from collections import defaultdict
 
 try:
@@ -21,6 +22,7 @@ from cm_interpreter import Interpreter, GraphExpr
 from cm_expr_generator import level_expr_gen
 from cm_globals import *
 
+from cm_exercice import Encoder
 
 
 class CmController(QObject):
@@ -60,6 +62,7 @@ class CmBasicController(QObject):
     enonceChanged = Signal(object)
     setCounterText = Signal(str)
     ok = Signal()
+    fail = Signal()
     completed = Signal()
 
     def __init__(self):
@@ -174,7 +177,8 @@ class TrainingMixin:
         if not interm:
             self.updateData(0)
             return
-        ok = interm == self.interm_enonce
+
+        ok = (interm == self.interm_enonce)
         self.total += 1
         if ok:
             self.realised += 1
@@ -220,16 +224,17 @@ class ExerciceMixin:
         interm = self.validate(entry)
         if not interm:
             return
-        ok = interm == self.interm_enonce
+
+        ok = (interm == self.interm_enonce)
         if ok:  # des parties de la validation sont une grande aide, notament en mode NDN
-            self.ok.emit()  # en mode exercice, bloque la touche de validation
+            self.ok.emit()
             QMessageBox.information(None, "Bravo !",
                     "Vous avez répondu correctement à cette question")
-        else:
+        else:            
+            if self.once:   # empêcher de recommencer l'exercice
+                self.fail.emit()
             self.help(interm, self.interm_enonce)
-            # TODO: eventuellement empêcher de reccomencer l'exercice
-            if self.once:
-                pass
+
         self.results[self.exoNum].append(entry)
 
     def next(self):
@@ -244,9 +249,9 @@ class ExerciceMixin:
         
     def storeResults(self):
         # enregistrer les résultats en attendant l'envoi sur le serveur
-        self.userData.addExerciceData(self.uid, self.results)
-        # TODO: calculer et annoncer la note
-
+        data = json.dumps(self.results, cls=Encoder)
+        self.userData.addExerciceData(self.uid, data)
+        CM_DATA.sync()
 
 
 #########################################################################
