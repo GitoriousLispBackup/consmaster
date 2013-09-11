@@ -9,6 +9,9 @@ try:
 except:
     print ("Error: This program needs PySide module.", file=sys.stderr)
     sys.exit(1)
+    
+from threading import Thread
+from queue import Queue
 
 from cm_globals import *
 from cm_main_menu import MainMenu
@@ -32,7 +35,12 @@ class Client(QMainWindow):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-
+        
+        self.network_queue = Queue()
+        self.t = Thread(target=self.worker)
+        self.t.daemon = True
+        self.t.start()
+        
         self.currentUser = None
         self.data = CM_DATA['userlist']
 
@@ -56,7 +64,13 @@ class Client(QMainWindow):
                     "Il est préférable de vous enregistrer afin de bénéficier "
                     "des fonctionnalités du suivi de progression.")
 
-        update_bdd()
+        self.network_queue.put(update_bdd)
+
+    def worker(self):
+        while True:
+            item = self.network_queue.get()
+            item()
+            self.network_queue.task_done()
 
     def createMenus(self):
         self.clientMenu = self.menuBar().addMenu("&Client")
@@ -97,7 +111,8 @@ class Client(QMainWindow):
             setUsernameAction.toggled.connect(self.userChanged)
             self.groupUser.addAction(setUsernameAction)
             #TODO: est ce une façon correcte de faire ?
-            send_exercices(user)
+            self.network_queue.put(lambda: send_exercices(user))
+            
 
         # select some user
         users = self.groupUser.actions()
@@ -121,7 +136,7 @@ class Client(QMainWindow):
         if checked:
             selected_action = self.groupUser.checkedAction()
             self.currentUser = selected_action.data()
-            self.currentUser.register()
+            #TODO: add updating action ?
         self.updateStatusBar()
 
     def addUser(self):
@@ -183,7 +198,13 @@ class Client(QMainWindow):
             CM_DATA.sync()
 
     def updateExosBdd(self):
-        update_bdd()
+        self.network_queue.put(update_bdd)
+        
+    def closeEvent(self, event):
+        self.network_queue.join()
+        CM_DATA.sync()
+        CM_BDD.sync()
+        print('cm: terminate')
 
 
 ###############################################################################
