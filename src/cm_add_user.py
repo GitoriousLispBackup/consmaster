@@ -68,10 +68,8 @@ class AddUser(QDialog):
         if errMsg:
             QMessageBox.warning(self, 'Attention', '\n'.join(errMsg))
             return
-        
-        userDat = UserData(name, email, pwd)
-        userDat.register()
-        self.data.append(userDat)
+
+        self.data.append(UserData(name, email, pwd))
         
         CM_DATA.sync()
         
